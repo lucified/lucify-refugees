@@ -26,6 +26,7 @@
     "gulp-minify-css": "^1.1.1",
     "gulp-sequence": "^0.3.2",
     "gulp-sass": "^2.0.0",
+    "gulp-shell": "^0.4.3",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
@@ -36,13 +37,19 @@
   },
   "dependencies": {
     "area-polygon": "^1.0.1",
+    "bluebird": "^2.10.0",
+    "d3": "^3.5.6",
     "excel-parser": "^0.2.2",
     "excel2json": "^0.2.9",
     "foundation-sites": "^5.5.2",
     "jquery": "^2.1.4",
     "moment": "^2.10.6",
+    "pixi.js": "^3.0.7",
     "point-in-polygon": "^1.0.0",
-    "vec2": "^1.6.0"
+    "polygon": "^1.0.2",
+    "underscore": "^1.8.3",
+    "vec2": "^1.6.0",
+    "xlsjs": "^0.7.5"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js",

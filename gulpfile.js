@@ -11,6 +11,7 @@ var watch        = require('gulp-watch');
 var minifycss    = require('gulp-minify-css');
 var uglify       = require('gulp-uglify');
 var streamify    = require('gulp-streamify');
+var shell        = require('gulp-shell')
 var prod         = gutil.env.prod;
 
 var onError = function(err) {
@@ -63,7 +64,8 @@ gulp.task('sass', function() {
 gulp.task('data', function() {
   return gulp.src('./data/**/*.json')
     .pipe(gulp.dest('build'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
+    .pipe(shell(['./prepare.sh', 'node src/scripts/prepare-asylum-data.js']));
 });
 
 
