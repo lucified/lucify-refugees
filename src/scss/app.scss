@@ -32,6 +32,15 @@ body {
 	//opacity: 0.5
 }
 
+#time {
+	position: absolute;
+	font-family: monospace;
+	bottom: 1rem;
+	left: 1rem;
+	text-transform: uppercase;
+	font-size: 18px;
+	color: $lucify-cyan;
+}
 
 svg path {
 	fill: transparent;

@@ -58,8 +58,6 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
     this.renderer.plugins.interaction.autoPreventDefault = false;
     this.stage = new PIXI.Container();
     this.stage.interactive = false;
-
-    console.log("joo");
 }
 
 

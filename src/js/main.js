@@ -10,15 +10,12 @@ var moment = require('moment');
 var RefugeeMap = require('./refugee-map.js');
 var RefugeeModel = require('./refugee-model.js');
 
-
 // latitude = y
 // longitude = x
 
 console.time("load topomap")
 
 d3.json('topomap.json', function(error, countries) {
-
-	
 	window.countries = countries;
 	var fc = topojson.feature(countries, countries.objects.map);
 	window.fc = fc;
@@ -47,5 +44,9 @@ var runAnimation = function() {
 		//console.log(rmodel.currentMoment.format());
 		rmodel.updateActiveRefugees();
 		rmap.drawRefugeePositions();
+
+		d3.select('#time')
+			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
+
 	}, 25);
 }
