@@ -69,6 +69,38 @@ var getApplicationCount = function(month, asylumCountry, originCountry) {
 var transformCountryCode = function(country) {
 	if (country == "GFR") {
 		return "DEU";
+	} else if (country == "BUL") {
+		return "BGR";
+	} else if (country == "ERT") {
+		return "ERI";
+	} else if (country == "DEN") {
+		return "DNK";
+	} else if (country == "GRE") {
+		return "GRC";
+	} else if (country == "MTA") {
+		return "MLT";
+	} else if (country == "NET") {
+		return "NLD";
+	} else if (country == "ROM") {
+		return "ROU";
+	} else if (country == "SPA") {
+		return "ESP";
+	} else if (country == "SWI") {
+		return "CHE";
+	} else if (country == "MCD") {
+		return "MKD";
+	} else if (country == "AUS") {
+		return "AUT";
+	} else if (country == "AUL") {
+		return "AUS";
+	} else if (country == "IRE") {
+		return "IRL";
+	} else if (country == "POR") {
+		return "PRT";
+	} else if (country == "ICE") {
+		return "ISL";
+	} else if (country == "CHI") {
+		return "CHN";
 	}
 	return country;
 }
@@ -85,7 +117,7 @@ months.forEach(function(month) {
 		asylumCountries.forEach(function(ac) {
 			var count = getApplicationCount(month, ac, oc);
 			var item = {
-				oc: oc,
+				oc: transformCountryCode(oc),
 				ac: transformCountryCode(ac.country),
 				month: month,
 				count: count
