@@ -1,5 +1,3 @@
-
-
 var XLS = require('xlsjs');
 var _ = require('underscore');
 var fs = require('fs');
@@ -16,14 +14,14 @@ var originCountries = ['SYR', 'AFG', 'SRB', 'IRQ', 'ALB', 'ERT', 'PAK', 'SOM', '
 
 var asylumCountries = _.range(10, 56).map(function(number) {
 	var cell = workbook.Sheets.SYR["A" + number];
-	
+
 	var country;
 	if (number == 50) {
 		country = "USA";
-	
+
 	} else if (cell == null) {
 		return null;
-	
+
 	} else {
 		country = cell.v;
 	}
@@ -36,7 +34,7 @@ var asylumCountries = _.range(10, 56).map(function(number) {
 	}
 
 }).filter(function(item) {
-	return item != null;
+	return item !== null;
 });
 
 
@@ -61,7 +59,7 @@ var getApplicationCount = function(month, asylumCountry, originCountry) {
 		//console.log("error for " + month + asylumCountry.country + originCountry);
 		return 0;
 	}
-	if (cell.v != null && Number.isInteger(cell.v)) {
+	if (cell.v !== null && Number.isInteger(cell.v)) {
 		return cell.v;
 	}
 
@@ -91,31 +89,17 @@ months.forEach(function(month) {
 				ac: transformCountryCode(ac.country),
 				month: month,
 				count: count
-			}
+			};
 			data.push(item);
 		});
 	});
 });
 
 
-var data = data.filter(function(item) {
+data = data.filter(function(item) {
 	return item.count > 0;
-})
-
+});
 
 console.log(data);
 
 fs.writeFileSync('data/asylum.json', JSON.stringify(data, null, 4));
-
-
-//function getTrafficForCountryPair = function() {
-
-
-
-
-
-
-
-
-
-
