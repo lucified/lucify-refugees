@@ -1,0 +1,41 @@
+
+@charset 'UTF-8';
+@import "bourbon";
+
+@import "variables.scss";
+
+
+//* {
+//	box-sizing: border-box;
+//}
+
+#canvas-wrap {
+	//border: 1px solid black;
+	//height: 400px;
+	//width: 400px;
+	//min-height: 400px;
+	position: relative;
+}
+
+body {
+	background-color: $lucify-dark-blue;
+}
+
+#canvas-wrap svg {
+	position: absolute;
+	border: 1px dashed white;
+}
+
+#canvas-wrap canvas {
+	position: absolute;
+	//background-color: green;
+	//opacity: 0.5
+}
+
+
+svg path {
+	fill: transparent;
+	stroke-width: 1px;
+	stroke: $lucify-cyan;
+}
+
