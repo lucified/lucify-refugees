@@ -6,8 +6,9 @@ var Refugee = require('./refugee.js');
 var moment = require('moment');
 
 
-var RefugeeModel = function(fc) {
+var RefugeeModel = function(fc, asylumData) {
 	this.fc = fc;
+	this.asylumData = asylumData;
 	this.refugees = [];
 	this.activeRefugees = [];
 	this.initialize();
@@ -16,16 +17,28 @@ var RefugeeModel = function(fc) {
 
 RefugeeModel.prototype.initialize = function() {
 
-	this.addRefugees("SYR", "FIN", 10, 4);
-	this.addRefugees("IRQ", "FIN", 10, 4);
+	this.asylumData.forEach(function(item) {
+		if (utils.getFeatureForCountry(this.fc, item.ac) == null) {
+			console.log("country " + item.ac +  "not in map, skipping");
+		
+		} else if (utils.getFeatureForCountry(this.fc, item.oc) == null) {
+			console.log("country " + item.oc +  "not in map, skipping");
 
-	//this.addRefugees("IRQ", "DEU", 50, 4);
-	this.addRefugees("IRQ", "DEU", 250, 4);
-	//this.addRefugees("IRQ", "DEU", 1382, 5);
-	//this.addRefugees("IRQ", "DEU", 1987, 6);
-	this.addRefugees("SYR", "DEU", 4810, 4);
-	//this.addRefugees("SYR", "DEU", 7301, 5);
-	//this.addRefugees("SYR", "DEU", 9136, 6);
+		} else {
+			this.addRefugees(item.oc, item.ac, item.count / 20, item.month - 1);
+		}
+
+	}.bind(this));
+
+	//this.addRefugees("SYR", "FIN", 10, 4);
+	//this.addRefugees("IRQ", "FIN", 10, 4);
+	// //this.addRefugees("IRQ", "DEU", 50, 4);
+	// this.addRefugees("IRQ", "DEU", 250, 4);
+	// //this.addRefugees("IRQ", "DEU", 1382, 5);
+	// //this.addRefugees("IRQ", "DEU", 1987, 6);
+	// this.addRefugees("SYR", "DEU", 4810, 4);
+	// //this.addRefugees("SYR", "DEU", 7301, 5);
+	// //this.addRefugees("SYR", "DEU", 9136, 6);
 
 	this.refugees.sort(function(a, b) {
 		return a.getStartMoment().unix() - b.getStartMoment().unix();
@@ -76,6 +89,9 @@ RefugeeModel.prototype.kmhToDegsPerH = function(kmh) {
  */
 RefugeeModel.prototype.createCountryPoint = function(country) {
 	var feature = utils.getFeatureForCountry(this.fc, country);
+	if (feature == null) {
+		throw "could not find feature for " + country;
+	}
 	return utils.getRandomPointForCountryBorderFeature(feature);
 }
 

@@ -56,6 +56,9 @@ Refugee.prototype.getLocation = function(mom) {
 
 	if (mom.unix() > this.endMoment.unix()) {
 		r.arrived = true;
+		if (r.onFinished) {
+			r.onFinished(this);
+		}
 		return r.endPoint;
 	}
 

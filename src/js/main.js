@@ -10,20 +10,27 @@ var moment = require('moment');
 var RefugeeMap = require('./refugee-map.js');
 var RefugeeModel = require('./refugee-model.js');
 
+var Promise = require("bluebird");
+Promise.promisifyAll(d3);
+
+
 // latitude = y
 // longitude = x
 
 console.time("load topomap")
 
-d3.json('topomap.json', function(error, countries) {
-	window.countries = countries;
-	var fc = topojson.feature(countries, countries.objects.map);
+var topomap;
+var asylumData;
+
+
+var onceLoaded = function() {
+	console.timeEnd("load json");
+	
+	var fc = topojson.feature(topomap, topomap.objects.map);
 	window.fc = fc;
 
-	console.timeEnd("load topomap");
-
 	console.time("init refugee model")
-	var rmodel = new RefugeeModel(fc);
+	var rmodel = new RefugeeModel(fc, asylumData);
 	console.timeEnd("init refugee model")
 
 	console.time("init map")
@@ -34,11 +41,27 @@ d3.json('topomap.json', function(error, countries) {
 	window.rmap = rmap;
 
 	runAnimation();
-});
+}
+
+
+var load = function() {
+	console.time("load json");
+	var p1 = d3.jsonAsync('topomap.json').then(function(data) {
+		topomap = data;
+	});
+
+	var p2 = d3.jsonAsync('asylum.json').then(function(data) {
+		asylumData = data;
+	}.bind(this));
+
+	Promise.all([p1, p2]).then(onceLoaded, function(error){
+	    throw error;
+	});
+}
 
 
 var runAnimation = function() {
-	rmodel.currentMoment = moment(new Date(2015, 3, 10));
+	rmodel.currentMoment = moment(new Date(2015, 3, 25));
 	window.setInterval(function() {
 		rmodel.currentMoment.add(1, 'hours');
 		//console.log(rmodel.currentMoment.format());
@@ -50,3 +73,5 @@ var runAnimation = function() {
 
 	}, 25);
 }
+
+load();

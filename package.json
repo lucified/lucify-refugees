@@ -36,6 +36,8 @@
   },
   "dependencies": {
     "area-polygon": "^1.0.1",
+    "excel-parser": "^0.2.2",
+    "excel2json": "^0.2.9",
     "foundation-sites": "^5.5.2",
     "jquery": "^2.1.4",
     "moment": "^2.10.6",

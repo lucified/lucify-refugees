@@ -1,3 +1,5 @@
 build/
 node_modules/
+data/~*.xls
+data/~*.xlsx
 data/*.json

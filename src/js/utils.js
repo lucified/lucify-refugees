@@ -15,7 +15,8 @@ var getFeatureForCountry = function(fc, country) {
 			return f;
 		}
 	}
-	throw "could not find country" + country;
+	return null;
+	//throw "could not find country" + country;
 }
 
 
@@ -110,6 +111,7 @@ var getBounds = function(coordinates) {
 		maxLo: Number.MIN_VALUE});	
 	return bounds;
 }
+
 
 module.exports.getRandomPointForCountryBorderFeature = getRandomPointForCountryBorderFeature;
 module.exports.getFeatureForCountry = getFeatureForCountry;
