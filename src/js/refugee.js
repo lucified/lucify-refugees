@@ -3,12 +3,12 @@ var moment = require('moment');
 var Vec2 = require('vec2');
 
 // single refugee
-
-var Refugee = function(startPoint, endPoint, speed, endMoment) {
+var Refugee = function(startPoint, endPoint, speed, endMoment, hasEUDestination) {
 	this.startPoint = startPoint;
 	this.endPoint = endPoint;
 	this.speed = speed;
 	this.endMoment = endMoment;
+	this.hasEUDestination = hasEUDestination;
 	this.started = false;
 	this.arrived = false;
 

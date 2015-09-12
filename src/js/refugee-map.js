@@ -70,8 +70,12 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
     //this.stage = this.container;
     this.stage.addChild(this.container);
 
-	this.texture = new PIXI.Texture.fromImage(
-		"one-white-pixel.png", 
+	this.EUTexture = new PIXI.Texture.fromImage(
+		"one-white-pixel.png",
+		new PIXI.math.Rectangle(0, 0, 1, 1));
+
+	this.nonEUTexture = new PIXI.Texture.fromImage(
+		"one-red-pixel.png",
 		new PIXI.math.Rectangle(0, 0, 1, 1));
 }
 
@@ -85,7 +89,7 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 	    var s = this.sprites[key];
 
 	    if (!s) {
-	    	s = new PIXI.Sprite(this.texture);
+	    	s = new PIXI.Sprite(r.hasEUDestination ? this.EUTexture : this.nonEUTexture);
 	    	this.container.addChild(s);
 	    	this.sprites[key] = s;
 
