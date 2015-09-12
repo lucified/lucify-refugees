@@ -23,7 +23,7 @@ console.time("load topomap")
 
 var topomap;
 var asylumData;
-
+var regionalData;
 
 var onceLoaded = function() {
 	console.timeEnd("load json");
@@ -35,7 +35,7 @@ var onceLoaded = function() {
 	window.fc = fc;
 
 	console.time("init refugee model")
-	var rmodel = new RefugeeModel(fc, asylumData, divider);
+	var rmodel = new RefugeeModel(fc, asylumData, regionalData, divider);
 	console.timeEnd("init refugee model")
 
 	console.time("init map")
@@ -45,10 +45,10 @@ var onceLoaded = function() {
 	window.rmodel = rmodel;
 	window.rmap = rmap;
 
-	rmodel.currentMoment = moment(new Date(2015, 3, 25));
+	rmodel.currentMoment = moment(new Date(2014, 3, 25));
 
 	runAnimation();
-	
+
 	//start();
 	//startc();
 	//run();
@@ -65,7 +65,11 @@ var load = function() {
 		asylumData = data;
 	}.bind(this));
 
-	Promise.all([p1, p2]).then(onceLoaded, function(error){
+	var p3 = d3.jsonAsync('regional-movements.json').then(function(data) {
+		regionalData = data;
+	}.bind(this));
+
+	Promise.all([p1, p2, p3]).then(onceLoaded, function(error){
 	    throw error;
 	});
 }
@@ -77,11 +81,8 @@ var load = function() {
 var count = 0;
 
 var runAnimation = function() {
-	
 	console.time("50 frames");
-
-	rmodel.currentMoment = moment(new Date(2015, 3, 25));
-
+	rmodel.currentMoment = moment(new Date(2014, 3, 25));
 
 	var intervalId = window.setInterval(function() {
 
@@ -134,7 +135,7 @@ var startc = function() {
 }
 
 var animatec = function() {
-	rmodel.currentMoment.add(1, 'hours');
+	rmodel.currentMoment.add(6, 'hours');
 	d3.select('#time')
 		.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
 	rmodel.updateActiveRefugees();
@@ -146,14 +147,14 @@ var animatec = function() {
 // ---------------
 //var run = function() {
 // 	while (true) {
-// 		rmodel.currentMoment.add(1, 'hours');
+// 		rmodel.currentMoment.add(6, 'hours');
 // 		d3.select('#time')
 // 			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
 // 		rmodel.updateActiveRefugees();
-// 		rmap.drawRefugeePositions();	
+// 		rmap.drawRefugeePositions();
 // 	}
 // }
-// 
+//
 
 
 

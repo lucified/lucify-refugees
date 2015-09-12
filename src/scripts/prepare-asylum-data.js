@@ -103,6 +103,7 @@ months.forEach(function(month) {
 				oc: transformCountryCode(oc),
 				ac: transformCountryCode(ac.country),
 				month: month,
+				year: 2015,
 				count: count
 			};
 			data.push(item);
