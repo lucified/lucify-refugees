@@ -83,9 +83,9 @@ var runAnimation = function() {
 	rmodel.currentMoment = moment(new Date(2015, 3, 25));
 
 
-	window.setInterval(function() {
+	var intervalId = window.setInterval(function() {
 
-		rmodel.currentMoment.add(1, 'hours');
+		rmodel.currentMoment.add(6, 'hours');
 		rmodel.updateActiveRefugees();
 
 		rmap.drawRefugeePositions();
@@ -98,6 +98,9 @@ var runAnimation = function() {
 			console.timeEnd("50 frames");
 		}
 
+		if (rmodel.currentMoment.isAfter(moment())) {
+			clearInterval(intervalId);
+		}
 	}, 0);
 }
 
@@ -105,11 +108,14 @@ var runAnimation = function() {
 // ---------------
 
 var start = function() {
-	window.setInterval(function() {
-		rmodel.currentMoment.add(1, 'hours');
+	var intervalId = window.setInterval(function() {
+		rmodel.currentMoment.add(6, 'hours');
 		rmodel.updateActiveRefugees();
 		d3.select('#time')
 			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
+		if (rmodel.currentMoment.isAfter(moment())) {
+			clearInterval(intervalId);
+		}
 	}, 25);
 	animate();
 }
