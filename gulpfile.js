@@ -76,6 +76,13 @@ gulp.task('prepare-data', function() {
 });
 
 
+gulp.task('img', function() {
+  return gulp.src('./src/img/**/*')
+    .pipe(gulp.dest('build'))
+    .pipe(browserSync.stream())
+});
+
+
 gulp.task('data', function() {
   return gulp.src('./data/**/*.json')
     .pipe(gulp.dest('build'))
@@ -96,5 +103,5 @@ gulp.task('serve', function() {
 });
 
 // use gulp-sequence to finish building html, sass and js before first page load
-gulp.task('default', gulpSequence(['html', 'sass', 'js', 'prepare-data', 'data'], 'serve'));
+gulp.task('default', gulpSequence(['html', 'img', 'sass', 'js', 'prepare-data', 'data'], 'serve'));
 
