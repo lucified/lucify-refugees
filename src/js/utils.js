@@ -91,7 +91,7 @@ var getRandomPoint = function(coordinates, country) {
 
 
 var countryBorders = {};
-
+var countryCenters = {};
 
 var getMainCountryBorder = function(feature) {
 	if (feature.geometry.type == "MultiPolygon") {
@@ -108,6 +108,14 @@ var getMainCountryBorderCached = function(feature) {
 	return countryBorders[key];
 }
 
+var getCachedCenterPointForCountryBorderFeature= function(feature) {
+	var key = feature.properties.ADM0_A3;
+	return countryCenters[key] || (countryCenters[key] = d3.geo.centroid(feature));
+}
+
+var getCenterPointForCountryBorderFeature = function(feature) {
+	return getCachedCenterPointForCountryBorderFeature(feature);
+}
 
 var getRandomPointForCountryBorderFeature = function(feature) {
 	return getRandomPoint(getMainCountryBorderCached(feature), feature.properties.ADM0_A3);
