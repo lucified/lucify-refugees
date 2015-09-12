@@ -1,5 +1,3 @@
-
-
 var XLS = require('xlsjs');
 var _ = require('underscore');
 var fs = require('fs');
@@ -16,14 +14,14 @@ var originCountries = ['SYR', 'AFG', 'SRB', 'IRQ', 'ALB', 'ERT', 'PAK', 'SOM', '
 
 var asylumCountries = _.range(10, 56).map(function(number) {
 	var cell = workbook.Sheets.SYR["A" + number];
-	
+
 	var country;
 	if (number == 50) {
 		country = "USA";
-	
+
 	} else if (cell == null) {
 		return null;
-	
+
 	} else {
 		country = cell.v;
 	}
@@ -36,7 +34,7 @@ var asylumCountries = _.range(10, 56).map(function(number) {
 	}
 
 }).filter(function(item) {
-	return item != null;
+	return item !== null;
 });
 
 
@@ -61,7 +59,7 @@ var getApplicationCount = function(month, asylumCountry, originCountry) {
 		//console.log("error for " + month + asylumCountry.country + originCountry);
 		return 0;
 	}
-	if (cell.v != null && Number.isInteger(cell.v)) {
+	if (cell.v !== null && Number.isInteger(cell.v)) {
 		return cell.v;
 	}
 
@@ -69,8 +67,24 @@ var getApplicationCount = function(month, asylumCountry, originCountry) {
 }
 
 var transformCountryCode = function(country) {
-	if (country == "GFR") {
-		return "DEU";
+	switch (country) {
+		case "AUL": return "AUS";
+		case "AUS": return "AUT";
+		case "BUL": return "BGR";
+		case "CHI": return "CHN";
+		case "ERT": return "ERI";
+		case "DEN": return "DNK";
+		case "GFR": return "DEU";
+		case "GRE": return "GRC";
+		case "ICE": return "ISL";
+		case "IRE": return "IRL";
+		case "MCD": return "MKD";
+		case "MTA": return "MLT";
+		case "NET": return "NLD";
+		case "POR": return "PRT";
+		case "ROM": return "ROU";
+		case "SPA": return "ESP";
+		case "SWI": return "CHE";
 	}
 	return country;
 }
@@ -87,35 +101,21 @@ months.forEach(function(month) {
 		asylumCountries.forEach(function(ac) {
 			var count = getApplicationCount(month, ac, oc);
 			var item = {
-				oc: oc,
+				oc: transformCountryCode(oc),
 				ac: transformCountryCode(ac.country),
 				month: month,
 				count: count
-			}
+			};
 			data.push(item);
 		});
 	});
 });
 
 
-var data = data.filter(function(item) {
+data = data.filter(function(item) {
 	return item.count > 0;
-})
-
+});
 
 console.log(data);
 
 fs.writeFileSync('data/asylum.json', JSON.stringify(data, null, 4));
-
-
-//function getTrafficForCountryPair = function() {
-
-
-
-
-
-
-
-
-
-
