@@ -13,6 +13,8 @@ var RefugeeModel = require('./refugee-model.js');
 var Promise = require("bluebird");
 Promise.promisifyAll(d3);
 
+var queryString = require('query-string');
+
 
 // latitude = y
 // longitude = x
@@ -25,12 +27,15 @@ var asylumData;
 
 var onceLoaded = function() {
 	console.timeEnd("load json");
-	
+
+	var parsed = queryString.parse(location.search);
+	var divider = parsed.divider != null ? parseInt(parsed.divider) : 25;
+
 	var fc = topojson.feature(topomap, topomap.objects.map);
 	window.fc = fc;
 
 	console.time("init refugee model")
-	var rmodel = new RefugeeModel(fc, asylumData);
+	var rmodel = new RefugeeModel(fc, asylumData, divider);
 	console.timeEnd("init refugee model")
 
 	console.time("init map")

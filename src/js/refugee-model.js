@@ -6,11 +6,12 @@ var Refugee = require('./refugee.js');
 var moment = require('moment');
 
 
-var RefugeeModel = function(fc, asylumData) {
+var RefugeeModel = function(fc, asylumData, divider) {
 	this.fc = fc;
 	this.asylumData = asylumData;
 	this.refugees = [];
 	this.activeRefugees = [];
+	this.divider = divider;
 	this.initialize();
 };
 
@@ -31,7 +32,7 @@ RefugeeModel.prototype.initialize = function() {
 			}
 
 		} else {
-			this.addRefugees(item.oc, item.ac, item.count / 10, item.month - 1);
+			this.addRefugees(item.oc, item.ac, item.count / this.divider, item.month - 1);
 		}
 
 	}.bind(this));
