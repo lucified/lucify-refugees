@@ -1,6 +1,8 @@
 
 var moment = require('moment');
 var Vec2 = require('vec2');
+var randgen = require('randgen');
+var MAX_SIDE_DEVIATION = 0.3;
 
 // single refugee
 var Refugee = function(startPoint, endPoint, speed, endMoment, hasEUDestination) {
@@ -9,6 +11,7 @@ var Refugee = function(startPoint, endPoint, speed, endMoment, hasEUDestination)
 	this.speed = speed;
 	this.endMoment = endMoment;
 	this.hasEUDestination = hasEUDestination;
+	this.sideDeviation = randgen.rnorm(0, 1); // mean, std. deviation
 	this.started = false;
 	this.arrived = false;
 
@@ -74,16 +77,20 @@ Refugee.prototype.getLocation = function(mom) {
 		return r.endPoint;
 	}
 
+	var hours = this.getStartMoment().diff(mom, 'hours');
+	var portionOfJourney = hours / this.getTravelTime();
+	var distance = hours * r.speed;
+
 	var directionVector = Vec2(
 			r.startPoint[0] - r.endPoint[0],
 			r.startPoint[1] - r.endPoint[1])
 		.normalize();
-
-	var hours = this.getStartMoment().diff(mom, 'hours');
-	var distance = hours * r.speed;
+	var sideMotionVector = Vec2(-directionVector.y, directionVector.x); // perpendicular vector
+	sideMotionVector.multiply(Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * MAX_SIDE_DEVIATION);
 
 	var v = Vec2(r.startPoint);
 	v.add(directionVector.multiply(distance / 111));
+	v.add(sideMotionVector);
 	return v.toArray();
 }
 
