@@ -93,13 +93,8 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
     }.bind(this));
 
   	this.renderer.render(this.stage);
-
-    //if (jep) {
-    //	jep = false;
-    //}
 }
 
-var jep = true;
 
 // RefugeeMap.prototype.handleRefugeeFinished = function(r) {
 // 	console.log("refugeefinished" + r);
