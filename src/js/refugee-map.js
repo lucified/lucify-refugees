@@ -51,7 +51,7 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
     this.renderer = new PIXI.autoDetectRenderer(
     //this.renderer = new PIXI.CanvasRenderer(
         this.width, this.height, 
-        {transparent: true});
+        {transparent: true, antialias: true});
    
 	this.stage = new PIXI.Stage(0x000000);
 
