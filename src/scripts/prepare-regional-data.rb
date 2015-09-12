@@ -24,10 +24,15 @@ INPUT_FILES = [
     filename: "./data/syria-refugees-turkey-150825.csv",
     source_country: "SYR",
     destination_country: "TUR"
+  },
+  {
+    filename: "./data/syria-refugees-jordan-150906.csv",
+    source_country: "SYR",
+    destination_country: "JOR"
   }
 ]
 
-#TODO: make CSVs from PDF data
+#TODO: Iraqis in Jordan?
 
 def month_difference(earlier_date, later_date)
   (later_date.year * 12 + later_date.month) - (earlier_date.year * 12 + earlier_date.month)
