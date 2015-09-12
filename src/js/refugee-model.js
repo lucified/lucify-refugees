@@ -19,13 +19,19 @@ RefugeeModel.prototype.initialize = function() {
 
 	this.asylumData.forEach(function(item) {
 		if (utils.getFeatureForCountry(this.fc, item.ac) == null) {
-			console.log("country " + item.ac +  "not in map, skipping");
-		
+			// do not warn about asylum countries we are 
+			// not interested in displaying for now
+			if (['USA', 'CAN', 'AUS', 'CHN', 'JPN', 'KOR', 'NZL'].indexOf(item.ac) == -1) {
+				console.log("asylum country " + item.ac +  "not in map, skipping");
+			}
 		} else if (utils.getFeatureForCountry(this.fc, item.oc) == null) {
-			console.log("country " + item.oc +  "not in map, skipping");
+			
+			if (['CHN'].indexOf(item.oc) == -1) {
+				console.log("origin country " + item.oc +  "not in map, skipping");
+			}
 
 		} else {
-			this.addRefugees(item.oc, item.ac, item.count / 1, item.month - 1);
+			this.addRefugees(item.oc, item.ac, item.count / 10, item.month - 1);
 		}
 
 	}.bind(this));
@@ -68,7 +74,6 @@ RefugeeModel.prototype.updateActiveRefugees = function() {
 }
 
 
-
 RefugeeModel.prototype.addRefugees = function(startCountry, endCountry, count, month) {
 	_.range(0, count).forEach(function() {
 		this.refugees.push(this.createRefugee(startCountry, endCountry, month));
@@ -79,8 +84,6 @@ RefugeeModel.prototype.addRefugees = function(startCountry, endCountry, count, m
 RefugeeModel.prototype.kmhToDegsPerH = function(kmh) {
 	return kmh / 111;
 }
-
-
 
 
 /*

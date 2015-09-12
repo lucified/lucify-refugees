@@ -4,11 +4,14 @@ var Polygon = require('polygon');
 var Vec2 = require('vec2');
 
 
+var features = {};
+
+
 /*
  * Get the feature for the given country
  * within a FeatureCollection
  */
-var getFeatureForCountry = function(fc, country) {
+var _getFeatureForCountry = function(fc, country) {
 	for (var i = 0; i < fc.features.length; i++) {
 		var f = fc.features[i];
 		if (f.properties.ADM0_A3 == country) {
@@ -17,6 +20,16 @@ var getFeatureForCountry = function(fc, country) {
 	}
 	return null;
 	//throw "could not find country" + country;
+}
+
+var getFeatureForCountry = function(fc, country) {
+	// wrapped to use lookup array to make
+	// refugee generation faster
+	// this is a kludge, but will work fow now
+	if (!features[country]) {
+		features[country] = _getFeatureForCountry(fc, country);
+	}
+	return features[country];
 }
 
 

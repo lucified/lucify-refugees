@@ -60,12 +60,15 @@ gulp.task('sass', function() {
 });
 
 
-// data
+gulp.task('prepare-data', shell.task([
+  './prepare.sh', 
+  'node src/scripts/prepare-asylum-data.js']));
+
+
 gulp.task('data', function() {
   return gulp.src('./data/**/*.json')
     .pipe(gulp.dest('build'))
     .pipe(browserSync.stream())
-    .pipe(shell(['./prepare.sh', 'node src/scripts/prepare-asylum-data.js']));
 });
 
 
@@ -82,4 +85,5 @@ gulp.task('serve', function() {
 });
 
 // use gulp-sequence to finish building html, sass and js before first page load
-gulp.task('default', gulpSequence(['html', 'sass', 'js', 'data'], 'serve'));
+gulp.task('default', gulpSequence(['html', 'sass', 'js', 'prepare-data', 'data'], 'serve'));
+

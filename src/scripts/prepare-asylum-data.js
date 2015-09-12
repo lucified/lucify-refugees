@@ -89,10 +89,9 @@ var transformCountryCode = function(country) {
 	return country;
 }
 
-
-console.log(months);
-console.log(asylumCountries);
-console.log(workbook.Sheets.SYR.H10.v);
+//console.log(months);
+//console.log(asylumCountries);
+//console.log(workbook.Sheets.SYR.H10.v);
 
 var data = [];
 
@@ -116,6 +115,6 @@ data = data.filter(function(item) {
 	return item.count > 0;
 });
 
-console.log(data);
+//console.log(data);
 
 fs.writeFileSync('data/asylum.json', JSON.stringify(data, null, 4));
