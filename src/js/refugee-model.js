@@ -25,7 +25,7 @@ RefugeeModel.prototype.initialize = function() {
 			console.log("country " + item.oc +  "not in map, skipping");
 
 		} else {
-			this.addRefugees(item.oc, item.ac, item.count / 20, item.month - 1);
+			this.addRefugees(item.oc, item.ac, item.count / 1, item.month - 1);
 		}
 
 	}.bind(this));

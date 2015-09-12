@@ -48,6 +48,7 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
     PIXI.doNotSayHello = true;
     PIXI.AUTO_PREVENT_DEFAULT = false;
 
+    //this.renderer = new PIXI.WebGLRenderer(
     this.renderer = new PIXI.CanvasRenderer(
         this.width, this.height, 
         {transparent: true,
@@ -70,8 +71,9 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
 	    if (!g) {
 	    	g = new PIXI.Graphics();
-	    	g.beginFill(0xFFFFFF, 1.0);
-			g.drawCircle(0, 0, 1);
+	    	g.beginFill(0xFFFFFF, 0.5);
+	    	g.drawRect(0, 0, 1, 1);
+			//g.drawCircle(0, 0, 1);
 	    	this.graphics[key] = g;
 			this.stage.addChild(g);
 			r.onFinished = function() {
@@ -87,9 +89,14 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
     }.bind(this));
 
-    this.renderer.render(this.stage);
+  	this.renderer.render(this.stage);
+
+    //if (jep) {
+    //	jep = false;
+    //}
 }
 
+var jep = true;
 
 // RefugeeMap.prototype.handleRefugeeFinished = function(r) {
 // 	console.log("refugeefinished" + r);
