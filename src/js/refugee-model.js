@@ -22,8 +22,11 @@ RefugeeModel.prototype.initialize = function() {
 
 	console.time("refugee adding");
 	this.asylumData.forEach(this._addPeopleFromValidCountries.bind(this));
-	this.regionalData.forEach(this._addPeopleFromValidCountries.bind(this));
 	console.timeEnd("refugee adding");
+	console.time("regional adding");
+	this.regionalData.forEach(this._addPeopleFromValidCountries.bind(this));
+	console.timeEnd("regional adding");
+
 
 	//this.addRefugees("SYR", "FIN", 10, 4);
 
