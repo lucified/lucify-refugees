@@ -37,15 +37,9 @@ RefugeeModel.prototype.initialize = function() {
 
 RefugeeModel.prototype._addPeopleFromValidCountries = function(item) {
 	if (utils.getFeatureForCountry(this.fc, item.ac) == null) {
-		// do not warn about asylum countries we are
-		// not interested in displaying for now
-		if (['USA', 'CAN', 'AUS', 'CHN', 'JPN', 'KOR', 'NZL'].indexOf(item.ac) == -1) {
-			console.log("asylum country " + item.ac +  "not in map, skipping");
-		}
+		console.log("asylum country " + item.ac +  "not in map, skipping");
 	} else if (utils.getFeatureForCountry(this.fc, item.oc) == null) {
-		if (['CHN'].indexOf(item.oc) == -1) {
-			console.log("origin country " + item.oc +  "not in map, skipping");
-		}
+		console.log("origin country " + item.oc +  "not in map, skipping");
 	} else if (item.count > 0) {
 		this.addRefugees(item.oc, item.ac, item.count / this.divider, item.month - 1, item.year);
 	}

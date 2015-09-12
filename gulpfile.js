@@ -71,7 +71,7 @@ gulp.task('prepare-data', function() {
   execsyncs({
     cmds : [
       './prepare.sh',
-      'node src/scripts/prepare-asylum-data.js',
+      'src/scripts/prepare-asylum-data.rb',
       'src/scripts/prepare-regional-data.rb'
       ]
   });
