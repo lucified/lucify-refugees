@@ -50,9 +50,9 @@ Refugee.prototype.isPastStartMoment = function(mom) {
 Refugee.prototype.getLocation = function(mom) {
 	var r = this;
 
-	if (mom.unix() < this.getStartMoment().unix()) {
-		return r.startPoint;
-	}
+	//if (mom.unix() < this.getStartMoment().unix()) {
+	//	return r.startPoint;
+	//}
 
 	if (mom.unix() > this.endMoment.unix()) {
 		r.arrived = true;

@@ -17,14 +17,16 @@ var RefugeeMap = function(rmodel) {
 
 
 RefugeeMap.prototype.initialize = function() {
-	var lo = 35.2206322; // x 
-    var la = 53.0485818; // y
+	var lo = 26.2206322; // x 
+    //var la = 53.0485818; // y
     
+	var la = 46.0485818; // y
+
     this.projection = d3.geo.mercator()
     	.center([0, la])
     	.rotate([-lo, 0])
     	//.parallels([la - 10, la + 10])
-    	.scale(this.height*0.75)
+    	.scale(this.height*0.55)
     	.translate([this.width / 2, this.height / 2]);
 
     this.svg = d3.select("#canvas-wrap").append("svg")
