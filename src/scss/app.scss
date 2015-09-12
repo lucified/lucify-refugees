@@ -43,8 +43,9 @@ body {
 }
 
 svg path {
-	fill: transparent;
+	fill: $lucify-very-dark-blue;
 	stroke-width: 1px;
 	stroke: $lucify-cyan;
+	opacity: 1.0;
 }
 
