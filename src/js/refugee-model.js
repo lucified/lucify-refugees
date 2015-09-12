@@ -14,6 +14,7 @@ var RefugeeModel = function(fc, asylumData, regionalData, divider) {
 	this.refugees = [];
 	this.activeRefugees = [];
 	this.divider = divider;
+	this.refugeesOnPath = {};
 	this.initialize();
 };
 
@@ -54,6 +55,18 @@ RefugeeModel.prototype._addPeopleFromValidCountries = function(item) {
 // 	}
 // }
 
+RefugeeModel.prototype._increaseRefugeeEnRoute = function(start, end) {
+	if (!(start in this.refugeesOnPath)) {
+		this.refugeesOnPath[start] = {};
+	}
+	if (!(end in this.refugeesOnPath[start])) {
+		this.refugeesOnPath[start][end] = 1;
+	} else {
+		this.refugeesOnPath[start][end]++;
+	}
+
+	return this.refugeesOnPath[start][end];
+}
 
 RefugeeModel.prototype.updateActiveRefugees = function() {
 	// filter out the ones that have arrived
@@ -65,6 +78,7 @@ RefugeeModel.prototype.updateActiveRefugees = function() {
 	do {
 		var r = this.refugees[this.refugeeIndex];
 		if (r != null && r.isPastStartMoment(this.currentMoment)) {
+			r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.startPoint, r.endPoint));
 			this.activeRefugees.push(r);
 			this.refugeeIndex++;
 		} else {
@@ -142,6 +156,11 @@ RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month,
 		this.prepareRefugeeEndMoment(month, year),
 		isEu
 	);
+
+	r.onFinished.push(function() {
+		this.refugeesOnPath[r.startPoint][r.endPoint]--;
+	}.bind(this));
+
 	return r;
 }
 
