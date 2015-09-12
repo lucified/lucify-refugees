@@ -34,7 +34,7 @@ var getFeatureForCountry = function(fc, country) {
 
 
 /*
- * Get largest polygon within a GeoJSON 
+ * Get largest polygon within a GeoJSON
  * MultiPolygon coordinates array
  *
  * (used to figure out what is mainland)
@@ -51,7 +51,7 @@ var getLargestPolygon = function(coordinates) {
 		var val = p.area();
 		if (val > largest) {
 			largest = val;
-			ret = item[0];			
+			ret = item[0];
 		}
 	});
 	return ret;
@@ -69,7 +69,7 @@ var countryBounds = {};
  * with the given country
  */
 var getRandomPoint = function(coordinates, country) {
-	
+
 	if (!countryBounds[country]) {
 		countryBounds[country] = getBounds(coordinates);
 	}
@@ -80,7 +80,7 @@ var getRandomPoint = function(coordinates, country) {
 		var la = Math.random() * (bounds.maxLa - bounds.minLa) + bounds.minLa;
 		var lo = Math.random() * (bounds.maxLo - bounds.minLo) + bounds.minLo;
 		count++;
-	} while (!inside([la, lo], coordinates) && count < 100) 
+	} while (!inside([la, lo], coordinates) && count < 100)
 
 	if (count == 100) {
 		console.log("could not create random point");
@@ -127,17 +127,19 @@ var getBounds = function(coordinates) {
 
 		return previous;
 
-	}, {minLa: Number.MAX_VALUE, 
-		maxLa: Number.MIN_VALUE, 
-		minLo: Number.MAX_VALUE, 
-		maxLo: Number.MIN_VALUE});	
+	}, {minLa: Number.MAX_VALUE,
+		maxLa: Number.MIN_VALUE,
+		minLo: Number.MAX_VALUE,
+		maxLo: Number.MIN_VALUE});
 	return bounds;
 }
 
 
 module.exports.getRandomPointForCountryBorderFeature = getRandomPointForCountryBorderFeature;
+module.exports.getCenterPointForCountryBorderFeature = getCenterPointForCountryBorderFeature;
 module.exports.getFeatureForCountry = getFeatureForCountry;
 module.exports.getLargestPolygon = getLargestPolygon;
 module.exports.getRandomPoint = getRandomPoint;
 module.exports.getBounds = getBounds;
+
 

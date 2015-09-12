@@ -19,14 +19,12 @@ var RefugeeModel = function(fc, asylumData, regionalData, divider) {
 
 
 RefugeeModel.prototype.initialize = function() {
-
 	console.time("refugee adding");
 	this.asylumData.forEach(this._addPeopleFromValidCountries.bind(this));
 	console.timeEnd("refugee adding");
 	console.time("regional adding");
 	this.regionalData.forEach(this._addPeopleFromValidCountries.bind(this));
 	console.timeEnd("regional adding");
-
 
 	//this.addRefugees("SYR", "FIN", 10, 4);
 
@@ -71,7 +69,6 @@ RefugeeModel.prototype.updateActiveRefugees = function() {
 		var r = this.refugees[this.refugeeIndex];
 		if (r != null && r.isPastStartMoment(this.currentMoment)) {
 			this.activeRefugees.push(r);
-			//r.onFinished.push(this.removeRefugee.bind(this));
 			this.refugeeIndex++;
 		} else {
 			return;
@@ -130,7 +127,6 @@ RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
 
 
 RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year) {
-	
 	var isEu = (EU_COUNTRIES.indexOf(endCountry) > -1);
 	var r = new Refugee(
 		this.createCountryPoint(startCountry),
