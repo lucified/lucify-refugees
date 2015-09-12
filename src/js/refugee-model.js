@@ -105,9 +105,8 @@ RefugeeModel.prototype.createRandomCountryPoint = function(country) {
 	if (feature == null) {
 		throw "could not find feature for " + country;
 	}
-	return utils.getRandomPointForCountryBorderFeature(feature);
+	return utils.getCenterPointForCountryBorderFeature(feature);
 }
-
 
 
 function daysInMonth(month,year) {
@@ -137,7 +136,7 @@ RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
 RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year) {
 	var isEu = (EU_COUNTRIES.indexOf(endCountry) > -1);
 	var r = new Refugee(
-		this.createRandomCountryPoint(startCountry),
+		this.createCenterCountryPoint(startCountry),
 		this.createCenterCountryPoint(endCountry),
 		this.prepareRefugeeSpeed(),
 		this.prepareRefugeeEndMoment(month, year),
