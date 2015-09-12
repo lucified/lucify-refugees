@@ -3,8 +3,6 @@ var d3 = require('d3');
 var topojson = require('topojson');
 var _ = require('underscore');
 
-window.Vec2 = require('Vec2');
-
 var moment = require('moment');
 
 var RefugeeMap = require('./refugee-map.js');

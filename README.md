@@ -14,3 +14,8 @@
 1. `npm install`
 2. `bower install`
 3. `gulp`
+
+
+## Notes
+
+http://www.goodboydigital.com/pixijs/bunnymark_v3/
