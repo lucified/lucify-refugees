@@ -64,14 +64,16 @@ gulp.task('sass', function() {
 
 
 // gulp.task('prepare-data', shell.task([
-//   './prepare.sh', 
+//   './prepare.sh',
 //   'node src/scripts/prepare-asylum-data.js']));
 
 gulp.task('prepare-data', function() {
   execsyncs({
     cmds : [
-      './prepare.sh', 
-      'node src/scripts/prepare-asylum-data.js']
+      './prepare.sh',
+      'node src/scripts/prepare-asylum-data.js',
+      'src/scripts/prepare-regional-data.rb'
+      ]
   });
 });
 
