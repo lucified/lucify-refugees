@@ -87,16 +87,27 @@ RefugeeModel.prototype.kmhToDegsPerH = function(kmh) {
 
 
 /*
- * Create a starting point
- * or endpoint within given country
+ * Return the center point of the given country
  */
-RefugeeModel.prototype.createCountryPoint = function(country) {
+RefugeeModel.prototype.createCenterCountryPoint = function(country) {
 	var feature = utils.getFeatureForCountry(this.fc, country);
 	if (feature == null) {
 		throw "could not find feature for " + country;
 	}
 	return utils.getCenterPointForCountryBorderFeature(feature);
 }
+
+/*
+ * Create a random point within the given country
+ */
+RefugeeModel.prototype.createRandomCountryPoint = function(country) {
+	var feature = utils.getFeatureForCountry(this.fc, country);
+	if (feature == null) {
+		throw "could not find feature for " + country;
+	}
+	return utils.getRandomPointForCountryBorderFeature(feature);
+}
+
 
 
 function daysInMonth(month,year) {
@@ -126,8 +137,8 @@ RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
 RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year) {
 	var isEu = (EU_COUNTRIES.indexOf(endCountry) > -1);
 	var r = new Refugee(
-		this.createCountryPoint(startCountry),
-		this.createCountryPoint(endCountry),
+		this.createRandomCountryPoint(startCountry),
+		this.createCenterCountryPoint(endCountry),
 		this.prepareRefugeeSpeed(),
 		this.prepareRefugeeEndMoment(month, year),
 		isEu
