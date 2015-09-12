@@ -17,7 +17,7 @@ var RefugeeMap = function(rmodel) {
 
 
 RefugeeMap.prototype.initialize = function() {
-	var lo = 26.2206322; // x 
+	var lo = 26.2206322; // x
 	var la = 46.0485818; // y
 
     this.projection = d3.geo.mercator()
@@ -50,20 +50,20 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 
     this.renderer = new PIXI.autoDetectRenderer(
     //this.renderer = new PIXI.CanvasRenderer(
-        this.width, this.height, 
+        this.width, this.height,
         {transparent: true, antialias: true});
-   
+
 	this.stage = new PIXI.Stage(0x000000);
 
     d3.select('#canvas-wrap').node().appendChild(this.renderer.view);
     this.renderer.plugins.interaction.autoPreventDefault = false;
-    
+
 	//this.stage = new PIXI.Stage(0x000000);
     //this.stage = new PIXI.Container();
     //this.stage.interactive = false;
 
     this.container = new PIXI.ParticleContainer(
-    	200000, 
+    	200000,
     	[false, true, false, false, true],
 		200000);
 
@@ -78,7 +78,7 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 
 
 RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
-    
+
     this.rmodel.activeRefugees.forEach(function(r) {
 
     	var key = r.endMomentUnix;
@@ -92,14 +92,14 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 			r.onFinished.push(function() {
 		 		this.container.removeChild(s);
 			}.bind(this));
-	    } 
+	    }
 
 		var loc = r.getLocation(this.rmodel.currentMoment);
 		var point = this.projection(loc);
 		s.position.x = point[0];
 		s.position.y = point[1];
 		s.alpha = 0.7;
-		
+
 		// var g = this.graphics[key];
 	 //    if (!g) {
 	 //    	g = new PIXI.Graphics();
@@ -112,7 +112,7 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 		// 		this.stage.removeChild(this.graphics[key]);
 		// 	}.bind(this);
 	 //    }
-		
+
 		// var loc = r.getLocation(this.rmodel.currentMoment);
 		// var point = this.projection(loc);
 		// g.x = point[0];
@@ -129,7 +129,7 @@ RefugeeMap.prototype.drawRefugeePositions = function() {
 }
 
 
-RefugeeMap.prototype.drawBorders = function() {	
+RefugeeMap.prototype.drawBorders = function() {
 	var path = d3.geo.path().projection(this.projection);
 	this.svg.append("path")
       .datum(fc)
@@ -165,11 +165,11 @@ module.exports = RefugeeMap;
 // 		.data(this.rmodel.refugees);
 
 // 	sel
-// 		.attr("cx", function(d) { 
+// 		.attr("cx", function(d) {
 // 			var loc = d.getLocation(this.rmodel.currentMoment);
 // 			return this.projection(loc)[0];
 // 		}.bind(this))
-// 		.attr("cy", function(d) { 
+// 		.attr("cy", function(d) {
 // 			var loc = d.getLocation(this.rmodel.currentMoment);
 // 			return this.projection(loc)[1];
 // 		}.bind(this));
@@ -177,11 +177,11 @@ module.exports = RefugeeMap;
 // 	sel.enter()
 // 		.append('circle')
 // 		.classed('refugee', true)
-// 		.attr("cx", function(d) { 
+// 		.attr("cx", function(d) {
 // 			var loc = d.getLocation(this.rmodel.currentMoment);
 // 			return this.projection(loc)[0];
 // 		}.bind(this))
-// 		.attr("cy", function(d) { 
+// 		.attr("cy", function(d) {
 // 			var loc = d.getLocation(this.rmodel.currentMoment);
 // 			return this.projection(loc)[1];
 // 		}.bind(this))

@@ -24,7 +24,6 @@ Refugee.prototype.getStartMoment = function() {
 	return this.startMoment;
 }
 
-
 Refugee.prototype._getStartMoment = function() {
 	var ret = moment(this.endMoment);
 	return ret.subtract(this.getTravelTime(), 'hours');
@@ -46,7 +45,7 @@ Refugee.prototype.isActive = function() {
  */
 Refugee.prototype.getTravelDistance = function() {
 	var degLength = Vec2(
-		this.endPoint[0] - this.startPoint[0], 
+		this.endPoint[0] - this.startPoint[0],
 		this.startPoint[1] - this.endPoint[1]).length();
 
 	return degLength * 111;
@@ -76,7 +75,7 @@ Refugee.prototype.getLocation = function(mom) {
 	}
 
 	var directionVector = Vec2(
-			r.startPoint[0] - r.endPoint[0], 
+			r.startPoint[0] - r.endPoint[0],
 			r.startPoint[1] - r.endPoint[1])
 		.normalize();
 
