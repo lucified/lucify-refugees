@@ -149,5 +149,3 @@ module.exports.getFeatureForCountry = getFeatureForCountry;
 module.exports.getLargestPolygon = getLargestPolygon;
 module.exports.getRandomPoint = getRandomPoint;
 module.exports.getBounds = getBounds;
-
-

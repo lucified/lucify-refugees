@@ -25,9 +25,6 @@ RefugeeModel.prototype.initialize = function() {
 	console.time("regional adding");
 	this.regionalData.forEach(this._addPeopleFromValidCountries.bind(this));
 	console.timeEnd("regional adding");
-
-	//this.addRefugees("SYR", "FIN", 10, 4);
-
 	console.time("refugee sorting");
 	this.refugees.sort(function(a, b) {
 		return a.startMomentUnix - b.startMomentUnix;
