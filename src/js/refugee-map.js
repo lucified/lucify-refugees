@@ -18,8 +18,6 @@ var RefugeeMap = function(rmodel) {
 
 RefugeeMap.prototype.initialize = function() {
 	var lo = 26.2206322; // x 
-    //var la = 53.0485818; // y
-    
 	var la = 46.0485818; // y
 
     this.projection = d3.geo.mercator()
@@ -85,9 +83,12 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 		
 		var loc = r.getLocation(this.rmodel.currentMoment);
 		var point = this.projection(loc);
-		
+
 		g.x = point[0];
 		g.y = point[1];
+
+		//g.x = Math.random() * 500;
+		//g.y = Math.random() * 500;
 
     }.bind(this));
 
