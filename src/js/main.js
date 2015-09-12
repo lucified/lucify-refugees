@@ -47,8 +47,11 @@ var onceLoaded = function() {
 
 	rmodel.currentMoment = moment(new Date(2015, 3, 25));
 
-	//runAnimation();
-	start();
+	runAnimation();
+	
+	//start();
+	//startc();
+	//run();
 }
 
 
@@ -71,18 +74,31 @@ var load = function() {
 // runner option a
 // ---------------
 
+var count = 0;
+
 var runAnimation = function() {
+	
+	console.time("50 frames");
+
 	rmodel.currentMoment = moment(new Date(2015, 3, 25));
+
+
 	window.setInterval(function() {
+
 		rmodel.currentMoment.add(1, 'hours');
-		//console.log(rmodel.currentMoment.format());
 		rmodel.updateActiveRefugees();
+
 		rmap.drawRefugeePositions();
 
 		d3.select('#time')
 			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
 
-	}, 25);
+		count++;
+		if (count == 50) {
+			console.timeEnd("50 frames");
+		}
+
+	}, 0);
 }
 
 // runner option b
@@ -102,6 +118,39 @@ var animate = function() {
 	requestAnimationFrame(animate);
 	rmap.drawRefugeePositions();
 }
+
+
+// runner option c
+// ---------------
+
+var startc = function() {
+	animatec();
+}
+
+var animatec = function() {
+	rmodel.currentMoment.add(1, 'hours');
+	d3.select('#time')
+		.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
+	rmodel.updateActiveRefugees();
+	rmap.drawRefugeePositions();
+	requestAnimationFrame(animatec);
+}
+
+// runner option d
+// ---------------
+//var run = function() {
+// 	while (true) {
+// 		rmodel.currentMoment.add(1, 'hours');
+// 		d3.select('#time')
+// 			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
+// 		rmodel.updateActiveRefugees();
+// 		rmap.drawRefugeePositions();	
+// 	}
+// }
+// 
+
+
+
 
 
 load();

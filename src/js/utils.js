@@ -58,19 +58,28 @@ var getLargestPolygon = function(coordinates) {
 }
 
 
+var countryBounds = {};
+
+
 /*
  * Get a random point within the polygon defined
  * by the coordinates in the given array
+ *
+ * kludge: stores the bounds related to the coordinates
+ * with the given country
  */
-var getRandomPoint = function(coordinates) {
-	var bounds = getBounds(coordinates);
-
+var getRandomPoint = function(coordinates, country) {
+	
+	if (!countryBounds[country]) {
+		countryBounds[country] = getBounds(coordinates);
+	}
+	var bounds = countryBounds[country];
+	//var bounds = getBounds(coordinates);
 	var count = 0;
 	do {
 		var la = Math.random() * (bounds.maxLa - bounds.minLa) + bounds.minLa;
 		var lo = Math.random() * (bounds.maxLo - bounds.minLo) + bounds.minLo;
 		count++;
-
 	} while (!inside([la, lo], coordinates) && count < 100) 
 
 	if (count == 100) {
@@ -101,7 +110,7 @@ var getMainCountryBorderCached = function(feature) {
 
 
 var getRandomPointForCountryBorderFeature = function(feature) {
-	return getRandomPoint(getMainCountryBorderCached(feature));
+	return getRandomPoint(getMainCountryBorderCached(feature), feature.properties.ADM0_A3);
 	//if (feature.geometry.type == "MultiPolygon") {
 	//	return getRandomPoint(this.getLargestPolygon(feature.geometry.coordinates));
 	//}

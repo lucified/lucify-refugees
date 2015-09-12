@@ -18,6 +18,7 @@ var RefugeeModel = function(fc, asylumData, divider) {
 
 RefugeeModel.prototype.initialize = function() {
 
+	console.time("refugee adding");
 	this.asylumData.forEach(function(item) {
 		if (utils.getFeatureForCountry(this.fc, item.ac) == null) {
 			// do not warn about asylum countries we are 
@@ -36,42 +37,47 @@ RefugeeModel.prototype.initialize = function() {
 		}
 
 	}.bind(this));
+	console.timeEnd("refugee adding");
 
 	//this.addRefugees("SYR", "FIN", 10, 4);
-	//this.addRefugees("IRQ", "FIN", 10, 4);
-	// //this.addRefugees("IRQ", "DEU", 50, 4);
-	// this.addRefugees("IRQ", "DEU", 250, 4);
-	// //this.addRefugees("IRQ", "DEU", 1382, 5);
-	// //this.addRefugees("IRQ", "DEU", 1987, 6);
-	// this.addRefugees("SYR", "DEU", 4810, 4);
-	// //this.addRefugees("SYR", "DEU", 7301, 5);
-	// //this.addRefugees("SYR", "DEU", 9136, 6);
 
+	console.time("refugee sorting");
 	this.refugees.sort(function(a, b) {
-		return a.getStartMoment().unix() - b.getStartMoment().unix();
+		return a.startMomentUnix - b.startMomentUnix;
 	});
+	console.timeEnd("refugee sorting");
+
 	this.refugeeIndex = 0;
 }
 
 
+// RefugeeModel.prototype.removeRefugee = function(r) {
+// 	var index = this.activeRefugees.indexOf(r);
+// 	if (index == -1) {
+// 		console.log("failaa" + r);
+// 	} else {
+// 		this.activeRefugees.splice(index, 1);	
+// 	}
+// }
+
+
 RefugeeModel.prototype.updateActiveRefugees = function() {
-	
 	// filter out the ones that have arrived
 	this.activeRefugees = this.activeRefugees.filter(function(r) {
-		return r.arrived == false;
+		return r.arrived === false;
 	});
-
+	
 	// add new ones
 	do {
 		var r = this.refugees[this.refugeeIndex];
 		if (r != null && r.isPastStartMoment(this.currentMoment)) {
 			this.activeRefugees.push(r);
+			//r.onFinished.push(this.removeRefugee.bind(this));
 			this.refugeeIndex++;	
 		} else {
 			return;	
 		}
 	} while (true);
-
 }
 
 
@@ -111,7 +117,6 @@ function daysInMonth(month,year) {
 RefugeeModel.prototype.prepareRefugeeSpeed = function() {
 	return Math.random() * 2 + 4;
 }
-
 
 
 RefugeeModel.prototype.prepareRefugeeEndMoment = function(month) {

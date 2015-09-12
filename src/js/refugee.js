@@ -11,14 +11,25 @@ var Refugee = function(startPoint, endPoint, speed, endMoment) {
 	this.endMoment = endMoment;
 	this.started = false;
 	this.arrived = false;
+
+	this.startMoment = this._getStartMoment();
+	this.startMomentUnix = this.startMoment.unix();
+	this.endMomentUnix = this.endMoment.unix();
+
+	this.onFinished = [];
 };
 
 
 Refugee.prototype.getStartMoment = function() {
+	return this.startMoment;
+}
+
+
+Refugee.prototype._getStartMoment = function() {
 	var ret = moment(this.endMoment);
-	window.mmm = ret;
 	return ret.subtract(this.getTravelTime(), 'hours');
 }
+
 
 Refugee.prototype.getTravelTime = function(r) {
 	return this.getTravelDistance(r) / this.speed;
@@ -56,9 +67,11 @@ Refugee.prototype.getLocation = function(mom) {
 
 	if (mom.unix() > this.endMoment.unix()) {
 		r.arrived = true;
-		if (r.onFinished) {
-			r.onFinished(this);
-		}
+
+		this.onFinished.forEach(function(f) {
+			f(this);
+		})
+
 		return r.endPoint;
 	}
 
