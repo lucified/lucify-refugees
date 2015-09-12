@@ -14,6 +14,9 @@ var streamify    = require('gulp-streamify');
 var shell        = require('gulp-shell')
 var prod         = gutil.env.prod;
 
+var execsyncs = require('gulp-execsyncs');
+
+
 var onError = function(err) {
   console.log(err.message);
   this.emit('end');
@@ -60,9 +63,17 @@ gulp.task('sass', function() {
 });
 
 
-gulp.task('prepare-data', shell.task([
-  './prepare.sh', 
-  'node src/scripts/prepare-asylum-data.js']));
+// gulp.task('prepare-data', shell.task([
+//   './prepare.sh', 
+//   'node src/scripts/prepare-asylum-data.js']));
+
+gulp.task('prepare-data', function() {
+  execsyncs({
+    cmds : [
+      './prepare.sh', 
+      'node src/scripts/prepare-asylum-data.js']
+  });
+});
 
 
 gulp.task('data', function() {

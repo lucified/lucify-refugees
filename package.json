@@ -42,6 +42,7 @@
     "excel-parser": "^0.2.2",
     "excel2json": "^0.2.9",
     "foundation-sites": "^5.5.2",
+    "gulp-execsyncs": "^0.1.1",
     "gulp-shell": "^0.4.3",
     "jquery": "^2.1.4",
     "moment": "^2.10.6",
