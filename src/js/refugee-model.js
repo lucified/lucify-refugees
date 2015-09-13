@@ -119,7 +119,7 @@ RefugeeModel.prototype.createRandomCountryPoint = function(country) {
 	if (feature == null) {
 		throw "could not find feature for " + country;
 	}
-	return utils.getCenterPointForCountryBorderFeature(feature);
+	return utils.getRandomPointForCountryBorderFeature(feature);
 }
 
 
