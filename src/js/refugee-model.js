@@ -6,6 +6,7 @@ var Refugee = require('./refugee.js');
 var moment = require('moment');
 
 var EU_COUNTRIES = ["AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "UKR", "GBR", "CHE", "NOR"];
+window.SMART_SPREAD_ENABLED = false;
 
 var RefugeeModel = function(fc, asylumData, regionalData, divider) {
 	this.fc = fc;
@@ -78,7 +79,9 @@ RefugeeModel.prototype.updateActiveRefugees = function() {
 	do {
 		var r = this.refugees[this.refugeeIndex];
 		if (r != null && r.isPastStartMoment(this.currentMoment)) {
-			r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.startPoint, r.endPoint));
+			if (window.SMART_SPREAD_ENABLED) {
+				r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.startPoint, r.endPoint));
+			}
 			this.activeRefugees.push(r);
 			this.refugeeIndex++;
 		} else {
@@ -157,9 +160,11 @@ RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month,
 		isEu
 	);
 
-	r.onFinished.push(function() {
-		this.refugeesOnPath[r.startPoint][r.endPoint]--;
-	}.bind(this));
+	if (window.SMART_SPREAD_ENABLED) {
+		r.onFinished.push(function() {
+			this.refugeesOnPath[r.startPoint][r.endPoint]--;
+		}.bind(this));
+	}
 
 	return r;
 }

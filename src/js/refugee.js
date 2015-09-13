@@ -70,7 +70,7 @@ Refugee.prototype.getLocation = function(mom) {
 	//	return r.startPoint;
 	//}
 
-	if (mom.unix() > this.endMoment.unix()) {
+	if (mom.unix() > this.endMomentUnix) {
 		r.arrived = true;
 
 		this.onFinished.forEach(function(f) {
@@ -81,19 +81,22 @@ Refugee.prototype.getLocation = function(mom) {
 	}
 
 	var hours = this.getStartMoment().diff(mom, 'hours');
-	var portionOfJourney = hours / this.getTravelTime();
 	var distance = hours * r.speed;
-
 	var directionVector = Vec2(
 			r.startPoint[0] - r.endPoint[0],
 			r.startPoint[1] - r.endPoint[1])
 		.normalize();
-	var sideMotionVector = Vec2(-directionVector.y, directionVector.x); // perpendicular vector
-	sideMotionVector.multiply(Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation);
 
 	var v = Vec2(r.startPoint);
 	v.add(directionVector.multiply(distance / 111));
-	v.add(sideMotionVector);
+
+	if (window.SMART_SPREAD_ENABLED) {
+		var sideMotionVector = Vec2(-directionVector.y, directionVector.x); // perpendicular vector
+		var portionOfJourney = hours / this.getTravelTime();
+		sideMotionVector.multiply(Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation);
+		v.add(sideMotionVector);
+	}
+
 	return v.toArray();
 }
 
