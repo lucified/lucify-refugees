@@ -33,7 +33,7 @@ Refugee.prototype._getStartMoment = function() {
 }
 
 Refugee.prototype.setRouteRefugeeCount = function(count) {
-	this.maxSideDeviation = Math.max(0.3, count / 3000);
+	this.maxSideDeviation = Math.max(0.3, count / 2000);
 }
 
 Refugee.prototype.getTravelTime = function(r) {
@@ -84,12 +84,15 @@ Refugee.prototype.getLocation = function(mom) {
 			r.startPoint[1] - r.endPoint[1])
 		.normalize();
 
+	if (window.SMART_SPREAD_ENABLED) {
+		var sideMotionVector = Vec2(-directionVector.y, directionVector.x); // perpendicular vector
+		var portionOfJourney = hours / this.getTravelTime();
+	}
+
 	var v = Vec2(r.startPoint);
 	v.add(directionVector.multiply(distance / 111));
 
 	if (window.SMART_SPREAD_ENABLED) {
-		var sideMotionVector = Vec2(-directionVector.y, directionVector.x); // perpendicular vector
-		var portionOfJourney = hours / this.getTravelTime();
 		sideMotionVector.multiply(Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation);
 		v.add(sideMotionVector);
 	}
