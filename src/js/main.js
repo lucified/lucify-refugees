@@ -13,14 +13,14 @@ Promise.promisifyAll(d3);
 
 var queryString = require('query-string');
 
-var START_TIME = new Date(2012, 1, 1);
-
-//var STEP_DURATION = new moment.duration(1, 'hours');
 
 // how many seconds is one second in the browser
 // compared to the real world
 var SPEED_RATIO = 60 * 60 * 24 * 10; // 10 days
 
+var START_TIME = new Date(2012, 0, 1);
+//var STEP_DURATION = new moment.duration(1, 'days');
+var END_OF_DATA = new moment(new Date(2015, 8, 1));
 
 
 // latitude = y
@@ -82,37 +82,6 @@ var load = function() {
 }
 
 
-// runner option a
-// ---------------
-
-var count = 0;
-
-var runAnimation = function() {
-	console.time("50 frames");
-	rmodel.currentMoment = moment(START_TIME);
-
-	var intervalId = window.setInterval(function() {
-
-		rmodel.currentMoment.add(STEP_DURATION);
-		rmodel.updateActiveRefugees();
-
-		rmap.drawRefugeePositions();
-		rmap.drawRefugeeCounts();
-		rmap.render();
-
-		d3.select('#time')
-			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
-
-		count++;
-		if (count == 50) {
-			console.timeEnd("50 frames");
-		}
-
-		if (rmodel.currentMoment.isAfter(moment())) {
-			clearInterval(intervalId);
-		}
-	}, 0);
-}
 
 // runner option b
 // ---------------
@@ -137,38 +106,45 @@ var animate = function() {
 	rmap.drawRefugeeCounts();
 	rmap.render();
 
-	requestAnimationFrame(animate);
+	if (!rmodel.currentMoment.isAfter(END_OF_DATA)) {
+		requestAnimationFrame(animate);	
+	}
 }
 
 
-// runner option c
-// ---------------
 
-var startc = function() {
-	animatec();
-}
 
-var animatec = function() {
-	rmodel.currentMoment.add(STEP_DURATION);
-	d3.select('#time')
-		.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
-	rmodel.updateActiveRefugees();
-	rmap.drawRefugeePositions();
-	requestAnimationFrame(animatec);
-}
+// // runner option a
+// // ---------------
 
-// runner option d
-// ---------------
-//var run = function() {
-// 	while (true) {
+// var count = 0;
+
+// var runAnimation = function() {
+// 	console.time("50 frames");
+// 	rmodel.currentMoment = moment(START_TIME);
+
+// 	var intervalId = window.setInterval(function() {
+
 // 		rmodel.currentMoment.add(STEP_DURATION);
-// 		d3.select('#time')
-// 			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
 // 		rmodel.updateActiveRefugees();
+
 // 		rmap.drawRefugeePositions();
-// 	}
+// 		rmap.drawRefugeeCounts();
+// 		rmap.render();
+
+// 		d3.select('#time')
+// 			.text(rmodel.currentMoment.format('MMM YYYY'));
+
+// 		count++;
+// 		if (count == 50) {
+// 			console.timeEnd("50 frames");
+// 		}
+
+// 		if (rmodel.currentMoment.isAfter(END_OF_DATA)) {
+// 			clearInterval(intervalId);
+// 		}
+// 	}, 0);
 // }
-//
 
 
 

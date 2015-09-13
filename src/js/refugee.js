@@ -34,7 +34,7 @@ Refugee.prototype._getStartMoment = function() {
 }
 
 Refugee.prototype.setRouteRefugeeCount = function(count) {
-	this.maxSideDeviation = Math.max(0.3, count / 2000);
+	this.maxSideDeviation = Math.max(0.3, count / 3000);
 }
 
 Refugee.prototype.getTravelTime = function(r) {
