@@ -6,7 +6,7 @@ var Refugee = require('./refugee.js');
 var moment = require('moment');
 
 var EU_COUNTRIES = ["AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "UKR", "GBR", "CHE", "NOR"];
-window.SMART_SPREAD_ENABLED = false;
+window.SMART_SPREAD_ENABLED = true;
 
 var RefugeeModel = function(fc, asylumData, regionalData, divider) {
 	this.fc = fc;
@@ -149,7 +149,7 @@ RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month,
 	var isEu = (EU_COUNTRIES.indexOf(endCountry) > -1);
 	var r = new Refugee(
 		this.createCenterCountryPoint(startCountry),
-		this.createRandomCountryPoint(endCountry),
+		this.createCenterCountryPoint(endCountry),
 		this.prepareRefugeeSpeed(),
 		this.prepareRefugeeEndMoment(month, year),
 		isEu
