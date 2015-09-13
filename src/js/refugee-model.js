@@ -5,8 +5,7 @@ var utils = require('./utils.js');
 var Refugee = require('./refugee.js');
 var moment = require('moment');
 
-var EU_COUNTRIES = ["AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "UKR", "GBR", "CHE", "NOR"];
-window.SMART_SPREAD_ENABLED = false;
+window.SMART_SPREAD_ENABLED = true;
 
 var RefugeeModel = function(fc, asylumData, regionalData, divider) {
 	this.fc = fc;
@@ -69,11 +68,7 @@ RefugeeModel.prototype._increaseRefugeeEnRoute = function(start, end) {
 	return this.refugeesOnPath[start][end];
 }
 
-RefugeeModel.prototype.updateActiveRefugees = function() {
-	// filter out the ones that have arrived
-	this.activeRefugees = this.activeRefugees.filter(function(r) {
-		return r.arrived === false;
-	});
+RefugeeModel.prototype.update = function() {
 
 	// add new ones
 	do {
@@ -84,10 +79,32 @@ RefugeeModel.prototype.updateActiveRefugees = function() {
 			}
 			this.activeRefugees.push(r);
 			this.refugeeIndex++;
+			this.onRefugeeStarted(r);
 		} else {
-			return;
+			break;
 		}
 	} while (true);
+
+
+	// update current ones
+	var stillActive = [];
+	var length = this.activeRefugees.length;
+
+	//console.log("here");
+
+	for (var i = 0; i < length; i++) {
+		var r = this.activeRefugees[i];
+		r.update(this.currentMoment);
+
+		if (r.arrived) {
+			this.onRefugeeFinished(r);
+		} else {
+			stillActive.push(r);
+			this.onRefugeeUpdated(r);
+		}
+	}
+
+	this.activeRefugees = stillActive;
 }
 
 
@@ -146,13 +163,12 @@ RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
 
 
 RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year) {
-	var isEu = (EU_COUNTRIES.indexOf(endCountry) > -1);
 	var r = new Refugee(
 		this.createCenterCountryPoint(startCountry),
-		this.createRandomCountryPoint(endCountry),
+		this.createCenterCountryPoint(endCountry),
+		endCountry,
 		this.prepareRefugeeSpeed(),
-		this.prepareRefugeeEndMoment(month, year),
-		isEu
+		this.prepareRefugeeEndMoment(month, year)
 	);
 
 	if (window.SMART_SPREAD_ENABLED) {
