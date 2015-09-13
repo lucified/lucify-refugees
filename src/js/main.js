@@ -15,7 +15,7 @@ var queryString = require('query-string');
 
 var START_TIME = new Date(2012, 0, 1);
 var STEP_DURATION = new moment.duration(1, 'days');
-var END_OF_DATA = new moment(new Date(2015, 7, 15));
+var END_OF_DATA = new moment(new Date(2015, 8, 1));
 
 
 // latitude = y
@@ -96,7 +96,7 @@ var runAnimation = function() {
 		rmap.render();
 
 		d3.select('#time')
-			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
+			.text(rmodel.currentMoment.format('MMM YYYY'));
 
 		count++;
 		if (count == 50) {
@@ -117,7 +117,7 @@ var start = function() {
 		rmodel.currentMoment.add(STEP_DURATION);
 		rmodel.updateActiveRefugees();
 		d3.select('#time')
-			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
+			.text(rmodel.currentMoment.format('MMM YYYY'));
 		if (rmodel.currentMoment.isAfter(END_OF_DATA)) {
 			clearInterval(intervalId);
 		}
@@ -141,7 +141,7 @@ var startc = function() {
 var animatec = function() {
 	rmodel.currentMoment.add(STEP_DURATION);
 	d3.select('#time')
-		.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
+		.text(rmodel.currentMoment.format('MMM YYYY'));
 	rmodel.updateActiveRefugees();
 	rmap.drawRefugeePositions();
 	requestAnimationFrame(animatec);
