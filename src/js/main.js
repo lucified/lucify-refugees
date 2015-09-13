@@ -13,8 +13,9 @@ Promise.promisifyAll(d3);
 
 var queryString = require('query-string');
 
-var START_TIME = new Date(2012, 1, 1);
+var START_TIME = new Date(2012, 0, 1);
 var STEP_DURATION = new moment.duration(1, 'days');
+var END_OF_DATA = new moment(new Date(2015, 7, 15));
 
 
 // latitude = y
@@ -102,7 +103,7 @@ var runAnimation = function() {
 			console.timeEnd("50 frames");
 		}
 
-		if (rmodel.currentMoment.isAfter(moment())) {
+		if (rmodel.currentMoment.isAfter(END_OF_DATA)) {
 			clearInterval(intervalId);
 		}
 	}, 0);
@@ -117,7 +118,7 @@ var start = function() {
 		rmodel.updateActiveRefugees();
 		d3.select('#time')
 			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
-		if (rmodel.currentMoment.isAfter(moment())) {
+		if (rmodel.currentMoment.isAfter(END_OF_DATA)) {
 			clearInterval(intervalId);
 		}
 	}, 25);
