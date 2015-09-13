@@ -92,6 +92,7 @@ var runAnimation = function() {
 
 		rmap.drawRefugeePositions();
 		rmap.drawRefugeeCounts();
+		rmap.render();
 
 		d3.select('#time')
 			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));

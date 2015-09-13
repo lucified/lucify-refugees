@@ -8,8 +8,6 @@ var PIXI = require('pixi.js');
  */
 var RefugeeMap = function(rmodel) {
 	this.rmodel = rmodel;
-	this.width = 800;
-	this.height = 800;
 	this.width = 1200;
 	this.height = 1200;
 	this.initialize();
@@ -56,25 +54,20 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
         this.width, this.height,
         {transparent: true, antialias: true});
 
-	//this.stage = new PIXI.Stage(0x000000);
-
     d3.select('#canvas-wrap').node().appendChild(this.renderer.view);
     this.renderer.plugins.interaction.autoPreventDefault = false;
 
-	//this.stage = new PIXI.Stage(0x000000);
-    //this.stage = new PIXI.Container();
-    //this.stage.interactive = false;
+	//this.stage.interactive = false;
 
-    //this.container = new PIXI.ParticleContainer(
+    //this.refugeeContainer = new PIXI.ParticleContainer(
     //	200000,
     //	[false, true, false, false, true],
 	//	200000);
 
-    this.container = new PIXI.Container();
-	window.cont = this.container;
-
-    //this.stage = this.container;
-    //this.stage.addChild(this.container);
+	this.refugeeContainer = new PIXI.Container();
+    this.barContainer = null;
+    this.stage = new PIXI.Stage(0x000000);
+    this.stage.addChild(this.refugeeContainer);
 
 	this.EUTexture = new PIXI.Texture.fromImage(
 		"one-white-pixel.png",
@@ -97,11 +90,11 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
 	//     if (!s) {
 	//     	s = new PIXI.Sprite(this.texture);
-	//     	this.container.addChild(s);
+	//     	this.refugeeContainer.addChild(s);
 	//     	this.sprites[key] = s;
 
 	// 		r.onFinished.push(function() {
-	// 	 		this.container.removeChild(s);
+	// 	 		this.refugeeContainer.removeChild(s);
 	// 		}.bind(this));
 	//     }
 	// 	var loc = r.getLocation(this.rmodel.currentMoment);
@@ -115,10 +108,10 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
     this.rmodel.activeRefugees.forEach(function(r) {
 		if (!r.sprite) {
 	    	r.sprite = new PIXI.Sprite(r.hasEUDestination ? this.EUTexture : this.nonEUTexture);
-	    	this.container.addChild(r.sprite);
+	    	this.refugeeContainer.addChild(r.sprite);
 
 			r.onFinished.push(function() {
-		 		this.container.removeChild(r.sprite);
+		 		this.refugeeContainer.removeChild(r.sprite);
 		 		this.refugeeArrivedAt(r.endPoint);
 			}.bind(this));
 	    }
@@ -128,10 +121,7 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 		r.sprite.position.x = point[0];
 		r.sprite.position.y = point[1];
 		r.sprite.alpha = 0.7;
-
     }.bind(this));
-
-  	this.renderer.render(this.container);
 }
 
 
@@ -140,7 +130,10 @@ RefugeeMap.prototype.drawRefugeePositions = function() {
 }
 
 RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
-	var barContainer = new PIXI.Container();
+	if (this.barContainer) {
+		this.stage.removeChild(this.barContainer);
+	}
+	this.barContainer = new PIXI.Container();
 	for (var point in this.arrivedRefugeesByPoint) {
 		var bar = new PIXI.Graphics();
 		var count = this.arrivedRefugeesByPoint[point] / 100;
@@ -148,13 +141,17 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
 		bar.beginFill(0xFF0000);
 		bar.lineStyle(1, 0xFF0000);
 		bar.drawRect(coordinates[0], coordinates[1], 5, -count);
-		barContainer.addChild(bar);
+		this.barContainer.addChild(bar);
 	};
-	this.renderer.render(barContainer);
+	this.stage.addChild(this.barContainer);
 }
 
 RefugeeMap.prototype.drawRefugeeCounts = function() {
 	return this.drawRefugeeCountsPixi();
+}
+
+RefugeeMap.prototype.render = function() {
+	this.renderer.render(this.stage);
 }
 
 
