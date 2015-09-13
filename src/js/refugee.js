@@ -66,11 +66,13 @@ Refugee.prototype.getLocation = function(mom) {
 	//}
 
 	if (mom.unix() > this.endMomentUnix) {
-		r.arrived = true;
+		if (!r.arrived) {
+			r.arrived = true;
 
-		this.onFinished.forEach(function(f) {
-			f(this);
-		})
+			this.onFinished.forEach(function(f) {
+				f(r);
+			});
+		}
 
 		return r.endPoint;
 	}
