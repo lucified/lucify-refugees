@@ -7,14 +7,19 @@ require 'iso_country_codes'
 OUTPUT_FILE = './data/asylum.json'
 INPUT_FILE = './data/unhcr_popstats_export_asylum_seekers_monthly.csv'
 month_data = []
+$country_codes_cache = {}
+
+def get_country_code_for_name(name)
+	$country_codes_cache[name] ||= IsoCountryCodes.search_by_name(name).first.alpha3
+end
 
 File.delete(OUTPUT_FILE) if File.exists?(OUTPUT_FILE)
 
 CSV.foreach(INPUT_FILE) do |row|
   next if row[4] == '*'
   month_data << {
-    oc: IsoCountryCodes.search_by_name(row[1]).first.alpha3,
-    ac: IsoCountryCodes.search_by_name(row[0]).first.alpha3,
+    oc: get_country_code_for_name(row[1]),
+    ac: get_country_code_for_name(row[0]),
     month: Date::MONTHNAMES.index(row[3]),
     year: row[2].to_i,
     count: row[4].to_i
