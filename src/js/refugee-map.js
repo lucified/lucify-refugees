@@ -115,18 +115,21 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
     	 if (!r.sprite) {
 	    	r.sprite = new PIXI.Sprite(r.hasEUDestination ? this.EUTexture : this.nonEUTexture);
+	    	r.sprite.alpha = 0.7;
 	    	this.container.addChild(r.sprite);
 
-			/*r.onFinished.push(function() {
-		 		this.container.removeChild(r.sprite);
-			}.bind(this));*/
+			r.onFinished.push(function(ref) {
+				ref.sprite.alpha = 0.2;
+		 		//this.container.removeChild(r.sprite);
+			}.bind(this));
 	    }
 
-		var loc = r.getLocation(this.rmodel.currentMoment);
-		var point = this.projection(loc);
-		r.sprite.position.x = point[0];
-		r.sprite.position.y = point[1];
-		r.sprite.alpha = 0.7;
+	    if (!r.arrived) {
+			var loc = r.getLocation(this.rmodel.currentMoment);
+			var point = this.projection(loc);
+			r.sprite.position.x = point[0];
+			r.sprite.position.y = point[1];
+		}
 
     }.bind(this));
 
