@@ -21,6 +21,11 @@ var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMomen
 	this.endMomentUnix = this.endMoment.unix();
 
 	this.onFinished = [];
+
+	this.directionVector = Vec2(
+		this.startPoint[0] - this.endPoint[0],
+		this.startPoint[1] - this.endPoint[1])
+			.normalize();
 };
 
 
@@ -59,46 +64,40 @@ Refugee.prototype.isPastStartMoment = function(mom) {
 }
 
 
-Refugee.prototype.getLocation = function(mom) {
+Refugee.prototype.update = function(mom) {
 	var r = this;
 
-	//if (mom.unix() < this.getStartMoment().unix()) {
-	//	return r.startPoint;
-	//}
-
 	if (mom.unix() > this.endMomentUnix) {
-		if (!r.arrived) {
-			r.arrived = true;
-
-			this.onFinished.forEach(function(f) {
-				f(r);
-			});
-		}
-
-		return r.endPoint;
+		r.arrived = true;
+		this.location = r.endPoint;
+		return;
 	}
 
-	var hours = this.getStartMoment().diff(mom, 'hours');
+	var hours = this.getStartMoment().diff(mom)  / (1000 * 60 * 60);
+
 	var distance = hours * r.speed;
-	var directionVector = Vec2(
-			r.startPoint[0] - r.endPoint[0],
-			r.startPoint[1] - r.endPoint[1])
-		.normalize();
+
+	//var directionVector = Vec2(
+	//		r.startPoint[0] - r.endPoint[0],
+	//		r.startPoint[1] - r.endPoint[1])
+	//	.normalize();
 
 	if (window.SMART_SPREAD_ENABLED) {
-		var sideMotionVector = Vec2(-directionVector.y, directionVector.x); // perpendicular vector
+		var sideMotionVector = Vec2(-this.directionVector.y, this.directionVector.x); // perpendicular vector
 		var portionOfJourney = hours / this.getTravelTime();
 	}
 
 	var v = Vec2(r.startPoint);
-	v.add(directionVector.multiply(distance / 111));
+	v.add(this.directionVector.multiply(distance / 111, true));
 
 	if (window.SMART_SPREAD_ENABLED) {
-		sideMotionVector.multiply(Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation);
+		sideMotionVector.multiply(
+			Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation);
 		v.add(sideMotionVector);
 	}
 
-	return v.toArray();
+	this.location = v.toArray();
+	//return v.toArray();
 }
 
 

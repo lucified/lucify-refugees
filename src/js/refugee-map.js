@@ -15,6 +15,10 @@ var RefugeeMap = function(rmodel) {
 	this.graphics = {};
 	this.sprites = {};
 	this.arrivedRefugeesByCountry = {};
+
+	rmodel.onRefugeeUpdated = this.onRefugeeUpdated.bind(this);
+	rmodel.onRefugeeFinished = this.onRefugeeFinished.bind(this);
+	rmodel.onRefugeeStarted = this.onRefugeeStarted.bind(this);
 };
 
 
@@ -74,64 +78,92 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 	this.refugeeTexture = new PIXI.Texture.fromImage(
 		"one-white-pixel.png",
 		new PIXI.math.Rectangle(0, 0, 1, 1));
+
+	this.barContainer = new PIXI.Container();
+	this.barContainer.alpha = 0.7;
+	this.stage.addChild(this.barContainer);
 }
 
 
-
-RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
-
-	// var length = this.rmodel.activeRefugees.length;
-	// for (var i = 0; i < length; i++) {
-	// 	var r = this.rmodel.activeRefugees[i];
-	// 	var key = r.endMomentUnix;
-	//     var s = this.sprites[key];
-
-	//     if (!s) {
-	//     	s = new PIXI.Sprite(this.texture);
-	//     	this.refugeeContainer.addChild(s);
-	//     	this.sprites[key] = s;
-
-	// 		r.onFinished.push(function() {
-	// 	 		this.refugeeContainer.removeChild(s);
-	// 		}.bind(this));
-	//     }
-	// 	var loc = r.getLocation(this.rmodel.currentMoment);
-	// 	var point = this.projection(loc);
-	// 	s.position.x = point[0];
-	// 	s.position.y = point[1];
-	// 	s.alpha = 0.7;
-	// }
-
-
-    this.rmodel.activeRefugees.forEach(function(r) {
-		if (!r.sprite) {
-	    	r.sprite = new PIXI.Sprite(this.refugeeTexture);
-	    	this.refugeeContainer.addChild(r.sprite);
-
-			r.onFinished.push(function() {
-		 		this.refugeeContainer.removeChild(r.sprite);
-		 		this.refugeeArrivedAt(r.destinationCountry, r.endPoint);
-			}.bind(this));
-	    }
-
-		var loc = r.getLocation(this.rmodel.currentMoment);
-		var point = this.projection(loc);
-		r.sprite.position.x = point[0];
-		r.sprite.position.y = point[1];
-    }.bind(this));
+RefugeeMap.prototype.onRefugeeStarted = function(r) {
+	r.sprite = new PIXI.Sprite(this.refugeeTexture);
+	//r.sprite.alpha = 0.7;
+	this.refugeeContainer.addChild(r.sprite);
 }
+
+
+RefugeeMap.prototype.onRefugeeFinished = function(r) {
+	this.refugeeContainer.removeChild(r.sprite);
+	this.refugeeArrivedAt(r.destinationCountry, r.endPoint);
+}
+
+
+RefugeeMap.prototype.onRefugeeUpdated = function(r) {
+	var loc = r.location;
+	var point = this.projection(loc);
+	r.sprite.position.x = point[0];
+	r.sprite.position.y = point[1];
+}
+
+
+// RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
+
+// 	// var length = this.rmodel.activeRefugees.length;
+// 	// for (var i = 0; i < length; i++) {
+// 	// 	var r = this.rmodel.activeRefugees[i];
+// 	// 	var key = r.endMomentUnix;
+// 	//     var s = this.sprites[key];
+
+// 	//     if (!s) {
+// 	//     	s = new PIXI.Sprite(this.texture);
+// 	//     	this.refugeeContainer.addChild(s);
+// 	//     	this.sprites[key] = s;
+
+// 	// 		r.onFinished.push(function() {
+// 	// 	 		this.refugeeContainer.removeChild(s);
+// 	// 		}.bind(this));
+// 	//     }
+// 	// 	var loc = r.getLocation(this.rmodel.currentMoment);
+// 	// 	var point = this.projection(loc);
+// 	// 	s.position.x = point[0];
+// 	// 	s.position.y = point[1];
+// 	// 	s.alpha = 0.7;
+// 	// }
+
+//     this.rmodel.activeRefugees.forEach(function(r) {
+// 		if (!r.sprite) {
+// 	    	r.sprite = new PIXI.Sprite(this.refugeeTexture);
+// 	    	this.refugeeContainer.addChild(r.sprite);
+
+// 			r.onFinished.push(function() {
+// 		 		this.refugeeContainer.removeChild(r.sprite);
+// 		 		this.refugeeArrivedAt(r.destinationCountry, r.endPoint);
+// 			}.bind(this));
+// 	    }
+
+// 		var loc = r.getLocation(this.rmodel.currentMoment);
+// 		var point = this.projection(loc);
+// 		r.sprite.position.x = point[0];
+// 		r.sprite.position.y = point[1];
+//     }.bind(this));
+// }
 
 
 RefugeeMap.prototype.drawRefugeePositions = function() {
 	return this.drawRefugeePositionsPixi();
 }
 
+
 RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
-	if (this.barContainer) {
-		this.stage.removeChild(this.barContainer);
-	}
-	this.barContainer = new PIXI.Container();
-	this.barContainer.alpha = 0.7;
+	//if (this.barContainer) {
+	//	this.stage.removeChild(this.barContainer);
+	//}
+	
+	//this.barContainer = new PIXI.Container();
+	//this.barContainer.alpha = 0.7;
+
+	this.barContainer.removeChildren();
+
 	for (var country in this.arrivedRefugeesByCountry) {
 		var bar = new PIXI.Graphics();
 		var count = this.arrivedRefugeesByCountry[country].count / 100;
@@ -142,8 +174,10 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
 		bar.drawRect(coordinates[0], coordinates[1], 5, -count);
 		this.barContainer.addChild(bar);
 	};
-	this.stage.addChild(this.barContainer);
+
+	//this.stage.addChild(this.barContainer);
 }
+
 
 RefugeeMap.prototype.drawRefugeeCounts = function() {
 	return this.drawRefugeeCountsPixi();

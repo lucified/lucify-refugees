@@ -101,8 +101,8 @@ var animate = function() {
 
 	d3.select('#time')
 		.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
-	rmodel.updateActiveRefugees();
-	rmap.drawRefugeePositions();
+	rmodel.update();
+	//rmap.drawRefugeePositions();
 	rmap.drawRefugeeCounts();
 	rmap.render();
 
