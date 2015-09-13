@@ -12,6 +12,8 @@ var RefugeeMap = function(rmodel) {
 	this.height = 800;
 	this.width = 1200;
 	this.height = 1200;
+	this.width = 1920;
+	this.height = 1080;
 	this.initialize();
 	this.graphics = {};
 	this.sprites = {};
