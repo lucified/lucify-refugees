@@ -151,7 +151,7 @@ RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month,
 	var isEu = (EU_COUNTRIES.indexOf(endCountry) > -1);
 	var r = new Refugee(
 		this.createCenterCountryPoint(startCountry),
-		this.createCenterCountryPoint(endCountry),
+		this.createRandomCountryPoint(endCountry),
 		this.prepareRefugeeSpeed(),
 		this.prepareRefugeeEndMoment(month, year),
 		isEu
