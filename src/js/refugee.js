@@ -4,15 +4,16 @@ var Vec2 = require('vec2');
 var randgen = require('randgen');
 
 // single refugee
-var Refugee = function(startPoint, endPoint, speed, endMoment, hasEUDestination) {
+var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMoment) {
 	this.startPoint = startPoint;
 	this.endPoint = endPoint;
+	this.destinationCountry = destinationCountry;
 	this.speed = speed;
 	this.endMoment = endMoment;
-	this.hasEUDestination = hasEUDestination;
-	this.sideDeviation = randgen.rnorm(0, 1); // mean, std. deviation
-	this.maxSideDeviation = 0.3;
-	this.started = false;
+	if (window.SMART_SPREAD_ENABLED) {
+		this.sideDeviation = randgen.rnorm(0, 1); // mean, std. deviation
+		this.maxSideDeviation = 0.3;
+	}
 	this.arrived = false;
 
 	this.startMoment = this._getStartMoment();

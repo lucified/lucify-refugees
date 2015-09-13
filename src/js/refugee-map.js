@@ -1,5 +1,6 @@
 
 var PIXI = require('pixi.js');
+var utils = require('./utils.js');
 
 
 /*
@@ -13,7 +14,7 @@ var RefugeeMap = function(rmodel) {
 	this.initialize();
 	this.graphics = {};
 	this.sprites = {};
-	this.arrivedRefugeesByPoint = {};
+	this.arrivedRefugeesByCountry = {};
 };
 
 
@@ -65,16 +66,13 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 	//	200000);
 
 	this.refugeeContainer = new PIXI.Container();
+	this.refugeeContainer.alpha = 0.7;
     this.barContainer = null;
     this.stage = new PIXI.Stage(0x000000);
     this.stage.addChild(this.refugeeContainer);
 
-	this.EUTexture = new PIXI.Texture.fromImage(
+	this.refugeeTexture = new PIXI.Texture.fromImage(
 		"one-white-pixel.png",
-		new PIXI.math.Rectangle(0, 0, 1, 1));
-
-	this.nonEUTexture = new PIXI.Texture.fromImage(
-		"one-red-pixel.png",
 		new PIXI.math.Rectangle(0, 0, 1, 1));
 }
 
@@ -107,12 +105,12 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
     this.rmodel.activeRefugees.forEach(function(r) {
 		if (!r.sprite) {
-	    	r.sprite = new PIXI.Sprite(r.hasEUDestination ? this.EUTexture : this.nonEUTexture);
+	    	r.sprite = new PIXI.Sprite(this.refugeeTexture);
 	    	this.refugeeContainer.addChild(r.sprite);
 
 			r.onFinished.push(function() {
 		 		this.refugeeContainer.removeChild(r.sprite);
-		 		this.refugeeArrivedAt(r.endPoint);
+		 		this.refugeeArrivedAt(r.destinationCountry, r.endPoint);
 			}.bind(this));
 	    }
 
@@ -120,7 +118,6 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 		var point = this.projection(loc);
 		r.sprite.position.x = point[0];
 		r.sprite.position.y = point[1];
-		r.sprite.alpha = 0.7;
     }.bind(this));
 }
 
@@ -134,12 +131,14 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
 		this.stage.removeChild(this.barContainer);
 	}
 	this.barContainer = new PIXI.Container();
-	for (var point in this.arrivedRefugeesByPoint) {
+	this.barContainer.alpha = 0.7;
+	for (var country in this.arrivedRefugeesByCountry) {
 		var bar = new PIXI.Graphics();
-		var count = this.arrivedRefugeesByPoint[point] / 100;
-		var coordinates = this.projection(point.split(',').map(Number));
-		bar.beginFill(0xFF0000);
-		bar.lineStyle(1, 0xFF0000);
+		var count = this.arrivedRefugeesByCountry[country].count / 100;
+		var coordinates = this.projection(this.arrivedRefugeesByCountry[country].point);
+		var color = utils.isInMainlandEurope(country) ? 0xFFFFFF : 0xFF0000;
+		bar.beginFill(color);
+		bar.lineStyle(1, color);
 		bar.drawRect(coordinates[0], coordinates[1], 5, -count);
 		this.barContainer.addChild(bar);
 	};
@@ -181,13 +180,15 @@ RefugeeMap.prototype.drawRefugeeLine = function(refugee) {
 		.attr("stroke", "white");
 }
 
-// NOTE: Only works when using a single destination point per country.
-// Will need some refactoring if we want to support it by country name.
-RefugeeMap.prototype.refugeeArrivedAt = function(point) {
-	if (!this.arrivedRefugeesByPoint[point]) {
-		this.arrivedRefugeesByPoint[point] = 1;
+// Note: Will currently display bar at location where first refugee arrives at in the country
+RefugeeMap.prototype.refugeeArrivedAt = function(country, point) {
+	if (!this.arrivedRefugeesByCountry[country]) {
+		this.arrivedRefugeesByCountry[country] = {
+			point: point,
+			count: 1
+		};
 	} else {
-		this.arrivedRefugeesByPoint[point]++;
+		this.arrivedRefugeesByCountry[country].count++;
 	}
 }
 
