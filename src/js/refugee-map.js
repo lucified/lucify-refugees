@@ -87,10 +87,10 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 
 
 RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
-    
+
 	// var length = this.rmodel.activeRefugees.length;
 	// for (var i = 0; i < length; i++) {
-	// 	var r = this.rmodel.activeRefugees[i]; 
+	// 	var r = this.rmodel.activeRefugees[i];
 	// 	var key = r.endMomentUnix;
 	//     var s = this.sprites[key];
 
@@ -102,24 +102,24 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 	// 		r.onFinished.push(function() {
 	// 	 		this.container.removeChild(s);
 	// 		}.bind(this));
-	//     } 
+	//     }
 	// 	var loc = r.getLocation(this.rmodel.currentMoment);
 	// 	var point = this.projection(loc);
 	// 	s.position.x = point[0];
 	// 	s.position.y = point[1];
 	// 	s.alpha = 0.7;
 	// }
- 
+
 
     this.rmodel.activeRefugees.forEach(function(r) {
 
     	 if (!r.sprite) {
 	    	r.sprite = new PIXI.Sprite(r.hasEUDestination ? this.EUTexture : this.nonEUTexture);
 	    	this.container.addChild(r.sprite);
-	    
-			r.onFinished.push(function() {
+
+			/*r.onFinished.push(function() {
 		 		this.container.removeChild(r.sprite);
-			}.bind(this));
+			}.bind(this));*/
 	    }
 
 		var loc = r.getLocation(this.rmodel.currentMoment);
