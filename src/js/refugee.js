@@ -40,11 +40,6 @@ Refugee.prototype.getTravelTime = function(r) {
 	return this.getTravelDistance(r) / this.speed;
 }
 
-Refugee.prototype.isActive = function() {
-	return this.started && !this.arrived;
-}
-
-
 /*
  * Get the distance travelled by the given
  * refugee in kilometers
