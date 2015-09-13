@@ -140,13 +140,8 @@ RefugeeModel.prototype.prepareRefugeeSpeed = function() {
 
 
 RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
-	var days = daysInMonth(month, year);
-	var mom = moment(new Date(year, month, 1));
-
-	var maxSeconds = days * 24 * 60 * 60;
-	var diff = Math.random() * maxSeconds;
-	mom.add(diff, 'seconds');
-	return mom;
+	return moment(new Date(year, month, 1).getTime() +
+		Math.random() * daysInMonth(month, year) * 86400000); // ms in day
 }
 
 
