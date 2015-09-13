@@ -55,7 +55,7 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
         this.width, this.height,
         {transparent: true, antialias: true});
 
-	this.stage = new PIXI.Stage(0x000000);
+	//this.stage = new PIXI.Stage(0x000000);
 
     d3.select('#canvas-wrap').node().appendChild(this.renderer.view);
     this.renderer.plugins.interaction.autoPreventDefault = false;
@@ -73,7 +73,7 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 	window.cont = this.container;
 
     //this.stage = this.container;
-    this.stage.addChild(this.container);
+    //this.stage.addChild(this.container);
 
 	this.EUTexture = new PIXI.Texture.fromImage(
 		"one-white-pixel.png",
@@ -130,7 +130,7 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
     }.bind(this));
 
-  	this.renderer.render(this.stage);
+  	this.renderer.render(this.container);
 }
 
 
