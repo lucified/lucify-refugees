@@ -15,7 +15,7 @@ var RefugeeMap = function(rmodel) {
 	this.initialize();
 	this.graphics = {};
 	this.sprites = {};
-	this.arrivedRefugeesByCountry = {};
+	this.arrivedRefugeesByPoint = {};
 };
 
 
@@ -141,9 +141,9 @@ RefugeeMap.prototype.drawRefugeePositions = function() {
 
 RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
 	var barContainer = new PIXI.Container();
-	for (var point in this.arrivedRefugeesByCountry) {
+	for (var point in this.arrivedRefugeesByPoint) {
 		var bar = new PIXI.Graphics();
-		var count = this.arrivedRefugeesByCountry[point] / 10;
+		var count = this.arrivedRefugeesByPoint[point] / 100;
 		var coordinates = this.projection(point.split(',').map(Number));
 		bar.beginFill(0xFF0000);
 		bar.lineStyle(1, 0xFF0000);
@@ -187,10 +187,10 @@ RefugeeMap.prototype.drawRefugeeLine = function(refugee) {
 // NOTE: Only works when using a single destination point per country.
 // Will need some refactoring if we want to support it by country name.
 RefugeeMap.prototype.refugeeArrivedAt = function(point) {
-	if (!this.arrivedRefugeesByCountry[point]) {
-		this.arrivedRefugeesByCountry[point] = 1;
+	if (!this.arrivedRefugeesByPoint[point]) {
+		this.arrivedRefugeesByPoint[point] = 1;
 	} else {
-		this.arrivedRefugeesByCountry[point]++;
+		this.arrivedRefugeesByPoint[point]++;
 	}
 }
 
