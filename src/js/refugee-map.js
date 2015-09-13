@@ -15,6 +15,7 @@ var RefugeeMap = function(rmodel) {
 	this.initialize();
 	this.graphics = {};
 	this.sprites = {};
+	this.arrivedRefugeesByCountry = {};
 };
 
 
@@ -112,14 +113,14 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
 
     this.rmodel.activeRefugees.forEach(function(r) {
-
-    	 if (!r.sprite) {
+		if (!r.sprite) {
 	    	r.sprite = new PIXI.Sprite(r.hasEUDestination ? this.EUTexture : this.nonEUTexture);
 	    	this.container.addChild(r.sprite);
 
-			/*r.onFinished.push(function() {
+			r.onFinished.push(function() {
 		 		this.container.removeChild(r.sprite);
-			}.bind(this));*/
+		 		this.refugeeArrivedAt(r.endPoint);
+			}.bind(this));
 	    }
 
 		var loc = r.getLocation(this.rmodel.currentMoment);
@@ -136,6 +137,24 @@ RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
 RefugeeMap.prototype.drawRefugeePositions = function() {
 	return this.drawRefugeePositionsPixi();
+}
+
+RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
+	var barContainer = new PIXI.Container();
+	for (var point in this.arrivedRefugeesByCountry) {
+		var bar = new PIXI.Graphics();
+		var count = this.arrivedRefugeesByCountry[point] / 10;
+		var coordinates = this.projection(point.split(',').map(Number));
+		bar.beginFill(0xFF0000);
+		bar.lineStyle(1, 0xFF0000);
+		bar.drawRect(coordinates[0], coordinates[1], 5, -count);
+		barContainer.addChild(bar);
+	};
+	this.renderer.render(barContainer);
+}
+
+RefugeeMap.prototype.drawRefugeeCounts = function() {
+	return this.drawRefugeeCountsPixi();
 }
 
 
@@ -163,6 +182,16 @@ RefugeeMap.prototype.drawRefugeeLine = function(refugee) {
 		.attr("x2", ep[0])
 		.attr("y2", ep[1])
 		.attr("stroke", "white");
+}
+
+// NOTE: Only works when using a single destination point per country.
+// Will need some refactoring if we want to support it by country name.
+RefugeeMap.prototype.refugeeArrivedAt = function(point) {
+	if (!this.arrivedRefugeesByCountry[point]) {
+		this.arrivedRefugeesByCountry[point] = 1;
+	} else {
+		this.arrivedRefugeesByCountry[point]++;
+	}
 }
 
 
