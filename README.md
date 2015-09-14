@@ -4,8 +4,9 @@
 
 ### Dependencies
 
-- NPM
-- Bower
+- Node + NPM
+- Bower: `npm install -g bower`
+- Gulp: `npm install -g gulp`
 - Ruby + [RubyGems](https://rubygems.org/pages/download)
 - Bundler: `gem install bundler`
 - GDAL: `brew install gdal`
