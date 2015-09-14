@@ -16,7 +16,7 @@ var queryString = require('query-string');
 
 // how many seconds is one second in the browser
 // compared to the real world
-var SPEED_RATIO = 60 * 60 * 24 * 10; // 10 days
+var SPEED_RATIO = 60 * 60 * 24 * 15; // 15 days
 
 var START_TIME = new Date(2012, 0, 1);
 //var STEP_DURATION = new moment.duration(1, 'days');
