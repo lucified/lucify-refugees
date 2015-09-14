@@ -19,11 +19,12 @@
 
 body {
 	background-color: $lucify-dark-blue;
+	margin: 0px;
 }
 
 #canvas-wrap svg {
 	position: absolute;
-	border: 1px dashed white;
+	//border: 1px dashed white;
 }
 
 #canvas-wrap canvas {

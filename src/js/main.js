@@ -14,6 +14,8 @@ Promise.promisifyAll(d3);
 var queryString = require('query-string');
 
 
+var parsed = queryString.parse(location.search);
+
 // how many seconds is one second in the browser
 // compared to the real world
 var SPEED_RATIO = 60 * 60 * 24 * 5; // 10 days
@@ -21,23 +23,30 @@ var SPEED_RATIO = 60 * 60 * 24 * 5; // 10 days
 var START_TIME = new Date(2012, 0, 1);
 var END_OF_DATA = new moment(new Date(2015, 8, 1));
 
+var AUTOSTART = parsed.autostart == "false" ? false : true;
+
+window.RANDOM_START_POINT = parsed.randomStartPoint == "true" ? true : false;
+window.HD_RESOLUTION = parsed.hd == "true" ? true : false;
+
+
+
 console.time("load topomap");
 
 var topomap;
 var asylumData;
 var regionalData;
+var labels;
 
 var onceLoaded = function() {
 	console.timeEnd("load json");
 
-	var parsed = queryString.parse(location.search);
 	var divider = parsed.divider != null ? parseInt(parsed.divider, 10) : 25;
 
 	var fc = topojson.feature(topomap, topomap.objects.map);
 	window.fc = fc;
 
 	console.time("init refugee model");
-	var rmodel = new RefugeeModel(fc, asylumData, regionalData, divider);
+	var rmodel = new RefugeeModel(fc, asylumData, regionalData, divider, labels);
 	console.timeEnd("init refugee model");
 
 	console.time("init map");
@@ -51,7 +60,10 @@ var onceLoaded = function() {
 
 	//runAnimation();
 
-	start();
+	if (AUTOSTART) {
+		start();	
+	}
+	
 	//startc();
 	//run();
 };
@@ -71,7 +83,12 @@ var load = function() {
 		regionalData = data;
 	}.bind(this));
 
-	Promise.all([p1, p2, p3]).then(onceLoaded, function(error){
+	var p4 = d3.jsonAsync('labels.json').then(function(data) {
+		labels = data;
+		window.labels = labels;
+	}.bind(this));
+
+	Promise.all([p1, p2, p3, p4]).then(onceLoaded, function(error){
 		throw error;
 	});
 };
@@ -95,7 +112,7 @@ var animate = function() {
 	rmodel.currentMoment = moment(START_TIME).add(modelMillis);
 
 	d3.select('#time')
-		.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
+		.text(rmodel.currentMoment.format('DD.MM.YYYY'));
 	rmodel.update();
 	//rmap.drawRefugeePositions();
 	rmap.drawRefugeeCounts();
@@ -105,6 +122,29 @@ var animate = function() {
 		requestAnimationFrame(animate);
 	}
 };
+
+
+// for video rendering with phantom js
+// -----------------------------------
+
+var tick = function() {
+	rmodel.currentMoment.add(1, 'hours');
+	d3.select('#time')
+		.text(rmodel.currentMoment.format('DD.MM.YYYY'));
+	rmodel.update();
+	//rmap.drawRefugeePositions();
+	rmap.drawRefugeeCounts();
+	rmap.render();
+}
+
+// only for testing
+var tick100 = function() {
+	_.range(0, 100).forEach(tick);
+}
+
+window.tick = tick;
+window.tick100 = tick100;
+
 
 // // runner option a
 // // ---------------

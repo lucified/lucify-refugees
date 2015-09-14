@@ -5,6 +5,8 @@ var Vec2 = require('vec2');
 
 
 var features = {};
+var labelPoints = {};
+
 var EUROPE_COUNTRIES = ["AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "UKR", "GBR", "CHE", "NOR"];
 
 
@@ -31,6 +33,27 @@ var getFeatureForCountry = function(fc, country) {
 		features[country] = _getFeatureForCountry(fc, country);
 	}
 	return features[country];
+}
+
+
+var getLabelPointForCountry = function(fc, country) {
+	if (!labelPoints[country]) {
+		labelPoints[country] = _getLabelPointForCountry(fc, country);
+	}
+	return labelPoints[country];
+}
+
+
+var _getLabelPointForCountry = function(fc, country) {
+	for (var i = 0; i < fc.features.length; i++) {
+		var f = fc.features[i];
+		if (f.properties.sr_adm0_a3 == country) {
+			return f.geometry.coordinates;
+		}
+	}
+
+	console.log("could not find label point for" + country);
+	return [0, 0];
 }
 
 
@@ -101,6 +124,7 @@ var getMainCountryBorder = function(feature) {
 	return feature.geometry.coordinates[0];
 }
 
+
 var getMainCountryBorderCached = function(feature) {
 	var key = feature.properties.ADM0_A3;
 	if (countryBorders[key] == null) {
@@ -114,9 +138,11 @@ var getCachedCenterPointForCountryBorderFeature= function(feature) {
 	return countryCenters[key] || (countryCenters[key] = d3.geo.centroid(feature));
 }
 
+
 var getCenterPointForCountryBorderFeature = function(feature) {
 	return getCachedCenterPointForCountryBorderFeature(feature);
 }
+
 
 var getRandomPointForCountryBorderFeature = function(feature) {
 	return getRandomPoint(getMainCountryBorderCached(feature), feature.properties.ADM0_A3);
@@ -126,9 +152,11 @@ var getRandomPointForCountryBorderFeature = function(feature) {
 	//return getRandomPoint(feature.geometry.coordinates[0]);
 }
 
+
 var isInMainlandEurope = function(country) {
 	return EUROPE_COUNTRIES.indexOf(country) > -1;
 }
+
 
 var getBounds = function(coordinates) {
 	var bounds = coordinates.reduce(function(previous, item) {
@@ -147,6 +175,7 @@ var getBounds = function(coordinates) {
 }
 
 
+module.exports.getLabelPointForCountry = getLabelPointForCountry;
 module.exports.getRandomPointForCountryBorderFeature = getRandomPointForCountryBorderFeature;
 module.exports.getCenterPointForCountryBorderFeature = getCenterPointForCountryBorderFeature;
 module.exports.getFeatureForCountry = getFeatureForCountry;

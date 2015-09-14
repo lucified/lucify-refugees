@@ -11,8 +11,12 @@ var RefugeeMap = function(rmodel) {
 	this.rmodel = rmodel;
 	this.width = 1200;
 	this.height = 1200;
-	this.width = 1920;
-	this.height = 1080;
+	
+	if (window.HD_RESOLUTION) {
+		this.width = 1920;
+		this.height = 1080;
+	}
+	
 	this.initialize();
 	this.graphics = {};
 	this.sprites = {};
@@ -117,7 +121,7 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 
 RefugeeMap.prototype.onRefugeeStarted = function(r) {
 	r.sprite = new PIXI.Sprite(this.refugeeTexture);
-	//r.sprite.alpha = 0.7;
+	r.sprite.alpha = 1.0;
 	this.refugeeContainer.addChild(r.sprite);
 }
 
@@ -220,13 +224,16 @@ RefugeeMap.prototype.render = function() {
 	this.renderer.render(this.stage);
 
 	var g = d3.select("canvas").node().getContext("2d");
-    g.fillStyle = "rgba(0, 0, 0, 0.9999)";
-    //g.fillStyle = "rgba(0, 0, 0, 0.95)";
+    //g.fillStyle = "rgba(0, 0, 0, 0.9999)";
+    g.fillStyle = "rgba(0, 0, 0, 0.95)";
      
+    var prevAlpha = g.globalAlpha; 
     var prev = g.globalCompositeOperation;
+    g.globalAlpha = 0.90;
     g.globalCompositeOperation = "destination-in";
     g.fillRect(0, 0, this.width, this.height);
     g.globalCompositeOperation = prev;
+    g.globalAlpha = prevAlpha;
 }
 
 

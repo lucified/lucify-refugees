@@ -7,10 +7,11 @@ var moment = require('moment');
 
 window.SMART_SPREAD_ENABLED = true;
 
-var RefugeeModel = function(fc, asylumData, regionalData, divider) {
+var RefugeeModel = function(fc, asylumData, regionalData, divider, labels) {
 	this.fc = fc;
 	this.asylumData = asylumData;
 	this.regionalData = regionalData;
+	this.labels = labels;
 	this.refugees = [];
 	this.activeRefugees = [];
 	this.divider = divider;
@@ -125,6 +126,22 @@ RefugeeModel.prototype.createCenterCountryPoint = function(country) {
 	if (feature == null) {
 		throw "could not find feature for " + country;
 	}
+
+	switch (country) {
+		case "FRA":
+			return [2.449486512892406, 46.62237366531258]; 
+		case "SWE":
+			return [15.273817, 59.803497];
+		case "FIN":
+			return [25.356445, 61.490593];
+		case "NOR":
+			return [8.506239, 60.975869];
+		case "GBR":
+			return [-1.538086, 52.815213];
+		case "GRE":
+			return [39.575792,21.708984];
+
+	}
 	return utils.getCenterPointForCountryBorderFeature(feature);
 };
 
@@ -162,7 +179,9 @@ RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
 
 RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year) {
 	var r = new Refugee(
-		this.createCenterCountryPoint(startCountry),
+		//utils.getLabelPointForCountry(this.labels, startCountry),
+		//utils.getLabelPointForCountry(this.labels, endCountry),
+		window.RANDOM_START_POINT ? this.createRandomCountryPoint(startCountry) : this.createCenterCountryPoint(startCountry),
 		this.createCenterCountryPoint(endCountry),
 		endCountry,
 		this.prepareRefugeeSpeed(),

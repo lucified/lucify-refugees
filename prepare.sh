@@ -1,6 +1,8 @@
 #!/bin/bash
 
 rm -f data/map.json
+rm -f data/labels.json
+
 
 ogr2ogr \
   -f GeoJSON \
@@ -13,6 +15,12 @@ topojson \
   -p ADM0_A3 \
   -- \
   data/map.json
+
+ogr2ogr \
+  -f GeoJSON \
+  -where "scalerank IN (0)" \
+  data/labels.json \
+  data/ne_10m_admin_0_label_points.shp
 
 
 #ogr2ogr \
