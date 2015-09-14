@@ -31,20 +31,24 @@ var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMomen
 
 Refugee.prototype.getStartMoment = function() {
 	return this.startMoment;
-}
+};
+
 
 Refugee.prototype._getStartMoment = function() {
 	var ret = moment(this.endMoment);
 	return ret.subtract(this.getTravelTime(), 'hours');
-}
+};
+
 
 Refugee.prototype.setRouteRefugeeCount = function(count) {
 	this.maxSideDeviation = Math.max(0.3, count / 3000);
-}
+};
+
 
 Refugee.prototype.getTravelTime = function(r) {
 	return this.getTravelDistance(r) / this.speed;
-}
+};
+
 
 /*
  * Get the distance travelled by the given
@@ -56,12 +60,12 @@ Refugee.prototype.getTravelDistance = function() {
 		this.startPoint[1] - this.endPoint[1]).length();
 
 	return degLength * 111;
-}
+};
 
 
 Refugee.prototype.isPastStartMoment = function(mom) {
 	return mom.unix() > this.getStartMoment().unix();
-}
+};
 
 
 Refugee.prototype.update = function(mom) {
@@ -73,18 +77,13 @@ Refugee.prototype.update = function(mom) {
 		return;
 	}
 
-	var hours = this.getStartMoment().diff(mom)  / (1000 * 60 * 60);
-
+	var hours = this.getStartMoment().diff(mom) / (1000 * 60 * 60);
 	var distance = hours * r.speed;
-
-	//var directionVector = Vec2(
-	//		r.startPoint[0] - r.endPoint[0],
-	//		r.startPoint[1] - r.endPoint[1])
-	//	.normalize();
+	var sideMotionVector, portionOfJourney;
 
 	if (window.SMART_SPREAD_ENABLED) {
-		var sideMotionVector = Vec2(-this.directionVector.y, this.directionVector.x); // perpendicular vector
-		var portionOfJourney = hours / this.getTravelTime();
+		sideMotionVector = Vec2(-this.directionVector.y, this.directionVector.x); // perpendicular vector
+		portionOfJourney = hours / this.getTravelTime();
 	}
 
 	var v = Vec2(r.startPoint);
@@ -97,8 +96,7 @@ Refugee.prototype.update = function(mom) {
 	}
 
 	this.location = v.toArray();
-	//return v.toArray();
-}
+};
 
 
 module.exports = Refugee;
