@@ -54,13 +54,19 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
     PIXI.doNotSayHello = true;
     PIXI.AUTO_PREVENT_DEFAULT = false;
 
-    this.renderer = new PIXI.autoDetectRenderer(
+    this.renderer = new PIXI.CanvasRenderer(
     //this.renderer = new PIXI.CanvasRenderer(
         this.width, this.height,
-        {transparent: true, antialias: true});
+        {transparent: true, 
+        antialias: true, 
+        preserveDrawingBuffer: true,
+        clearBeforeRender: false});
 
     d3.select('#canvas-wrap').node().appendChild(this.renderer.view);
     this.renderer.plugins.interaction.autoPreventDefault = false;
+
+    this.renderer.preserveDrawingBuffer = true;
+    this.renderer.clearBeforeRender = false;
 
 	//this.stage.interactive = false;
 
@@ -69,19 +75,41 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
     //	[false, true, false, false, true],
 	//	200000);
 
+	this.stage = new PIXI.Container();
+
 	this.refugeeContainer = new PIXI.Container();
-	this.refugeeContainer.alpha = 0.7;
-    this.barContainer = null;
-    this.stage = new PIXI.Stage(0x000000);
+	this.refugeeContainer.alpha = 1.0;
     this.stage.addChild(this.refugeeContainer);
+
+	this.barContainer = new PIXI.Container();
+	this.barContainer.alpha = 0.7;
+	this.stage.addChild(this.barContainer);
 
 	this.refugeeTexture = new PIXI.Texture.fromImage(
 		"one-white-pixel.png",
 		new PIXI.math.Rectangle(0, 0, 1, 1));
 
-	this.barContainer = new PIXI.Container();
-	this.barContainer.alpha = 0.7;
-	this.stage.addChild(this.barContainer);
+
+	//this.refugeeContainer.
+
+	// var g = new PIXI.Graphics();
+	// g.blendMode = PIXI.BLEND_MODES.MULTIPLY;
+	// g.beginFill(0xFFFFFF, 0.05);
+	// g.drawRect(0, 0, this.width, this.height);
+	// this.refugeeContainer.addChild(g);
+
+	//var rect = PIXI.Rectangle(0, 0, this.width; this.height);
+
+   	//var matrix = [
+    //    0.2, 0, 0, 0, 0,
+    //    0, 0.2, 0, 0, 0,
+    //    0, 0, 0.2, 0, 0,
+    //    0, 0, 0, 0, 0
+    //];
+	
+	//var filter = new PIXI.filters.ColorMatrixFilter();
+	//filter.matrix = matrix;
+	//this.refugeeContainer.filters = [filter];
 }
 
 
@@ -180,12 +208,23 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
 }
 
 
+
 RefugeeMap.prototype.drawRefugeeCounts = function() {
 	return this.drawRefugeeCountsPixi();
 }
 
+
 RefugeeMap.prototype.render = function() {
 	this.renderer.render(this.stage);
+
+	var g = d3.select("canvas").node().getContext("2d");
+    g.fillStyle = "rgba(0, 0, 0, 0.9999)";
+    //g.fillStyle = "rgba(0, 0, 0, 0.95)";
+     
+    var prev = g.globalCompositeOperation;
+    g.globalCompositeOperation = "destination-in";
+    g.fillRect(0, 0, this.width, this.height);
+    g.globalCompositeOperation = prev;
 }
 
 
