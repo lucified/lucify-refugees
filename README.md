@@ -22,3 +22,6 @@
 ## Notes
 
 http://www.goodboydigital.com/pixijs/bunnymark_v3/
+
+https://github.com/cambecc/earth/blob/master/public/libs/earth/1.0.0/earth.js
+draw() -funktio
