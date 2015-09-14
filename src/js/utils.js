@@ -5,6 +5,7 @@ var Vec2 = require('vec2');
 
 
 var features = {};
+var EUROPE_COUNTRIES = ["AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "UKR", "GBR", "CHE", "NOR"];
 
 
 /*
@@ -125,6 +126,9 @@ var getRandomPointForCountryBorderFeature = function(feature) {
 	//return getRandomPoint(feature.geometry.coordinates[0]);
 }
 
+var isInMainlandEurope = function(country) {
+	return EUROPE_COUNTRIES.indexOf(country) > -1;
+}
 
 var getBounds = function(coordinates) {
 	var bounds = coordinates.reduce(function(previous, item) {
@@ -149,3 +153,4 @@ module.exports.getFeatureForCountry = getFeatureForCountry;
 module.exports.getLargestPolygon = getLargestPolygon;
 module.exports.getRandomPoint = getRandomPoint;
 module.exports.getBounds = getBounds;
+module.exports.isInMainlandEurope = isInMainlandEurope;

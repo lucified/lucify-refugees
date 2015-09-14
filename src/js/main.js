@@ -13,14 +13,15 @@ Promise.promisifyAll(d3);
 
 var queryString = require('query-string');
 
-var START_TIME = new Date(2012, 1, 1);
-var STEP_DURATION = new moment.duration(1, 'days');
 
+// how many seconds is one second in the browser
+// compared to the real world
+var SPEED_RATIO = 60 * 60 * 24 * 5; // 10 days
 
-// latitude = y
-// longitude = x
+var START_TIME = new Date(2012, 0, 1);
+var END_OF_DATA = new moment(new Date(2015, 8, 1));
 
-console.time("load topomap")
+console.time("load topomap");
 
 var topomap;
 var asylumData;
@@ -30,30 +31,30 @@ var onceLoaded = function() {
 	console.timeEnd("load json");
 
 	var parsed = queryString.parse(location.search);
-	var divider = parsed.divider != null ? parseInt(parsed.divider) : 25;
+	var divider = parsed.divider != null ? parseInt(parsed.divider, 10) : 25;
 
 	var fc = topojson.feature(topomap, topomap.objects.map);
 	window.fc = fc;
 
-	console.time("init refugee model")
+	console.time("init refugee model");
 	var rmodel = new RefugeeModel(fc, asylumData, regionalData, divider);
-	console.timeEnd("init refugee model")
+	console.timeEnd("init refugee model");
 
-	console.time("init map")
+	console.time("init map");
 	var rmap = new RefugeeMap(rmodel);
-	console.timeEnd("init map")
+	console.timeEnd("init map");
 
 	window.rmodel = rmodel;
 	window.rmap = rmap;
 
 	rmodel.currentMoment = moment(START_TIME);
 
-	runAnimation();
+	//runAnimation();
 
-	//start();
+	start();
 	//startc();
 	//run();
-}
+};
 
 
 var load = function() {
@@ -71,94 +72,71 @@ var load = function() {
 	}.bind(this));
 
 	Promise.all([p1, p2, p3]).then(onceLoaded, function(error){
-	    throw error;
+		throw error;
 	});
-}
+};
 
 
-// runner option a
-// ---------------
-
-var count = 0;
-
-var runAnimation = function() {
-	console.time("50 frames");
-	rmodel.currentMoment = moment(START_TIME);
-
-	var intervalId = window.setInterval(function() {
-
-		rmodel.currentMoment.add(STEP_DURATION);
-		rmodel.updateActiveRefugees();
-
-		rmap.drawRefugeePositions();
-
-		d3.select('#time')
-			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
-
-		count++;
-		if (count == 50) {
-			console.timeEnd("50 frames");
-		}
-
-		if (rmodel.currentMoment.isAfter(moment())) {
-			clearInterval(intervalId);
-		}
-	}, 0);
-}
 
 // runner option b
 // ---------------
 
+var startMoment;
+
 var start = function() {
-	var intervalId = window.setInterval(function() {
-		rmodel.currentMoment.add(STEP_DURATION);
-		rmodel.updateActiveRefugees();
-		d3.select('#time')
-			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
-		if (rmodel.currentMoment.isAfter(moment())) {
-			clearInterval(intervalId);
-		}
-	}, 25);
+	startMoment = moment();
 	animate();
-}
+};
 
 var animate = function() {
-	requestAnimationFrame(animate);
-	rmap.drawRefugeePositions();
-}
+	var millis = startMoment.diff();
+	var modelMillis = -millis * SPEED_RATIO;
 
+	rmodel.currentMoment = moment(START_TIME).add(modelMillis);
 
-// runner option c
-// ---------------
-
-var startc = function() {
-	animatec();
-}
-
-var animatec = function() {
-	rmodel.currentMoment.add(STEP_DURATION);
 	d3.select('#time')
 		.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
-	rmodel.updateActiveRefugees();
-	rmap.drawRefugeePositions();
-	requestAnimationFrame(animatec);
-}
+	rmodel.update();
+	//rmap.drawRefugeePositions();
+	rmap.drawRefugeeCounts();
+	rmap.render();
 
-// runner option d
-// ---------------
-//var run = function() {
-// 	while (true) {
+	if (!rmodel.currentMoment.isAfter(END_OF_DATA)) {
+		requestAnimationFrame(animate);
+	}
+};
+
+// // runner option a
+// // ---------------
+
+// var count = 0;
+
+// var runAnimation = function() {
+// 	console.time("50 frames");
+// 	rmodel.currentMoment = moment(START_TIME);
+
+// 	var intervalId = window.setInterval(function() {
+
 // 		rmodel.currentMoment.add(STEP_DURATION);
-// 		d3.select('#time')
-// 			.text(rmodel.currentMoment.format('DD.MM.YYYY  HH:mm:ss'));
 // 		rmodel.updateActiveRefugees();
+
 // 		rmap.drawRefugeePositions();
-// 	}
+// 		rmap.drawRefugeeCounts();
+// 		rmap.render();
+
+// 		d3.select('#time')
+// 			.text(rmodel.currentMoment.format('MMM YYYY'));
+
+// 		count++;
+// 		if (count == 50) {
+// 			console.timeEnd("50 frames");
+// 		}
+
+// 		if (rmodel.currentMoment.isAfter(END_OF_DATA)) {
+// 			clearInterval(intervalId);
+// 		}
+// 	}, 0);
 // }
-//
-
-
-
 
 
 load();

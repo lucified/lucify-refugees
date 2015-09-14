@@ -5,8 +5,7 @@ var utils = require('./utils.js');
 var Refugee = require('./refugee.js');
 var moment = require('moment');
 
-var EU_COUNTRIES = ["AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "UKR", "GBR", "CHE", "NOR"];
-window.SMART_SPREAD_ENABLED = false;
+window.SMART_SPREAD_ENABLED = true;
 
 var RefugeeModel = function(fc, asylumData, regionalData, divider) {
 	this.fc = fc;
@@ -17,6 +16,10 @@ var RefugeeModel = function(fc, asylumData, regionalData, divider) {
 	this.divider = divider;
 	this.refugeesOnPath = {};
 	this.initialize();
+
+	this.onRefugeeStarted = null;
+	this.onRefugeeUpdated = null;
+	this.onRefugeeFinished = null;
 };
 
 
@@ -34,7 +37,8 @@ RefugeeModel.prototype.initialize = function() {
 	console.timeEnd("refugee sorting");
 
 	this.refugeeIndex = 0;
-}
+};
+
 
 RefugeeModel.prototype._addPeopleFromValidCountries = function(item) {
 	if (utils.getFeatureForCountry(this.fc, item.ac) == null) {
@@ -44,17 +48,7 @@ RefugeeModel.prototype._addPeopleFromValidCountries = function(item) {
 	} else if (item.count > 0) {
 		this.addRefugees(item.oc, item.ac, item.count / this.divider, item.month - 1, item.year);
 	}
-}
-
-
-// RefugeeModel.prototype.removeRefugee = function(r) {
-// 	var index = this.activeRefugees.indexOf(r);
-// 	if (index == -1) {
-// 		console.log("failaa" + r);
-// 	} else {
-// 		this.activeRefugees.splice(index, 1);
-// 	}
-// }
+};
 
 RefugeeModel.prototype._increaseRefugeeEnRoute = function(start, end) {
 	if (!(start in this.refugeesOnPath)) {
@@ -67,40 +61,60 @@ RefugeeModel.prototype._increaseRefugeeEnRoute = function(start, end) {
 	}
 
 	return this.refugeesOnPath[start][end];
-}
+};
 
-RefugeeModel.prototype.updateActiveRefugees = function() {
-	// filter out the ones that have arrived
-	this.activeRefugees = this.activeRefugees.filter(function(r) {
-		return r.arrived === false;
-	});
+RefugeeModel.prototype.update = function() {
+	var r;
 
 	// add new ones
 	do {
-		var r = this.refugees[this.refugeeIndex];
+		r = this.refugees[this.refugeeIndex];
 		if (r != null && r.isPastStartMoment(this.currentMoment)) {
 			if (window.SMART_SPREAD_ENABLED) {
 				r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.startPoint, r.endPoint));
 			}
 			this.activeRefugees.push(r);
 			this.refugeeIndex++;
+			this.onRefugeeStarted(r);
 		} else {
-			return;
+			break;
 		}
 	} while (true);
-}
+
+
+	// update current ones
+	var stillActive = [];
+	var length = this.activeRefugees.length;
+
+	for (var i = 0; i < length; i++) {
+		r = this.activeRefugees[i];
+		r.update(this.currentMoment);
+
+		if (r.arrived) {
+			if (window.SMART_SPREAD_ENABLED) {
+				this.refugeesOnPath[r.startPoint][r.endPoint]--;
+			}
+			this.onRefugeeFinished(r);
+		} else {
+			stillActive.push(r);
+			this.onRefugeeUpdated(r);
+		}
+	}
+
+	this.activeRefugees = stillActive;
+};
 
 
 RefugeeModel.prototype.addRefugees = function(startCountry, endCountry, count, month, year) {
 	_.times(Math.round(count), function() { // should it be Math.floor?
 		this.refugees.push(this.createRefugee(startCountry, endCountry, month, year));
 	}.bind(this));
-}
+};
 
 
 RefugeeModel.prototype.kmhToDegsPerH = function(kmh) {
 	return kmh / 111;
-}
+};
 
 
 /*
@@ -112,7 +126,8 @@ RefugeeModel.prototype.createCenterCountryPoint = function(country) {
 		throw "could not find feature for " + country;
 	}
 	return utils.getCenterPointForCountryBorderFeature(feature);
-}
+};
+
 
 /*
  * Create a random point within the given country
@@ -123,7 +138,7 @@ RefugeeModel.prototype.createRandomCountryPoint = function(country) {
 		throw "could not find feature for " + country;
 	}
 	return utils.getRandomPointForCountryBorderFeature(feature);
-}
+};
 
 
 function daysInMonth(month,year) {
@@ -136,44 +151,26 @@ function daysInMonth(month,year) {
  */
 RefugeeModel.prototype.prepareRefugeeSpeed = function() {
 	return Math.random() * 2 + 4;
-}
+};
 
 
 RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
 	return moment(new Date(year, month, 1).getTime() +
 		Math.random() * daysInMonth(month, year) * 86400000); // ms in day
-}
+};
 
 
 RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year) {
-	var isEu = (EU_COUNTRIES.indexOf(endCountry) > -1);
 	var r = new Refugee(
 		this.createCenterCountryPoint(startCountry),
-		this.createRandomCountryPoint(endCountry),
+		this.createCenterCountryPoint(endCountry),
+		endCountry,
 		this.prepareRefugeeSpeed(),
-		this.prepareRefugeeEndMoment(month, year),
-		isEu
+		this.prepareRefugeeEndMoment(month, year)
 	);
 
-	if (window.SMART_SPREAD_ENABLED) {
-		r.onFinished.push(function() {
-			this.refugeesOnPath[r.startPoint][r.endPoint]--;
-		}.bind(this));
-	}
-
 	return r;
-}
+};
 
 
 module.exports = RefugeeModel;
-
-
-// // kludge
-// RefugeeModel.prototype.createSyrianPoint = function() {
-// 	return utils.getRandomPoint(this.fc.features[1].geometry.coordinates[0]);
-// }
-
-// // kludge
-// RefugeeModel.prototype.createFinnishPoint = function() {
-// 	return utils.getRandomPoint(utils.getLargestPolygon(this.fc.features[0].geometry.coordinates));
-// }
