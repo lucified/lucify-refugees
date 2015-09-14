@@ -16,17 +16,12 @@ var queryString = require('query-string');
 
 // how many seconds is one second in the browser
 // compared to the real world
-var SPEED_RATIO = 60 * 60 * 24 * 10; // 10 days
+var SPEED_RATIO = 60 * 60 * 24 * 15; // 15 days
 
 var START_TIME = new Date(2012, 0, 1);
-//var STEP_DURATION = new moment.duration(1, 'days');
 var END_OF_DATA = new moment(new Date(2015, 8, 1));
 
-
-// latitude = y
-// longitude = x
-
-console.time("load topomap")
+console.time("load topomap");
 
 var topomap;
 var asylumData;
@@ -36,18 +31,18 @@ var onceLoaded = function() {
 	console.timeEnd("load json");
 
 	var parsed = queryString.parse(location.search);
-	var divider = parsed.divider != null ? parseInt(parsed.divider) : 25;
+	var divider = parsed.divider != null ? parseInt(parsed.divider, 10) : 25;
 
 	var fc = topojson.feature(topomap, topomap.objects.map);
 	window.fc = fc;
 
-	console.time("init refugee model")
+	console.time("init refugee model");
 	var rmodel = new RefugeeModel(fc, asylumData, regionalData, divider);
-	console.timeEnd("init refugee model")
+	console.timeEnd("init refugee model");
 
-	console.time("init map")
+	console.time("init map");
 	var rmap = new RefugeeMap(rmodel);
-	console.timeEnd("init map")
+	console.timeEnd("init map");
 
 	window.rmodel = rmodel;
 	window.rmap = rmap;
@@ -59,7 +54,7 @@ var onceLoaded = function() {
 	start();
 	//startc();
 	//run();
-}
+};
 
 
 var load = function() {
@@ -77,9 +72,9 @@ var load = function() {
 	}.bind(this));
 
 	Promise.all([p1, p2, p3]).then(onceLoaded, function(error){
-	    throw error;
+		throw error;
 	});
-}
+};
 
 
 
@@ -91,7 +86,7 @@ var startMoment;
 var start = function() {
 	startMoment = moment();
 	animate();
-}
+};
 
 var animate = function() {
 	var millis = startMoment.diff();
@@ -107,12 +102,9 @@ var animate = function() {
 	rmap.render();
 
 	if (!rmodel.currentMoment.isAfter(END_OF_DATA)) {
-		requestAnimationFrame(animate);	
+		requestAnimationFrame(animate);
 	}
-}
-
-
-
+};
 
 // // runner option a
 // // ---------------
@@ -145,9 +137,6 @@ var animate = function() {
 // 		}
 // 	}, 0);
 // }
-
-
-
 
 
 load();
