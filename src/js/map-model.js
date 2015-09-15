@@ -13,6 +13,7 @@ var MapModel = function(featureData) {
   this._countryLabelCache = {};
   this._countryBordersCache = {};
   this._countryCentersCache = {};
+  this._countryBoundsCache = {};
 
   this.initialize();
 }
@@ -60,8 +61,8 @@ MapModel.prototype.getRandomPointFromCountry = function(country) {
   if (feature == null) {
     throw "could not find feature for " + country;
   }
-  var borders = getMainCountryBorderForFeature(feature);
-  return this.getRandomPointForCountryBorder(borders);
+  var borders = this.getMainCountryBorderForFeature(feature);
+  return this.getRandomPointForCountryBorder(country, borders);
 }
 
 MapModel.prototype.getMainCountryBorderForFeature = function(feature) {
@@ -86,6 +87,31 @@ MapModel.prototype.getCenterPointOfCountry = function(country) {
   }
   return this._countryCentersCache[country];
 }
+
+/*
+ * Get a random point within the polygon defined
+ * by the coordinates in the given array
+ */
+MapModel.prototype.getRandomPointForCountryBorder = function(country, coordinates) {
+  if (!this._countryBoundsCache[country]) {
+    this._countryBoundsCache[country] = MapModel.getBounds(coordinates);
+  }
+  var bounds = this._countryBoundsCache[country];
+
+  var count = 0;
+  do {
+    var la = Math.random() * (bounds.maxLa - bounds.minLa) + bounds.minLa;
+    var lo = Math.random() * (bounds.maxLo - bounds.minLo) + bounds.minLo;
+    count++;
+  } while (!inside([la, lo], coordinates) && count < 100)
+
+  if (count == 100) {
+    console.log("could not create random point for " + country);
+    return [0, 0];
+  }
+  return [la, lo];
+}
+
 
 /*
  * Get largest polygon within a GeoJSON
@@ -127,26 +153,6 @@ MapModel.getBounds = function(coordinates) {
   return bounds;
 }
 
-/*
- * Get a random point within the polygon defined
- * by the coordinates in the given array
- */
-MapModel.getRandomPointForCountryBorder = function(coordinates) {
-  var bounds = getBounds(coordinates);
-
-  var count = 0;
-  do {
-    var la = Math.random() * (bounds.maxLa - bounds.minLa) + bounds.minLa;
-    var lo = Math.random() * (bounds.maxLo - bounds.minLo) + bounds.minLo;
-    count++;
-  } while (!inside([la, lo], coordinates) && count < 100)
-
-  if (count == 100) {
-    console.log("could not create random point for " + country);
-    return [0, 0];
-  }
-  return [la, lo];
-}
 
 MapModel.isInMainlandEurope = function(country) {
   return EUROPE_COUNTRIES.indexOf(country) > -1;
