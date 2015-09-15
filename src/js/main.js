@@ -41,7 +41,7 @@ var refugeeMap;
 var onceLoaded = function() {
   console.timeEnd("load json");
 
-  var divider = parsed.divider != null ? parseInt(parsed.divider, 10) : 25;
+  var peoplePerPoint = parsed.peoplePerPoint != null ? parseInt(parsed.peoplePerPoint, 10) : 25;
 
   var features = topojson.feature(topomap, topomap.objects.map);
 

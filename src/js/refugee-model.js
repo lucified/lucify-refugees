@@ -5,14 +5,14 @@ var utils = require('./utils.js');
 
 window.SMART_SPREAD_ENABLED = true;
 
-var RefugeeModel = function(mapModel, asylumData, regionalData, divider, labels) {
+var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, labels) {
   this.mapModel = mapModel;
   this.asylumData = asylumData;
   this.regionalData = regionalData;
   this.labels = labels;
   this.refugees = [];
   this.activeRefugees = [];
-  this.divider = divider;
+  this.peoplePerPoint = peoplePerPoint;
   this.refugeesOnPath = {};
   this.initialize();
 
@@ -45,7 +45,7 @@ RefugeeModel.prototype._addPeopleFromValidCountries = function(item) {
   } else if (!this.mapModel.containsCountry(item.oc)) {
     console.log("origin country " + item.oc +  " not in map, skipping");
   } else {
-    var refugeesToAdd = Math.round(item.count / this.divider);
+    var refugeesToAdd = Math.round(item.count / this.peoplePerPoint);
     for (var i = 0; i < refugeesToAdd; i++) {
       this.refugees.push(this.createRefugee(item.oc, item.ac, item.month - 1, item.year));
     }
