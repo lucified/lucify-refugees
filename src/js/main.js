@@ -18,9 +18,10 @@ var parsed = queryString.parse(location.search);
 
 // how many seconds is one second in the browser
 // compared to the real world
-var SPEED_RATIO = 60 * 60 * 24 * 5; // 10 days
+var SPEED_RATIO = 60 * 60 * 24 *
+  ((parsed.daysPerSecond != null) ? parseInt(parsed.daysPerSecond, 10) : 5); // 5 days default
 
-var START_TIME = new Date(2012, 0, 1);
+var START_TIME = (parsed.startDate != null) ? new Date(parsed.startDate) : new Date(2012, 0, 1);
 var END_OF_DATA = new moment(new Date(2015, 8, 1));
 
 var AUTOSTART = parsed.autostart == "false" ? false : true;
