@@ -92,7 +92,7 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 
   this.refugeeTexture = new PIXI.Texture.fromImage(
     "one-white-pixel.png",
-    new PIXI.math.Rectangle(0, 0, 1, 1));
+    new PIXI.Rectangle(0, 0, 1, 1));
 
 
   //this.refugeeContainer.
