@@ -22,10 +22,10 @@ var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, 
 
 RefugeeModel.prototype.initialize = function() {
   console.time("refugee adding");
-  this.asylumData.forEach(this._addPeopleFromValidCountries.bind(this));
+  this.asylumData.forEach(this._addPeopleFromValidCountries(true).bind(this));
   console.timeEnd("refugee adding");
   console.time("regional adding");
-  this.regionalData.forEach(this._addPeopleFromValidCountries.bind(this));
+  this.regionalData.forEach(this._addPeopleFromValidCountries(false).bind(this));
   console.timeEnd("regional adding");
   console.time("refugee sorting");
   this.refugees.sort(function(a, b) {
@@ -37,17 +37,19 @@ RefugeeModel.prototype.initialize = function() {
 };
 
 
-RefugeeModel.prototype._addPeopleFromValidCountries = function(item) {
-  if (!this.mapModel.containsCountry(item.ac)) {
-    console.log("asylum country " + item.ac +  " not in map, skipping");
-  } else if (!this.mapModel.containsCountry(item.oc)) {
-    console.log("origin country " + item.oc +  " not in map, skipping");
-  } else {
-    var refugeesToAdd = Math.round(item.count / this.peoplePerPoint);
-    for (var i = 0; i < refugeesToAdd; i++) {
-      this.refugees.push(this.createRefugee(item.oc, item.ac, item.month - 1, item.year));
+RefugeeModel.prototype._addPeopleFromValidCountries = function(isAsylumSeeker) {
+  return function(item) {
+    if (!this.mapModel.containsCountry(item.ac)) {
+      console.log("asylum country " + item.ac +  " not in map, skipping");
+    } else if (!this.mapModel.containsCountry(item.oc)) {
+      console.log("origin country " + item.oc +  " not in map, skipping");
+    } else {
+      var refugeesToAdd = Math.round(item.count / this.peoplePerPoint);
+      for (var i = 0; i < refugeesToAdd; i++) {
+        this.refugees.push(this.createRefugee(item.oc, item.ac, item.month - 1, item.year, isAsylumSeeker));
+      }
     }
-  }
+  };
 };
 
 RefugeeModel.prototype._increaseRefugeeEnRoute = function(start, end) {
@@ -119,13 +121,14 @@ RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
 };
 
 // note: month is 0-based
-RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year) {
+RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year, isAsylumSeeker) {
   var r = new Refugee(
     window.RANDOM_START_POINT ? this.mapModel.getRandomPointFromCountry(startCountry) : this.mapModel.getCenterPointOfCountry(startCountry),
     this.mapModel.getCenterPointOfCountry(endCountry),
     endCountry,
     this.prepareRefugeeSpeed(),
-    this.prepareRefugeeEndMoment(month, year)
+    this.prepareRefugeeEndMoment(month, year),
+    isAsylumSeeker
   );
 
   return r;

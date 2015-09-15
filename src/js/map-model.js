@@ -4,8 +4,6 @@ var Polygon = require('polygon');
 var Vec2 = require('vec2');
 var _ = require('underscore');
 
-var EUROPE_COUNTRIES = ["AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "UKR", "GBR", "CHE", "NOR"];
-
 var MapModel = function(featureData) {
   this.featureData = featureData;
 
@@ -151,11 +149,6 @@ MapModel.getBounds = function(coordinates) {
     minLo: Number.MAX_VALUE,
     maxLo: Number.MIN_VALUE});
   return bounds;
-}
-
-
-MapModel.isInMainlandEurope = function(country) {
-  return EUROPE_COUNTRIES.indexOf(country) > -1;
 }
 
 

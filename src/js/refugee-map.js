@@ -127,7 +127,7 @@ RefugeeMap.prototype.onRefugeeStarted = function(r) {
 
 RefugeeMap.prototype.onRefugeeFinished = function(r) {
   this.refugeeContainer.removeChild(r.sprite);
-  this.refugeeArrivedAt(r.destinationCountry, r.endPoint);
+  this.refugeeArrived(r);
 }
 
 
@@ -171,7 +171,7 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
 
 // 			r.onFinished.push(function() {
 // 		 		this.refugeeContainer.removeChild(r.sprite);
-// 		 		this.refugeeArrivedAt(r.destinationCountry, r.endPoint);
+// 		 		this.refugeeArrived(r.destinationCountry, r.endPoint);
 // 			}.bind(this));
 // 	    }
 
@@ -200,12 +200,21 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
 
   for (var country in this.arrivedRefugeesByCountry) {
     var bar = new PIXI.Graphics();
-    var count = this.arrivedRefugeesByCountry[country].count / 100;
+    bar.lineStyle(0);
+    var asylumCount = this.arrivedRefugeesByCountry[country].asylumApplications / 100;
+    var refugeeCount = this.arrivedRefugeesByCountry[country].registeredRefugees / 100;
     var coordinates = this.projection(this.arrivedRefugeesByCountry[country].point);
-    var color = MapModel.isInMainlandEurope(country) ? 0xFFFFFF : 0xFF0000;
-    bar.beginFill(color);
-    bar.lineStyle(1, color);
-    bar.drawRect(coordinates[0], coordinates[1], 5, -count);
+    var asylumColor = 0xFFFFFF;
+    var refugeeColor = 0xFF0000;
+
+    if (refugeeCount > 0) {
+      bar.beginFill(refugeeColor);
+      bar.drawRect(coordinates[0], coordinates[1], 5, -refugeeCount);
+    }
+    if (asylumCount > 0) {
+      bar.beginFill(asylumColor);
+      bar.drawRect(coordinates[0], coordinates[1]-refugeeCount, 5, -asylumCount);
+    }
     this.barContainer.addChild(bar);
   };
 
@@ -263,14 +272,19 @@ RefugeeMap.prototype.drawRefugeeLine = function(refugee) {
 }
 
 // Note: Will currently display bar at location where first refugee arrives at in the country
-RefugeeMap.prototype.refugeeArrivedAt = function(country, point) {
-  if (!this.arrivedRefugeesByCountry[country]) {
-    this.arrivedRefugeesByCountry[country] = {
-      point: point,
-      count: 1
+RefugeeMap.prototype.refugeeArrived = function(refugee) {
+  if (!this.arrivedRefugeesByCountry[refugee.destinationCountry]) {
+    this.arrivedRefugeesByCountry[refugee.destinationCountry] = {
+      point: refugee.endPoint,
+      asylumApplications: 0,
+      registeredRefugees: 0
     };
+  }
+
+  if (refugee.isAsylumSeeker) {
+    this.arrivedRefugeesByCountry[refugee.destinationCountry].asylumApplications++;
   } else {
-    this.arrivedRefugeesByCountry[country].count++;
+    this.arrivedRefugeesByCountry[refugee.destinationCountry].registeredRefugees++;
   }
 }
 
