@@ -25,8 +25,9 @@ var END_OF_DATA = new moment(new Date(2015, 8, 1));
 
 var AUTOSTART = parsed.autostart == "false" ? false : true;
 
-window.RANDOM_START_POINT = parsed.randomStartPoint == "true" ? true : false;
-window.HD_RESOLUTION = parsed.hd == "true" ? true : false;
+window.RANDOM_START_POINT = (parsed.randomStartPoint == "true");
+window.SMART_SPREAD_ENABLED = !window.RANDOM_START_POINT;
+window.HD_RESOLUTION = (parsed.hd == "true");
 
 
 console.time("load topomap");

@@ -3,8 +3,6 @@ var Refugee = require('./refugee.js');
 var moment = require('moment');
 var utils = require('./utils.js');
 
-window.SMART_SPREAD_ENABLED = true;
-
 var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, labels) {
   this.mapModel = mapModel;
   this.asylumData = asylumData;
