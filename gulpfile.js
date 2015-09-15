@@ -11,7 +11,8 @@ var watch        = require('gulp-watch');
 var minifycss    = require('gulp-minify-css');
 var uglify       = require('gulp-uglify');
 var streamify    = require('gulp-streamify');
-var shell        = require('gulp-shell')
+var shell        = require('gulp-shell');
+var connect      = require('gulp-connect');
 var prod         = gutil.env.prod;
 
 var execsyncs = require('gulp-execsyncs');
@@ -104,6 +105,14 @@ gulp.task('serve', function() {
   gulp.watch('./src/scss/**/*.scss', ['sass']);
 });
 
+gulp.task('serveprod', function() {
+  connect.server({
+    root: './build',
+    port: process.env.PORT || 5000, // localhost:5000
+    livereload: false
+  });
+});
+
 // use gulp-sequence to finish building html, sass and js before first page load
 gulp.task('default', gulpSequence(['html', 'img', 'sass', 'js', 'prepare-data', 'data'], 'serve'));
-
+gulp.task('production', gulpSequence(['html', 'img', 'sass', 'js', 'prepare-data', 'data'], 'serveprod'));

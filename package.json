@@ -18,10 +18,18 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "gulp-watch": "^4.2.4"
+  },
+  "dependencies": {
+    "area-polygon": "^1.0.1",
+    "bluebird": "^2.10.0",
     "browser-sync": "^2.7.6",
     "browserify": "^10.1.2",
     "browserify-shim": "^3.8.6",
+    "d3": "^3.5.6",
+    "foundation-sites": "^5.5.2",
     "gulp": "^3.8.11",
+    "gulp-connect": "^2.2.0",
     "gulp-execsyncs": "^0.1.1",
     "gulp-minify-html": "^1.0.2",
     "gulp-minify-css": "^1.1.1",
@@ -31,18 +39,9 @@
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
-    "gulp-watch": "^4.2.4",
-    "node-bourbon": "^4.2.3",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.1"
-  },
-  "dependencies": {
-    "area-polygon": "^1.0.1",
-    "bluebird": "^2.10.0",
-    "d3": "^3.5.6",
-    "foundation-sites": "^5.5.2",
     "jquery": "^2.1.4",
     "moment": "^2.10.6",
+    "node-bourbon": "^4.2.3",
     "pixi.js": "^3.0.7",
     "point-in-polygon": "^1.0.0",
     "polygon": "^1.0.2",
@@ -51,7 +50,9 @@
     "sprintf": "^0.1.5",
     "topojson": "^1.6.19",
     "underscore": "^1.8.3",
-    "vec2": "^1.6.0"
+    "vec2": "^1.6.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.1"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js",
