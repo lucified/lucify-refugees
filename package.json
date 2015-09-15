@@ -4,9 +4,9 @@
   "description": "description of migration",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp serveprod",
+    "start": "gulp production",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./node_modules/bower/bin/bower install && gulp build-only"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "engines": {
     "node": "0.12.7"
