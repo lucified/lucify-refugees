@@ -5,8 +5,9 @@ var MapModel = require('./map-model.js')
  * Create a RefugeeMap backed
  * by the given RefugeeModel
  */
-var RefugeeMap = function(rmodel) {
-  this.rmodel = rmodel;
+var RefugeeMap = function(refugeeModel, mapModel) {
+  this.refugeeModel = refugeeModel;
+  this.mapModel = mapModel;
   this.width = 1200;
   this.height = 1200;
 
@@ -20,9 +21,9 @@ var RefugeeMap = function(rmodel) {
   this.sprites = {};
   this.arrivedRefugeesByCountry = {};
 
-  rmodel.onRefugeeUpdated = this.onRefugeeUpdated.bind(this);
-  rmodel.onRefugeeFinished = this.onRefugeeFinished.bind(this);
-  rmodel.onRefugeeStarted = this.onRefugeeStarted.bind(this);
+  this.refugeeModel.onRefugeeUpdated = this.onRefugeeUpdated.bind(this);
+  this.refugeeModel.onRefugeeFinished = this.onRefugeeFinished.bind(this);
+  this.refugeeModel.onRefugeeStarted = this.onRefugeeStarted.bind(this);
 };
 
 
@@ -141,9 +142,9 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
 
 // RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
 
-// 	// var length = this.rmodel.activeRefugees.length;
+// 	// var length = this.refugeeModel.activeRefugees.length;
 // 	// for (var i = 0; i < length; i++) {
-// 	// 	var r = this.rmodel.activeRefugees[i];
+// 	// 	var r = this.refugeeModel.activeRefugees[i];
 // 	// 	var key = r.endMomentUnix;
 // 	//     var s = this.sprites[key];
 
@@ -156,14 +157,14 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
 // 	// 	 		this.refugeeContainer.removeChild(s);
 // 	// 		}.bind(this));
 // 	//     }
-// 	// 	var loc = r.getLocation(this.rmodel.currentMoment);
+// 	// 	var loc = r.getLocation(this.refugeeModel.currentMoment);
 // 	// 	var point = this.projection(loc);
 // 	// 	s.position.x = point[0];
 // 	// 	s.position.y = point[1];
 // 	// 	s.alpha = 0.7;
 // 	// }
 
-//     this.rmodel.activeRefugees.forEach(function(r) {
+//     this.refugeeModel.activeRefugees.forEach(function(r) {
 // 		if (!r.sprite) {
 // 	    	r.sprite = new PIXI.Sprite(this.refugeeTexture);
 // 	    	this.refugeeContainer.addChild(r.sprite);
@@ -174,7 +175,7 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
 // 			}.bind(this));
 // 	    }
 
-// 		var loc = r.getLocation(this.rmodel.currentMoment);
+// 		var loc = r.getLocation(this.refugeeModel.currentMoment);
 // 		var point = this.projection(loc);
 // 		r.sprite.position.x = point[0];
 // 		r.sprite.position.y = point[1];
@@ -238,13 +239,13 @@ RefugeeMap.prototype.render = function() {
 RefugeeMap.prototype.drawBorders = function() {
   var path = d3.geo.path().projection(this.projection);
   this.svg.append("path")
-      .datum(fc)
+      .datum(this.mapModel.featureData)
       .attr("d", path);
 }
 
 
 RefugeeMap.prototype.drawLines = function() {
-  this.rmodel.refugees.forEach(function(refugee) {
+  this.refugeeModel.refugees.forEach(function(refugee) {
     this.drawRefugeeLine(refugee);
   }.bind(this));
 }
@@ -280,15 +281,15 @@ module.exports = RefugeeMap;
 
 // RefugeeMap.prototype.drawRefugeePositionsSVG = function() {
 // 	var sel = this.svg.selectAll('.refugee')
-// 		.data(this.rmodel.refugees);
+// 		.data(this.refugeeModel.refugees);
 
 // 	sel
 // 		.attr("cx", function(d) {
-// 			var loc = d.getLocation(this.rmodel.currentMoment);
+// 			var loc = d.getLocation(this.refugeeModel.currentMoment);
 // 			return this.projection(loc)[0];
 // 		}.bind(this))
 // 		.attr("cy", function(d) {
-// 			var loc = d.getLocation(this.rmodel.currentMoment);
+// 			var loc = d.getLocation(this.refugeeModel.currentMoment);
 // 			return this.projection(loc)[1];
 // 		}.bind(this));
 
@@ -296,11 +297,11 @@ module.exports = RefugeeMap;
 // 		.append('circle')
 // 		.classed('refugee', true)
 // 		.attr("cx", function(d) {
-// 			var loc = d.getLocation(this.rmodel.currentMoment);
+// 			var loc = d.getLocation(this.refugeeModel.currentMoment);
 // 			return this.projection(loc)[0];
 // 		}.bind(this))
 // 		.attr("cy", function(d) {
-// 			var loc = d.getLocation(this.rmodel.currentMoment);
+// 			var loc = d.getLocation(this.refugeeModel.currentMoment);
 // 			return this.projection(loc)[1];
 // 		}.bind(this))
 // 		.attr("r", 1)

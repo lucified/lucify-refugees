@@ -35,32 +35,29 @@ var topomap;
 var asylumData;
 var regionalData;
 var labels;
+var refugeeModel;
+var refugeeMap;
 
 var onceLoaded = function() {
   console.timeEnd("load json");
 
   var divider = parsed.divider != null ? parseInt(parsed.divider, 10) : 25;
 
-  var fc = topojson.feature(topomap, topomap.objects.map);
-  window.fc = fc;
+  var features = topojson.feature(topomap, topomap.objects.map);
 
   console.time("init map model");
-  var mapModel = new MapModel(fc);
+  var mapModel = new MapModel(features);
   console.timeEnd("init map model");
 
   console.time("init refugee model");
-  var rmodel = new RefugeeModel(mapModel, asylumData, regionalData, divider, labels);
+  refugeeModel = new RefugeeModel(mapModel, asylumData, regionalData, peoplePerPoint, labels);
   console.timeEnd("init refugee model");
 
   console.time("init map");
-  var rmap = new RefugeeMap(rmodel);
+  refugeeMap = new RefugeeMap(refugeeModel, mapModel);
   console.timeEnd("init map");
 
-  window.mapModel = mapModel;
-  window.rmodel = rmodel;
-  window.rmap = rmap;
-
-  rmodel.currentMoment = moment(START_TIME);
+  refugeeModel.currentMoment = moment(START_TIME);
 
   //runAnimation();
 
@@ -113,16 +110,16 @@ var animate = function() {
   var millis = startMoment.diff();
   var modelMillis = -millis * SPEED_RATIO;
 
-  rmodel.currentMoment = moment(START_TIME).add(modelMillis);
+  refugeeModel.currentMoment = moment(START_TIME).add(modelMillis);
 
   d3.select('#time')
-    .text(rmodel.currentMoment.format('DD.MM.YYYY'));
-  rmodel.update();
-  //rmap.drawRefugeePositions();
-  rmap.drawRefugeeCounts();
-  rmap.render();
+    .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
+  refugeeModel.update();
+  //refugeeMap.drawRefugeePositions();
+  refugeeMap.drawRefugeeCounts();
+  refugeeMap.render();
 
-  if (!rmodel.currentMoment.isAfter(END_OF_DATA)) {
+  if (!refugeeModel.currentMoment.isAfter(END_OF_DATA)) {
     requestAnimationFrame(animate);
   }
 };
@@ -132,13 +129,13 @@ var animate = function() {
 // -----------------------------------
 
 var tick = function() {
-  rmodel.currentMoment.add(1, 'hours');
+  refugeeModel.currentMoment.add(1, 'hours');
   d3.select('#time')
-    .text(rmodel.currentMoment.format('DD.MM.YYYY'));
-  rmodel.update();
-  //rmap.drawRefugeePositions();
-  rmap.drawRefugeeCounts();
-  rmap.render();
+    .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
+  refugeeModel.update();
+  //refugeeMap.drawRefugeePositions();
+  refugeeMap.drawRefugeeCounts();
+  refugeeMap.render();
 }
 
 // only for testing
@@ -157,26 +154,26 @@ window.tick100 = tick100;
 
 // var runAnimation = function() {
 // 	console.time("50 frames");
-// 	rmodel.currentMoment = moment(START_TIME);
+// 	refugeeModel.currentMoment = moment(START_TIME);
 
 // 	var intervalId = window.setInterval(function() {
 
-// 		rmodel.currentMoment.add(STEP_DURATION);
-// 		rmodel.updateActiveRefugees();
+// 		refugeeModel.currentMoment.add(STEP_DURATION);
+// 		refugeeModel.updateActiveRefugees();
 
-// 		rmap.drawRefugeePositions();
-// 		rmap.drawRefugeeCounts();
-// 		rmap.render();
+// 		refugeeMap.drawRefugeePositions();
+// 		refugeeMap.drawRefugeeCounts();
+// 		refugeeMap.render();
 
 // 		d3.select('#time')
-// 			.text(rmodel.currentMoment.format('MMM YYYY'));
+// 			.text(refugeeModel.currentMoment.format('MMM YYYY'));
 
 // 		count++;
 // 		if (count == 50) {
 // 			console.timeEnd("50 frames");
 // 		}
 
-// 		if (rmodel.currentMoment.isAfter(END_OF_DATA)) {
+// 		if (refugeeModel.currentMoment.isAfter(END_OF_DATA)) {
 // 			clearInterval(intervalId);
 // 		}
 // 	}, 0);
