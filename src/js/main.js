@@ -60,6 +60,10 @@ var onceLoaded = function() {
 
   refugeeModel.currentMoment = moment(START_TIME);
 
+  d3.select('#people-per-point')
+    .text(peoplePerPoint);
+  d3.select('#legend')
+    .classed("hide", false);
   //runAnimation();
 
   if (AUTOSTART) {
