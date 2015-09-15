@@ -1,0 +1,156 @@
+
+var inside = require('point-in-polygon');
+var Polygon = require('polygon');
+var Vec2 = require('vec2');
+var _ = require('underscore');
+
+var EUROPE_COUNTRIES = ["AUT", "BEL", "BGR", "HRV", "CYP", "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "POL", "PRT", "ROU", "SVK", "SVN", "ESP", "SWE", "UKR", "GBR", "CHE", "NOR"];
+
+var MapModel = function(featureData) {
+  this.featureData = featureData;
+
+  this._countryFeatureCache = {};
+  this._countryLabelCache = {};
+  this._countryBordersCache = {};
+  this._countryCentersCache = {};
+
+  this.initialize();
+}
+
+MapModel.prototype.initialize = function() {
+  // the centroid isn't always good. fix for these countries:
+  this._countryCentersCache["FRA"] = [2.449486512892406, 46.62237366531258];
+  this._countryCentersCache["SWE"] = [15.273817, 59.803497];
+  this._countryCentersCache["FIN"] = [25.356445, 61.490593];
+  this._countryCentersCache["NOR"] = [8.506239, 60.975869];
+  this._countryCentersCache["GBR"] = [-1.538086, 52.815213];
+  this._countryCentersCache["GRC"] = [21.752930, 39.270271];
+}
+
+MapModel.prototype.containsCountry = function(country) {
+  return this.getFeatureForCountry(country) != null;
+}
+
+MapModel.prototype.getFeatureForCountry = function(country) {
+  if (this._countryFeatureCache[country]) return this._countryFeatureCache[country];
+
+  var countryFeature = _.find(this.featureData.features, function(f) { return f.properties.ADM0_A3 == country; });
+  if (countryFeature) {
+    this._countryFeatureCache[country] = countryFeature;
+    return countryFeature;
+  }
+  return null;
+}
+
+MapModel.prototype.getLabelPointForCountry = function(country) {
+  if (this._countryLabelCache[country]) return this._countryLabelCache[country];
+
+  var countryFeature = _.find(this.featureData.features, function(f) { return f.properties.sr_adm0_a3 == country; })
+  if (countryFeature) {
+    this._countryLabelCache[country] = countryFeature.geometry.coordinates;
+    return f.geometry.coordinates;
+  }
+
+  console.log("could not find label point for " + country);
+  return [0, 0];
+}
+
+MapModel.prototype.getRandomPointFromCountry = function(country) {
+  var feature = this.getFeatureForCountry(country);
+  if (feature == null) {
+    throw "could not find feature for " + country;
+  }
+  var borders = getMainCountryBorderForFeature(feature);
+  return this.getRandomPointForCountryBorder(borders);
+}
+
+MapModel.prototype.getMainCountryBorderForFeature = function(feature) {
+  var key = feature.properties.ADM0_A3;
+  if (this._countryBordersCache[key] == null) {
+    if (feature.geometry.type == "MultiPolygon") {
+      this._countryBordersCache[key] = MapModel.getLargestPolygon(feature.geometry.coordinates);
+    } else {
+      this._countryBordersCache[key] = feature.geometry.coordinates[0];
+    }
+  }
+  return this._countryBordersCache[key];
+}
+
+MapModel.prototype.getCenterPointOfCountry = function(country) {
+  if (!this._countryCentersCache[country]) {
+    var feature = this.getFeatureForCountry(country);
+    if (feature == null) {
+      throw "could not find feature for " + country;
+    }
+    this._countryCentersCache[country] = d3.geo.centroid(feature);
+  }
+  return this._countryCentersCache[country];
+}
+
+/*
+ * Get largest polygon within a GeoJSON
+ * MultiPolygon coordinates array
+ *
+ * (used to figure out what is mainland)
+ */
+MapModel.getLargestPolygon = function(coordinates) {
+  var largest = Number.MIN_VALUE;
+  var ret = null;
+  coordinates.forEach(function(item) {
+    var va = item[0].map(function(point) {
+      return Vec2(point[0], point[1]);
+    });
+
+    var p = new Polygon(va);
+    var val = p.area();
+    if (val > largest) {
+      largest = val;
+      ret = item[0];
+    }
+  });
+  return ret;
+}
+
+MapModel.getBounds = function(coordinates) {
+  var bounds = coordinates.reduce(function(previous, item) {
+    previous.minLa = Math.min(item[0], previous.minLa);
+    previous.maxLa = Math.max(item[0], previous.maxLa);
+    previous.minLo = Math.min(item[1], previous.minLo);
+    previous.maxLo = Math.max(item[1], previous.maxLo);
+
+    return previous;
+
+  }, {minLa: Number.MAX_VALUE,
+    maxLa: Number.MIN_VALUE,
+    minLo: Number.MAX_VALUE,
+    maxLo: Number.MIN_VALUE});
+  return bounds;
+}
+
+/*
+ * Get a random point within the polygon defined
+ * by the coordinates in the given array
+ */
+MapModel.getRandomPointForCountryBorder = function(coordinates) {
+  var bounds = getBounds(coordinates);
+
+  var count = 0;
+  do {
+    var la = Math.random() * (bounds.maxLa - bounds.minLa) + bounds.minLa;
+    var lo = Math.random() * (bounds.maxLo - bounds.minLo) + bounds.minLo;
+    count++;
+  } while (!inside([la, lo], coordinates) && count < 100)
+
+  if (count == 100) {
+    console.log("could not create random point for " + country);
+    return [0, 0];
+  }
+  return [la, lo];
+}
+
+MapModel.isInMainlandEurope = function(country) {
+  return EUROPE_COUNTRIES.indexOf(country) > -1;
+}
+
+
+module.exports = MapModel;

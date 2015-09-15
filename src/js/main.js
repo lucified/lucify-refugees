@@ -7,13 +7,12 @@ var moment = require('moment');
 
 var RefugeeMap = require('./refugee-map.js');
 var RefugeeModel = require('./refugee-model.js');
+var MapModel = require('./map-model.js');
 
 var Promise = require("bluebird");
 Promise.promisifyAll(d3);
 
 var queryString = require('query-string');
-
-
 var parsed = queryString.parse(location.search);
 
 // how many seconds is one second in the browser
@@ -30,7 +29,6 @@ window.RANDOM_START_POINT = parsed.randomStartPoint == "true" ? true : false;
 window.HD_RESOLUTION = parsed.hd == "true" ? true : false;
 
 
-
 console.time("load topomap");
 
 var topomap;
@@ -39,59 +37,64 @@ var regionalData;
 var labels;
 
 var onceLoaded = function() {
-	console.timeEnd("load json");
+  console.timeEnd("load json");
 
-	var divider = parsed.divider != null ? parseInt(parsed.divider, 10) : 25;
+  var divider = parsed.divider != null ? parseInt(parsed.divider, 10) : 25;
 
-	var fc = topojson.feature(topomap, topomap.objects.map);
-	window.fc = fc;
+  var fc = topojson.feature(topomap, topomap.objects.map);
+  window.fc = fc;
 
-	console.time("init refugee model");
-	var rmodel = new RefugeeModel(fc, asylumData, regionalData, divider, labels);
-	console.timeEnd("init refugee model");
+  console.time("init map model");
+  var mapModel = new MapModel(fc);
+  console.timeEnd("init map model");
 
-	console.time("init map");
-	var rmap = new RefugeeMap(rmodel);
-	console.timeEnd("init map");
+  console.time("init refugee model");
+  var rmodel = new RefugeeModel(mapModel, asylumData, regionalData, divider, labels);
+  console.timeEnd("init refugee model");
 
-	window.rmodel = rmodel;
-	window.rmap = rmap;
+  console.time("init map");
+  var rmap = new RefugeeMap(rmodel);
+  console.timeEnd("init map");
 
-	rmodel.currentMoment = moment(START_TIME);
+  window.mapModel = mapModel;
+  window.rmodel = rmodel;
+  window.rmap = rmap;
 
-	//runAnimation();
+  rmodel.currentMoment = moment(START_TIME);
 
-	if (AUTOSTART) {
-		start();	
-	}
-	
-	//startc();
-	//run();
+  //runAnimation();
+
+  if (AUTOSTART) {
+    start();
+  }
+
+  //startc();
+  //run();
 };
 
 
 var load = function() {
-	console.time("load json");
-	var p1 = d3.jsonAsync('topomap.json').then(function(data) {
-		topomap = data;
-	});
+  console.time("load json");
+  var p1 = d3.jsonAsync('topomap.json').then(function(data) {
+    topomap = data;
+  });
 
-	var p2 = d3.jsonAsync('asylum.json').then(function(data) {
-		asylumData = data;
-	}.bind(this));
+  var p2 = d3.jsonAsync('asylum.json').then(function(data) {
+    asylumData = data;
+  }.bind(this));
 
-	var p3 = d3.jsonAsync('regional-movements.json').then(function(data) {
-		regionalData = data;
-	}.bind(this));
+  var p3 = d3.jsonAsync('regional-movements.json').then(function(data) {
+    regionalData = data;
+  }.bind(this));
 
-	var p4 = d3.jsonAsync('labels.json').then(function(data) {
-		labels = data;
-		window.labels = labels;
-	}.bind(this));
+  var p4 = d3.jsonAsync('labels.json').then(function(data) {
+    labels = data;
+    window.labels = labels;
+  }.bind(this));
 
-	Promise.all([p1, p2, p3, p4]).then(onceLoaded, function(error){
-		throw error;
-	});
+  Promise.all([p1, p2, p3, p4]).then(onceLoaded, function(error){
+    throw error;
+  });
 };
 
 
@@ -102,26 +105,26 @@ var load = function() {
 var startMoment;
 
 var start = function() {
-	startMoment = moment();
-	animate();
+  startMoment = moment();
+  animate();
 };
 
 var animate = function() {
-	var millis = startMoment.diff();
-	var modelMillis = -millis * SPEED_RATIO;
+  var millis = startMoment.diff();
+  var modelMillis = -millis * SPEED_RATIO;
 
-	rmodel.currentMoment = moment(START_TIME).add(modelMillis);
+  rmodel.currentMoment = moment(START_TIME).add(modelMillis);
 
-	d3.select('#time')
-		.text(rmodel.currentMoment.format('DD.MM.YYYY'));
-	rmodel.update();
-	//rmap.drawRefugeePositions();
-	rmap.drawRefugeeCounts();
-	rmap.render();
+  d3.select('#time')
+    .text(rmodel.currentMoment.format('DD.MM.YYYY'));
+  rmodel.update();
+  //rmap.drawRefugeePositions();
+  rmap.drawRefugeeCounts();
+  rmap.render();
 
-	if (!rmodel.currentMoment.isAfter(END_OF_DATA)) {
-		requestAnimationFrame(animate);
-	}
+  if (!rmodel.currentMoment.isAfter(END_OF_DATA)) {
+    requestAnimationFrame(animate);
+  }
 };
 
 
@@ -129,18 +132,18 @@ var animate = function() {
 // -----------------------------------
 
 var tick = function() {
-	rmodel.currentMoment.add(1, 'hours');
-	d3.select('#time')
-		.text(rmodel.currentMoment.format('DD.MM.YYYY'));
-	rmodel.update();
-	//rmap.drawRefugeePositions();
-	rmap.drawRefugeeCounts();
-	rmap.render();
+  rmodel.currentMoment.add(1, 'hours');
+  d3.select('#time')
+    .text(rmodel.currentMoment.format('DD.MM.YYYY'));
+  rmodel.update();
+  //rmap.drawRefugeePositions();
+  rmap.drawRefugeeCounts();
+  rmap.render();
 }
 
 // only for testing
 var tick100 = function() {
-	_.range(0, 100).forEach(tick);
+  _.range(0, 100).forEach(tick);
 }
 
 window.tick = tick;
