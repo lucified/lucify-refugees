@@ -4,8 +4,9 @@
   "description": "description of migration",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp production",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install && bundle install"
   },
   "engines": {
     "node": "0.12.7"
