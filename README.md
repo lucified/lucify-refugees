@@ -8,7 +8,6 @@
 - Ruby + [RubyGems](https://rubygems.org/pages/download)
 - Bundler: `gem install bundler`
 - GDAL: `brew install gdal`
-- topojson: `npm install -g topojson`
 
 ### Setup
 
