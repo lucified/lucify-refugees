@@ -205,7 +205,7 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
     var refugeeCount = this.arrivedRefugeesByCountry[country].registeredRefugees / 100;
     var coordinates = this.projection(this.arrivedRefugeesByCountry[country].point);
     var asylumColor = 0xFFFFFF;
-    var refugeeColor = 0xFF0000;
+    var refugeeColor = 0xFFAD33;
 
     if (refugeeCount > 0) {
       bar.beginFill(refugeeColor);
