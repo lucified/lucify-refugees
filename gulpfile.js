@@ -115,4 +115,8 @@ gulp.task('serveprod', function() {
 
 // use gulp-sequence to finish building html, sass and js before first page load
 gulp.task('default', gulpSequence(['html', 'img', 'sass', 'js', 'prepare-data', 'data'], 'serve'));
-gulp.task('production', gulpSequence(['html', 'img', 'sass', 'js', 'prepare-data', 'data'], 'serveprod'));
+
+gulp.task('build-only', ['html', 'img', 'sass', 'js', 'prepare-data', 'data'],
+  function() {
+    process.exit(0); // hack. for some reason this doesn't exit
+  });
