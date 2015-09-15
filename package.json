@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp production",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./node_modules/bower/bin/bower install && bundle install"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "engines": {
     "node": "0.12.7"
