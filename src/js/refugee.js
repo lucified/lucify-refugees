@@ -11,7 +11,7 @@ var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMomen
   this.speed = speed;
   this.endMoment = endMoment;
   this.isAsylumSeeker = isAsylumSeeker;
-  
+
   if (window.SMART_SPREAD_ENABLED) {
     this.sideDeviation = randgen.rnorm(0, 1); // mean, std. deviation
     this.maxSideDeviation = 0.3;
@@ -43,7 +43,7 @@ Refugee.prototype._getStartMoment = function() {
 
 
 Refugee.prototype.setRouteRefugeeCount = function(count) {
-  this.maxSideDeviation = Math.max(0.3, count / 3000);
+  this.maxSideDeviation = Math.min(Math.max(0.3, count / 3000), 1.0);
 };
 
 
