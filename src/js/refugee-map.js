@@ -198,11 +198,13 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
 
   this.barContainer.removeChildren();
 
+  var barSizeDivider = 3000 / this.refugeeModel.peoplePerPoint;
+
   for (var country in this.arrivedRefugeesByCountry) {
     var bar = new PIXI.Graphics();
     bar.lineStyle(0);
-    var asylumCount = this.arrivedRefugeesByCountry[country].asylumApplications / 100;
-    var refugeeCount = this.arrivedRefugeesByCountry[country].registeredRefugees / 100;
+    var asylumCount = this.arrivedRefugeesByCountry[country].asylumApplications / barSizeDivider;
+    var refugeeCount = this.arrivedRefugeesByCountry[country].registeredRefugees / barSizeDivider;
     var coordinates = this.projection(this.arrivedRefugeesByCountry[country].point);
     var asylumColor = 0xFFFFFF;
     var refugeeColor = 0xFFAD33;
