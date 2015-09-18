@@ -3,6 +3,8 @@ var moment = require('moment');
 var Vec2 = require('vec2');
 var randgen = require('randgen');
 
+var KILOMETERS_PER_DEGREE = 111;
+
 // single refugee
 var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMoment, isAsylumSeeker) {
   this.startPoint = startPoint;
@@ -57,11 +59,9 @@ Refugee.prototype.getTravelTime = function(r) {
  * refugee in kilometers
  */
 Refugee.prototype.getTravelDistance = function() {
-  var degLength = Vec2(
-    this.endPoint[0] - this.startPoint[0],
-    this.startPoint[1] - this.endPoint[1]).length();
-
-  return degLength * 111;
+  var x = this.endPoint[0] - this.startPoint[0];
+  var y = this.startPoint[1] - this.endPoint[1];
+  return Math.sqrt(x*x + y*y) * KILOMETERS_PER_DEGREE;
 };
 
 
@@ -89,7 +89,7 @@ Refugee.prototype.update = function(mom) {
   }
 
   var v = Vec2(r.startPoint);
-  v.add(this.directionVector.multiply(distance / 111, true));
+  v.add(this.directionVector.multiply(distance / KILOMETERS_PER_DEGREE, true));
 
   if (window.SMART_SPREAD_ENABLED) {
     sideMotionVector.multiply(
