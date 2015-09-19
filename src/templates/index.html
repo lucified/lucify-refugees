@@ -19,6 +19,21 @@
     </div>
   </div>
 
+  <div id="description">
+    <h2>Data</h2>
+    <p>This visualization depicts data from two <a href="http://www.unhcr.org/cgi-bin/texis/vtx/home">UN Refugee Agency</a> sources:</p>
+    <ul>
+      <li><a href="http://popstats.unhcr.org/en/asylum_seekers_monthly">Monthly asylum applications</a>. The data includes <q>[...]information about asylum applications lodged in 38 European and 6 non-European countries. Data are broken down by month and origin. Where possible, figures exclude repeat/re-opened asylum applications and applications lodged on appeal or with courts. [...] In the 2014 and 2015 data, figures between 1 and 4 [...] are not included in any totals.</q></li>
+      <li><a href="http://data.unhcr.org/syrianrefugees/regional.php">Persons of concern around Syria</a>. This data tells the number of registered Syrian refugees that have arrived in Egypt, Jordan, Lebanon, Iraq and Turkey.</li>
+    </ul>
+    <p>The data starts at the beginning of 2012 and ends at the last available data (between July and September of 2015, depending on the source/destination country and source).</p>
+    <p>The data only includes information about refugee registrations and asylum applications. It does not include information about asylum applicants or refugees that go back to their origin country or move to another country. Thus, <strong>the end result of the visualization should not be considered a representation of the total number of refugees or asylum seekers that are living in the destination country</strong>&mdash;rather, it is the <strong>total number of arrived asylum seekers and refugees</strong> since 2012.</p>
+    <h2>Graphic representation</h2>
+    <p>The total number of refugees or asylum seekers per month is rounded to the nearest quantum of people depicted by a dot (25 by default). For example, the 177 asylum seekers from Afghanistan to Italy in August of 2014 are rounded down to 7 dots (= 175 people), while the 288 asylum seekers in the following month are rounded up to 12 dots (= 300 people). The bar chart for each country represents a sum of arriving dots, and thus includes the rounding errors. However, over a period of time, these rounding errors should, on average, cancel each other out.</p>
+    <p>Since data is only available on a monthly level, this visualization spreads the number of arriving refugees randomly throughout the month. The exact date of arrival is thus an approximation, but does represent the correct month.</p>
+    <p>The moment a dot is depicted as "leaving" an origin country is calculated based on the arrival date: the dot is given a random constant speed between 4 and 6 kilometers per hour, and the start of the journey is calculated backwards from the arrival date depending on the length of the journey. <strong>The visualization should thus not be considered an accurate representation of the journey itself</strong>&mdash;the data does not include any information about how refugees or asylum seekers made it to the destination country, only information about the origin and destination country.</p>
+  </div>
+
   <script src="js/bundle.js"></script>
 </body>
 

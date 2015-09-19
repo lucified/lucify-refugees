@@ -20,6 +20,30 @@
 body {
   background-color: $lucify-dark-blue;
   margin: 0px;
+  color: #cccccc;
+  font: 1rem/1.2rem "Open Sans", sans-serif;
+  font-weight: 200;
+}
+
+strong {
+  font-weight: 600;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+a {
+  color: #dddddd;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+#description {
+  padding: 2rem 1rem;
+  max-width: 600px;
 }
 
 #canvas-wrap svg {
