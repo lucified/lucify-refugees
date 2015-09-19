@@ -261,7 +261,9 @@ RefugeeMap.prototype.drawCountryLabels = function() {
 
 
 RefugeeMap.prototype.drawCountryLabel = function(country) {
-  var point = this.projection(this.mapModel.getLabelPointForCountry(country));
+
+  //var point = this.projection(this.mapModel.getLabelPointForCountry(country));
+  var point = this.projection(this.mapModel.getCenterPointOfCountry(country));  
   
   // this.svg.append("circle")
   //    .attr("cx", point[0])
@@ -272,7 +274,7 @@ RefugeeMap.prototype.drawCountryLabel = function(country) {
   this.svg.append("text")
      .classed("country-label", true)
      .attr("x", point[0])
-     .attr("y", point[1])
+     .attr("y", point[1] + 15)
      .text(this.mapModel.getFriendlyNameForCountry(country));
 }
 
