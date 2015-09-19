@@ -150,21 +150,24 @@ RefugeeMap.prototype.drawRefugeeCounts = function() {
 
 
 RefugeeMap.prototype.render = function() {
+  this.renderer.clearBeforeRender = !window.TRAILS_ENABLED;
   this.renderer.render(this.stage);
 
-  // snippet adapted from earth.js
-  // https://github.com/cambecc/earth/blob/master/public/libs/earth/1.0.0/earth.js
-  // see draw()-function
-  var g = d3.select("canvas").node().getContext("2d");
-  g.fillStyle = "rgba(0, 0, 0, 0.95)";
+  if (window.TRAILS_ENABLED) {
+    // snippet adapted from earth.js
+    // https://github.com/cambecc/earth/blob/master/public/libs/earth/1.0.0/earth.js
+    // see draw()-function
+    var g = d3.select("canvas").node().getContext("2d");
+    g.fillStyle = "rgba(0, 0, 0, 0.95)";
 
-  var prevAlpha = g.globalAlpha;
-  var prev = g.globalCompositeOperation;
-  g.globalAlpha = 0.90;
-  g.globalCompositeOperation = "destination-in";
-  g.fillRect(0, 0, this.width, this.height);
-  g.globalCompositeOperation = prev;
-  g.globalAlpha = prevAlpha;
+    var prevAlpha = g.globalAlpha;
+    var prev = g.globalCompositeOperation;
+    g.globalAlpha = 0.90;
+    g.globalCompositeOperation = "destination-in";
+    g.fillRect(0, 0, this.width, this.height);
+    g.globalCompositeOperation = prev;
+    g.globalAlpha = prevAlpha;
+  }
 }
 
 

@@ -16,7 +16,7 @@ var parsed = queryString.parse(location.search);
 
 // how many seconds is one second in the browser
 // compared to the real world
-var SPEED_RATIO = 60 * 60 * 24 *
+window.SPEED_RATIO = 60 * 60 * 24 *
   ((parsed.daysPerSecond != null) ? parseInt(parsed.daysPerSecond, 10) : 5); // 5 days default
 
 var START_TIME = (parsed.startDate != null) ? new Date(parsed.startDate) : new Date(2012, 0, 1);
@@ -27,7 +27,7 @@ var AUTOSTART = parsed.autostart == "false" ? false : true;
 window.RANDOM_START_POINT = (parsed.randomStartPoint == "true");
 window.SMART_SPREAD_ENABLED = !window.RANDOM_START_POINT;
 window.HD_RESOLUTION = (parsed.hd == "true");
-
+window.TRAILS_ENABLED = true;
 
 console.time("load topomap");
 
@@ -115,7 +115,7 @@ var start = function() {
 
 var animate = function() {
   var millis = startMoment.diff();
-  var modelMillis = -millis * SPEED_RATIO;
+  var modelMillis = -millis * window.SPEED_RATIO;
 
   refugeeModel.currentMoment = moment(START_TIME).add(modelMillis);
 
