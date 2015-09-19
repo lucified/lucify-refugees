@@ -42,6 +42,7 @@ RefugeeMap.prototype.initialize = function() {
    .attr("width", this.width)
    .attr("height", this.height);
 
+  // only for debugging
   window.projection = this.projection;
 
   this.initializePixiCanvas();
@@ -94,9 +95,6 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
     "one-white-pixel.png",
     new PIXI.Rectangle(0, 0, 1, 1));
 
-
-  //this.refugeeContainer.
-
   // var g = new PIXI.Graphics();
   // g.blendMode = PIXI.BLEND_MODES.MULTIPLY;
   // g.beginFill(0xFFFFFF, 0.05);
@@ -139,63 +137,12 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
 }
 
 
-
-// RefugeeMap.prototype.drawRefugeePositionsPixi = function() {
-
-// 	// var length = this.refugeeModel.activeRefugees.length;
-// 	// for (var i = 0; i < length; i++) {
-// 	// 	var r = this.refugeeModel.activeRefugees[i];
-// 	// 	var key = r.endMomentUnix;
-// 	//     var s = this.sprites[key];
-
-// 	//     if (!s) {
-// 	//     	s = new PIXI.Sprite(this.texture);
-// 	//     	this.refugeeContainer.addChild(s);
-// 	//     	this.sprites[key] = s;
-
-// 	// 		r.onFinished.push(function() {
-// 	// 	 		this.refugeeContainer.removeChild(s);
-// 	// 		}.bind(this));
-// 	//     }
-// 	// 	var loc = r.getLocation(this.refugeeModel.currentMoment);
-// 	// 	var point = this.projection(loc);
-// 	// 	s.position.x = point[0];
-// 	// 	s.position.y = point[1];
-// 	// 	s.alpha = 0.7;
-// 	// }
-
-//     this.refugeeModel.activeRefugees.forEach(function(r) {
-// 		if (!r.sprite) {
-// 	    	r.sprite = new PIXI.Sprite(this.refugeeTexture);
-// 	    	this.refugeeContainer.addChild(r.sprite);
-
-// 			r.onFinished.push(function() {
-// 		 		this.refugeeContainer.removeChild(r.sprite);
-// 		 		this.refugeeArrived(r.destinationCountry, r.endPoint);
-// 			}.bind(this));
-// 	    }
-
-// 		var loc = r.getLocation(this.refugeeModel.currentMoment);
-// 		var point = this.projection(loc);
-// 		r.sprite.position.x = point[0];
-// 		r.sprite.position.y = point[1];
-//     }.bind(this));
-// }
-
-
 RefugeeMap.prototype.drawRefugeePositions = function() {
   return this.drawRefugeePositionsPixi();
 }
 
 
 RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
-  //if (this.barContainer) {
-  //	this.stage.removeChild(this.barContainer);
-  //}
-
-  //this.barContainer = new PIXI.Container();
-  //this.barContainer.alpha = 0.7;
-
   this.barContainer.removeChildren();
 
   var barSizeDivider = 3000 / this.refugeeModel.peoplePerPoint;
@@ -219,8 +166,6 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
     }
     this.barContainer.addChild(bar);
   };
-
-  //this.stage.addChild(this.barContainer);
 }
 
 
@@ -233,8 +178,11 @@ RefugeeMap.prototype.drawRefugeeCounts = function() {
 RefugeeMap.prototype.render = function() {
   this.renderer.render(this.stage);
 
+  // snippet adapted from earth.js
+  // https://github.com/cambecc/earth/blob/master/public/libs/earth/1.0.0/earth.js
+  // see draw()-function
+
   var g = d3.select("canvas").node().getContext("2d");
-  //g.fillStyle = "rgba(0, 0, 0, 0.9999)";
   g.fillStyle = "rgba(0, 0, 0, 0.95)";
 
   var prevAlpha = g.globalAlpha;
@@ -273,7 +221,8 @@ RefugeeMap.prototype.drawRefugeeLine = function(refugee) {
     .attr("stroke", "white");
 }
 
-// Note: Will currently display bar at location where first refugee arrives at in the country
+// Note: Will currently display bar at location where first 
+// refugee arrives at in the country
 RefugeeMap.prototype.refugeeArrived = function(refugee) {
   if (!this.arrivedRefugeesByCountry[refugee.destinationCountry]) {
     this.arrivedRefugeesByCountry[refugee.destinationCountry] = {
@@ -293,33 +242,3 @@ RefugeeMap.prototype.refugeeArrived = function(refugee) {
 
 module.exports = RefugeeMap;
 
-
-
-// RefugeeMap.prototype.drawRefugeePositionsSVG = function() {
-// 	var sel = this.svg.selectAll('.refugee')
-// 		.data(this.refugeeModel.refugees);
-
-// 	sel
-// 		.attr("cx", function(d) {
-// 			var loc = d.getLocation(this.refugeeModel.currentMoment);
-// 			return this.projection(loc)[0];
-// 		}.bind(this))
-// 		.attr("cy", function(d) {
-// 			var loc = d.getLocation(this.refugeeModel.currentMoment);
-// 			return this.projection(loc)[1];
-// 		}.bind(this));
-
-// 	sel.enter()
-// 		.append('circle')
-// 		.classed('refugee', true)
-// 		.attr("cx", function(d) {
-// 			var loc = d.getLocation(this.refugeeModel.currentMoment);
-// 			return this.projection(loc)[0];
-// 		}.bind(this))
-// 		.attr("cy", function(d) {
-// 			var loc = d.getLocation(this.refugeeModel.currentMoment);
-// 			return this.projection(loc)[1];
-// 		}.bind(this))
-// 		.attr("r", 1)
-// 		.attr("fill", "white");
-// }
