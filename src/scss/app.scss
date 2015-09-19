@@ -10,46 +10,88 @@
 //}
 
 #canvas-wrap {
-	//border: 1px solid black;
-	//height: 400px;
-	//width: 400px;
-	//min-height: 400px;
-	position: relative;
+  //border: 1px solid black;
+  //height: 400px;
+  //width: 400px;
+  //min-height: 400px;
+  position: relative;
 }
 
 body {
-	background-color: $lucify-dark-blue;
-	margin: 0px;
+  background-color: $lucify-dark-blue;
+  margin: 0px;
 }
 
 #canvas-wrap svg {
-	position: absolute;
-	//border: 1px dashed white;
+  position: absolute;
+  //border: 1px dashed white;
 }
 
 #canvas-wrap canvas {
-	position: absolute;
-	//background-color: green;
-	//opacity: 0.5
+  position: absolute;
+  //background-color: green;
+  //opacity: 0.5
 }
 
 #time {
-	position: absolute;
-	font-family: monospace;
-	top: 1rem;
-	right: 1rem;
-	text-transform: uppercase;
-	font-size: 32px;
-	color: $lucify-cyan;
-	background-color: rgba(50, 50, 50, 0.7);
-	padding: 0 0.5rem;
-	z-index: 1;
+  position: absolute;
+  font-family: monospace;
+  top: 1rem;
+  right: 1rem;
+  text-transform: uppercase;
+  font-size: 32px;
+  color: $lucify-cyan;
+  background-color: rgba(50, 50, 50, 0.7);
+  padding: 0 0.5rem;
+  z-index: 1;
+}
+
+#legend {
+  position: absolute;
+  top: 12rem;
+  right: 1rem;
+  width: 220px;
+  font-family: monospace;
+  font-size: 16px;
+  color: $lucify-cyan;
+  background-color: rgba(50, 50, 50, 0.7);
+  padding: 0.5rem;
+  z-index: 1;
+  line-height: 1.5rem;
+}
+
+.dot {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 8px;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+.bar {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  font-size: 10px;
+  width: 5px;
+  height: 14px;
+}
+
+.asylum {
+  background-color: #FFFFFF;
+}
+
+.refugee {
+  background-color: #FFAD33;
+}
+
+.hide {
+  display: none;
 }
 
 svg path {
-	fill: $lucify-very-dark-blue;
-	stroke-width: 1px;
-	stroke: $lucify-cyan;
-	opacity: 1.0;
+  fill: $lucify-very-dark-blue;
+  stroke-width: 1px;
+  stroke: $lucify-cyan;
+  opacity: 1.0;
 }
-

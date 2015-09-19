@@ -10,7 +10,7 @@ ogr2ogr \
   data/map.json \
   data/ne_10m_admin_0_countries.shp
 
-topojson \
+node_modules/topojson/bin/topojson \
   -o data/topomap.json \
   -p ADM0_A3 \
   -- \
