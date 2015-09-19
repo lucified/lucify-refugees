@@ -46,7 +46,8 @@ RefugeeModel.prototype._addPeopleFromValidCountries = function(isAsylumSeeker) {
     } else {
       var refugeesToAdd = Math.round(item.count / this.peoplePerPoint);
       for (var i = 0; i < refugeesToAdd; i++) {
-        this.refugees.push(this.createRefugee(item.oc, item.ac, item.month - 1, item.year, isAsylumSeeker));
+        this.refugees.push(this.createRefugee(item.oc, item.ac, 
+          item.month - 1, item.year, isAsylumSeeker));
       }
     }
   };
