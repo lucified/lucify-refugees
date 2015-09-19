@@ -113,11 +113,18 @@ a:hover {
   display: none;
 }
 
-svg path {
+
+svg .subunit {
   fill: $lucify-very-dark-blue;
   stroke-width: 1px;
   stroke: $lucify-cyan;
   opacity: 1.0;
+}
+
+
+svg .subunit-invisible {
+  fill: transparent;
+  stroke: transparent;
 }
 
 svg .country-label {

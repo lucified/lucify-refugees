@@ -51,6 +51,10 @@ RefugeeMap.prototype.initialize = function() {
   window.projection = this.projection;
 
   this.initializePixiCanvas();
+
+  this.overlaySvg = d3.select("#canvas-wrap").append("svg")
+   .attr("width", this.width)
+   .attr("height", this.height);
   
   this.drawBorders();
   this.drawCountryLabels();
@@ -199,11 +203,40 @@ RefugeeMap.prototype.render = function() {
 }
 
 
+
 RefugeeMap.prototype.drawBorders = function() {
-  var path = d3.geo.path().projection(this.projection);
-  this.svg.append("path")
-      .datum(this.mapModel.featureData)
+  this._drawBorders(this.svg, 'subunit');
+  var sel = this._drawBorders(this.overlaySvg, 'subunit-invisible'); 
+
+  sel.on("mouseover", function(feature) {
+    this.handleMouseOver(feature.properties.ADM0_A3);
+  }.bind(this));
+
+  sel.on("mouseout", function(feature) {
+    this.handleMouseOut(feature.properties.ADM0_A3);
+  }.bind(this));
+}
+
+
+RefugeeMap.prototype.handleMouseOver = function(country) {
+  console.log("mouse over " + country);
+}
+
+RefugeeMap.prototype.handleMouseOut = function(country) {
+ console.log("mouse out of " + country); 
+}
+
+
+RefugeeMap.prototype._drawBorders = function(svg, className) {
+  var path = d3.geo.path().projection(this.projection);  
+  var sel = svg.selectAll('.' + className)
+    .data(this.mapModel.featureData.features)
+    .enter()
+      .append('path')
+      .classed(className, true)
       .attr("d", path);
+
+  return sel;
 }
 
 
