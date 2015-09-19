@@ -47,7 +47,7 @@ var onceLoaded = function() {
   var features = topojson.feature(topomap, topomap.objects.map);
 
   console.time("init map model");
-  var mapModel = new MapModel(features);
+  var mapModel = new MapModel(features, labels);
   console.timeEnd("init map model");
 
   console.time("init refugee model");
@@ -57,6 +57,9 @@ var onceLoaded = function() {
   console.time("init map");
   refugeeMap = new RefugeeMap(refugeeModel, mapModel);
   console.timeEnd("init map");
+
+  window.refugeeMap = refugeeMap;
+  window.mapModel = mapModel;
 
   refugeeModel.currentMoment = moment(START_TIME);
 

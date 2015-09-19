@@ -31,6 +31,8 @@ RefugeeMap.prototype.initialize = function() {
   var lo = 26.2206322; // x
   var la = 46.0485818; // y
 
+
+
   this.projection = d3.geo.mercator()
     .center([0, la])
     .rotate([-lo, 0])
@@ -46,7 +48,9 @@ RefugeeMap.prototype.initialize = function() {
   window.projection = this.projection;
 
   this.initializePixiCanvas();
+  
   this.drawBorders();
+  this.drawCountryLabels();
 
   d3.select('#canvas-wrap')
     .style('width', this.width + "px")
@@ -61,7 +65,6 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
   PIXI.AUTO_PREVENT_DEFAULT = false;
 
   this.renderer = new PIXI.CanvasRenderer(
-  //this.renderer = new PIXI.CanvasRenderer(
       this.width, this.height,
       {transparent: true,
       antialias: true,
@@ -74,11 +77,9 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
   this.renderer.preserveDrawingBuffer = true;
   this.renderer.clearBeforeRender = false;
 
-  //this.stage.interactive = false;
-
-    //this.refugeeContainer = new PIXI.ParticleContainer(
-    //	200000,
-    //	[false, true, false, false, true],
+  //this.refugeeContainer = new PIXI.ParticleContainer(
+  //	200000,
+  //	[false, true, false, false, true],
   //	200000);
 
   this.stage = new PIXI.Container();
@@ -238,6 +239,55 @@ RefugeeMap.prototype.refugeeArrived = function(refugee) {
     this.arrivedRefugeesByCountry[refugee.destinationCountry].registeredRefugees++;
   }
 }
+
+
+RefugeeMap.prototype.drawCountryLabels = function() {
+
+  //var ids = ["FIN", "SWE", "DEU", "SYR", "FRA"];
+
+  var ids = this.mapModel.labelFeatureData.features.map(function(item) {
+    return item.properties.sr_su_a3;
+  });
+  
+  ids.forEach(function(country) {
+    this.drawCountryLabel(country);
+  }.bind(this));
+
+}
+
+
+
+RefugeeMap.prototype.drawCountryLabel = function(country) {
+  var point = this.projection(this.mapModel.getLabelPointForCountry(country));
+  
+  // this.svg.append("circle")
+  //    .attr("cx", point[0])
+  //    .attr("cy", point[1])
+  //    .attr("r", 3)
+  //    .attr("fill", "white");
+
+  this.svg.append("text")
+     .classed("country-label", true)
+     .attr("x", point[0])
+     .attr("y", point[1])
+     .text(this.mapModel.getFriendlyNameForCountry(country));
+}
+
+
+
+// RefugeeMap.prototype.drawLine = function(country, month) {
+
+//   this.svg.append("line")
+//       var sp = this.projection(refugee.startPoint);
+  
+//   var ep = this.projection(refugee.endPoint);
+//   this.svg.append("line")
+//     .attr("x1", sp[0])
+//     .attr("y1", sp[1])
+//     .attr("x2", ep[0])
+//     .attr("y2", ep[1])
+//     .attr("stroke", "white");
+// }
 
 
 module.exports = RefugeeMap;

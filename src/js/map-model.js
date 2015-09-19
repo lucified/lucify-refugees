@@ -4,14 +4,16 @@ var Polygon = require('polygon');
 var Vec2 = require('vec2');
 var _ = require('underscore');
 
-var MapModel = function(featureData) {
+
+var MapModel = function(featureData, labelFeatureData) {
   this.featureData = featureData;
+  this.labelFeatureData = labelFeatureData;
 
   this._countryFeatureCache = {};
-  this._countryLabelCache = {};
   this._countryBordersCache = {};
   this._countryCentersCache = {};
   this._countryBoundsCache = {};
+  this._labelFeatureCache = {};
 
   this.initialize();
 }
@@ -33,7 +35,10 @@ MapModel.prototype.containsCountry = function(country) {
 MapModel.prototype.getFeatureForCountry = function(country) {
   if (this._countryFeatureCache[country]) return this._countryFeatureCache[country];
 
-  var countryFeature = _.find(this.featureData.features, function(f) { return f.properties.ADM0_A3 == country; });
+  var countryFeature = _.find(
+    this.featureData.features, 
+    function(f) { return f.properties.ADM0_A3 == country; });
+
   if (countryFeature) {
     this._countryFeatureCache[country] = countryFeature;
     return countryFeature;
@@ -42,17 +47,41 @@ MapModel.prototype.getFeatureForCountry = function(country) {
 }
 
 MapModel.prototype.getLabelPointForCountry = function(country) {
-  if (this._countryLabelCache[country]) return this._countryLabelCache[country];
 
-  var countryFeature = _.find(this.featureData.features, function(f) { return f.properties.sr_adm0_a3 == country; })
-  if (countryFeature) {
-    this._countryLabelCache[country] = countryFeature.geometry.coordinates;
-    return f.geometry.coordinates;
+  var feature = this.getLabelFeatureForCountry(country);
+ 
+  if (feature) {
+    return feature.geometry.coordinates;
   }
 
   console.log("could not find label point for " + country);
   return [0, 0];
 }
+
+
+MapModel.prototype.getLabelFeatureForCountry = function(country) {
+  if (this._labelFeatureCache[country]) return this._labelFeatureCache[country];
+
+  var feature = _.find(
+    this.labelFeatureData.features, 
+    function(f) { return f.properties.sr_su_a3 == country; });
+
+  return feature;
+}
+
+
+MapModel.prototype.getFriendlyNameForCountry = function(country) {
+  
+  var feature = this.getLabelFeatureForCountry(country);
+  if (feature) {
+    window.feature = feature;
+    return feature.properties.sr_subunit;
+  }
+
+  console.log("could not find friendly name for " + country);
+  return country;
+}
+
 
 MapModel.prototype.getRandomPointFromCountry = function(country) {
   var feature = this.getFeatureForCountry(country);

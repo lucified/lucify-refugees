@@ -95,3 +95,11 @@ svg path {
   stroke: $lucify-cyan;
   opacity: 1.0;
 }
+
+svg .country-label {
+    fill: $lucify-cyan;
+    opacity: 0.3;
+    font-family: $lucify-header-font;
+    text-anchor: middle;
+    font-size: 12px
+}
