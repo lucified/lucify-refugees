@@ -66,7 +66,7 @@ Refugee.prototype.getTravelDistance = function() {
 
 
 Refugee.prototype.isPastStartMoment = function(mom) {
-  return mom.unix() > this.getStartMoment().unix();
+  return mom.unix() > this.startMomentUnix;
 };
 
 
