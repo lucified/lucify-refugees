@@ -129,9 +129,17 @@ svg .subunit-invisible {
 }
 
 svg .country-label {
-    fill: #ffffff;
-    opacity: 0.9;
-    font-family: $lucify-header-font;
-    text-anchor: middle;
-    font-size: 12px
+  fill: #ffffff;
+  opacity: 0.9;
+  font-family: $lucify-header-font;
+  text-anchor: middle;
+  font-size: 12px;
+}
+
+svg .country-label.destination {
+  fill: #C9F0CE;
+}
+
+svg .country-label.origin {
+  fill: #FFC4D8;
 }
