@@ -81,17 +81,12 @@ Refugee.prototype.update = function(mom) {
 
   var hours = this.getStartMoment().diff(mom) / (1000 * 60 * 60);
   var distance = hours * r.speed;
-  var sideMotionVector, portionOfJourney;
-
-  if (window.SMART_SPREAD_ENABLED) {
-    sideMotionVector = Vec2(-this.directionVector.y, this.directionVector.x); // perpendicular vector
-    portionOfJourney = hours / this.getTravelTime();
-  }
-
   var v = Vec2(r.startPoint);
   v.add(this.directionVector.multiply(distance / KILOMETERS_PER_DEGREE, true));
 
   if (window.SMART_SPREAD_ENABLED) {
+    var sideMotionVector = Vec2(-this.directionVector.y, this.directionVector.x); // perpendicular vector
+    var portionOfJourney = hours / this.getTravelTime();
     sideMotionVector.multiply(
       Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation);
     v.add(sideMotionVector);
