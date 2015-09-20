@@ -72,20 +72,14 @@ RefugeeModel.prototype.update = function() {
   var r;
 
   // add new ones
-  do {
-    r = this.refugees[this.refugeeIndex];
-    if (r != null && r.isPastStartMoment(this.currentMoment)) {
-      if (window.SMART_SPREAD_ENABLED) {
-        r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.startPoint, r.endPoint));
-      }
-      this.activeRefugees.push(r);
-      this.refugeeIndex++;
-      this.onRefugeeStarted(r);
-    } else {
-      break;
+  while ((r = this.refugees[this.refugeeIndex]) != null && r.isPastStartMoment(this.currentMoment)) {
+    if (window.SMART_SPREAD_ENABLED) {
+      r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.startPoint, r.endPoint));
     }
-  } while (true);
-
+    this.activeRefugees.push(r);
+    this.refugeeIndex++;
+    this.onRefugeeStarted(r);
+  }
 
   // update current ones
   var stillActive = [];
