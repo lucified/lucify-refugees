@@ -118,17 +118,17 @@ var animate = function() {
   var millis = -previousMoment.diff();
   var modelMillis = millis * window.SPEED_RATIO;
 
-  refugeeModel.currentMoment.add(modelMillis);
-  previousMoment.add(millis);
+  if (!refugeeModel.currentMoment.isAfter(END_OF_DATA)) {
+    refugeeModel.currentMoment.add(modelMillis);
+    previousMoment.add(millis);
+  }
 
   d3.select('#time')
     .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
   refugeeModel.update();
   refugeeMap.update();
 
-  if (!refugeeModel.currentMoment.isAfter(END_OF_DATA)) {
-    requestAnimationFrame(animate);
-  }
+  requestAnimationFrame(animate);
 };
 
 

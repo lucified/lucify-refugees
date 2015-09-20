@@ -276,7 +276,7 @@ RefugeeMap.prototype.drawCountryLabel = function(country, type) {
 
 
 RefugeeMap.prototype.updateCountryCountLabels = function() {
-  if (this.tickCount % 10 != 5) {
+  if (this.tickCount % 8 != 5) {
     return;
   }
 
@@ -293,8 +293,7 @@ RefugeeMap.prototype.updateCountryCountLabels = function() {
       }.bind(this))
      .attr("y", function(country) {
         return 30 + this.projection(this.mapModel.getCenterPointOfCountry(country))[1];
-     }.bind(this))
-     .text("N/A");
+     }.bind(this));
 
   sel.text(function(country) {
     var counts = this.refugeeModel.getCurrentRefugeeTotal(country);
