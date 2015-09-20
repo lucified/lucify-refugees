@@ -39,7 +39,7 @@ RefugeeMap.prototype.update = function() {
   this.updateCountryCountLabels();
   this.render();
   this.tickCount++;
-}
+};
 
 
 RefugeeMap.prototype.initialize = function() {
@@ -72,7 +72,6 @@ RefugeeMap.prototype.initialize = function() {
    .attr("height", this.height);
 
   this.drawBorders();
-  //this.drawCountryLabels();
 
   d3.select('#canvas-wrap')
     .style('width', this.width + "px")
@@ -266,17 +265,6 @@ RefugeeMap.prototype._drawBorders = function(svg, className) {
 };
 
 
-RefugeeMap.prototype.drawCountryLabels = function() {
-  var ids = this.mapModel.labelFeatureData.features.map(function(item) {
-    return item.properties.sr_su_a3;
-  });
-
-  ids.forEach(function(country) {
-    this.drawCountryLabel(country, "");
-  }.bind(this));
-};
-
-
 RefugeeMap.prototype.drawCountryLabel = function(country, type) {
   var point = this.projection(this.mapModel.getCenterPointOfCountry(country));
 
@@ -291,7 +279,6 @@ RefugeeMap.prototype.drawCountryLabel = function(country, type) {
 
 
 RefugeeMap.prototype.updateCountryCountLabels = function() {
-
   if (this.tickCount % 10 != 5) {
     return;
   }
@@ -304,11 +291,11 @@ RefugeeMap.prototype.updateCountryCountLabels = function() {
 
   sel.enter().append('text')
      .classed("country-count", true)
-     .attr("x", function(country) { 
-        return this.projection(this.mapModel.getCenterPointOfCountry(country))[0]
+     .attr("x", function(country) {
+        return this.projection(this.mapModel.getCenterPointOfCountry(country))[0];
       }.bind(this))
      .attr("y", function(country) {
-        return 30 + this.projection(this.mapModel.getCenterPointOfCountry(country))[1]
+        return 30 + this.projection(this.mapModel.getCenterPointOfCountry(country))[1];
      }.bind(this))
      .text("N/A");
 
@@ -317,8 +304,8 @@ RefugeeMap.prototype.updateCountryCountLabels = function() {
     var refugeeCount = this.refugeeModel.arrivedRefugeesByCountry[country].registeredRefugees;
     return (asylumCount + refugeeCount) * this.refugeeModel.peoplePerPoint;
   }.bind(this))
-    .classed("country-count--visible", 
-      function(country) { return this.highlightedCountry == country }.bind(this))
+    .classed("country-count--visible",
+      function(country) { return this.highlightedCountry == country; }.bind(this));
 };
 
 
