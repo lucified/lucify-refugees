@@ -64,6 +64,8 @@ var onceLoaded = function() {
     .text(peoplePerPoint);
   d3.select('#legend')
     .classed("hide", false);
+  d3.select('#speed')
+    .classed("hide", false);
   //runAnimation();
 
   if (AUTOSTART) {

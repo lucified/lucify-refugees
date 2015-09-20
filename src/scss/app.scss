@@ -110,6 +110,23 @@ a:hover {
   background-color: #FFAD33;
 }
 
+#speed {
+  position: absolute;
+  top: 18.5rem;
+  right: 1rem;
+  width: 260px;
+  font-family: monospace;
+  font-size: 16px;
+  color: $lucify-cyan;
+  background-color: rgba(50, 50, 50, 0.7);
+  padding: 0.5rem;
+  z-index: 1;
+}
+
+#speed-control {
+  width: 75%;
+}
+
 .hide {
   display: none;
 }
