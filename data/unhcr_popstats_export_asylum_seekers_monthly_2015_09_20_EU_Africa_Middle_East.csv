@@ -331,49 +331,6 @@ Austria,Benin,2014,July,5
 Austria,Benin,2014,August,*
 Austria,Benin,2014,October,*
 Austria,Benin,2014,November,*
-Austria,Bangladesh,2012,January,14
-Austria,Bangladesh,2012,February,6
-Austria,Bangladesh,2012,March,9
-Austria,Bangladesh,2012,April,14
-Austria,Bangladesh,2012,May,19
-Austria,Bangladesh,2012,June,10
-Austria,Bangladesh,2012,July,11
-Austria,Bangladesh,2012,August,19
-Austria,Bangladesh,2012,September,36
-Austria,Bangladesh,2012,October,42
-Austria,Bangladesh,2012,November,25
-Austria,Bangladesh,2012,December,7
-Austria,Bangladesh,2013,January,7
-Austria,Bangladesh,2013,February,8
-Austria,Bangladesh,2013,March,13
-Austria,Bangladesh,2013,April,11
-Austria,Bangladesh,2013,May,24
-Austria,Bangladesh,2013,June,32
-Austria,Bangladesh,2013,July,80
-Austria,Bangladesh,2013,August,20
-Austria,Bangladesh,2013,September,27
-Austria,Bangladesh,2013,October,21
-Austria,Bangladesh,2013,November,15
-Austria,Bangladesh,2013,December,20
-Austria,Bangladesh,2014,January,5
-Austria,Bangladesh,2014,February,*
-Austria,Bangladesh,2014,March,11
-Austria,Bangladesh,2014,April,*
-Austria,Bangladesh,2014,May,12
-Austria,Bangladesh,2014,June,5
-Austria,Bangladesh,2014,July,8
-Austria,Bangladesh,2014,August,11
-Austria,Bangladesh,2014,September,*
-Austria,Bangladesh,2014,October,12
-Austria,Bangladesh,2014,November,7
-Austria,Bangladesh,2014,December,17
-Austria,Bangladesh,2015,January,7
-Austria,Bangladesh,2015,February,10
-Austria,Bangladesh,2015,March,18
-Austria,Bangladesh,2015,April,27
-Austria,Bangladesh,2015,May,55
-Austria,Bangladesh,2015,June,42
-Austria,Bangladesh,2015,July,144
 Austria,"Burkina Faso",2012,June,2
 Austria,"Burkina Faso",2012,August,1
 Austria,"Burkina Faso",2012,November,1
@@ -1281,21 +1238,6 @@ Austria,Morocco,2015,July,34
 Austria,Mauritius,2012,December,1
 Austria,Mauritius,2013,August,1
 Austria,Mauritius,2014,January,*
-Austria,Myanmar,2012,January,1
-Austria,Myanmar,2012,March,3
-Austria,Myanmar,2012,May,3
-Austria,Myanmar,2012,August,1
-Austria,Myanmar,2012,December,3
-Austria,Myanmar,2013,April,1
-Austria,Myanmar,2013,May,1
-Austria,Myanmar,2013,June,1
-Austria,Myanmar,2013,July,1
-Austria,Myanmar,2013,August,3
-Austria,Myanmar,2013,September,2
-Austria,Myanmar,2013,October,2
-Austria,Myanmar,2013,November,4
-Austria,Myanmar,2014,February,*
-Austria,Myanmar,2014,June,*
 Austria,Netherlands,2013,March,1
 Austria,Netherlands,2014,July,*
 Austria,Niger,2012,February,1
@@ -2301,47 +2243,6 @@ Belgium,Benin,2015,March,*
 Belgium,Benin,2015,April,*
 Belgium,Benin,2015,May,*
 Belgium,Benin,2015,June,*
-Belgium,Bangladesh,2012,January,126
-Belgium,Bangladesh,2012,February,78
-Belgium,Bangladesh,2012,March,53
-Belgium,Bangladesh,2012,April,25
-Belgium,Bangladesh,2012,May,24
-Belgium,Bangladesh,2012,June,14
-Belgium,Bangladesh,2012,July,19
-Belgium,Bangladesh,2012,August,9
-Belgium,Bangladesh,2012,September,12
-Belgium,Bangladesh,2012,October,18
-Belgium,Bangladesh,2012,November,13
-Belgium,Bangladesh,2012,December,16
-Belgium,Bangladesh,2013,January,11
-Belgium,Bangladesh,2013,February,26
-Belgium,Bangladesh,2013,March,9
-Belgium,Bangladesh,2013,April,9
-Belgium,Bangladesh,2013,May,6
-Belgium,Bangladesh,2013,June,10
-Belgium,Bangladesh,2013,July,12
-Belgium,Bangladesh,2013,August,13
-Belgium,Bangladesh,2013,September,17
-Belgium,Bangladesh,2013,October,16
-Belgium,Bangladesh,2013,November,13
-Belgium,Bangladesh,2013,December,12
-Belgium,Bangladesh,2014,January,12
-Belgium,Bangladesh,2014,February,*
-Belgium,Bangladesh,2014,March,7
-Belgium,Bangladesh,2014,April,5
-Belgium,Bangladesh,2014,May,*
-Belgium,Bangladesh,2014,June,*
-Belgium,Bangladesh,2014,July,*
-Belgium,Bangladesh,2014,August,*
-Belgium,Bangladesh,2014,September,*
-Belgium,Bangladesh,2014,October,*
-Belgium,Bangladesh,2014,November,*
-Belgium,Bangladesh,2015,January,*
-Belgium,Bangladesh,2015,February,*
-Belgium,Bangladesh,2015,March,*
-Belgium,Bangladesh,2015,April,*
-Belgium,Bangladesh,2015,May,*
-Belgium,Bangladesh,2015,June,*
 Belgium,"Burkina Faso",2012,January,9
 Belgium,"Burkina Faso",2012,February,5
 Belgium,"Burkina Faso",2012,March,7
@@ -3645,26 +3546,6 @@ Belgium,Mauritius,2013,August,1
 Belgium,Mauritius,2013,September,1
 Belgium,Mauritius,2015,February,*
 Belgium,Mauritius,2015,April,*
-Belgium,Myanmar,2012,February,1
-Belgium,Myanmar,2012,March,1
-Belgium,Myanmar,2012,April,3
-Belgium,Myanmar,2012,May,2
-Belgium,Myanmar,2012,June,1
-Belgium,Myanmar,2012,July,3
-Belgium,Myanmar,2012,September,1
-Belgium,Myanmar,2012,November,1
-Belgium,Myanmar,2012,December,5
-Belgium,Myanmar,2013,January,2
-Belgium,Myanmar,2013,February,2
-Belgium,Myanmar,2013,April,1
-Belgium,Myanmar,2013,May,1
-Belgium,Myanmar,2013,June,2
-Belgium,Myanmar,2013,September,2
-Belgium,Myanmar,2013,October,3
-Belgium,Myanmar,2014,January,*
-Belgium,Myanmar,2014,December,*
-Belgium,Myanmar,2015,April,*
-Belgium,Myanmar,2015,June,*
 Belgium,Namibia,2012,June,1
 Belgium,Namibia,2014,April,*
 Belgium,Netherlands,2012,January,1
@@ -4465,9 +4346,6 @@ Belgium,Zimbabwe,2014,October,*
 "Bosnia and Herzegovina",Egypt,2014,October,*
 "Bosnia and Herzegovina",Armenia,2013,January,1
 "Bosnia and Herzegovina",Armenia,2014,March,*
-"Bosnia and Herzegovina",Bangladesh,2013,June,5
-"Bosnia and Herzegovina",Bangladesh,2013,December,1
-"Bosnia and Herzegovina",Bangladesh,2014,March,*
 "Bosnia and Herzegovina","Central African Republic",2014,November,*
 "Bosnia and Herzegovina",Cameroon,2014,June,*
 "Bosnia and Herzegovina",Cameroon,2015,July,*
@@ -4498,7 +4376,6 @@ Belgium,Zimbabwe,2014,October,*
 "Bosnia and Herzegovina",Morocco,2012,November,2
 "Bosnia and Herzegovina",Morocco,2014,May,*
 "Bosnia and Herzegovina",Morocco,2014,September,*
-"Bosnia and Herzegovina",Myanmar,2012,November,1
 "Bosnia and Herzegovina",Nigeria,2013,April,1
 "Bosnia and Herzegovina",Pakistan,2013,December,2
 "Bosnia and Herzegovina",Somalia,2013,September,1
@@ -4638,20 +4515,6 @@ Bulgaria,Armenia,2015,June,*
 Bulgaria,Azerbaijan,2014,February,6
 Bulgaria,Benin,2013,March,1
 Bulgaria,Benin,2013,August,1
-Bulgaria,Bangladesh,2013,June,1
-Bulgaria,Bangladesh,2013,August,2
-Bulgaria,Bangladesh,2013,September,2
-Bulgaria,Bangladesh,2014,February,*
-Bulgaria,Bangladesh,2014,May,*
-Bulgaria,Bangladesh,2014,June,*
-Bulgaria,Bangladesh,2014,December,7
-Bulgaria,Bangladesh,2015,January,*
-Bulgaria,Bangladesh,2015,March,*
-Bulgaria,Bangladesh,2015,April,*
-Bulgaria,Bangladesh,2015,May,5
-Bulgaria,Bangladesh,2015,June,*
-Bulgaria,Bangladesh,2015,July,14
-Bulgaria,Bangladesh,2015,August,17
 Bulgaria,"Burkina Faso",2013,February,1
 Bulgaria,"Burkina Faso",2013,July,1
 Bulgaria,"Burkina Faso",2013,August,3
@@ -5002,16 +4865,6 @@ Bulgaria,Morocco,2015,June,*
 Bulgaria,Morocco,2015,July,*
 Bulgaria,Morocco,2015,August,*
 Bulgaria,Mozambique,2015,March,*
-Bulgaria,Myanmar,2013,March,7
-Bulgaria,Myanmar,2013,July,1
-Bulgaria,Myanmar,2014,September,*
-Bulgaria,Myanmar,2014,December,*
-Bulgaria,Myanmar,2015,January,*
-Bulgaria,Myanmar,2015,February,*
-Bulgaria,Myanmar,2015,May,*
-Bulgaria,Myanmar,2015,June,*
-Bulgaria,Myanmar,2015,July,5
-Bulgaria,Myanmar,2015,August,*
 Bulgaria,Niger,2013,January,1
 Bulgaria,Niger,2013,August,1
 Bulgaria,Niger,2014,February,*
@@ -5336,46 +5189,6 @@ Cyprus,Armenia,2014,May,*
 Cyprus,Armenia,2014,August,*
 Cyprus,Armenia,2014,November,*
 Cyprus,Armenia,2015,July,*
-Cyprus,Bangladesh,2012,January,12
-Cyprus,Bangladesh,2012,February,22
-Cyprus,Bangladesh,2012,March,18
-Cyprus,Bangladesh,2012,April,14
-Cyprus,Bangladesh,2012,May,16
-Cyprus,Bangladesh,2012,June,22
-Cyprus,Bangladesh,2012,July,17
-Cyprus,Bangladesh,2012,August,15
-Cyprus,Bangladesh,2012,September,12
-Cyprus,Bangladesh,2012,October,19
-Cyprus,Bangladesh,2012,November,14
-Cyprus,Bangladesh,2012,December,7
-Cyprus,Bangladesh,2013,January,11
-Cyprus,Bangladesh,2013,February,15
-Cyprus,Bangladesh,2013,March,12
-Cyprus,Bangladesh,2013,April,7
-Cyprus,Bangladesh,2013,May,3
-Cyprus,Bangladesh,2013,June,6
-Cyprus,Bangladesh,2013,July,4
-Cyprus,Bangladesh,2013,August,4
-Cyprus,Bangladesh,2013,September,10
-Cyprus,Bangladesh,2013,October,10
-Cyprus,Bangladesh,2013,November,17
-Cyprus,Bangladesh,2013,December,7
-Cyprus,Bangladesh,2014,January,7
-Cyprus,Bangladesh,2014,February,5
-Cyprus,Bangladesh,2014,March,8
-Cyprus,Bangladesh,2014,April,6
-Cyprus,Bangladesh,2014,May,11
-Cyprus,Bangladesh,2014,June,6
-Cyprus,Bangladesh,2014,July,*
-Cyprus,Bangladesh,2014,August,5
-Cyprus,Bangladesh,2014,September,5
-Cyprus,Bangladesh,2014,October,*
-Cyprus,Bangladesh,2014,November,6
-Cyprus,Bangladesh,2014,December,5
-Cyprus,Bangladesh,2015,March,*
-Cyprus,Bangladesh,2015,April,7
-Cyprus,Bangladesh,2015,June,*
-Cyprus,Bangladesh,2015,July,*
 Cyprus,"Burkina Faso",2012,August,1
 Cyprus,Belarus,2012,January,1
 Cyprus,Belarus,2015,July,*
@@ -6137,19 +5950,6 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Republic",Mali,2012,April,1
 "Czech Republic",Morocco,2014,January,*
 "Czech Republic",Morocco,2015,January,*
-"Czech Republic",Myanmar,2012,May,2
-"Czech Republic",Myanmar,2012,June,1
-"Czech Republic",Myanmar,2012,August,1
-"Czech Republic",Myanmar,2012,November,1
-"Czech Republic",Myanmar,2012,December,25
-"Czech Republic",Myanmar,2013,January,1
-"Czech Republic",Myanmar,2013,June,1
-"Czech Republic",Myanmar,2013,September,2
-"Czech Republic",Myanmar,2014,February,*
-"Czech Republic",Myanmar,2014,July,*
-"Czech Republic",Myanmar,2014,October,*
-"Czech Republic",Myanmar,2015,February,*
-"Czech Republic",Myanmar,2015,March,*
 "Czech Republic",Namibia,2015,June,*
 "Czech Republic",Nigeria,2012,March,2
 "Czech Republic",Nigeria,2012,May,1
@@ -6635,47 +6435,6 @@ Denmark,Benin,2014,May,*
 Denmark,Benin,2014,July,*
 Denmark,Benin,2015,May,*
 Denmark,Benin,2015,July,*
-Denmark,Bangladesh,2012,January,1
-Denmark,Bangladesh,2012,February,8
-Denmark,Bangladesh,2012,March,3
-Denmark,Bangladesh,2012,April,8
-Denmark,Bangladesh,2012,May,9
-Denmark,Bangladesh,2012,June,6
-Denmark,Bangladesh,2012,July,8
-Denmark,Bangladesh,2012,August,3
-Denmark,Bangladesh,2012,September,3
-Denmark,Bangladesh,2012,October,7
-Denmark,Bangladesh,2012,November,2
-Denmark,Bangladesh,2012,December,2
-Denmark,Bangladesh,2013,January,3
-Denmark,Bangladesh,2013,February,1
-Denmark,Bangladesh,2013,March,7
-Denmark,Bangladesh,2013,April,3
-Denmark,Bangladesh,2013,May,7
-Denmark,Bangladesh,2013,June,2
-Denmark,Bangladesh,2013,July,1
-Denmark,Bangladesh,2013,August,3
-Denmark,Bangladesh,2013,September,14
-Denmark,Bangladesh,2013,October,2
-Denmark,Bangladesh,2013,November,3
-Denmark,Bangladesh,2013,December,2
-Denmark,Bangladesh,2014,January,7
-Denmark,Bangladesh,2014,February,*
-Denmark,Bangladesh,2014,March,*
-Denmark,Bangladesh,2014,April,*
-Denmark,Bangladesh,2014,May,*
-Denmark,Bangladesh,2014,June,*
-Denmark,Bangladesh,2014,July,*
-Denmark,Bangladesh,2014,August,*
-Denmark,Bangladesh,2014,September,*
-Denmark,Bangladesh,2014,October,*
-Denmark,Bangladesh,2014,November,*
-Denmark,Bangladesh,2014,December,*
-Denmark,Bangladesh,2015,January,*
-Denmark,Bangladesh,2015,March,*
-Denmark,Bangladesh,2015,April,*
-Denmark,Bangladesh,2015,May,*
-Denmark,Bangladesh,2015,June,*
 Denmark,"Burkina Faso",2013,January,2
 Denmark,"Burkina Faso",2013,May,1
 Denmark,"Burkina Faso",2013,June,1
@@ -7496,37 +7255,6 @@ Denmark,Morocco,2015,July,5
 Denmark,Malta,2015,July,*
 Denmark,Mauritius,2013,July,1
 Denmark,Mauritius,2014,September,*
-Denmark,Myanmar,2012,January,2
-Denmark,Myanmar,2012,February,2
-Denmark,Myanmar,2012,March,14
-Denmark,Myanmar,2012,April,6
-Denmark,Myanmar,2012,May,1
-Denmark,Myanmar,2012,June,1
-Denmark,Myanmar,2012,July,17
-Denmark,Myanmar,2012,August,8
-Denmark,Myanmar,2012,September,12
-Denmark,Myanmar,2012,October,5
-Denmark,Myanmar,2012,November,11
-Denmark,Myanmar,2012,December,4
-Denmark,Myanmar,2013,January,5
-Denmark,Myanmar,2013,February,3
-Denmark,Myanmar,2013,April,4
-Denmark,Myanmar,2013,May,3
-Denmark,Myanmar,2013,June,1
-Denmark,Myanmar,2013,July,1
-Denmark,Myanmar,2013,September,2
-Denmark,Myanmar,2013,October,5
-Denmark,Myanmar,2013,November,4
-Denmark,Myanmar,2013,December,7
-Denmark,Myanmar,2014,January,*
-Denmark,Myanmar,2014,February,*
-Denmark,Myanmar,2014,June,*
-Denmark,Myanmar,2014,July,*
-Denmark,Myanmar,2014,September,9
-Denmark,Myanmar,2014,October,16
-Denmark,Myanmar,2014,November,*
-Denmark,Myanmar,2015,March,*
-Denmark,Myanmar,2015,April,*
 Denmark,Namibia,2014,December,*
 Denmark,Netherlands,2014,January,*
 Denmark,Niger,2012,May,1
@@ -8109,8 +7837,6 @@ Estonia,Egypt,2015,July,*
 Estonia,Armenia,2012,April,5
 Estonia,Azerbaijan,2015,April,*
 Estonia,Benin,2015,February,*
-Estonia,Bangladesh,2014,February,*
-Estonia,Bangladesh,2015,January,*
 Estonia,Belarus,2012,January,3
 Estonia,Belarus,2012,July,1
 Estonia,Belarus,2013,April,1
@@ -8470,30 +8196,6 @@ Finland,Burundi,2015,April,*
 Finland,Benin,2012,October,1
 Finland,Benin,2014,July,*
 Finland,Benin,2015,March,*
-Finland,Bangladesh,2012,January,3
-Finland,Bangladesh,2012,April,1
-Finland,Bangladesh,2012,May,2
-Finland,Bangladesh,2012,June,2
-Finland,Bangladesh,2012,October,1
-Finland,Bangladesh,2012,November,3
-Finland,Bangladesh,2012,December,3
-Finland,Bangladesh,2013,January,1
-Finland,Bangladesh,2013,March,3
-Finland,Bangladesh,2013,May,1
-Finland,Bangladesh,2013,July,2
-Finland,Bangladesh,2013,August,4
-Finland,Bangladesh,2013,September,6
-Finland,Bangladesh,2013,October,2
-Finland,Bangladesh,2013,November,1
-Finland,Bangladesh,2013,December,2
-Finland,Bangladesh,2014,January,*
-Finland,Bangladesh,2014,April,*
-Finland,Bangladesh,2014,May,*
-Finland,Bangladesh,2014,October,*
-Finland,Bangladesh,2015,February,*
-Finland,Bangladesh,2015,March,*
-Finland,Bangladesh,2015,April,*
-Finland,Bangladesh,2015,August,*
 Finland,"Burkina Faso",2012,February,1
 Finland,"Burkina Faso",2013,July,1
 Finland,"Burkina Faso",2013,September,3
@@ -9234,19 +8936,6 @@ Finland,Mozambique,2014,January,*
 Finland,Mozambique,2014,August,*
 Finland,Mauritius,2012,May,1
 Finland,Mauritius,2014,September,*
-Finland,Myanmar,2012,February,1
-Finland,Myanmar,2012,May,1
-Finland,Myanmar,2013,January,2
-Finland,Myanmar,2013,June,1
-Finland,Myanmar,2013,July,1
-Finland,Myanmar,2013,December,1
-Finland,Myanmar,2014,January,*
-Finland,Myanmar,2014,April,*
-Finland,Myanmar,2014,June,5
-Finland,Myanmar,2014,September,5
-Finland,Myanmar,2014,October,5
-Finland,Myanmar,2015,January,*
-Finland,Myanmar,2015,April,*
 Finland,Netherlands,2012,October,1
 Finland,Niger,2012,March,1
 Finland,Niger,2012,July,1
@@ -10103,49 +9792,6 @@ France,Benin,2015,April,*
 France,Benin,2015,May,*
 France,Benin,2015,June,*
 France,Benin,2015,July,*
-France,Bangladesh,2012,January,115
-France,Bangladesh,2012,February,238
-France,Bangladesh,2012,March,144
-France,Bangladesh,2012,April,92
-France,Bangladesh,2012,May,55
-France,Bangladesh,2012,June,40
-France,Bangladesh,2012,July,51
-France,Bangladesh,2012,August,63
-France,Bangladesh,2012,September,47
-France,Bangladesh,2012,October,69
-France,Bangladesh,2012,November,86
-France,Bangladesh,2012,December,93
-France,Bangladesh,2013,January,110
-France,Bangladesh,2013,February,97
-France,Bangladesh,2013,March,134
-France,Bangladesh,2013,April,251
-France,Bangladesh,2013,May,295
-France,Bangladesh,2013,June,386
-France,Bangladesh,2013,July,403
-France,Bangladesh,2013,August,286
-France,Bangladesh,2013,September,266
-France,Bangladesh,2013,October,330
-France,Bangladesh,2013,November,230
-France,Bangladesh,2013,December,281
-France,Bangladesh,2014,January,191
-France,Bangladesh,2014,February,211
-France,Bangladesh,2014,March,251
-France,Bangladesh,2014,April,280
-France,Bangladesh,2014,May,261
-France,Bangladesh,2014,June,207
-France,Bangladesh,2014,July,245
-France,Bangladesh,2014,August,148
-France,Bangladesh,2014,September,156
-France,Bangladesh,2014,October,225
-France,Bangladesh,2014,November,197
-France,Bangladesh,2014,December,274
-France,Bangladesh,2015,January,153
-France,Bangladesh,2015,February,173
-France,Bangladesh,2015,March,253
-France,Bangladesh,2015,April,204
-France,Bangladesh,2015,May,178
-France,Bangladesh,2015,June,205
-France,Bangladesh,2015,July,138
 France,"Burkina Faso",2012,January,7
 France,"Burkina Faso",2012,February,2
 France,"Burkina Faso",2012,March,5
@@ -11624,42 +11270,6 @@ France,Mauritius,2013,June,1
 France,Mauritius,2013,August,3
 France,Mauritius,2013,November,5
 France,Mauritius,2013,December,1
-France,Myanmar,2012,January,11
-France,Myanmar,2012,February,15
-France,Myanmar,2012,March,54
-France,Myanmar,2012,April,67
-France,Myanmar,2012,May,30
-France,Myanmar,2012,June,32
-France,Myanmar,2012,July,43
-France,Myanmar,2012,August,58
-France,Myanmar,2012,September,70
-France,Myanmar,2012,October,71
-France,Myanmar,2012,November,62
-France,Myanmar,2012,December,88
-France,Myanmar,2013,January,67
-France,Myanmar,2013,February,75
-France,Myanmar,2013,March,69
-France,Myanmar,2013,April,21
-France,Myanmar,2013,May,6
-France,Myanmar,2013,June,5
-France,Myanmar,2013,July,11
-France,Myanmar,2013,August,4
-France,Myanmar,2013,September,2
-France,Myanmar,2013,October,6
-France,Myanmar,2013,November,5
-France,Myanmar,2013,December,5
-France,Myanmar,2014,January,*
-France,Myanmar,2014,February,6
-France,Myanmar,2014,March,5
-France,Myanmar,2014,April,*
-France,Myanmar,2014,May,*
-France,Myanmar,2014,June,*
-France,Myanmar,2014,July,5
-France,Myanmar,2014,August,*
-France,Myanmar,2014,September,*
-France,Myanmar,2015,February,*
-France,Myanmar,2015,March,*
-France,Myanmar,2015,April,*
 France,Niger,2012,March,3
 France,Niger,2012,June,5
 France,Niger,2012,July,4
@@ -12753,48 +12363,6 @@ France,Zimbabwe,2015,July,*
 "United Kingdom of Great Britain and Northern Ireland",Benin,2014,April,*
 "United Kingdom of Great Britain and Northern Ireland",Benin,2014,June,*
 "United Kingdom of Great Britain and Northern Ireland",Benin,2014,October,*
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,January,85
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,February,78
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,March,119
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,April,111
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,May,103
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,June,76
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,July,85
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,August,97
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,September,92
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,October,99
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,November,104
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2012,December,106
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,January,84
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,February,89
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,March,99
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,April,141
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,May,136
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,June,122
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,July,124
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,August,76
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,September,113
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,October,94
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,November,73
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2013,December,82
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,January,81
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,February,73
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,March,123
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,April,66
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,May,83
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,June,50
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,July,88
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,August,53
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,September,65
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,October,79
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,November,62
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2014,December,75
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2015,January,83
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2015,February,76
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2015,March,70
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2015,April,84
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2015,May,71
-"United Kingdom of Great Britain and Northern Ireland",Bangladesh,2015,June,77
 "United Kingdom of Great Britain and Northern Ireland","Burkina Faso",2012,January,4
 "United Kingdom of Great Britain and Northern Ireland","Burkina Faso",2012,April,1
 "United Kingdom of Great Britain and Northern Ireland","Burkina Faso",2012,July,1
@@ -14041,48 +13609,6 @@ France,Zimbabwe,2015,July,*
 "United Kingdom of Great Britain and Northern Ireland",Mauritius,2015,April,5
 "United Kingdom of Great Britain and Northern Ireland",Mauritius,2015,May,*
 "United Kingdom of Great Britain and Northern Ireland",Mauritius,2015,June,12
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,January,12
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,February,3
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,March,6
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,April,8
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,May,6
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,June,3
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,July,5
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,August,6
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,September,7
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,October,11
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,November,5
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2012,December,7
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,January,4
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,February,7
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,March,5
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,April,2
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,May,8
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,June,3
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,July,3
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,August,3
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,September,10
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,October,11
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,November,9
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2013,December,8
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,January,9
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,February,23
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,March,19
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,April,11
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,May,13
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,June,10
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,July,14
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,August,8
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,September,7
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,October,17
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,November,14
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2014,December,16
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2015,January,13
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2015,February,8
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2015,March,13
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2015,April,17
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2015,May,17
-"United Kingdom of Great Britain and Northern Ireland",Myanmar,2015,June,25
 "United Kingdom of Great Britain and Northern Ireland",Namibia,2012,January,2
 "United Kingdom of Great Britain and Northern Ireland",Namibia,2012,March,1
 "United Kingdom of Great Britain and Northern Ireland",Namibia,2012,April,3
@@ -15493,50 +15019,6 @@ Germany,Benin,2015,May,42
 Germany,Benin,2015,June,63
 Germany,Benin,2015,July,42
 Germany,Benin,2015,August,18
-Germany,Bangladesh,2012,January,24
-Germany,Bangladesh,2012,February,24
-Germany,Bangladesh,2012,March,20
-Germany,Bangladesh,2012,April,17
-Germany,Bangladesh,2012,May,21
-Germany,Bangladesh,2012,June,20
-Germany,Bangladesh,2012,July,14
-Germany,Bangladesh,2012,August,20
-Germany,Bangladesh,2012,September,31
-Germany,Bangladesh,2012,October,37
-Germany,Bangladesh,2012,November,40
-Germany,Bangladesh,2012,December,36
-Germany,Bangladesh,2013,January,59
-Germany,Bangladesh,2013,February,45
-Germany,Bangladesh,2013,March,19
-Germany,Bangladesh,2013,April,46
-Germany,Bangladesh,2013,May,36
-Germany,Bangladesh,2013,June,54
-Germany,Bangladesh,2013,July,67
-Germany,Bangladesh,2013,August,58
-Germany,Bangladesh,2013,September,78
-Germany,Bangladesh,2013,October,94
-Germany,Bangladesh,2013,November,55
-Germany,Bangladesh,2013,December,58
-Germany,Bangladesh,2014,January,81
-Germany,Bangladesh,2014,February,57
-Germany,Bangladesh,2014,March,60
-Germany,Bangladesh,2014,April,54
-Germany,Bangladesh,2014,May,54
-Germany,Bangladesh,2014,June,34
-Germany,Bangladesh,2014,July,46
-Germany,Bangladesh,2014,August,72
-Germany,Bangladesh,2014,September,76
-Germany,Bangladesh,2014,October,76
-Germany,Bangladesh,2014,November,37
-Germany,Bangladesh,2014,December,48
-Germany,Bangladesh,2015,January,34
-Germany,Bangladesh,2015,February,39
-Germany,Bangladesh,2015,March,14
-Germany,Bangladesh,2015,April,73
-Germany,Bangladesh,2015,May,68
-Germany,Bangladesh,2015,June,59
-Germany,Bangladesh,2015,July,47
-Germany,Bangladesh,2015,August,42
 Germany,"Burkina Faso",2012,January,11
 Germany,"Burkina Faso",2012,February,9
 Germany,"Burkina Faso",2012,March,8
@@ -17085,49 +16567,6 @@ Germany,Mozambique,2014,August,*
 Germany,Mozambique,2014,October,*
 Germany,Mozambique,2015,July,*
 Germany,Mauritius,2012,March,1
-Germany,Myanmar,2012,January,1
-Germany,Myanmar,2012,February,6
-Germany,Myanmar,2012,April,3
-Germany,Myanmar,2012,May,1
-Germany,Myanmar,2012,June,3
-Germany,Myanmar,2012,July,1
-Germany,Myanmar,2012,August,4
-Germany,Myanmar,2012,September,2
-Germany,Myanmar,2012,October,4
-Germany,Myanmar,2012,November,9
-Germany,Myanmar,2012,December,9
-Germany,Myanmar,2013,January,8
-Germany,Myanmar,2013,February,2
-Germany,Myanmar,2013,March,5
-Germany,Myanmar,2013,April,3
-Germany,Myanmar,2013,May,3
-Germany,Myanmar,2013,June,5
-Germany,Myanmar,2013,July,3
-Germany,Myanmar,2013,August,1
-Germany,Myanmar,2013,September,12
-Germany,Myanmar,2013,October,15
-Germany,Myanmar,2013,November,8
-Germany,Myanmar,2013,December,3
-Germany,Myanmar,2014,January,5
-Germany,Myanmar,2014,February,8
-Germany,Myanmar,2014,March,11
-Germany,Myanmar,2014,April,6
-Germany,Myanmar,2014,May,*
-Germany,Myanmar,2014,June,7
-Germany,Myanmar,2014,July,6
-Germany,Myanmar,2014,August,5
-Germany,Myanmar,2014,September,*
-Germany,Myanmar,2014,October,*
-Germany,Myanmar,2014,November,*
-Germany,Myanmar,2014,December,*
-Germany,Myanmar,2015,January,*
-Germany,Myanmar,2015,February,*
-Germany,Myanmar,2015,March,*
-Germany,Myanmar,2015,April,7
-Germany,Myanmar,2015,May,5
-Germany,Myanmar,2015,June,11
-Germany,Myanmar,2015,July,*
-Germany,Myanmar,2015,August,*
 Germany,Namibia,2012,March,1
 Germany,Namibia,2012,September,1
 Germany,Namibia,2013,May,1
@@ -18368,49 +17807,6 @@ Greece,Benin,2013,September,1
 Greece,Benin,2014,January,*
 Greece,Benin,2015,March,*
 Greece,Benin,2015,April,*
-Greece,Bangladesh,2012,January,28
-Greece,Bangladesh,2012,February,48
-Greece,Bangladesh,2012,March,57
-Greece,Bangladesh,2012,April,100
-Greece,Bangladesh,2012,May,116
-Greece,Bangladesh,2012,June,81
-Greece,Bangladesh,2012,July,42
-Greece,Bangladesh,2012,August,78
-Greece,Bangladesh,2012,September,72
-Greece,Bangladesh,2012,October,143
-Greece,Bangladesh,2012,November,115
-Greece,Bangladesh,2012,December,127
-Greece,Bangladesh,2013,January,109
-Greece,Bangladesh,2013,February,118
-Greece,Bangladesh,2013,March,89
-Greece,Bangladesh,2013,April,91
-Greece,Bangladesh,2013,May,92
-Greece,Bangladesh,2013,June,46
-Greece,Bangladesh,2013,July,45
-Greece,Bangladesh,2013,August,22
-Greece,Bangladesh,2013,September,21
-Greece,Bangladesh,2013,October,23
-Greece,Bangladesh,2013,November,41
-Greece,Bangladesh,2013,December,30
-Greece,Bangladesh,2014,January,25
-Greece,Bangladesh,2014,February,52
-Greece,Bangladesh,2014,March,48
-Greece,Bangladesh,2014,April,37
-Greece,Bangladesh,2014,May,54
-Greece,Bangladesh,2014,June,49
-Greece,Bangladesh,2014,July,69
-Greece,Bangladesh,2014,August,57
-Greece,Bangladesh,2014,September,59
-Greece,Bangladesh,2014,October,57
-Greece,Bangladesh,2014,November,37
-Greece,Bangladesh,2014,December,91
-Greece,Bangladesh,2015,January,81
-Greece,Bangladesh,2015,February,73
-Greece,Bangladesh,2015,March,63
-Greece,Bangladesh,2015,April,50
-Greece,Bangladesh,2015,May,72
-Greece,Bangladesh,2015,June,84
-Greece,Bangladesh,2015,July,30
 Greece,"Burkina Faso",2012,January,1
 Greece,"Burkina Faso",2012,April,1
 Greece,"Burkina Faso",2012,May,4
@@ -19253,24 +18649,6 @@ Greece,Morocco,2015,July,7
 Greece,Mozambique,2012,January,1
 Greece,Mauritius,2012,January,1
 Greece,Mauritius,2012,December,2
-Greece,Myanmar,2012,June,1
-Greece,Myanmar,2012,August,1
-Greece,Myanmar,2013,January,2
-Greece,Myanmar,2013,February,2
-Greece,Myanmar,2013,April,1
-Greece,Myanmar,2013,December,1
-Greece,Myanmar,2014,February,*
-Greece,Myanmar,2014,April,*
-Greece,Myanmar,2014,May,*
-Greece,Myanmar,2014,July,*
-Greece,Myanmar,2014,October,*
-Greece,Myanmar,2014,November,*
-Greece,Myanmar,2015,January,*
-Greece,Myanmar,2015,February,*
-Greece,Myanmar,2015,April,*
-Greece,Myanmar,2015,May,*
-Greece,Myanmar,2015,June,*
-Greece,Myanmar,2015,July,*
 Greece,Niger,2012,January,5
 Greece,Niger,2012,February,2
 Greece,Niger,2012,March,9
@@ -19940,23 +19318,6 @@ Croatia,Egypt,2015,February,*
 Croatia,Azerbaijan,2012,May,1
 Croatia,Azerbaijan,2014,December,*
 Croatia,Azerbaijan,2015,March,5
-Croatia,Bangladesh,2012,May,2
-Croatia,Bangladesh,2012,September,4
-Croatia,Bangladesh,2012,October,6
-Croatia,Bangladesh,2012,December,6
-Croatia,Bangladesh,2013,March,2
-Croatia,Bangladesh,2013,June,5
-Croatia,Bangladesh,2013,July,1
-Croatia,Bangladesh,2013,October,2
-Croatia,Bangladesh,2014,January,*
-Croatia,Bangladesh,2014,March,5
-Croatia,Bangladesh,2014,June,*
-Croatia,Bangladesh,2014,July,*
-Croatia,Bangladesh,2014,August,*
-Croatia,Bangladesh,2014,September,*
-Croatia,Bangladesh,2014,November,5
-Croatia,Bangladesh,2015,January,*
-Croatia,Bangladesh,2015,July,*
 Croatia,"Burkina Faso",2013,March,1
 Croatia,"Burkina Faso",2014,January,*
 Croatia,Belarus,2012,September,2
@@ -20159,9 +19520,6 @@ Croatia,Morocco,2014,December,*
 Croatia,Morocco,2015,January,*
 Croatia,Morocco,2015,February,*
 Croatia,Morocco,2015,June,*
-Croatia,Myanmar,2012,May,1
-Croatia,Myanmar,2013,April,1
-Croatia,Myanmar,2014,December,*
 Croatia,Niger,2013,June,1
 Croatia,Niger,2014,February,*
 Croatia,Nigeria,2012,November,1
@@ -20553,42 +19911,6 @@ Hungary,Benin,2014,July,*
 Hungary,Benin,2015,March,*
 Hungary,Benin,2015,June,*
 Hungary,Benin,2015,July,*
-Hungary,Bangladesh,2012,January,1
-Hungary,Bangladesh,2012,March,1
-Hungary,Bangladesh,2012,April,2
-Hungary,Bangladesh,2012,June,3
-Hungary,Bangladesh,2012,July,3
-Hungary,Bangladesh,2012,September,2
-Hungary,Bangladesh,2012,October,1
-Hungary,Bangladesh,2012,November,2
-Hungary,Bangladesh,2013,January,14
-Hungary,Bangladesh,2013,February,10
-Hungary,Bangladesh,2013,March,8
-Hungary,Bangladesh,2013,April,48
-Hungary,Bangladesh,2013,May,38
-Hungary,Bangladesh,2013,June,125
-Hungary,Bangladesh,2013,July,181
-Hungary,Bangladesh,2013,August,54
-Hungary,Bangladesh,2013,September,82
-Hungary,Bangladesh,2013,October,87
-Hungary,Bangladesh,2013,November,25
-Hungary,Bangladesh,2013,December,6
-Hungary,Bangladesh,2014,January,*
-Hungary,Bangladesh,2014,May,*
-Hungary,Bangladesh,2014,July,*
-Hungary,Bangladesh,2014,August,6
-Hungary,Bangladesh,2014,September,52
-Hungary,Bangladesh,2014,October,73
-Hungary,Bangladesh,2014,November,22
-Hungary,Bangladesh,2014,December,69
-Hungary,Bangladesh,2015,January,58
-Hungary,Bangladesh,2015,February,88
-Hungary,Bangladesh,2015,March,147
-Hungary,Bangladesh,2015,April,120
-Hungary,Bangladesh,2015,May,221
-Hungary,Bangladesh,2015,June,349
-Hungary,Bangladesh,2015,July,711
-Hungary,Bangladesh,2015,August,1860
 Hungary,"Burkina Faso",2013,February,2
 Hungary,"Burkina Faso",2013,March,10
 Hungary,"Burkina Faso",2013,April,7
@@ -21286,21 +20608,6 @@ Hungary,Mozambique,2015,April,*
 Hungary,Mauritius,2013,May,1
 Hungary,Mauritius,2014,September,*
 Hungary,Mauritius,2015,April,*
-Hungary,Myanmar,2012,September,3
-Hungary,Myanmar,2012,December,1
-Hungary,Myanmar,2013,May,1
-Hungary,Myanmar,2013,June,1
-Hungary,Myanmar,2013,July,1
-Hungary,Myanmar,2013,August,2
-Hungary,Myanmar,2013,September,2
-Hungary,Myanmar,2013,October,2
-Hungary,Myanmar,2015,January,*
-Hungary,Myanmar,2015,March,*
-Hungary,Myanmar,2015,April,*
-Hungary,Myanmar,2015,May,*
-Hungary,Myanmar,2015,June,9
-Hungary,Myanmar,2015,July,13
-Hungary,Myanmar,2015,August,25
 Hungary,Niger,2014,August,*
 Hungary,Niger,2014,December,*
 Hungary,Niger,2015,January,*
@@ -22068,45 +21375,6 @@ Ireland,Benin,2013,August,1
 Ireland,Benin,2013,September,1
 Ireland,Benin,2013,December,2
 Ireland,Benin,2014,October,*
-Ireland,Bangladesh,2012,January,3
-Ireland,Bangladesh,2012,February,5
-Ireland,Bangladesh,2012,March,2
-Ireland,Bangladesh,2012,April,1
-Ireland,Bangladesh,2012,May,1
-Ireland,Bangladesh,2012,June,1
-Ireland,Bangladesh,2012,July,1
-Ireland,Bangladesh,2012,August,1
-Ireland,Bangladesh,2012,September,2
-Ireland,Bangladesh,2012,October,1
-Ireland,Bangladesh,2012,November,3
-Ireland,Bangladesh,2013,February,3
-Ireland,Bangladesh,2013,April,4
-Ireland,Bangladesh,2013,May,6
-Ireland,Bangladesh,2013,June,2
-Ireland,Bangladesh,2013,July,1
-Ireland,Bangladesh,2013,August,2
-Ireland,Bangladesh,2013,September,1
-Ireland,Bangladesh,2013,October,1
-Ireland,Bangladesh,2013,November,6
-Ireland,Bangladesh,2013,December,3
-Ireland,Bangladesh,2014,January,*
-Ireland,Bangladesh,2014,February,5
-Ireland,Bangladesh,2014,March,*
-Ireland,Bangladesh,2014,April,8
-Ireland,Bangladesh,2014,May,*
-Ireland,Bangladesh,2014,June,5
-Ireland,Bangladesh,2014,July,7
-Ireland,Bangladesh,2014,August,10
-Ireland,Bangladesh,2014,September,17
-Ireland,Bangladesh,2014,October,12
-Ireland,Bangladesh,2014,November,14
-Ireland,Bangladesh,2014,December,15
-Ireland,Bangladesh,2015,January,12
-Ireland,Bangladesh,2015,February,11
-Ireland,Bangladesh,2015,March,18
-Ireland,Bangladesh,2015,April,24
-Ireland,Bangladesh,2015,May,24
-Ireland,Bangladesh,2015,June,41
 Ireland,Belarus,2012,January,2
 Ireland,Belarus,2012,October,1
 Ireland,Belarus,2013,September,1
@@ -22524,11 +21792,6 @@ Ireland,Mauritius,2015,January,*
 Ireland,Mauritius,2015,March,*
 Ireland,Mauritius,2015,April,*
 Ireland,Mauritius,2015,May,*
-Ireland,Myanmar,2012,June,2
-Ireland,Myanmar,2012,August,1
-Ireland,Myanmar,2012,September,2
-Ireland,Myanmar,2012,December,1
-Ireland,Myanmar,2013,May,1
 Ireland,Namibia,2012,February,2
 Ireland,Namibia,2015,February,*
 Ireland,Niger,2012,January,1
@@ -23159,48 +22422,6 @@ Italy,Benin,2015,March,6
 Italy,Benin,2015,April,15
 Italy,Benin,2015,May,10
 Italy,Benin,2015,June,16
-Italy,Bangladesh,2012,January,49
-Italy,Bangladesh,2012,February,37
-Italy,Bangladesh,2012,March,59
-Italy,Bangladesh,2012,April,38
-Italy,Bangladesh,2012,May,42
-Italy,Bangladesh,2012,June,35
-Italy,Bangladesh,2012,July,51
-Italy,Bangladesh,2012,August,61
-Italy,Bangladesh,2012,September,50
-Italy,Bangladesh,2012,October,54
-Italy,Bangladesh,2012,November,57
-Italy,Bangladesh,2012,December,33
-Italy,Bangladesh,2013,January,35
-Italy,Bangladesh,2013,February,24
-Italy,Bangladesh,2013,March,25
-Italy,Bangladesh,2013,April,48
-Italy,Bangladesh,2013,May,60
-Italy,Bangladesh,2013,June,29
-Italy,Bangladesh,2013,July,40
-Italy,Bangladesh,2013,August,22
-Italy,Bangladesh,2013,September,34
-Italy,Bangladesh,2013,October,48
-Italy,Bangladesh,2013,November,63
-Italy,Bangladesh,2013,December,32
-Italy,Bangladesh,2014,January,50
-Italy,Bangladesh,2014,February,74
-Italy,Bangladesh,2014,March,67
-Italy,Bangladesh,2014,April,69
-Italy,Bangladesh,2014,May,80
-Italy,Bangladesh,2014,June,61
-Italy,Bangladesh,2014,July,213
-Italy,Bangladesh,2014,August,421
-Italy,Bangladesh,2014,September,990
-Italy,Bangladesh,2014,October,1213
-Italy,Bangladesh,2014,November,749
-Italy,Bangladesh,2014,December,537
-Italy,Bangladesh,2015,January,404
-Italy,Bangladesh,2015,February,227
-Italy,Bangladesh,2015,March,241
-Italy,Bangladesh,2015,April,150
-Italy,Bangladesh,2015,May,245
-Italy,Bangladesh,2015,June,284
 Italy,"Burkina Faso",2012,January,6
 Italy,"Burkina Faso",2012,February,8
 Italy,"Burkina Faso",2012,March,9
@@ -24376,18 +23597,6 @@ Italy,Mauritius,2014,April,*
 Italy,Mauritius,2014,July,*
 Italy,Mauritius,2014,September,*
 Italy,Mauritius,2015,March,*
-Italy,Myanmar,2012,April,1
-Italy,Myanmar,2012,May,1
-Italy,Myanmar,2012,October,2
-Italy,Myanmar,2013,March,1
-Italy,Myanmar,2014,January,*
-Italy,Myanmar,2014,May,*
-Italy,Myanmar,2014,October,*
-Italy,Myanmar,2014,November,*
-Italy,Myanmar,2014,December,*
-Italy,Myanmar,2015,January,*
-Italy,Myanmar,2015,February,*
-Italy,Myanmar,2015,March,*
 Italy,Namibia,2012,December,1
 Italy,Namibia,2014,May,*
 Italy,Namibia,2014,July,*
@@ -25049,7 +24258,6 @@ Liechtenstein,Armenia,2012,August,4
 Liechtenstein,Armenia,2012,November,1
 Liechtenstein,Armenia,2013,May,4
 Liechtenstein,Armenia,2014,September,*
-Liechtenstein,Bangladesh,2013,October,1
 Liechtenstein,Belarus,2013,July,2
 Liechtenstein,Belarus,2014,March,*
 Liechtenstein,Belarus,2015,March,*
@@ -25546,7 +24754,6 @@ Luxembourg,Benin,2014,September,*
 Luxembourg,Benin,2014,October,*
 Luxembourg,Benin,2015,July,*
 Luxembourg,Benin,2015,August,*
-Luxembourg,Bangladesh,2012,July,1
 Luxembourg,"Burkina Faso",2014,May,*
 Luxembourg,Belarus,2012,January,1
 Luxembourg,Belarus,2012,February,1
@@ -26278,7 +25485,6 @@ Latvia,Armenia,2014,August,*
 Latvia,Azerbaijan,2012,August,2
 Latvia,Azerbaijan,2015,May,5
 Latvia,Benin,2014,October,*
-Latvia,Bangladesh,2014,March,*
 Latvia,Belarus,2013,April,1
 Latvia,Belarus,2013,May,1
 Latvia,Belarus,2014,September,*
@@ -26497,27 +25703,6 @@ Latvia,Uzbekistan,2015,May,*
 "Macedonia (the former Yugoslav Republic of)",Egypt,2015,August,*
 "Macedonia (the former Yugoslav Republic of)",Armenia,2012,March,1
 "Macedonia (the former Yugoslav Republic of)",Benin,2013,December,1
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2012,May,4
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2012,June,1
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2013,January,3
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2013,April,1
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2013,June,9
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2013,July,4
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2013,August,17
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2013,September,3
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2013,October,12
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2013,December,6
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2014,January,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2014,March,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2014,April,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2014,June,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2014,July,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2014,August,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2014,October,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2015,March,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2015,May,*
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2015,June,6
-"Macedonia (the former Yugoslav Republic of)",Bangladesh,2015,July,11
 "Macedonia (the former Yugoslav Republic of)","Burkina Faso",2013,April,5
 "Macedonia (the former Yugoslav Republic of)","Burkina Faso",2013,June,2
 "Macedonia (the former Yugoslav Republic of)","Burkina Faso",2013,August,1
@@ -26671,9 +25856,6 @@ Latvia,Uzbekistan,2015,May,*
 "Macedonia (the former Yugoslav Republic of)",Morocco,2015,April,*
 "Macedonia (the former Yugoslav Republic of)",Morocco,2015,June,*
 "Macedonia (the former Yugoslav Republic of)",Morocco,2015,July,*
-"Macedonia (the former Yugoslav Republic of)",Myanmar,2013,October,5
-"Macedonia (the former Yugoslav Republic of)",Myanmar,2015,June,*
-"Macedonia (the former Yugoslav Republic of)",Myanmar,2015,July,*
 "Macedonia (the former Yugoslav Republic of)",Nigeria,2012,June,1
 "Macedonia (the former Yugoslav Republic of)",Nigeria,2012,August,2
 "Macedonia (the former Yugoslav Republic of)",Nigeria,2012,November,1
@@ -26924,13 +26106,6 @@ Montenegro,Egypt,2014,November,*
 Montenegro,Egypt,2014,December,*
 Montenegro,Azerbaijan,2013,July,1
 Montenegro,Azerbaijan,2014,September,*
-Montenegro,Bangladesh,2012,September,3
-Montenegro,Bangladesh,2012,December,5
-Montenegro,Bangladesh,2013,March,1
-Montenegro,Bangladesh,2013,July,1
-Montenegro,Bangladesh,2013,August,5
-Montenegro,Bangladesh,2013,September,5
-Montenegro,Bangladesh,2013,December,1
 Montenegro,Belarus,2013,October,2
 Montenegro,"Bosnia and Herzegovina",2012,September,1
 Montenegro,Bulgaria,2013,July,1
@@ -27342,12 +26517,6 @@ Malta,Armenia,2014,March,*
 Malta,Benin,2012,August,1
 Malta,Benin,2013,September,1
 Malta,Benin,2015,February,*
-Malta,Bangladesh,2013,August,1
-Malta,Bangladesh,2013,September,2
-Malta,Bangladesh,2013,October,1
-Malta,Bangladesh,2013,November,1
-Malta,Bangladesh,2013,December,1
-Malta,Bangladesh,2015,April,*
 Malta,"Burkina Faso",2013,October,1
 Malta,Belarus,2014,September,*
 Malta,Belarus,2014,November,*
@@ -28025,35 +27194,6 @@ Netherlands,Benin,2013,April,2
 Netherlands,Benin,2013,August,1
 Netherlands,Benin,2013,September,1
 Netherlands,Benin,2015,May,*
-Netherlands,Bangladesh,2012,January,4
-Netherlands,Bangladesh,2012,February,4
-Netherlands,Bangladesh,2012,March,3
-Netherlands,Bangladesh,2012,April,1
-Netherlands,Bangladesh,2012,May,3
-Netherlands,Bangladesh,2012,June,2
-Netherlands,Bangladesh,2012,July,7
-Netherlands,Bangladesh,2012,August,4
-Netherlands,Bangladesh,2012,November,3
-Netherlands,Bangladesh,2012,December,2
-Netherlands,Bangladesh,2013,January,3
-Netherlands,Bangladesh,2013,February,4
-Netherlands,Bangladesh,2013,March,2
-Netherlands,Bangladesh,2013,April,6
-Netherlands,Bangladesh,2013,May,5
-Netherlands,Bangladesh,2013,June,3
-Netherlands,Bangladesh,2013,July,1
-Netherlands,Bangladesh,2013,August,2
-Netherlands,Bangladesh,2013,October,1
-Netherlands,Bangladesh,2013,December,2
-Netherlands,Bangladesh,2014,February,*
-Netherlands,Bangladesh,2014,April,*
-Netherlands,Bangladesh,2014,June,*
-Netherlands,Bangladesh,2014,August,*
-Netherlands,Bangladesh,2014,October,*
-Netherlands,Bangladesh,2014,November,*
-Netherlands,Bangladesh,2015,January,*
-Netherlands,Bangladesh,2015,February,*
-Netherlands,Bangladesh,2015,May,*
 Netherlands,"Burkina Faso",2012,January,2
 Netherlands,"Burkina Faso",2012,February,1
 Netherlands,"Burkina Faso",2012,April,1
@@ -29058,34 +28198,6 @@ Netherlands,Morocco,2015,May,7
 Netherlands,Morocco,2015,June,12
 Netherlands,Morocco,2015,July,7
 Netherlands,Mozambique,2014,April,*
-Netherlands,Myanmar,2012,January,2
-Netherlands,Myanmar,2012,February,5
-Netherlands,Myanmar,2012,March,6
-Netherlands,Myanmar,2012,June,1
-Netherlands,Myanmar,2012,July,4
-Netherlands,Myanmar,2012,October,7
-Netherlands,Myanmar,2012,November,2
-Netherlands,Myanmar,2012,December,9
-Netherlands,Myanmar,2013,January,2
-Netherlands,Myanmar,2013,February,13
-Netherlands,Myanmar,2013,March,6
-Netherlands,Myanmar,2013,April,2
-Netherlands,Myanmar,2013,May,5
-Netherlands,Myanmar,2013,June,6
-Netherlands,Myanmar,2013,September,12
-Netherlands,Myanmar,2013,November,9
-Netherlands,Myanmar,2013,December,14
-Netherlands,Myanmar,2014,May,*
-Netherlands,Myanmar,2014,August,*
-Netherlands,Myanmar,2014,September,*
-Netherlands,Myanmar,2014,October,*
-Netherlands,Myanmar,2014,November,*
-Netherlands,Myanmar,2014,December,*
-Netherlands,Myanmar,2015,January,*
-Netherlands,Myanmar,2015,February,*
-Netherlands,Myanmar,2015,March,6
-Netherlands,Myanmar,2015,April,*
-Netherlands,Myanmar,2015,May,*
 Netherlands,Namibia,2014,July,*
 Netherlands,Netherlands,2014,January,*
 Netherlands,Netherlands,2014,February,*
@@ -30067,46 +29179,6 @@ Norway,Benin,2012,November,1
 Norway,Benin,2012,December,1
 Norway,Benin,2013,June,1
 Norway,Benin,2014,July,*
-Norway,Bangladesh,2012,January,14
-Norway,Bangladesh,2012,February,10
-Norway,Bangladesh,2012,March,14
-Norway,Bangladesh,2012,April,23
-Norway,Bangladesh,2012,May,25
-Norway,Bangladesh,2012,June,49
-Norway,Bangladesh,2012,July,14
-Norway,Bangladesh,2012,August,15
-Norway,Bangladesh,2012,September,14
-Norway,Bangladesh,2012,October,26
-Norway,Bangladesh,2012,November,13
-Norway,Bangladesh,2012,December,5
-Norway,Bangladesh,2013,January,12
-Norway,Bangladesh,2013,February,6
-Norway,Bangladesh,2013,March,10
-Norway,Bangladesh,2013,April,11
-Norway,Bangladesh,2013,May,6
-Norway,Bangladesh,2013,June,9
-Norway,Bangladesh,2013,July,10
-Norway,Bangladesh,2013,August,6
-Norway,Bangladesh,2013,September,20
-Norway,Bangladesh,2013,October,15
-Norway,Bangladesh,2013,November,8
-Norway,Bangladesh,2013,December,11
-Norway,Bangladesh,2014,January,*
-Norway,Bangladesh,2014,February,10
-Norway,Bangladesh,2014,March,*
-Norway,Bangladesh,2014,April,11
-Norway,Bangladesh,2014,May,13
-Norway,Bangladesh,2014,June,*
-Norway,Bangladesh,2014,July,9
-Norway,Bangladesh,2014,August,8
-Norway,Bangladesh,2014,September,25
-Norway,Bangladesh,2014,October,13
-Norway,Bangladesh,2014,November,28
-Norway,Bangladesh,2014,December,38
-Norway,Bangladesh,2015,January,31
-Norway,Bangladesh,2015,February,35
-Norway,Bangladesh,2015,March,*
-Norway,Bangladesh,2015,June,*
 Norway,"Burkina Faso",2012,July,1
 Norway,"Burkina Faso",2012,August,1
 Norway,"Burkina Faso",2012,September,1
@@ -31111,43 +30183,6 @@ Norway,Morocco,2015,July,10
 Norway,Morocco,2015,August,*
 Norway,Mozambique,2014,May,*
 Norway,Mozambique,2015,April,*
-Norway,Myanmar,2012,January,2
-Norway,Myanmar,2012,February,6
-Norway,Myanmar,2012,March,6
-Norway,Myanmar,2012,April,7
-Norway,Myanmar,2012,May,6
-Norway,Myanmar,2012,June,5
-Norway,Myanmar,2012,July,1
-Norway,Myanmar,2012,August,3
-Norway,Myanmar,2012,September,3
-Norway,Myanmar,2012,October,5
-Norway,Myanmar,2012,November,7
-Norway,Myanmar,2012,December,6
-Norway,Myanmar,2013,January,1
-Norway,Myanmar,2013,February,8
-Norway,Myanmar,2013,March,4
-Norway,Myanmar,2013,April,2
-Norway,Myanmar,2013,May,1
-Norway,Myanmar,2013,June,3
-Norway,Myanmar,2013,July,4
-Norway,Myanmar,2013,August,6
-Norway,Myanmar,2013,October,7
-Norway,Myanmar,2013,November,8
-Norway,Myanmar,2013,December,6
-Norway,Myanmar,2014,January,7
-Norway,Myanmar,2014,February,*
-Norway,Myanmar,2014,March,*
-Norway,Myanmar,2014,April,13
-Norway,Myanmar,2014,May,*
-Norway,Myanmar,2014,June,*
-Norway,Myanmar,2014,July,6
-Norway,Myanmar,2014,August,*
-Norway,Myanmar,2014,September,*
-Norway,Myanmar,2014,October,*
-Norway,Myanmar,2014,November,*
-Norway,Myanmar,2015,March,*
-Norway,Myanmar,2015,July,*
-Norway,Myanmar,2015,August,*
 Norway,Netherlands,2012,April,1
 Norway,Netherlands,2012,November,1
 Norway,Netherlands,2013,February,1
@@ -32021,34 +31056,6 @@ Poland,Azerbaijan,2015,April,*
 Poland,Azerbaijan,2015,June,*
 Poland,Azerbaijan,2015,July,5
 Poland,Azerbaijan,2015,August,*
-Poland,Bangladesh,2012,April,1
-Poland,Bangladesh,2012,May,3
-Poland,Bangladesh,2012,June,3
-Poland,Bangladesh,2012,July,5
-Poland,Bangladesh,2012,August,3
-Poland,Bangladesh,2012,September,2
-Poland,Bangladesh,2012,October,1
-Poland,Bangladesh,2012,December,2
-Poland,Bangladesh,2013,January,1
-Poland,Bangladesh,2013,March,1
-Poland,Bangladesh,2013,April,3
-Poland,Bangladesh,2013,May,8
-Poland,Bangladesh,2013,July,1
-Poland,Bangladesh,2013,August,1
-Poland,Bangladesh,2013,September,1
-Poland,Bangladesh,2013,October,4
-Poland,Bangladesh,2013,November,2
-Poland,Bangladesh,2014,January,6
-Poland,Bangladesh,2014,February,*
-Poland,Bangladesh,2014,March,*
-Poland,Bangladesh,2014,April,*
-Poland,Bangladesh,2014,June,*
-Poland,Bangladesh,2014,July,*
-Poland,Bangladesh,2014,October,*
-Poland,Bangladesh,2014,November,*
-Poland,Bangladesh,2015,February,*
-Poland,Bangladesh,2015,March,*
-Poland,Bangladesh,2015,April,*
 Poland,"Burkina Faso",2012,March,1
 Poland,Belarus,2012,January,9
 Poland,Belarus,2012,February,2
@@ -32375,7 +31382,6 @@ Poland,Morocco,2013,June,2
 Poland,Morocco,2013,September,1
 Poland,Morocco,2014,March,*
 Poland,Morocco,2014,September,*
-Poland,Myanmar,2012,August,1
 Poland,Nigeria,2012,February,2
 Poland,Nigeria,2012,March,1
 Poland,Nigeria,2012,May,3
@@ -32710,14 +31716,6 @@ Portugal,Angola,2015,August,7
 Portugal,Egypt,2012,March,1
 Portugal,Egypt,2014,April,*
 Portugal,Armenia,2013,October,3
-Portugal,Bangladesh,2012,May,1
-Portugal,Bangladesh,2012,September,1
-Portugal,Bangladesh,2013,January,4
-Portugal,Bangladesh,2013,May,1
-Portugal,Bangladesh,2014,January,*
-Portugal,Bangladesh,2014,October,*
-Portugal,Bangladesh,2015,February,*
-Portugal,Bangladesh,2015,August,*
 Portugal,"Burkina Faso",2013,March,1
 Portugal,"Burkina Faso",2015,February,*
 Portugal,Belarus,2012,January,3
@@ -33305,21 +32303,6 @@ Romania,Armenia,2014,April,*
 Romania,Armenia,2014,October,*
 Romania,Azerbaijan,2013,September,1
 Romania,Azerbaijan,2014,August,*
-Romania,Bangladesh,2012,February,1
-Romania,Bangladesh,2012,March,11
-Romania,Bangladesh,2012,April,17
-Romania,Bangladesh,2012,May,18
-Romania,Bangladesh,2012,July,2
-Romania,Bangladesh,2012,September,7
-Romania,Bangladesh,2012,October,13
-Romania,Bangladesh,2013,January,1
-Romania,Bangladesh,2013,March,1
-Romania,Bangladesh,2013,April,1
-Romania,Bangladesh,2013,May,5
-Romania,Bangladesh,2013,August,1
-Romania,Bangladesh,2014,April,*
-Romania,Bangladesh,2014,October,*
-Romania,Bangladesh,2014,November,*
 Romania,"Burkina Faso",2012,July,1
 Romania,"Burkina Faso",2012,August,2
 Romania,"Bosnia and Herzegovina",2012,January,1
@@ -33657,16 +32640,6 @@ Romania,Morocco,2014,February,*
 Romania,Morocco,2014,March,*
 Romania,Morocco,2014,August,*
 Romania,Morocco,2015,March,*
-Romania,Myanmar,2012,March,2
-Romania,Myanmar,2012,May,1
-Romania,Myanmar,2013,March,1
-Romania,Myanmar,2013,May,2
-Romania,Myanmar,2013,August,1
-Romania,Myanmar,2013,September,2
-Romania,Myanmar,2013,December,1
-Romania,Myanmar,2014,February,*
-Romania,Myanmar,2014,April,*
-Romania,Myanmar,2014,August,*
 Romania,Nigeria,2012,January,2
 Romania,Nigeria,2012,February,1
 Romania,Nigeria,2012,March,3
@@ -34104,37 +33077,6 @@ Spain,Benin,2014,March,*
 Spain,Benin,2014,May,*
 Spain,Benin,2014,August,*
 Spain,Benin,2014,October,*
-Spain,Bangladesh,2012,January,1
-Spain,Bangladesh,2012,February,2
-Spain,Bangladesh,2012,March,5
-Spain,Bangladesh,2012,April,1
-Spain,Bangladesh,2012,May,1
-Spain,Bangladesh,2012,June,7
-Spain,Bangladesh,2012,July,6
-Spain,Bangladesh,2012,October,2
-Spain,Bangladesh,2012,December,3
-Spain,Bangladesh,2013,January,1
-Spain,Bangladesh,2013,February,2
-Spain,Bangladesh,2013,April,1
-Spain,Bangladesh,2013,May,2
-Spain,Bangladesh,2013,June,3
-Spain,Bangladesh,2013,July,6
-Spain,Bangladesh,2013,September,2
-Spain,Bangladesh,2013,October,3
-Spain,Bangladesh,2013,November,1
-Spain,Bangladesh,2014,January,*
-Spain,Bangladesh,2014,February,*
-Spain,Bangladesh,2014,March,5
-Spain,Bangladesh,2014,April,*
-Spain,Bangladesh,2014,June,*
-Spain,Bangladesh,2014,July,*
-Spain,Bangladesh,2014,August,*
-Spain,Bangladesh,2014,September,*
-Spain,Bangladesh,2014,October,*
-Spain,Bangladesh,2014,November,*
-Spain,Bangladesh,2014,December,*
-Spain,Bangladesh,2015,February,5
-Spain,Bangladesh,2015,May,5
 Spain,"Burkina Faso",2012,January,1
 Spain,"Burkina Faso",2012,February,2
 Spain,"Burkina Faso",2012,April,2
@@ -34884,9 +33826,6 @@ Spain,Mauritius,2013,August,1
 Spain,Mauritius,2013,December,1
 Spain,Mauritius,2014,March,*
 Spain,Mauritius,2014,May,*
-Spain,Myanmar,2013,July,1
-Spain,Myanmar,2014,April,*
-Spain,Myanmar,2014,November,*
 Spain,Niger,2012,February,1
 Spain,Niger,2012,April,3
 Spain,Niger,2012,June,3
@@ -35390,11 +34329,6 @@ Slovakia,Armenia,2013,October,6
 Slovakia,Armenia,2013,November,7
 Slovakia,Armenia,2013,December,2
 Slovakia,Benin,2014,April,*
-Slovakia,Bangladesh,2012,March,3
-Slovakia,Bangladesh,2013,June,1
-Slovakia,Bangladesh,2014,August,5
-Slovakia,Bangladesh,2015,February,*
-Slovakia,Bangladesh,2015,May,*
 Slovakia,Belarus,2012,June,1
 Slovakia,Belarus,2013,February,1
 Slovakia,Belarus,2013,November,1
@@ -35687,11 +34621,6 @@ Slovenia,Egypt,2014,April,*
 Slovenia,Egypt,2014,September,5
 Slovenia,Egypt,2014,October,*
 Slovenia,Egypt,2015,August,*
-Slovenia,Bangladesh,2013,March,1
-Slovenia,Bangladesh,2013,August,2
-Slovenia,Bangladesh,2014,April,*
-Slovenia,Bangladesh,2014,August,*
-Slovenia,Bangladesh,2014,October,*
 Slovenia,Belarus,2013,March,2
 Slovenia,"Bosnia and Herzegovina",2012,September,1
 Slovenia,"Bosnia and Herzegovina",2012,November,6
@@ -35787,8 +34716,6 @@ Slovenia,Morocco,2014,May,*
 Slovenia,Morocco,2014,September,*
 Slovenia,Morocco,2015,July,*
 Slovenia,Morocco,2015,August,*
-Slovenia,Myanmar,2012,May,1
-Slovenia,Myanmar,2014,April,*
 Slovenia,Nigeria,2012,June,1
 Slovenia,Nigeria,2012,October,5
 Slovenia,Nigeria,2013,January,2
@@ -36273,50 +35200,6 @@ Sweden,Benin,2013,October,1
 Sweden,Benin,2013,December,1
 Sweden,Benin,2014,December,*
 Sweden,Benin,2015,April,*
-Sweden,Bangladesh,2012,January,15
-Sweden,Bangladesh,2012,February,10
-Sweden,Bangladesh,2012,March,9
-Sweden,Bangladesh,2012,April,9
-Sweden,Bangladesh,2012,May,14
-Sweden,Bangladesh,2012,June,9
-Sweden,Bangladesh,2012,July,6
-Sweden,Bangladesh,2012,August,7
-Sweden,Bangladesh,2012,September,12
-Sweden,Bangladesh,2012,October,15
-Sweden,Bangladesh,2012,November,15
-Sweden,Bangladesh,2012,December,16
-Sweden,Bangladesh,2013,January,16
-Sweden,Bangladesh,2013,February,10
-Sweden,Bangladesh,2013,March,19
-Sweden,Bangladesh,2013,April,13
-Sweden,Bangladesh,2013,May,10
-Sweden,Bangladesh,2013,June,17
-Sweden,Bangladesh,2013,July,8
-Sweden,Bangladesh,2013,August,10
-Sweden,Bangladesh,2013,September,14
-Sweden,Bangladesh,2013,October,15
-Sweden,Bangladesh,2013,November,11
-Sweden,Bangladesh,2013,December,21
-Sweden,Bangladesh,2014,January,21
-Sweden,Bangladesh,2014,February,18
-Sweden,Bangladesh,2014,March,17
-Sweden,Bangladesh,2014,April,15
-Sweden,Bangladesh,2014,May,12
-Sweden,Bangladesh,2014,June,14
-Sweden,Bangladesh,2014,July,11
-Sweden,Bangladesh,2014,August,10
-Sweden,Bangladesh,2014,September,9
-Sweden,Bangladesh,2014,October,16
-Sweden,Bangladesh,2014,November,5
-Sweden,Bangladesh,2014,December,17
-Sweden,Bangladesh,2015,January,13
-Sweden,Bangladesh,2015,February,8
-Sweden,Bangladesh,2015,March,9
-Sweden,Bangladesh,2015,April,12
-Sweden,Bangladesh,2015,May,11
-Sweden,Bangladesh,2015,June,13
-Sweden,Bangladesh,2015,July,17
-Sweden,Bangladesh,2015,August,22
 Sweden,"Burkina Faso",2012,April,2
 Sweden,"Burkina Faso",2012,July,2
 Sweden,"Burkina Faso",2012,August,2
@@ -37754,20 +36637,6 @@ Sweden,Mozambique,2013,October,1
 Sweden,Mozambique,2014,January,*
 Sweden,Mozambique,2014,May,*
 Sweden,Mauritius,2013,June,1
-Sweden,Myanmar,2012,February,1
-Sweden,Myanmar,2012,March,1
-Sweden,Myanmar,2012,November,1
-Sweden,Myanmar,2013,January,1
-Sweden,Myanmar,2013,February,1
-Sweden,Myanmar,2013,April,1
-Sweden,Myanmar,2013,October,1
-Sweden,Myanmar,2014,January,6
-Sweden,Myanmar,2014,March,*
-Sweden,Myanmar,2014,April,*
-Sweden,Myanmar,2014,November,*
-Sweden,Myanmar,2015,January,*
-Sweden,Myanmar,2015,April,*
-Sweden,Myanmar,2015,June,*
 Sweden,Netherlands,2012,April,1
 Sweden,Netherlands,2013,January,1
 Sweden,Netherlands,2013,July,1
@@ -39062,48 +37931,6 @@ Switzerland,Benin,2015,May,*
 Switzerland,Benin,2015,June,7
 Switzerland,Benin,2015,July,*
 Switzerland,Benin,2015,August,*
-Switzerland,Bangladesh,2012,January,6
-Switzerland,Bangladesh,2012,February,9
-Switzerland,Bangladesh,2012,March,4
-Switzerland,Bangladesh,2012,April,3
-Switzerland,Bangladesh,2012,May,2
-Switzerland,Bangladesh,2012,June,2
-Switzerland,Bangladesh,2012,July,7
-Switzerland,Bangladesh,2012,August,4
-Switzerland,Bangladesh,2012,September,2
-Switzerland,Bangladesh,2012,October,5
-Switzerland,Bangladesh,2012,November,9
-Switzerland,Bangladesh,2012,December,4
-Switzerland,Bangladesh,2013,January,6
-Switzerland,Bangladesh,2013,February,4
-Switzerland,Bangladesh,2013,March,5
-Switzerland,Bangladesh,2013,April,6
-Switzerland,Bangladesh,2013,May,12
-Switzerland,Bangladesh,2013,June,11
-Switzerland,Bangladesh,2013,July,6
-Switzerland,Bangladesh,2013,August,4
-Switzerland,Bangladesh,2013,September,3
-Switzerland,Bangladesh,2013,October,5
-Switzerland,Bangladesh,2013,November,8
-Switzerland,Bangladesh,2013,December,8
-Switzerland,Bangladesh,2014,January,8
-Switzerland,Bangladesh,2014,February,*
-Switzerland,Bangladesh,2014,March,6
-Switzerland,Bangladesh,2014,April,*
-Switzerland,Bangladesh,2014,May,*
-Switzerland,Bangladesh,2014,June,*
-Switzerland,Bangladesh,2014,August,*
-Switzerland,Bangladesh,2014,September,*
-Switzerland,Bangladesh,2014,October,6
-Switzerland,Bangladesh,2014,November,*
-Switzerland,Bangladesh,2014,December,6
-Switzerland,Bangladesh,2015,January,*
-Switzerland,Bangladesh,2015,February,*
-Switzerland,Bangladesh,2015,March,*
-Switzerland,Bangladesh,2015,April,*
-Switzerland,Bangladesh,2015,May,*
-Switzerland,Bangladesh,2015,July,11
-Switzerland,Bangladesh,2015,August,10
 Switzerland,"Burkina Faso",2012,January,2
 Switzerland,"Burkina Faso",2012,February,6
 Switzerland,"Burkina Faso",2012,March,2
@@ -40450,23 +39277,6 @@ Switzerland,Mozambique,2014,August,5
 Switzerland,Mozambique,2014,September,*
 Switzerland,Mozambique,2015,June,*
 Switzerland,Mauritius,2015,May,*
-Switzerland,Myanmar,2012,February,1
-Switzerland,Myanmar,2012,March,1
-Switzerland,Myanmar,2012,July,9
-Switzerland,Myanmar,2012,August,1
-Switzerland,Myanmar,2012,September,1
-Switzerland,Myanmar,2012,October,2
-Switzerland,Myanmar,2012,November,1
-Switzerland,Myanmar,2012,December,3
-Switzerland,Myanmar,2013,February,1
-Switzerland,Myanmar,2013,May,1
-Switzerland,Myanmar,2013,June,2
-Switzerland,Myanmar,2013,July,3
-Switzerland,Myanmar,2014,January,*
-Switzerland,Myanmar,2014,November,*
-Switzerland,Myanmar,2014,December,*
-Switzerland,Myanmar,2015,March,*
-Switzerland,Myanmar,2015,August,*
 Switzerland,Namibia,2012,October,1
 Switzerland,Namibia,2012,December,1
 Switzerland,Namibia,2013,April,1
@@ -41467,45 +40277,6 @@ Turkey,Burundi,2014,June,*
 Turkey,Benin,2012,December,1
 Turkey,Benin,2014,March,*
 Turkey,Benin,2014,April,*
-Turkey,Bangladesh,2012,January,3
-Turkey,Bangladesh,2012,February,1
-Turkey,Bangladesh,2012,July,1
-Turkey,Bangladesh,2012,August,2
-Turkey,Bangladesh,2012,September,7
-Turkey,Bangladesh,2012,October,1
-Turkey,Bangladesh,2012,November,1
-Turkey,Bangladesh,2013,January,1
-Turkey,Bangladesh,2013,February,3
-Turkey,Bangladesh,2013,March,1
-Turkey,Bangladesh,2013,April,33
-Turkey,Bangladesh,2013,May,21
-Turkey,Bangladesh,2013,June,36
-Turkey,Bangladesh,2013,July,19
-Turkey,Bangladesh,2013,August,21
-Turkey,Bangladesh,2013,September,4
-Turkey,Bangladesh,2013,October,2
-Turkey,Bangladesh,2013,November,4
-Turkey,Bangladesh,2013,December,3
-Turkey,Bangladesh,2014,January,26
-Turkey,Bangladesh,2014,February,21
-Turkey,Bangladesh,2014,March,22
-Turkey,Bangladesh,2014,April,14
-Turkey,Bangladesh,2014,May,5
-Turkey,Bangladesh,2014,June,*
-Turkey,Bangladesh,2014,July,*
-Turkey,Bangladesh,2014,August,15
-Turkey,Bangladesh,2014,September,5
-Turkey,Bangladesh,2014,October,*
-Turkey,Bangladesh,2014,November,*
-Turkey,Bangladesh,2014,December,*
-Turkey,Bangladesh,2015,January,*
-Turkey,Bangladesh,2015,February,*
-Turkey,Bangladesh,2015,March,*
-Turkey,Bangladesh,2015,April,*
-Turkey,Bangladesh,2015,May,5
-Turkey,Bangladesh,2015,June,*
-Turkey,Bangladesh,2015,July,*
-Turkey,Bangladesh,2015,August,*
 Turkey,"Burkina Faso",2013,December,1
 Turkey,"Burkina Faso",2014,February,*
 Turkey,"Burkina Faso",2014,March,*
@@ -42176,24 +40947,6 @@ Turkey,Morocco,2015,May,*
 Turkey,Morocco,2015,June,*
 Turkey,Morocco,2015,July,6
 Turkey,Morocco,2015,August,*
-Turkey,Myanmar,2012,March,1
-Turkey,Myanmar,2012,April,1
-Turkey,Myanmar,2012,August,2
-Turkey,Myanmar,2013,February,3
-Turkey,Myanmar,2013,March,1
-Turkey,Myanmar,2013,May,1
-Turkey,Myanmar,2013,July,2
-Turkey,Myanmar,2013,September,2
-Turkey,Myanmar,2013,November,2
-Turkey,Myanmar,2013,December,1
-Turkey,Myanmar,2014,January,*
-Turkey,Myanmar,2014,March,*
-Turkey,Myanmar,2014,May,*
-Turkey,Myanmar,2014,August,8
-Turkey,Myanmar,2014,September,*
-Turkey,Myanmar,2014,October,*
-Turkey,Myanmar,2014,November,*
-Turkey,Myanmar,2015,June,*
 Turkey,Niger,2013,January,4
 Turkey,Niger,2013,February,2
 Turkey,Niger,2013,March,2
@@ -43301,42 +42054,6 @@ Serbia,Benin,2015,February,*
 Serbia,Benin,2015,March,*
 Serbia,Benin,2015,May,*
 Serbia,Benin,2015,July,*
-Serbia,Bangladesh,2012,May,2
-Serbia,Bangladesh,2012,June,9
-Serbia,Bangladesh,2012,July,17
-Serbia,Bangladesh,2012,August,14
-Serbia,Bangladesh,2012,September,41
-Serbia,Bangladesh,2012,October,31
-Serbia,Bangladesh,2012,November,9
-Serbia,Bangladesh,2012,December,1
-Serbia,Bangladesh,2013,January,4
-Serbia,Bangladesh,2013,February,1
-Serbia,Bangladesh,2013,March,1
-Serbia,Bangladesh,2013,April,13
-Serbia,Bangladesh,2013,June,19
-Serbia,Bangladesh,2013,July,1
-Serbia,Bangladesh,2013,September,3
-Serbia,Bangladesh,2013,November,1
-Serbia,Bangladesh,2013,December,23
-Serbia,Bangladesh,2014,January,*
-Serbia,Bangladesh,2014,February,7
-Serbia,Bangladesh,2014,March,15
-Serbia,Bangladesh,2014,April,14
-Serbia,Bangladesh,2014,May,9
-Serbia,Bangladesh,2014,June,6
-Serbia,Bangladesh,2014,July,14
-Serbia,Bangladesh,2014,August,31
-Serbia,Bangladesh,2014,October,*
-Serbia,Bangladesh,2014,November,*
-Serbia,Bangladesh,2014,December,6
-Serbia,Bangladesh,2015,January,9
-Serbia,Bangladesh,2015,February,9
-Serbia,Bangladesh,2015,March,40
-Serbia,Bangladesh,2015,April,20
-Serbia,Bangladesh,2015,May,68
-Serbia,Bangladesh,2015,June,99
-Serbia,Bangladesh,2015,July,104
-Serbia,Bangladesh,2015,August,395
 Serbia,"Burkina Faso",2012,October,1
 Serbia,"Burkina Faso",2012,November,3
 Serbia,"Burkina Faso",2013,January,3
@@ -43930,15 +42647,6 @@ Serbia,Morocco,2015,June,9
 Serbia,Morocco,2015,July,18
 Serbia,Morocco,2015,August,12
 Serbia,Mozambique,2015,March,*
-Serbia,Myanmar,2012,July,7
-Serbia,Myanmar,2012,September,6
-Serbia,Myanmar,2014,November,*
-Serbia,Myanmar,2015,February,*
-Serbia,Myanmar,2015,March,*
-Serbia,Myanmar,2015,April,6
-Serbia,Myanmar,2015,June,10
-Serbia,Myanmar,2015,July,*
-Serbia,Myanmar,2015,August,*
 Serbia,Netherlands,2013,November,1
 Serbia,Niger,2014,April,*
 Serbia,Niger,2015,March,*
