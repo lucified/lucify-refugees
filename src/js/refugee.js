@@ -13,6 +13,7 @@ var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMomen
   this.speed = speed;
   this.endMoment = endMoment;
   this.isAsylumSeeker = isAsylumSeeker;
+  this.totalTravelTime = this.getTravelDistance() / this.speed;
 
   if (window.SMART_SPREAD_ENABLED) {
     this.sideDeviation = randgen.rnorm(0, 1); // mean, std. deviation
@@ -47,8 +48,8 @@ Refugee.prototype.setRouteRefugeeCount = function(count) {
 };
 
 
-Refugee.prototype.getTravelTime = function(r) {
-  return this.getTravelDistance(r) / this.speed;
+Refugee.prototype.getTravelTime = function() {
+  return this.totalTravelTime;
 };
 
 
