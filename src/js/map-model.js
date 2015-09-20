@@ -3,6 +3,7 @@ var inside = require('point-in-polygon');
 var Polygon = require('polygon');
 var Vec2 = require('vec2');
 var _ = require('underscore');
+var countries = require("i18n-iso-countries");
 
 
 var MapModel = function(featureData, labelFeatureData) {
@@ -71,15 +72,7 @@ MapModel.prototype.getLabelFeatureForCountry = function(country) {
 
 
 MapModel.prototype.getFriendlyNameForCountry = function(country) {
-  
-  var feature = this.getLabelFeatureForCountry(country);
-  if (feature) {
-    window.feature = feature;
-    return feature.properties.sr_subunit;
-  }
-
-  console.log("could not find friendly name for " + country);
-  return country;
+  return countries.getName(country, "en");
 }
 
 

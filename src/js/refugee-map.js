@@ -56,7 +56,7 @@ RefugeeMap.prototype.initialize = function() {
    .attr("height", this.height);
 
   this.drawBorders();
-  this.drawCountryLabels();
+  //this.drawCountryLabels();
 
   d3.select('#canvas-wrap')
     .style('width', this.width + "px")
@@ -186,11 +186,11 @@ RefugeeMap.prototype.drawBorders = function() {
 
 
 RefugeeMap.prototype.handleMouseOver = function(country) {
-  console.log("mouse over " + country);
+  this.drawCountryLabel(country);
 };
 
 RefugeeMap.prototype.handleMouseOut = function(country) {
- console.log("mouse out of " + country);
+ this.removeCountryLabel(country);
 };
 
 
@@ -225,9 +225,14 @@ RefugeeMap.prototype.drawCountryLabel = function(country) {
 
   this.svg.append("text")
      .classed("country-label", true)
+     .classed(country, true)
      .attr("x", point[0])
      .attr("y", point[1] + 15)
      .text(this.mapModel.getFriendlyNameForCountry(country));
+};
+
+RefugeeMap.prototype.removeCountryLabel = function(country) {
+  this.svg.selectAll(".country-label." + country).remove();
 };
 
 
