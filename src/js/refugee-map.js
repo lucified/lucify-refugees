@@ -1,6 +1,7 @@
 var PIXI = require('pixi.js');
 var MapModel = require('./map-model.js');
 
+
 /*
  * Create a RefugeeMap backed
  * by the given RefugeeModel and MapModel
@@ -146,6 +147,8 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
 
 RefugeeMap.prototype.drawRefugeeCounts = function() {
   return this.drawRefugeeCountsPixi();
+  //this.drawCountryCountLabels();
+  //return this.drawRefugeeCountsPixi();
 };
 
 
@@ -215,8 +218,8 @@ RefugeeMap.prototype.drawCountryLabels = function() {
 
   ids.forEach(function(country) {
     this.drawCountryLabel(country);
+    this.drawCountryCountLabel(country);
   }.bind(this));
-
 };
 
 
@@ -230,6 +233,28 @@ RefugeeMap.prototype.drawCountryLabel = function(country) {
      .attr("y", point[1] + 15)
      .text(this.mapModel.getFriendlyNameForCountry(country));
 };
+
+
+RefugeeMap.prototype.drawCountryCountLabel = function(country) {
+  if (!this.refugeeModel.arrivedRefugeesByCountry[country]) {
+    console.log("is null for" + country);
+    return;
+  }
+
+  var point = this.projection(this.mapModel.getCenterPointOfCountry(country));
+  var asylumCount = this.refugeeModel.arrivedRefugeesByCountry[country].asylumApplications;
+  var refugeeCount = this.refugeeModel.arrivedRefugeesByCountry[country].registeredRefugees;
+
+  console.log("here");
+
+  this.svg.append("text")
+     .classed("country-count", true)
+     .classed(country, true)
+     .attr("x", point[0])
+     .attr("y", point[1] + 30)
+     .text(asylumCount+refugeeCount);
+};
+
 
 RefugeeMap.prototype.removeCountryLabel = function(country) {
   this.svg.selectAll(".country-label." + country).remove();
