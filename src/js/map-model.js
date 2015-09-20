@@ -17,7 +17,7 @@ var MapModel = function(featureData, labelFeatureData) {
   this._labelFeatureCache = {};
 
   this.initialize();
-}
+};
 
 MapModel.prototype.initialize = function() {
   // the centroid isn't always good. fix for these countries:
@@ -27,17 +27,17 @@ MapModel.prototype.initialize = function() {
   this._countryCentersCache["NOR"] = [8.506239, 60.975869];
   this._countryCentersCache["GBR"] = [-1.538086, 52.815213];
   this._countryCentersCache["GRC"] = [21.752930, 39.270271];
-}
+};
 
 MapModel.prototype.containsCountry = function(country) {
   return this.getFeatureForCountry(country) != null;
-}
+};
 
 MapModel.prototype.getFeatureForCountry = function(country) {
   if (this._countryFeatureCache[country]) return this._countryFeatureCache[country];
 
   var countryFeature = _.find(
-    this.featureData.features, 
+    this.featureData.features,
     function(f) { return f.properties.ADM0_A3 == country; });
 
   if (countryFeature) {
@@ -45,35 +45,35 @@ MapModel.prototype.getFeatureForCountry = function(country) {
     return countryFeature;
   }
   return null;
-}
+};
 
 MapModel.prototype.getLabelPointForCountry = function(country) {
 
   var feature = this.getLabelFeatureForCountry(country);
- 
+
   if (feature) {
     return feature.geometry.coordinates;
   }
 
   console.log("could not find label point for " + country);
   return [0, 0];
-}
+};
 
 
 MapModel.prototype.getLabelFeatureForCountry = function(country) {
   if (this._labelFeatureCache[country]) return this._labelFeatureCache[country];
 
   var feature = _.find(
-    this.labelFeatureData.features, 
+    this.labelFeatureData.features,
     function(f) { return f.properties.sr_su_a3 == country; });
 
   return feature;
-}
+};
 
 
 MapModel.prototype.getFriendlyNameForCountry = function(country) {
   return countries.getName(country, "en");
-}
+};
 
 
 MapModel.prototype.getRandomPointFromCountry = function(country) {
@@ -83,7 +83,7 @@ MapModel.prototype.getRandomPointFromCountry = function(country) {
   }
   var borders = this.getMainCountryBorderForFeature(feature);
   return this.getRandomPointForCountryBorder(country, borders);
-}
+};
 
 MapModel.prototype.getMainCountryBorderForFeature = function(feature) {
   var key = feature.properties.ADM0_A3;
@@ -95,7 +95,7 @@ MapModel.prototype.getMainCountryBorderForFeature = function(feature) {
     }
   }
   return this._countryBordersCache[key];
-}
+};
 
 MapModel.prototype.getCenterPointOfCountry = function(country) {
   if (!this._countryCentersCache[country]) {
@@ -107,7 +107,7 @@ MapModel.prototype.getCenterPointOfCountry = function(country) {
     this._countryCentersCache[country] = d3.geo.centroid(feature);
   }
   return this._countryCentersCache[country];
-}
+};
 
 /*
  * Get a random point within the polygon defined
@@ -118,20 +118,21 @@ MapModel.prototype.getRandomPointForCountryBorder = function(country, coordinate
     this._countryBoundsCache[country] = MapModel.getBounds(coordinates);
   }
   var bounds = this._countryBoundsCache[country];
+  var la, lo;
 
   var count = 0;
   do {
-    var la = Math.random() * (bounds.maxLa - bounds.minLa) + bounds.minLa;
-    var lo = Math.random() * (bounds.maxLo - bounds.minLo) + bounds.minLo;
+    la = Math.random() * (bounds.maxLa - bounds.minLa) + bounds.minLa;
+    lo = Math.random() * (bounds.maxLo - bounds.minLo) + bounds.minLo;
     count++;
-  } while (!inside([la, lo], coordinates) && count < 100)
+  } while (!inside([la, lo], coordinates) && count < 100);
 
   if (count == 100) {
     console.log("could not create random point for " + country);
     return [0, 0];
   }
   return [la, lo];
-}
+};
 
 
 /*
@@ -156,7 +157,7 @@ MapModel.getLargestPolygon = function(coordinates) {
     }
   });
   return ret;
-}
+};
 
 MapModel.getBounds = function(coordinates) {
   var bounds = coordinates.reduce(function(previous, item) {
@@ -172,7 +173,7 @@ MapModel.getBounds = function(coordinates) {
     minLo: Number.MAX_VALUE,
     maxLo: Number.MIN_VALUE});
   return bounds;
-}
+};
 
 
 module.exports = MapModel;
