@@ -123,17 +123,19 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
   if (this.highlightedCountry == null) {
     r.sprite.alpha = 1.0; // make all solid
   } else {
-    if (r.originCountry == this.highlightedCountry || r.destinationCountry == this.highlightedCountry) {
+    if (r.originCountry == this.highlightedCountry) {
       r.sprite.alpha = 1.0;
 
-      if (r.destinationCountry != this.highlightedCountry &&
-        this.highlightedDestinationCountries.indexOf(r.destinationCountry) == -1) {
+      // make sure destination country is highlighted as well
+      if (this.highlightedDestinationCountries.indexOf(r.destinationCountry) == -1) {
         this.drawCountryLabel(r.destinationCountry, "destination");
         this.highlightedDestinationCountries.push(r.destinationCountry);
       }
+    } else if (r.destinationCountry == this.highlightedCountry) {
+      r.sprite.alpha = 1.0;
 
-      if (r.originCountry != this.highlightedCountry &&
-        this.highlightedOriginCountries.indexOf(r.originCountry) == -1) {
+      // make sure origin country is highlighted as well
+      if (this.highlightedOriginCountries.indexOf(r.originCountry) == -1) {
         this.drawCountryLabel(r.originCountry, "origin");
         this.highlightedOriginCountries.push(r.originCountry);
       }
@@ -196,7 +198,7 @@ RefugeeMap.prototype.render = function() {
     g.globalCompositeOperation = prev;
     g.globalAlpha = prevAlpha;
   }
-}
+};
 
 
 RefugeeMap.prototype.drawBorders = function() {
