@@ -16,13 +16,15 @@ var RefugeeMap = function(refugeeModel, mapModel) {
     this.height = 1080;
   }
 
-  this.initialize();
+  this.highlightedCountry = null;
   this.graphics = {};
   this.sprites = {};
 
   this.refugeeModel.onRefugeeUpdated = this.onRefugeeUpdated.bind(this);
   this.refugeeModel.onRefugeeFinished = this.onRefugeeFinished.bind(this);
   this.refugeeModel.onRefugeeStarted = this.onRefugeeStarted.bind(this);
+
+  this.initialize();
 };
 
 
@@ -72,10 +74,12 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
 
   this.renderer = new PIXI.CanvasRenderer(
       this.width, this.height,
-      {transparent: true,
-      antialias: true,
-      preserveDrawingBuffer: true,
-      clearBeforeRender: false});
+      {
+        transparent: true,
+        antialias: true,
+        preserveDrawingBuffer: true,
+        clearBeforeRender: false
+      });
 
   d3.select('#canvas-wrap').node().appendChild(this.renderer.view);
   this.renderer.plugins.interaction.autoPreventDefault = false;
@@ -113,6 +117,16 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
   var point = this.projection(loc);
   r.sprite.position.x = point[0];
   r.sprite.position.y = point[1];
+
+  if (this.highlightedCountry == null) {
+    r.sprite.alpha = 1.0; // make all solid
+  } else {
+    if (r.originCountry == this.highlightedCountry || r.destinationCountry == this.highlightedCountry) {
+      r.sprite.alpha = 1.0;
+    } else {
+      r.sprite.alpha = 0.2;
+    }
+  }
 };
 
 
@@ -187,10 +201,12 @@ RefugeeMap.prototype.drawBorders = function() {
 
 RefugeeMap.prototype.handleMouseOver = function(country) {
   this.drawCountryLabel(country);
+  this.highlightedCountry = country;
 };
 
 RefugeeMap.prototype.handleMouseOut = function(country) {
  this.removeCountryLabel(country);
+ this.highlightedCountry = null;
 };
 
 
