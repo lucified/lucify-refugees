@@ -24,8 +24,6 @@ var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMomen
   this.startMomentUnix = this.startMoment.unix();
   this.endMomentUnix = this.endMoment.unix();
 
-  this.onFinished = [];
-
   this.directionVector = Vec2(
     this.startPoint[0] - this.endPoint[0],
     this.startPoint[1] - this.endPoint[1])
