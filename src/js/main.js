@@ -122,9 +122,7 @@ var animate = function() {
   d3.select('#time')
     .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
   refugeeModel.update();
-  //refugeeMap.drawRefugeePositions();
-  refugeeMap.drawRefugeeCounts();
-  refugeeMap.render();
+  refugeeMap.update();
 
   if (!refugeeModel.currentMoment.isAfter(END_OF_DATA)) {
     requestAnimationFrame(animate);
@@ -140,9 +138,11 @@ var tick = function() {
   d3.select('#time')
     .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
   refugeeModel.update();
+  refugeeMap.update();
+
   //refugeeMap.drawRefugeePositions();
-  refugeeMap.drawRefugeeCounts();
-  refugeeMap.render();
+  //refugeeMap.drawRefugeeCounts();
+  //refugeeMap.render();
 };
 
 // only for testing

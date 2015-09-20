@@ -1,4 +1,6 @@
+
 var PIXI = require('pixi.js');
+var _ = require('underscore');
 var MapModel = require('./map-model.js');
 
 
@@ -11,6 +13,7 @@ var RefugeeMap = function(refugeeModel, mapModel) {
   this.mapModel = mapModel;
   this.width = 1200;
   this.height = 1200;
+  this.tickCount = 0;
 
   if (window.HD_RESOLUTION) {
     this.width = 1920;
@@ -27,6 +30,15 @@ var RefugeeMap = function(refugeeModel, mapModel) {
 
   this.initialize();
 };
+
+
+RefugeeMap.prototype.update = function() {
+  //this.drawRefugeePositions();
+  this.drawRefugeeCounts();
+  this.updateCountryCountLabels();
+  this.render();
+  this.tickCount++;
+}
 
 
 RefugeeMap.prototype.initialize = function() {
@@ -227,7 +239,6 @@ RefugeeMap.prototype._drawBorders = function(svg, className) {
 
 
 RefugeeMap.prototype.drawCountryLabels = function() {
-  //var ids = ["FIN", "SWE", "DEU", "SYR", "FRA"];
   var ids = this.mapModel.labelFeatureData.features.map(function(item) {
     return item.properties.sr_su_a3;
   });
@@ -251,24 +262,42 @@ RefugeeMap.prototype.drawCountryLabel = function(country) {
 };
 
 
-RefugeeMap.prototype.drawCountryCountLabel = function(country) {
-  if (!this.refugeeModel.arrivedRefugeesByCountry[country]) {
-    console.log("is null for" + country);
+RefugeeMap.prototype.getVisibleCountries = function() {
+  return this.mapModel.labelFeatureData.features.map(function(item) {
+    return item.properties.sr_su_a3;
+  }); 
+}
+
+
+RefugeeMap.prototype.updateCountryCountLabels = function() {
+
+  if (this.tickCount % 10 != 5) {
     return;
   }
 
-  var point = this.projection(this.mapModel.getCenterPointOfCountry(country));
-  var asylumCount = this.refugeeModel.arrivedRefugeesByCountry[country].asylumApplications;
-  var refugeeCount = this.refugeeModel.arrivedRefugeesByCountry[country].registeredRefugees;
+  var countries = _.keys(this.refugeeModel.arrivedRefugeesByCountry);
 
-  console.log("here");
+  var sel = this.svg
+    .selectAll('.country-count')
+    .data(countries);
 
-  this.svg.append("text")
+  sel.enter().append('text')
      .classed("country-count", true)
-     .classed(country, true)
-     .attr("x", point[0])
-     .attr("y", point[1] + 30)
-     .text(asylumCount+refugeeCount);
+     .attr("x", function(country) { 
+        return this.projection(this.mapModel.getCenterPointOfCountry(country))[0]
+      }.bind(this))
+     .attr("y", function(country) {
+        return 30 + this.projection(this.mapModel.getCenterPointOfCountry(country))[1]
+     }.bind(this))
+     .text("N/A");
+
+  sel.text(function(country) {
+    var asylumCount = this.refugeeModel.arrivedRefugeesByCountry[country].asylumApplications;
+    var refugeeCount = this.refugeeModel.arrivedRefugeesByCountry[country].registeredRefugees;
+    return (asylumCount + refugeeCount) * this.refugeeModel.peoplePerPoint;
+  }.bind(this))
+    .classed("country-count--visible", 
+      function(country) { return this.highlightedCountry == country }.bind(this))
 };
 
 

@@ -128,6 +128,7 @@ svg .subunit-invisible {
   stroke: transparent;
 }
 
+
 svg .country-label {
     fill: #ffffff;
     opacity: 0.9;
@@ -135,3 +136,18 @@ svg .country-label {
     text-anchor: middle;
     font-size: 12px
 }
+
+svg .country-count {
+    fill: #ffffff;
+    opacity: 0.0;
+    font-family: $lucify-header-font;
+    text-anchor: middle;
+    font-size: 12px
+}
+
+svg .country-count--visible {
+  opacity: 0.9;
+}
+
+
+
