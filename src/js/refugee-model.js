@@ -4,6 +4,7 @@ var moment = require('moment');
 var utils = require('./utils.js');
 
 var DATA_START_YEAR = 2012;
+var DATA_END_MOMENT = moment([2015, 8, 1]); // September 1
 
 var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, labels) {
   this.mapModel = mapModel;
@@ -68,7 +69,7 @@ RefugeeModel.prototype._addMonthlyArrivals = function(destinationCountry, year, 
   if (year < DATA_START_YEAR) return;
 
   console.assert(monthIndex >= 0 && monthIndex < 12, "Month is between 0 and 11");
-  console.assert(yearIndex >= 0 && yearIndex < 4, "Year is between 0 and 11");
+  console.assert(yearIndex >= 0 && yearIndex < 4, "Year is between 0 and 4");
 
   if (!this.arrivedRefugeeCounts[destinationCountry]) {
     this.arrivedRefugeeCounts[destinationCountry] = new Array(4); // years, 2012-2015
@@ -129,10 +130,18 @@ RefugeeModel.prototype._calculateMonthlyRefugeeSums = function () {
 };
 
 RefugeeModel.prototype.getCurrentRefugeeTotal = function(countryName) {
-  var dayOfMonth = this.currentMoment.date();
-  var yearIndex = this.currentMoment.year() - DATA_START_YEAR;
-  var monthIndex = this.currentMoment.month();
+  var mom;
+  if (this.currentMoment.isAfter(DATA_END_MOMENT)) {
+    mom = DATA_END_MOMENT; // show last available data once we reach it
+  } else {
+    mom = this.currentMoment;
+  }
+
+  var dayOfMonth = mom.date();
+  var yearIndex = mom.year() - DATA_START_YEAR;
+  var monthIndex = mom.month();
   var country = this.arrivedRefugeeCounts[countryName][yearIndex][monthIndex];
+
   return {
     asylumApplications: Math.round(country.asylum.totalArrivedAtStartOfMonth + dayOfMonth * country.asylum.arrivingPerDay),
     registeredRefugees: Math.round(country.refugees.totalArrivedAtStartOfMonth + dayOfMonth * country.refugees.arrivingPerDay)
