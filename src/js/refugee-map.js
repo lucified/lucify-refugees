@@ -216,11 +216,15 @@ RefugeeMap.prototype.drawBorders = function() {
 
 
 RefugeeMap.prototype.handleMouseOver = function(country) {
+  if (country == "RUS") return;
+
   this.drawCountryLabel(country, "hovered");
   this.highlightedCountry = country;
 };
 
 RefugeeMap.prototype.handleMouseOut = function(country) {
+  if (country == "RUS") return;
+
   this.removeCountryLabel(country);
   this.highlightedCountry = null;
   var i;
