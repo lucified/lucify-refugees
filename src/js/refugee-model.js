@@ -5,8 +5,6 @@ var utils = require('./utils.js');
 
 var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, labels) {
   this.mapModel = mapModel;
-  this.asylumData = asylumData;
-  this.regionalData = regionalData;
   this.labels = labels;
   this.refugees = [];
   this.activeRefugees = [];
@@ -14,29 +12,23 @@ var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, 
   this.refugeesOnPath = {};
   this.arrivedRefugeesByCountry = {};
   this.currentMoment = null;
+  this.refugeeIndex = 0;
 
   this.onRefugeeStarted = null;
   this.onRefugeeUpdated = null;
   this.onRefugeeFinished = null;
 
-  this.initialize();
-};
-
-
-RefugeeModel.prototype.initialize = function() {
+  console.time("asylum adding");
+  asylumData.forEach(this._addPeopleFromValidCountries(true).bind(this));
+  console.timeEnd("asylum adding");
   console.time("refugee adding");
-  this.asylumData.forEach(this._addPeopleFromValidCountries(true).bind(this));
+  regionalData.forEach(this._addPeopleFromValidCountries(false).bind(this));
   console.timeEnd("refugee adding");
-  console.time("regional adding");
-  this.regionalData.forEach(this._addPeopleFromValidCountries(false).bind(this));
-  console.timeEnd("regional adding");
   console.time("refugee sorting");
   this.refugees.sort(function(a, b) {
     return a.startMomentUnix - b.startMomentUnix;
   });
   console.timeEnd("refugee sorting");
-
-  this.refugeeIndex = 0;
 };
 
 
