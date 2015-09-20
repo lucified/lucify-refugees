@@ -1,9 +1,9 @@
 var PIXI = require('pixi.js');
-var MapModel = require('./map-model.js')
+var MapModel = require('./map-model.js');
 
 /*
  * Create a RefugeeMap backed
- * by the given RefugeeModel
+ * by the given RefugeeModel and MapModel
  */
 var RefugeeMap = function(refugeeModel, mapModel) {
   this.refugeeModel = refugeeModel;
@@ -54,14 +54,14 @@ RefugeeMap.prototype.initialize = function() {
   this.overlaySvg = d3.select("#canvas-wrap").append("svg")
    .attr("width", this.width)
    .attr("height", this.height);
-  
+
   this.drawBorders();
   this.drawCountryLabels();
 
   d3.select('#canvas-wrap')
     .style('width', this.width + "px")
     .style('height', this.height + "px");
-}
+};
 
 
 RefugeeMap.prototype.initializePixiCanvas = function() {
@@ -80,14 +80,6 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
   d3.select('#canvas-wrap').node().appendChild(this.renderer.view);
   this.renderer.plugins.interaction.autoPreventDefault = false;
 
-  this.renderer.preserveDrawingBuffer = true;
-  this.renderer.clearBeforeRender = false;
-
-  //this.refugeeContainer = new PIXI.ParticleContainer(
-  //	200000,
-  //	[false, true, false, false, true],
-  //	200000);
-
   this.stage = new PIXI.Container();
 
   this.refugeeContainer = new PIXI.Container();
@@ -101,33 +93,14 @@ RefugeeMap.prototype.initializePixiCanvas = function() {
   this.refugeeTexture = new PIXI.Texture.fromImage(
     "one-white-pixel.png",
     new PIXI.Rectangle(0, 0, 1, 1));
-
-  // var g = new PIXI.Graphics();
-  // g.blendMode = PIXI.BLEND_MODES.MULTIPLY;
-  // g.beginFill(0xFFFFFF, 0.05);
-  // g.drawRect(0, 0, this.width, this.height);
-  // this.refugeeContainer.addChild(g);
-
-  //var rect = PIXI.Rectangle(0, 0, this.width; this.height);
-
-     //var matrix = [
-    //    0.2, 0, 0, 0, 0,
-    //    0, 0.2, 0, 0, 0,
-    //    0, 0, 0.2, 0, 0,
-    //    0, 0, 0, 0, 0
-    //];
-
-  //var filter = new PIXI.filters.ColorMatrixFilter();
-  //filter.matrix = matrix;
-  //this.refugeeContainer.filters = [filter];
-}
+};
 
 
 RefugeeMap.prototype.onRefugeeStarted = function(r) {
   r.sprite = new PIXI.Sprite(this.refugeeTexture);
   r.sprite.alpha = 1.0;
   this.refugeeContainer.addChild(r.sprite);
-}
+};
 
 
 RefugeeMap.prototype.onRefugeeFinished = function(r) {
@@ -140,12 +113,7 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
   var point = this.projection(loc);
   r.sprite.position.x = point[0];
   r.sprite.position.y = point[1];
-}
-
-
-RefugeeMap.prototype.drawRefugeePositions = function() {
-  return this.drawRefugeePositionsPixi();
-}
+};
 
 
 RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
@@ -172,14 +140,13 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
       bar.drawRect(coordinates[0], coordinates[1]-refugeeCount, 5, -asylumCount);
     }
     this.barContainer.addChild(bar);
-  };
-}
-
+  }
+};
 
 
 RefugeeMap.prototype.drawRefugeeCounts = function() {
   return this.drawRefugeeCountsPixi();
-}
+};
 
 
 RefugeeMap.prototype.render = function() {
@@ -188,7 +155,6 @@ RefugeeMap.prototype.render = function() {
   // snippet adapted from earth.js
   // https://github.com/cambecc/earth/blob/master/public/libs/earth/1.0.0/earth.js
   // see draw()-function
-
   var g = d3.select("canvas").node().getContext("2d");
   g.fillStyle = "rgba(0, 0, 0, 0.95)";
 
@@ -202,10 +168,9 @@ RefugeeMap.prototype.render = function() {
 }
 
 
-
 RefugeeMap.prototype.drawBorders = function() {
   this._drawBorders(this.svg, 'subunit');
-  var sel = this._drawBorders(this.overlaySvg, 'subunit-invisible'); 
+  var sel = this._drawBorders(this.overlaySvg, 'subunit-invisible');
 
   sel.on("mouseover", function(feature) {
     this.handleMouseOver(feature.properties.ADM0_A3);
@@ -214,20 +179,20 @@ RefugeeMap.prototype.drawBorders = function() {
   sel.on("mouseout", function(feature) {
     this.handleMouseOut(feature.properties.ADM0_A3);
   }.bind(this));
-}
+};
 
 
 RefugeeMap.prototype.handleMouseOver = function(country) {
   console.log("mouse over " + country);
-}
+};
 
 RefugeeMap.prototype.handleMouseOut = function(country) {
- console.log("mouse out of " + country); 
-}
+ console.log("mouse out of " + country);
+};
 
 
 RefugeeMap.prototype._drawBorders = function(svg, className) {
-  var path = d3.geo.path().projection(this.projection);  
+  var path = d3.geo.path().projection(this.projection);
   var sel = svg.selectAll('.' + className)
     .data(this.mapModel.featureData.features)
     .enter()
@@ -236,78 +201,31 @@ RefugeeMap.prototype._drawBorders = function(svg, className) {
       .attr("d", path);
 
   return sel;
-}
-
-
-RefugeeMap.prototype.drawLines = function() {
-  this.refugeeModel.refugees.forEach(function(refugee) {
-    this.drawRefugeeLine(refugee);
-  }.bind(this));
-}
-
-
-RefugeeMap.prototype.drawRefugeeLine = function(refugee) {
-  var sp = this.projection(refugee.startPoint);
-  var ep = this.projection(refugee.endPoint);
-  this.svg.append("line")
-    .attr("x1", sp[0])
-    .attr("y1", sp[1])
-    .attr("x2", ep[0])
-    .attr("y2", ep[1])
-    .attr("stroke", "white");
-}
+};
 
 
 RefugeeMap.prototype.drawCountryLabels = function() {
-
   //var ids = ["FIN", "SWE", "DEU", "SYR", "FRA"];
-
   var ids = this.mapModel.labelFeatureData.features.map(function(item) {
     return item.properties.sr_su_a3;
   });
-  
+
   ids.forEach(function(country) {
     this.drawCountryLabel(country);
   }.bind(this));
 
-}
-
+};
 
 
 RefugeeMap.prototype.drawCountryLabel = function(country) {
-
-  //var point = this.projection(this.mapModel.getLabelPointForCountry(country));
-  var point = this.projection(this.mapModel.getCenterPointOfCountry(country));  
-  
-  // this.svg.append("circle")
-  //    .attr("cx", point[0])
-  //    .attr("cy", point[1])
-  //    .attr("r", 3)
-  //    .attr("fill", "white");
+  var point = this.projection(this.mapModel.getCenterPointOfCountry(country));
 
   this.svg.append("text")
      .classed("country-label", true)
      .attr("x", point[0])
      .attr("y", point[1] + 15)
      .text(this.mapModel.getFriendlyNameForCountry(country));
-}
-
-
-
-// RefugeeMap.prototype.drawLine = function(country, month) {
-
-//   this.svg.append("line")
-//       var sp = this.projection(refugee.startPoint);
-  
-//   var ep = this.projection(refugee.endPoint);
-//   this.svg.append("line")
-//     .attr("x1", sp[0])
-//     .attr("y1", sp[1])
-//     .attr("x2", ep[0])
-//     .attr("y2", ep[1])
-//     .attr("stroke", "white");
-// }
+};
 
 
 module.exports = RefugeeMap;
-

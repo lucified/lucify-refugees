@@ -1,4 +1,3 @@
-
 var d3 = require('d3');
 var topojson = require('topojson');
 var _ = require('underscore');
@@ -144,12 +143,12 @@ var tick = function() {
   //refugeeMap.drawRefugeePositions();
   refugeeMap.drawRefugeeCounts();
   refugeeMap.render();
-}
+};
 
 // only for testing
 var tick100 = function() {
   _.range(0, 100).forEach(tick);
-}
+};
 
 window.tick = tick;
 window.tick100 = tick100;
