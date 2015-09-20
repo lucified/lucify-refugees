@@ -160,25 +160,26 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
 RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
   this.barContainer.removeChildren();
 
-  var barSizeDivider = 3000 / this.refugeeModel.peoplePerPoint;
-  var arrivedRefugeesByCountry = this.refugeeModel.arrivedRefugeesByCountry;
+  var barSizeDivider = 3000;
 
-  for (var country in arrivedRefugeesByCountry) {
+  // kludge. should produce country list in a better way
+  for (var country in this.refugeeModel.arrivedRefugeeCounts) {
+    var refugeeCounts = this.refugeeModel.getCurrentRefugeeTotal(country);
     var bar = new PIXI.Graphics();
     bar.lineStyle(0);
-    var asylumCount = arrivedRefugeesByCountry[country].asylumApplications / barSizeDivider;
-    var refugeeCount = arrivedRefugeesByCountry[country].registeredRefugees / barSizeDivider;
-    var coordinates = this.projection(arrivedRefugeesByCountry[country].point);
+    var asylumBarSize = refugeeCounts.asylumApplications / barSizeDivider;
+    var refugeeBarSize = refugeeCounts.registeredRefugees / barSizeDivider;
+    var coordinates = this.projection(mapModel.getCenterPointOfCountry(country));
     var asylumColor = 0xFFFFFF;
     var refugeeColor = 0xFFAD33;
 
-    if (refugeeCount > 0) {
+    if (refugeeBarSize > 0) {
       bar.beginFill(refugeeColor);
-      bar.drawRect(coordinates[0], coordinates[1], 5, -refugeeCount);
+      bar.drawRect(coordinates[0], coordinates[1], 5, -refugeeBarSize);
     }
-    if (asylumCount > 0) {
+    if (asylumBarSize > 0) {
       bar.beginFill(asylumColor);
-      bar.drawRect(coordinates[0], coordinates[1]-refugeeCount, 5, -asylumCount);
+      bar.drawRect(coordinates[0], coordinates[1]-refugeeBarSize, 5, -asylumBarSize);
     }
     this.barContainer.addChild(bar);
   }
@@ -283,7 +284,7 @@ RefugeeMap.prototype.updateCountryCountLabels = function() {
     return;
   }
 
-  var countries = _.keys(this.refugeeModel.arrivedRefugeesByCountry);
+  var countries = _.keys(this.refugeeModel.arrivedRefugeeCounts);
 
   var sel = this.svg
     .selectAll('.country-count')
@@ -300,9 +301,8 @@ RefugeeMap.prototype.updateCountryCountLabels = function() {
      .text("N/A");
 
   sel.text(function(country) {
-    var asylumCount = this.refugeeModel.arrivedRefugeesByCountry[country].asylumApplications;
-    var refugeeCount = this.refugeeModel.arrivedRefugeesByCountry[country].registeredRefugees;
-    return (asylumCount + refugeeCount) * this.refugeeModel.peoplePerPoint;
+    var counts = this.refugeeModel.getCurrentRefugeeTotal(country);
+    return counts.asylumApplications + counts.registeredRefugees;
   }.bind(this))
     .classed("country-count--visible",
       function(country) { return this.highlightedCountry == country; }.bind(this));
