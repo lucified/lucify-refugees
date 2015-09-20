@@ -164,15 +164,8 @@ svg .country-label.origin {
 
 svg .country-count {
     fill: #ffffff;
-    opacity: 0.0;
+    opacity: 0.9;
     font-family: $lucify-header-font;
     text-anchor: middle;
     font-size: 12px
 }
-
-svg .country-count--visible {
-  opacity: 0.9;
-}
-
-
-

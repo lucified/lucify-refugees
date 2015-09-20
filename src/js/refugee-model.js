@@ -140,12 +140,18 @@ RefugeeModel.prototype.getCurrentRefugeeTotal = function(countryName) {
   var dayOfMonth = mom.date();
   var yearIndex = mom.year() - DATA_START_YEAR;
   var monthIndex = mom.month();
-  var country = this.arrivedRefugeeCounts[countryName][yearIndex][monthIndex];
+  var country = this.arrivedRefugeeCounts[countryName];
 
-  return {
-    asylumApplications: Math.round(country.asylum.totalArrivedAtStartOfMonth + dayOfMonth * country.asylum.arrivingPerDay),
-    registeredRefugees: Math.round(country.refugees.totalArrivedAtStartOfMonth + dayOfMonth * country.refugees.arrivingPerDay)
-  };
+  if (!country) {
+    return { asylumApplications: 0, registeredRefugees: 0 };
+  } else {
+    return {
+      asylumApplications: Math.round(country[yearIndex][monthIndex].asylum.totalArrivedAtStartOfMonth +
+        dayOfMonth * country[yearIndex][monthIndex].asylum.arrivingPerDay),
+      registeredRefugees: Math.round(country[yearIndex][monthIndex].refugees.totalArrivedAtStartOfMonth +
+        dayOfMonth * country[yearIndex][monthIndex].refugees.arrivingPerDay)
+    };
+  }
 };
 
 RefugeeModel.prototype._increaseRefugeeEnRoute = function(start, end) {
