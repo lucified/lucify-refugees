@@ -13,6 +13,7 @@ var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMomen
   this.speed = speed;
   this.endMoment = endMoment;
   this.isAsylumSeeker = isAsylumSeeker;
+  this.totalTravelTime = this.getTravelDistance() / this.speed;
 
   if (window.SMART_SPREAD_ENABLED) {
     this.sideDeviation = randgen.rnorm(0, 1); // mean, std. deviation
@@ -23,8 +24,6 @@ var Refugee = function(startPoint, endPoint, destinationCountry, speed, endMomen
   this.startMoment = this._getStartMoment();
   this.startMomentUnix = this.startMoment.unix();
   this.endMomentUnix = this.endMoment.unix();
-
-  this.onFinished = [];
 
   this.directionVector = Vec2(
     this.startPoint[0] - this.endPoint[0],
@@ -49,8 +48,8 @@ Refugee.prototype.setRouteRefugeeCount = function(count) {
 };
 
 
-Refugee.prototype.getTravelTime = function(r) {
-  return this.getTravelDistance(r) / this.speed;
+Refugee.prototype.getTravelTime = function() {
+  return this.totalTravelTime;
 };
 
 
@@ -81,17 +80,12 @@ Refugee.prototype.update = function(mom) {
 
   var hours = this.getStartMoment().diff(mom) / (1000 * 60 * 60);
   var distance = hours * r.speed;
-  var sideMotionVector, portionOfJourney;
-
-  if (window.SMART_SPREAD_ENABLED) {
-    sideMotionVector = Vec2(-this.directionVector.y, this.directionVector.x); // perpendicular vector
-    portionOfJourney = hours / this.getTravelTime();
-  }
-
   var v = Vec2(r.startPoint);
   v.add(this.directionVector.multiply(distance / KILOMETERS_PER_DEGREE, true));
 
   if (window.SMART_SPREAD_ENABLED) {
+    var sideMotionVector = Vec2(-this.directionVector.y, this.directionVector.x); // perpendicular vector
+    var portionOfJourney = hours / this.getTravelTime();
     sideMotionVector.multiply(
       Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation);
     v.add(sideMotionVector);

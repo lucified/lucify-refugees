@@ -13,6 +13,7 @@ var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, 
   this.peoplePerPoint = peoplePerPoint;
   this.refugeesOnPath = {};
   this.arrivedRefugeesByCountry = {};
+  this.currentMoment = null;
 
   this.onRefugeeStarted = null;
   this.onRefugeeUpdated = null;

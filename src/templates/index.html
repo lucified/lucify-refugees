@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Refugees in Europe</title><link rel="stylesheet" href="./stylesheets/app.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script>
+  var changeSpeed = function(newSpeed) {
+    window.TRAILS_ENABLED = (newSpeed <= 12);
+    window.SPEED_RATIO = 60 * 60 * 24 * newSpeed;
+  }
+  </script>
 </head>
 
 <body>
@@ -16,6 +22,10 @@
       <div><span class="dot">&middot;</span> <span id="people-per-point">25</span> people</div>
       <div><span class="asylum bar">&nbsp;</span> Asylum applications</div>
       <div><span class="refugee bar">&nbsp;</span> Registered new refugees</div>
+    </div>
+    <div id='speed'>
+      <label for="speed">Speed</label>
+      <input type="range" min="1" max="30" value="5" id="speed" step="1" oninput="changeSpeed(value)">
     </div>
   </div>
 
