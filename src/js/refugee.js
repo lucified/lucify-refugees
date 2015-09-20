@@ -70,28 +70,27 @@ Refugee.prototype.isPastStartMoment = function(mom) {
 
 
 Refugee.prototype.update = function(mom) {
-  var r = this;
-
   if (mom.unix() > this.endMomentUnix) {
-    r.arrived = true;
-    this.location = r.endPoint;
+    this.arrived = true;
+    this.location = this.endPoint;
     return;
   }
 
-  var hours = this.getStartMoment().diff(mom) / (1000 * 60 * 60);
-  var distance = hours * r.speed;
-  var v = Vec2(r.startPoint);
-  v.add(this.directionVector.multiply(distance / KILOMETERS_PER_DEGREE, true));
+  var hours = (this.getStartMoment().valueOf() - mom.valueOf()) / (1000 * 60 * 60);
+  var distance = hours * this.speed / KILOMETERS_PER_DEGREE;
+  var v = [
+    this.startPoint[0] + this.directionVector.x * distance,
+    this.startPoint[1] + this.directionVector.y * distance
+  ];
 
   if (window.SMART_SPREAD_ENABLED) {
-    var sideMotionVector = Vec2(-this.directionVector.y, this.directionVector.x); // perpendicular vector
     var portionOfJourney = hours / this.getTravelTime();
-    sideMotionVector.multiply(
-      Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation);
-    v.add(sideMotionVector);
+    var sideMotionAmount = Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation;
+    v[0] += -this.directionVector.y * sideMotionAmount; // perpendicular = (-y, x)
+    v[1] += this.directionVector.x * sideMotionAmount;
   }
 
-  this.location = v.toArray();
+  this.location = v;
 };
 
 
