@@ -262,13 +262,6 @@ RefugeeMap.prototype.drawCountryLabel = function(country) {
 };
 
 
-RefugeeMap.prototype.getVisibleCountries = function() {
-  return this.mapModel.labelFeatureData.features.map(function(item) {
-    return item.properties.sr_su_a3;
-  }); 
-}
-
-
 RefugeeMap.prototype.updateCountryCountLabels = function() {
 
   if (this.tickCount % 10 != 5) {
