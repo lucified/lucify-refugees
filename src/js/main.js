@@ -60,8 +60,6 @@ var onceLoaded = function() {
   window.refugeeMap = refugeeMap;
   window.mapModel = mapModel;
 
-  refugeeModel.currentMoment = moment(START_TIME);
-
   d3.select('#people-per-point')
     .text(peoplePerPoint);
   d3.select('#legend')
@@ -106,18 +104,20 @@ var load = function() {
 // runner option b
 // ---------------
 
-var startMoment;
+var previousMoment;
 
 var start = function() {
-  startMoment = moment();
+  previousMoment = moment();
+  refugeeModel.currentMoment = moment(START_TIME);
   animate();
 };
 
 var animate = function() {
-  var millis = startMoment.diff();
-  var modelMillis = -millis * window.SPEED_RATIO;
+  var millis = -previousMoment.diff();
+  var modelMillis = millis * window.SPEED_RATIO;
 
-  refugeeModel.currentMoment = moment(START_TIME).add(modelMillis);
+  refugeeModel.currentMoment.add(modelMillis);
+  previousMoment.add(millis);
 
   d3.select('#time')
     .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
