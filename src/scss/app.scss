@@ -110,6 +110,23 @@ a:hover {
   background-color: #FFAD33;
 }
 
+#speed {
+  position: absolute;
+  top: 18.5rem;
+  right: 1rem;
+  width: 260px;
+  font-family: monospace;
+  font-size: 16px;
+  color: $lucify-cyan;
+  background-color: rgba(50, 50, 50, 0.7);
+  padding: 0.5rem;
+  z-index: 1;
+}
+
+#speed-control {
+  width: 75%;
+}
+
 .hide {
   display: none;
 }
@@ -130,11 +147,19 @@ svg .subunit-invisible {
 
 
 svg .country-label {
-    fill: #ffffff;
-    opacity: 0.9;
-    font-family: $lucify-header-font;
-    text-anchor: middle;
-    font-size: 12px
+  fill: #ffffff;
+  opacity: 0.9;
+  font-family: $lucify-header-font;
+  text-anchor: middle;
+  font-size: 12px;
+}
+
+svg .country-label.destination {
+  fill: #C9F0CE;
+}
+
+svg .country-label.origin {
+  fill: #FFC4D8;
 }
 
 svg .country-count {

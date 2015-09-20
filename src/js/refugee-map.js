@@ -21,6 +21,8 @@ var RefugeeMap = function(refugeeModel, mapModel) {
   }
 
   this.highlightedCountry = null;
+  this.highlightedDestinationCountries = [];
+  this.highlightedOriginCountries = [];
   this.graphics = {};
   this.sprites = {};
 
@@ -33,7 +35,6 @@ var RefugeeMap = function(refugeeModel, mapModel) {
 
 
 RefugeeMap.prototype.update = function() {
-  //this.drawRefugeePositions();
   this.drawRefugeeCounts();
   this.updateCountryCountLabels();
   this.render();
@@ -134,8 +135,22 @@ RefugeeMap.prototype.onRefugeeUpdated = function(r) {
   if (this.highlightedCountry == null) {
     r.sprite.alpha = 1.0; // make all solid
   } else {
-    if (r.originCountry == this.highlightedCountry || r.destinationCountry == this.highlightedCountry) {
+    if (r.originCountry == this.highlightedCountry) {
       r.sprite.alpha = 1.0;
+
+      // make sure destination country is highlighted as well
+      if (this.highlightedDestinationCountries.indexOf(r.destinationCountry) == -1) {
+        this.drawCountryLabel(r.destinationCountry, "destination");
+        this.highlightedDestinationCountries.push(r.destinationCountry);
+      }
+    } else if (r.destinationCountry == this.highlightedCountry) {
+      r.sprite.alpha = 1.0;
+
+      // make sure origin country is highlighted as well
+      if (this.highlightedOriginCountries.indexOf(r.originCountry) == -1) {
+        this.drawCountryLabel(r.originCountry, "origin");
+        this.highlightedOriginCountries.push(r.originCountry);
+      }
     } else {
       r.sprite.alpha = 0.2;
     }
@@ -197,7 +212,7 @@ RefugeeMap.prototype.render = function() {
     g.globalCompositeOperation = prev;
     g.globalAlpha = prevAlpha;
   }
-}
+};
 
 
 RefugeeMap.prototype.drawBorders = function() {
@@ -215,13 +230,26 @@ RefugeeMap.prototype.drawBorders = function() {
 
 
 RefugeeMap.prototype.handleMouseOver = function(country) {
-  this.drawCountryLabel(country);
+  if (country == "RUS") return;
+
+  this.drawCountryLabel(country, "hovered");
   this.highlightedCountry = country;
 };
 
 RefugeeMap.prototype.handleMouseOut = function(country) {
- this.removeCountryLabel(country);
- this.highlightedCountry = null;
+  if (country == "RUS") return;
+
+  this.removeCountryLabel(country);
+  this.highlightedCountry = null;
+  var i;
+  for (i = 0; i < this.highlightedDestinationCountries.length; i++) {
+    this.removeCountryLabel(this.highlightedDestinationCountries[i]);
+  }
+  for (i = 0; i < this.highlightedOriginCountries.length; i++) {
+    this.removeCountryLabel(this.highlightedOriginCountries[i]);
+  }
+  this.highlightedDestinationCountries = [];
+  this.highlightedOriginCountries = [];
 };
 
 
@@ -244,18 +272,18 @@ RefugeeMap.prototype.drawCountryLabels = function() {
   });
 
   ids.forEach(function(country) {
-    this.drawCountryLabel(country);
-    this.drawCountryCountLabel(country);
+    this.drawCountryLabel(country, "");
   }.bind(this));
 };
 
 
-RefugeeMap.prototype.drawCountryLabel = function(country) {
+RefugeeMap.prototype.drawCountryLabel = function(country, type) {
   var point = this.projection(this.mapModel.getCenterPointOfCountry(country));
 
   this.svg.append("text")
      .classed("country-label", true)
      .classed(country, true)
+     .classed(type, true)
      .attr("x", point[0])
      .attr("y", point[1] + 15)
      .text(this.mapModel.getFriendlyNameForCountry(country));
