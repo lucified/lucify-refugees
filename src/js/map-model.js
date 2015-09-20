@@ -27,6 +27,7 @@ MapModel.prototype.initialize = function() {
   this._countryCentersCache["NOR"] = [8.506239, 60.975869];
   this._countryCentersCache["GBR"] = [-1.538086, 52.815213];
   this._countryCentersCache["GRC"] = [21.752930, 39.270271];
+  this._countryCentersCache["RUS"] = [51.328125, 56.641127];
 };
 
 MapModel.prototype.containsCountry = function(country) {
