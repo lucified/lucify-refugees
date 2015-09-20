@@ -258,12 +258,10 @@ RefugeeMap.prototype.drawRefugeeLine = function(refugee) {
     .attr("stroke", "white");
 }
 
-// Note: Will currently display bar at location where first 
-// refugee arrives at in the country
 RefugeeMap.prototype.refugeeArrived = function(refugee) {
   if (!this.arrivedRefugeesByCountry[refugee.destinationCountry]) {
     this.arrivedRefugeesByCountry[refugee.destinationCountry] = {
-      point: refugee.endPoint,
+      point: this.mapModel.getCenterPointOfCountry(refugee.destinationCountry),
       asylumApplications: 0,
       registeredRefugees: 0
     };
