@@ -12,11 +12,13 @@ var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, 
   this.activeRefugees = [];
   this.peoplePerPoint = peoplePerPoint;
   this.refugeesOnPath = {};
-  this.initialize();
+  this.arrivedRefugeesByCountry = {};
 
   this.onRefugeeStarted = null;
   this.onRefugeeUpdated = null;
   this.onRefugeeFinished = null;
+
+  this.initialize();
 };
 
 
@@ -97,6 +99,7 @@ RefugeeModel.prototype.update = function() {
       if (window.SMART_SPREAD_ENABLED) {
         this.refugeesOnPath[r.startPoint][r.endPoint]--;
       }
+      this.countRefugeeArrived(r);
       this.onRefugeeFinished(r);
     } else {
       stillActive.push(r);
@@ -134,6 +137,22 @@ RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month,
 
   return r;
 };
+
+RefugeeModel.prototype.countRefugeeArrived = function(refugee) {
+  if (!this.arrivedRefugeesByCountry[refugee.destinationCountry]) {
+    this.arrivedRefugeesByCountry[refugee.destinationCountry] = {
+      point: this.mapModel.getCenterPointOfCountry(refugee.destinationCountry),
+      asylumApplications: 0,
+      registeredRefugees: 0
+    };
+  }
+
+  if (refugee.isAsylumSeeker) {
+    this.arrivedRefugeesByCountry[refugee.destinationCountry].asylumApplications++;
+  } else {
+    this.arrivedRefugeesByCountry[refugee.destinationCountry].registeredRefugees++;
+  }
+}
 
 
 module.exports = RefugeeModel;

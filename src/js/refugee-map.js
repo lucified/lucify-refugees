@@ -19,7 +19,6 @@ var RefugeeMap = function(refugeeModel, mapModel) {
   this.initialize();
   this.graphics = {};
   this.sprites = {};
-  this.arrivedRefugeesByCountry = {};
 
   this.refugeeModel.onRefugeeUpdated = this.onRefugeeUpdated.bind(this);
   this.refugeeModel.onRefugeeFinished = this.onRefugeeFinished.bind(this);
@@ -133,8 +132,7 @@ RefugeeMap.prototype.onRefugeeStarted = function(r) {
 
 RefugeeMap.prototype.onRefugeeFinished = function(r) {
   this.refugeeContainer.removeChild(r.sprite);
-  this.refugeeArrived(r);
-}
+};
 
 
 RefugeeMap.prototype.onRefugeeUpdated = function(r) {
@@ -154,13 +152,14 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
   this.barContainer.removeChildren();
 
   var barSizeDivider = 3000 / this.refugeeModel.peoplePerPoint;
+  var arrivedRefugeesByCountry = this.refugeeModel.arrivedRefugeesByCountry;
 
-  for (var country in this.arrivedRefugeesByCountry) {
+  for (var country in arrivedRefugeesByCountry) {
     var bar = new PIXI.Graphics();
     bar.lineStyle(0);
-    var asylumCount = this.arrivedRefugeesByCountry[country].asylumApplications / barSizeDivider;
-    var refugeeCount = this.arrivedRefugeesByCountry[country].registeredRefugees / barSizeDivider;
-    var coordinates = this.projection(this.arrivedRefugeesByCountry[country].point);
+    var asylumCount = arrivedRefugeesByCountry[country].asylumApplications / barSizeDivider;
+    var refugeeCount = arrivedRefugeesByCountry[country].registeredRefugees / barSizeDivider;
+    var coordinates = this.projection(arrivedRefugeesByCountry[country].point);
     var asylumColor = 0xFFFFFF;
     var refugeeColor = 0xFFAD33;
 
@@ -256,22 +255,6 @@ RefugeeMap.prototype.drawRefugeeLine = function(refugee) {
     .attr("x2", ep[0])
     .attr("y2", ep[1])
     .attr("stroke", "white");
-}
-
-RefugeeMap.prototype.refugeeArrived = function(refugee) {
-  if (!this.arrivedRefugeesByCountry[refugee.destinationCountry]) {
-    this.arrivedRefugeesByCountry[refugee.destinationCountry] = {
-      point: this.mapModel.getCenterPointOfCountry(refugee.destinationCountry),
-      asylumApplications: 0,
-      registeredRefugees: 0
-    };
-  }
-
-  if (refugee.isAsylumSeeker) {
-    this.arrivedRefugeesByCountry[refugee.destinationCountry].asylumApplications++;
-  } else {
-    this.arrivedRefugeesByCountry[refugee.destinationCountry].registeredRefugees++;
-  }
 }
 
 
