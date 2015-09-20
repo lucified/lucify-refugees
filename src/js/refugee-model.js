@@ -116,6 +116,7 @@ RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month,
   var r = new Refugee(
     window.RANDOM_START_POINT ? this.mapModel.getRandomPointFromCountry(startCountry) : this.mapModel.getCenterPointOfCountry(startCountry),
     this.mapModel.getCenterPointOfCountry(endCountry),
+    startCountry,
     endCountry,
     this.prepareRefugeeSpeed(),
     this.prepareRefugeeEndMoment(month, year),
