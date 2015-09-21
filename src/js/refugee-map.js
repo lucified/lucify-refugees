@@ -172,14 +172,15 @@ RefugeeMap.prototype.drawRefugeeCountsPixi = function() {
     var coordinates = this.projection(mapModel.getCenterPointOfCountry(country));
     var asylumColor = 0xFFFFFF;
     var refugeeColor = 0xFFAD33;
+    var bothBarsShown = (refugeeBarSize > 0 && asylumBarSize > 0);
 
     if (refugeeBarSize > 0) {
       bar.beginFill(refugeeColor);
-      bar.drawRect(coordinates[0], coordinates[1], 5, -refugeeBarSize);
+      bar.drawRect(coordinates[0] + 1, coordinates[1], 5, -refugeeBarSize);
     }
     if (asylumBarSize > 0) {
       bar.beginFill(asylumColor);
-      bar.drawRect(coordinates[0], coordinates[1]-refugeeBarSize, 5, -asylumBarSize);
+      bar.drawRect(coordinates[0] - (bothBarsShown ? 6 : 2), coordinates[1], 5, -asylumBarSize);
     }
     this.barContainer.addChild(bar);
   }
