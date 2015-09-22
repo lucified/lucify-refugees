@@ -21,6 +21,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
       if (refugeeBarSize > 0) {
          rects.push(
             <rect
+               key="refugee-bar"
                className="refugee-bar" 
                x={coordinates[0] + 1}
                y={coordinates[1] - refugeeBarSize}
@@ -32,6 +33,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
       if (asylumBarSize > 0) {
          rects.push(
             <rect
+               key="asylum-bar"
                className="asylum-bar" 
                x={coordinates[0] - (bothBarsShown ? 6 : 2)}
                y={coordinates[1] - asylumBarSize}
@@ -39,7 +41,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
                height={asylumBarSize} />);
       }
 
-      return <g>{rects}</g>;
+      return <g key={country}>{rects}</g>;
   },
 
 
