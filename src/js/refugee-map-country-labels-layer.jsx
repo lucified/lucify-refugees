@@ -6,26 +6,22 @@ var _ = require('underscore');
 var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
-  getDestCountries: function() {
-  	var ret = {};
-  	this.props.refugeeModel.activeRefugees.forEach(function(refugee) {
-  		if (refugee.originCountry == this.props.highlightedCountry) {
-  			ret[refugee.destinationCountry] = true;
-  		} 
-  	}.bind(this));
-  	return _.keys(ret);
+  getDestinationCountries: function() {
+    var destinationCountries = this.props.refugeeModel.refugeesOnPath[this.props.highlightedCountry];
+    if (destinationCountries) {
+      return _.keys(_.pick(destinationCountries, function(count, country) { return count > 0; }));
+    } else {
+      return [];
+    }
   },
 
 
   getOriginCountries: function() {
-  	var ret = {};
-  	this.props.refugeeModel.activeRefugees.forEach(function(refugee) {
-  		if (refugee.destinationCountry == this.props.highlightedCountry) {
-  			ret[refugee.originCountry] = true;
-  		} 
-  	}.bind(this));
-  	return _.keys(ret);
-  	//return this.props.originCountries;
+    return _.keys(_.pick(this.props.refugeeModel.refugeesOnPath,
+      function(destinationCountries, originCountry) {
+        return destinationCountries[this.props.highlightedCountry] &&
+          destinationCountries[this.props.highlightedCountry] > 0;
+      }.bind(this)));
   },
 
 
