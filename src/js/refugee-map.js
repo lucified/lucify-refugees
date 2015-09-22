@@ -65,9 +65,9 @@ var RefugeeMap = React.createClass({
 
 
   handleMouseOut: function(country) {
-    //if (this.state.highlightedCountry == country) {
-    //  this.setState({highlightedCountry: null});
-    //}
+    if (this.state.highlightedCountry == country) {
+      this.setState({highlightedCountry: null});
+    }
   },
 
  
@@ -126,7 +126,8 @@ var RefugeeMap = React.createClass({
           {...this.getStandardLayerParams()} />
 
         <PointsLayer
-          {...this.getStandardLayerParams()} />
+          {...this.getStandardLayerParams()}
+          highlightedCountry={this.state.highlightedCountry} />
         
         <BordersLayer
           {...this.getStandardLayerParams()}

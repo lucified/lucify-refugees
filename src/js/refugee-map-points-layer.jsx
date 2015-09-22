@@ -80,27 +80,27 @@ var RefugeeMapPointsLayer = React.createClass({
 
 
    onRefugeeFinished: function(r) {
-    this.refugeeContainer.removeChild(r.sprite);
+      this.refugeeContainer.removeChild(r.sprite);
    },
 
 
    onRefugeeUpdated: function(r) {
-    var loc = r.location;
-    var point = this.props.projection(loc);
-    r.sprite.position.x = point[0];
-    r.sprite.position.y = point[1];
+      var loc = r.location;
+      var point = this.props.projection(loc);
+      r.sprite.position.x = point[0];
+      r.sprite.position.y = point[1];
 
-    if (this.highlightedCountry == null) {
-      r.sprite.alpha = 1.0; // make all solid
-    } else {
-      if (r.originCountry == this.highlightedCountry) {
-        r.sprite.alpha = 1.0;
-      } else if (r.destinationCountry == this.highlightedCountry) {
-        r.sprite.alpha = 1.0;
+      if (this.props.highlightedCountry == null) {
+           r.sprite.alpha = 1.0; // make all solid
       } else {
-        r.sprite.alpha = 0.2;
+         if (r.originCountry == this.props.highlightedCountry) {
+           r.sprite.alpha = 1.0;
+         } else if (r.destinationCountry == this.props.highlightedCountry) {
+           r.sprite.alpha = 1.0;
+         } else {
+           r.sprite.alpha = 0.10;
+         }
       }
-    }
    },
 
 
@@ -109,8 +109,7 @@ var RefugeeMapPointsLayer = React.createClass({
     // for some strange reason the trails
     // do not work unless there is some other
     // graphic on the stage 
-    
-    
+   
     this.renderer.clearBeforeRender = !window.TRAILS_ENABLED;
     this.renderer.render(this.stage);
 
