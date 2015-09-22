@@ -73,23 +73,6 @@ a:hover {
   z-index: 1;
 }
 
-<<<<<<< HEAD
-#legend {
-  position: absolute;
-  top: 12rem;
-  right: 1rem;
-  width: 300px;
-  font-family: monospace;
-  font-size: 16px;
-  color: $lucify-cyan;
-  background-color: rgba(50, 50, 50, 0.7);
-  padding: 0.5rem;
-  z-index: 1;
-  line-height: 1.5rem;
-}
-=======
-
->>>>>>> Refactor speed control and legend into React component
 
 .dot {
   margin-right: 0.5rem;
@@ -104,7 +87,6 @@ a:hover {
   margin-left: 0.5rem;
   vertical-align: middle;
   font-size: 10px;
-  width: 5px;
   height: 14px;
 }
 
@@ -117,42 +99,29 @@ a:hover {
 }
 
 
-
 .refugee-map-controls-and-legend {
   position: absolute;
   top: 12rem;
   right: 1rem;
-  //width: 400px;
   border: 0px solid white;
-}
-
-
-.legend {
-  
-  //position: absolute;
-  top: 12rem;
-  right: 1rem;
-  width: 220px;
   font-family: monospace;
   font-size: 16px;
-  color: $lucify-cyan;
   background-color: rgba(50, 50, 50, 0.7);
+  color: $lucify-cyan;
+  padding: 0.5rem;
+}
+
+.legend {
+  font-family: monospace;
+  font-size: 16px;
   padding: 0.5rem;
   z-index: 1;
   line-height: 1.5rem;
 }
 
 .speed {
-  //position: absolute;
-  top: 18.5rem;
-  right: 1rem;
-  width: 220px;
-  font-family: monospace;
-  font-size: 16px;
-  color: $lucify-cyan;
-  background-color: rgba(50, 50, 50, 0.7);
-  padding: 0.5rem;
   z-index: 1;
+  padding-right: 0.5rem;
 }
 
 
