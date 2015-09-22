@@ -51,13 +51,13 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 
   	items.push(this.renderCountryLabel(this.props.highlightedCountry, "highlighted"))
 
-  	items.concat(this.getDestCountries().map(function(country) {
+  	this.getDestinationCountries().map(function(country) {
   		items.push(this.renderCountryLabel(country, "destination"));
-  	}.bind(this)));
+  	}.bind(this));
 
-	items.concat(this.getOriginCountries().map(function(country) {
+	  this.getOriginCountries().map(function(country) {
   		items.push(this.renderCountryLabel(country, "origin"));
-  	}.bind(this)));
+  	}.bind(this));
 
 	return items;
   },
