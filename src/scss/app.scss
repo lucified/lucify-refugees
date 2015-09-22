@@ -73,6 +73,7 @@ a:hover {
   z-index: 1;
 }
 
+<<<<<<< HEAD
 #legend {
   position: absolute;
   top: 12rem;
@@ -86,6 +87,9 @@ a:hover {
   z-index: 1;
   line-height: 1.5rem;
 }
+=======
+
+>>>>>>> Refactor speed control and legend into React component
 
 .dot {
   margin-right: 0.5rem;
@@ -112,8 +116,34 @@ a:hover {
   background-color: #FFAD33;
 }
 
-#speed {
+
+
+.refugee-map-controls-and-legend {
   position: absolute;
+  top: 12rem;
+  right: 1rem;
+  //width: 400px;
+  border: 0px solid white;
+}
+
+
+.legend {
+  
+  //position: absolute;
+  top: 12rem;
+  right: 1rem;
+  width: 220px;
+  font-family: monospace;
+  font-size: 16px;
+  color: $lucify-cyan;
+  background-color: rgba(50, 50, 50, 0.7);
+  padding: 0.5rem;
+  z-index: 1;
+  line-height: 1.5rem;
+}
+
+.speed {
+  //position: absolute;
   top: 18.5rem;
   right: 1rem;
   width: 220px;
@@ -124,6 +154,7 @@ a:hover {
   padding: 0.5rem;
   z-index: 1;
 }
+
 
 #speed-control {
   width: 70%;
@@ -145,27 +176,6 @@ svg .subunit {
 svg .subunit-invisible {
   fill: transparent;
   stroke: transparent;
-}
-
-
-svg .country-label {
-  fill: #ffffff;
-  opacity: 0.9;
-  font-family: $lucify-header-font;
-  text-anchor: middle;
-  font-size: 12px;
-}
-
-svg .country-label.destination {
-  fill: #C9F0CE;
-}
-
-svg .country-label.origin {
-  fill: #FFC4D8;
-}
-
-svg .country-count {
-
 }
 
 

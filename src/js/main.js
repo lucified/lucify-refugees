@@ -62,11 +62,7 @@ var onceLoaded = function() {
 
   d3.select('#people-per-point')
     .text(peoplePerPoint);
-  d3.select('#legend')
-    .classed("hide", false);
-  d3.select('#speed')
-    .classed("hide", false);
-
+  
 
   console.log("react entry point");
 
@@ -126,6 +122,7 @@ var start = function() {
   refugeeModel.currentMoment = moment(START_TIME);
   animate();
 };
+
 
 var animate = function() {
   var millis = -previousMoment.diff();

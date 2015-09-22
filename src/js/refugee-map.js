@@ -7,7 +7,9 @@ var BordersLayer = require('./refugee-map-borders-layer.jsx');
 var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
 var CountryLabelsLayer = require('./refugee-map-country-labels-layer.jsx');
 var CountBarsLayer = require('./refugee-map-count-bars-layer.jsx');
-var RefugeeMapPointsLayer = require('./refugee-map-points-layer.jsx')
+var PointsLayer = require('./refugee-map-points-layer.jsx')
+
+var ControlsAndLegend = require('./refugee-map-controls-and-legend.jsx');
 
 
 var RefugeeMap = React.createClass({
@@ -22,7 +24,8 @@ var RefugeeMap = React.createClass({
   getInitialState: function() {
     return {
         highlightedCountry: null,
-        time: 0};
+        time: 0,
+        speed: 5};
   },
 
 
@@ -95,9 +98,17 @@ var RefugeeMap = React.createClass({
   },
 
 
+  handleSpeedChange: function(newSpeed) {
+    window.TRAILS_ENABLED = (newSpeed <= 12);
+    window.SPEED_RATIO = 60 * 60 * 24 * newSpeed;
+    this.setState({speed: newSpeed});
+  },
+
+
   render: function() {
     return (
-      <div className="refugee-map">
+      <div className="refugee-map"
+        style={{width: this.getWidth(), height: this.getHeight()}}>
         
         <BordersLayer 
           {...this.getStandardLayerParams()}
@@ -114,7 +125,7 @@ var RefugeeMap = React.createClass({
         <CountBarsLayer
           {...this.getStandardLayerParams()} />
 
-        <RefugeeMapPointsLayer
+        <PointsLayer
           {...this.getStandardLayerParams()} />
         
         <BordersLayer
@@ -122,7 +133,11 @@ var RefugeeMap = React.createClass({
           subunitClass="subunit-invisible"
           onMouseOver={this.handleMouseOver}
           onMouseOut={this.handleMouseOut} />
-      
+        
+        <ControlsAndLegend
+          speed={this.state.speed}
+          onSpeedChange={this.handleSpeedChange} />
+
       </div>
     )
   }
