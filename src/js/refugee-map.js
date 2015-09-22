@@ -60,7 +60,9 @@ var RefugeeMap = React.createClass({
 
 
   handleMouseOver: function(country) {
-    this.setState({highlightedCountry: country});
+    
+    var hl = country == "RUS" ? null : country;
+    this.setState({highlightedCountry: hl});
   },
 
 
