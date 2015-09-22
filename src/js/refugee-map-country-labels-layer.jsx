@@ -5,6 +5,9 @@ var _ = require('underscore');
 
 var RefugeeMapCountryLabelsLayer = React.createClass({
 
+  storedDestinationCountries: [],
+  storedOriginCountries: [],
+
 
   getDestinationCountries: function() {
     var destinationCountries = this.props.refugeeModel.refugeesOnPath[this.props.highlightedCountry];
@@ -36,26 +39,36 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
   	);
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.highlightedCountry !== this.props.highlightedCountry) {
+      this.storedDestinationCountries = [];
+      this.storedOriginCountries = [];
+    } else {
+      this.storedDestinationCountries = _.union(this.storedDestinationCountries, this.getDestinationCountries());
+      this.storedOriginCountries = _.union(this.storedOriginCountries, this.getOriginCountries());
+    }
+  },
 
+/*
   shouldComponentUpdate: function(nextProps, nextState) {
   	return nextProps.highlightedCountry !== this.props.highlightedCountry;
   },
-
+*/
 
   renderCountryLabels: function() {
   	var items = [];
 
   	items.push(this.renderCountryLabel(this.props.highlightedCountry, "highlighted"))
 
-  	this.getDestinationCountries().map(function(country) {
+  	this.storedDestinationCountries.map(function(country) {
   		items.push(this.renderCountryLabel(country, "destination"));
   	}.bind(this));
 
-	  this.getOriginCountries().map(function(country) {
+	  this.storedOriginCountries.map(function(country) {
   		items.push(this.renderCountryLabel(country, "origin"));
   	}.bind(this));
 
-	return items;
+    return items;
   },
 
 
@@ -64,7 +77,7 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 		 <svg className="refugee-map__country-labels-layer"
 		    style={{width: this.props.width, height: this.props.height}}>
 		    {this.renderCountryLabels()}
-		 </svg> 
+		 </svg>
 		)
    }
 
