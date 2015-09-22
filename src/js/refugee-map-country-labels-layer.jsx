@@ -6,18 +6,6 @@ var _ = require('underscore');
 var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
-  // drawCountryLabel: function(country, type) {
-  //   var point = this.getProjection(this.props.mapModel.getCenterPointOfCountry(country));
-  //   this.svg.append("text")
-  //      .classed("country-label", true)
-  //      .classed(country, true)
-  //      .classed(type, true)
-  //      .attr("x", point[0])
-  //      .attr("y", point[1] + 15)
-  //      .text(this.props.mapModel.getFriendlyNameForCountry(country));
-  // },
-
-
   getDestCountries: function() {
   	var ret = {};
   	this.props.refugeeModel.activeRefugees.forEach(function(refugee) {

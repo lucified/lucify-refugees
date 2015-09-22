@@ -15,8 +15,6 @@ var RefugeeMapPointsLayer = React.createClass({
        this.props.refugeeModel.onRefugeeFinished = this.onRefugeeFinished;
        this.props.refugeeModel.onRefugeeStarted = this.onRefugeeStarted;
 
-       //this.props.refugeeModel.onModelUpdated = this.update.bind(this);
-
        this.initializePixiCanvas();
    },
 
@@ -128,8 +126,6 @@ var RefugeeMapPointsLayer = React.createClass({
       g.globalCompositeOperation = prev;
       g.globalAlpha = prevAlpha;
     }
-
-    //this.stage.removeChild(graphics);
 
   },
 

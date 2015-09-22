@@ -14,23 +14,6 @@ var RefugeeMapBordersLayer = React.createClass({
 		this.drawBorders();
 	},
 
-  // 	drawBorders: function() {
-		// this._drawBorders(this.svg, 'subunit');
-		// var sel = this._drawBorders(this.overlaySvg, 'subunit-invisible');
-
-		// if (this.props.onMouseOver) {
-		// 	sel.on("mouseover", function(feature) {
-		// 		this.props.onMouseOver(feature.properties.ADM0_A3);
-		// 	}.bind(this));
-		// }
-
-		// if (this.props.onMouseOut) {
-		// 	sel.on("mouseout", function(feature) {
-		// 		this.props.onMouseOut(feature.properties.ADM0_A3);
-		// 	}.bind(this));
-		// }
-  // 	},
-
 	drawBorders: function() {
 		var path = d3.geo.path().projection(this.props.projection);
 		
