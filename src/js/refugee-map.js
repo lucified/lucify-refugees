@@ -6,6 +6,7 @@ var MapModel = require('./map-model.js');
 var React = require('react');
 var BordersLayer = require('./refugee-map-borders-layer.jsx');
 var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
+var CountryLabelsLayer = require('./refugee-map-country-labels-layer.jsx');
 
 
 var RefugeeMap = React.createClass({
@@ -32,11 +33,16 @@ var RefugeeMap = React.createClass({
   },
    
 
+  componentWillMount: function() {
+    this.highlightedDestinationCountries = [];
+    this.highlightedOriginCountries = [];
+  },
+
+
   componentDidMount: function() {
     this.tickCount = 0;
     this.highlightedCountry = null;
-    this.highlightedDestinationCountries = [];
-    this.highlightedOriginCountries = [];
+
     this.graphics = {};
     this.sprites = {};
 
@@ -96,8 +102,6 @@ var RefugeeMap = React.createClass({
           clearBeforeRender: false,
           view: React.findDOMNode(this.refs.canvas)
         });
-
-    //React.findDOMNode(this.refs.canvasWrap).appendChild(this.renderer.view);
 
     this.renderer.plugins.interaction.autoPreventDefault = false;
 
@@ -164,6 +168,9 @@ var RefugeeMap = React.createClass({
   drawRefugeeCounts: function() {
     this.barContainer.removeChildren();
     var barSizeDivider = 3000;
+
+    console.log("fdads");
+
     // kludge. should produce country list in a better way
     for (var country in this.props.refugeeModel.arrivedRefugeeCounts) {
       var refugeeCounts = this.props.refugeeModel.getCurrentRefugeeTotal(country);
@@ -213,50 +220,15 @@ var RefugeeMap = React.createClass({
 
 
   handleMouseOver: function(country) {
-    
     this.setState({highlightedCountry: country});
-
-    //this.drawCountryLabel(country, "hovered");
-    //this.showCountryCount(country);
-    //this.highlightedCountry = country;
   },
 
 
   handleMouseOut: function(country) {
 
-    //this.setState({highlightedCountry: null});
-
-    // this.removeCountryLabel(country);
-    // this.hideCountryCount(country);
-    // this.highlightedCountry = null;
-    // var i;
-    // for (i = 0; i < this.highlightedDestinationCountries.length; i++) {
-    //   this.removeCountryLabel(this.highlightedDestinationCountries[i]);
-    // }
-    // for (i = 0; i < this.highlightedOriginCountries.length; i++) {
-    //   this.removeCountryLabel(this.highlightedOriginCountries[i]);
-    // }
-    // this.highlightedDestinationCountries = [];
-    // this.highlightedOriginCountries = [];
   },
 
-
-  // drawCountryLabel: function(country, type) {
-  //   var point = this.getProjection(this.props.mapModel.getCenterPointOfCountry(country));
-  //   this.svg.append("text")
-  //      .classed("country-label", true)
-  //      .classed(country, true)
-  //      .classed(type, true)
-  //      .attr("x", point[0])
-  //      .attr("y", point[1] + 15)
-  //      .text(this.props.mapModel.getFriendlyNameForCountry(country));
-  // },
-
-
-  // removeCountryLabel: function(country) {
-  //   this.svg.selectAll(".country-label." + country).remove();
-  // },
-
+ 
   getProjection: function() {
     if (!this._projection){
 
@@ -273,6 +245,16 @@ var RefugeeMap = React.createClass({
   },
 
 
+  getStandardLayerParams: function() {
+    return {
+      mapModel: this.props.mapModel,
+      refugeeModel: this.props.refugeeModel,
+      projection: this.getProjection(),
+      width: this.getWidth(),
+      height: this.getHeight(),
+    }
+  },
+
 
   render: function() {
     var style = {
@@ -284,28 +266,22 @@ var RefugeeMap = React.createClass({
       <div className="refugee-map">
         
         <BordersLayer 
-          mapModel={this.props.mapModel}
-          projection={this.getProjection()}
-          subunitClass="subunit"
-          width={this.getWidth()}
-          height={this.getHeight()} />
+          {...this.getStandardLayerParams()}
+          subunitClass="subunit" />
 
         <CountryCountsLayer
-          refugeeModel={this.props.refugeeModel}
-          highlightedCountry={this.state.highlightedCountry}
-          mapModel={this.props.mapModel}
-          projection={this.getProjection()}
-          width={this.getWidth()}
-          height={this.getHeight()} />
+          {...this.getStandardLayerParams()}
+          highlightedCountry={this.state.highlightedCountry} />
+
+        <CountryLabelsLayer
+          {...this.getStandardLayerParams()}
+          highlightedCountry={this.state.highlightedCountry} />
 
         <canvas ref="canvas" style={style} />
         
         <BordersLayer
-          mapModel={this.props.mapModel}
-          projection={this.getProjection()}
+          {...this.getStandardLayerParams()}
           subunitClass="subunit-invisible"
-          width={this.getWidth()}
-          height={this.getHeight()}
           onMouseOver={this.handleMouseOver}
           onMouseOut={this.handleMouseOut} />
       

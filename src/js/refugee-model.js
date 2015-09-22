@@ -6,7 +6,10 @@ var utils = require('./utils.js');
 var DATA_START_YEAR = 2012;
 var DATA_END_MOMENT = moment([2015, 8, 1]); // September 1
 
-var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, labels) {
+
+var RefugeeModel = function(
+  mapModel, asylumData, 
+  regionalData, peoplePerPoint, labels) {
   this.mapModel = mapModel;
   this.labels = labels;
   this.refugees = [];
@@ -34,6 +37,8 @@ var RefugeeModel = function(mapModel, asylumData, regionalData, peoplePerPoint, 
   console.timeEnd("refugee sorting");
   this._calculateMonthlyRefugeeSums();
 };
+
+
 
 
 RefugeeModel.prototype._addPeopleFromValidCountries = function(isAsylumSeeker) {
