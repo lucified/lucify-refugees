@@ -4,7 +4,8 @@ var _ = require('underscore');
 var MapModel = require('./map-model.js');
 
 var React = require('react');
-
+var BordersLayer = require('./refugee-map-borders-layer.jsx');
+var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
 
 
 var RefugeeMap = React.createClass({
@@ -16,13 +17,20 @@ var RefugeeMap = React.createClass({
   //}
 
 
+  getInitialState: function() {
+    return {
+        highlightedCountry: null,
+        time: 0};
+  },
+
+
   getDefaultProps: function() {
     return {
       width: 1200,
       height: 1200
     }
   },
-
+   
 
   componentDidMount: function() {
     this.tickCount = 0;
@@ -47,34 +55,17 @@ var RefugeeMap = React.createClass({
 
 
   update: function() {
+    this.setState({time: this.props.refugeeModel.currentMoment.unix()});
     this.drawRefugeeCounts();
-    this.updateCountryCountLabels();
+    //this.updateCountryCountLabels();
     this.renderCanvas();
     this.tickCount++;
   },
 
 
   initialize: function() {
-    var lo = 26.2206322; // x
-    var la = 46.0485818; // y
-
-    this.projection = d3.geo.mercator()
-      .center([0, la])
-      .rotate([-lo, 0])
-      .scale(this.getWidth()*0.55)
-      .translate([this.getWidth() / 2, this.getHeight() / 2]);
-
-    // this.projection = d3.geo.orthographic()
-    //   .center([0, la])
-    //   .rotate([-lo, 0])
-    //   .scale(this.height*0.55)
-    //   .translate([this.getWidth() / 2, this.height / 2]);
-
-    // only for debugging
-    window.projection = this.projection;
     this.initializePixiCanvas();
-    this.drawBorders();
-
+    
     d3.select('#canvas-wrap')
       .style('width', this.getWidth() + "px")
   },
@@ -140,7 +131,7 @@ var RefugeeMap = React.createClass({
 
   onRefugeeUpdated: function(r) {
     var loc = r.location;
-    var point = this.projection(loc);
+    var point = this.getProjection()(loc);
     r.sprite.position.x = point[0];
     r.sprite.position.y = point[1];
 
@@ -180,7 +171,7 @@ var RefugeeMap = React.createClass({
       bar.lineStyle(0);
       var asylumBarSize = refugeeCounts.asylumApplications / barSizeDivider;
       var refugeeBarSize = refugeeCounts.registeredRefugees / barSizeDivider;
-      var coordinates = this.projection(mapModel.getCenterPointOfCountry(country));
+      var coordinates = this.getProjection(mapModel.getCenterPointOfCountry(country));
       var asylumColor = 0xFFFFFF;
       var refugeeColor = 0xFFAD33;
       var bothBarsShown = (refugeeBarSize > 0 && asylumBarSize > 0);
@@ -221,106 +212,66 @@ var RefugeeMap = React.createClass({
   },
 
 
-  drawBorders: function() {
-    this._drawBorders(this.svg, 'subunit');
-    var sel = this._drawBorders(this.overlaySvg, 'subunit-invisible');
-
-    sel.on("mouseover", function(feature) {
-      this.handleMouseOver(feature.properties.ADM0_A3);
-    }.bind(this));
-
-    sel.on("mouseout", function(feature) {
-      this.handleMouseOut(feature.properties.ADM0_A3);
-    }.bind(this));
-  },
-
-
-  _drawBorders: function(svg, className) {
-    var path = d3.geo.path().projection(this.projection);
-    var sel = svg.selectAll('.' + className)
-      .data(this.props.mapModel.featureData.features)
-      .enter()
-        .append('path')
-        .classed(className, true)
-        .attr("d", path);
-
-    return sel;
-  },
-
-
   handleMouseOver: function(country) {
-    this.drawCountryLabel(country, "hovered");
-    this.showCountryCount(country);
-    this.highlightedCountry = country;
+    
+    this.setState({highlightedCountry: country});
+
+    //this.drawCountryLabel(country, "hovered");
+    //this.showCountryCount(country);
+    //this.highlightedCountry = country;
   },
 
 
   handleMouseOut: function(country) {
-    this.removeCountryLabel(country);
-    this.hideCountryCount(country);
-    this.highlightedCountry = null;
-    var i;
-    for (i = 0; i < this.highlightedDestinationCountries.length; i++) {
-      this.removeCountryLabel(this.highlightedDestinationCountries[i]);
+
+    //this.setState({highlightedCountry: null});
+
+    // this.removeCountryLabel(country);
+    // this.hideCountryCount(country);
+    // this.highlightedCountry = null;
+    // var i;
+    // for (i = 0; i < this.highlightedDestinationCountries.length; i++) {
+    //   this.removeCountryLabel(this.highlightedDestinationCountries[i]);
+    // }
+    // for (i = 0; i < this.highlightedOriginCountries.length; i++) {
+    //   this.removeCountryLabel(this.highlightedOriginCountries[i]);
+    // }
+    // this.highlightedDestinationCountries = [];
+    // this.highlightedOriginCountries = [];
+  },
+
+
+  // drawCountryLabel: function(country, type) {
+  //   var point = this.getProjection(this.props.mapModel.getCenterPointOfCountry(country));
+  //   this.svg.append("text")
+  //      .classed("country-label", true)
+  //      .classed(country, true)
+  //      .classed(type, true)
+  //      .attr("x", point[0])
+  //      .attr("y", point[1] + 15)
+  //      .text(this.props.mapModel.getFriendlyNameForCountry(country));
+  // },
+
+
+  // removeCountryLabel: function(country) {
+  //   this.svg.selectAll(".country-label." + country).remove();
+  // },
+
+  getProjection: function() {
+    if (!this._projection){
+
+      var lo = 26.2206322; // x
+      var la = 46.0485818; // y
+
+      this._projection = d3.geo.mercator()
+        .center([0, la])
+        .rotate([-lo, 0])
+        .scale(this.getWidth()*0.55)
+        .translate([this.getWidth() / 2, this.getHeight() / 2])
     }
-    for (i = 0; i < this.highlightedOriginCountries.length; i++) {
-      this.removeCountryLabel(this.highlightedOriginCountries[i]);
-    }
-    this.highlightedDestinationCountries = [];
-    this.highlightedOriginCountries = [];
+    return this._projection;
   },
 
-
-  showCountryCount: function(country) {
-    var point = this.projection(this.props.mapModel.getCenterPointOfCountry(country));
-    this.countryCountSelection = this.svg
-                                  .selectAll('.country-count')
-                                  .data([{country: country, point: point}]);
-
-    this.countryCountSelection.enter().append('text')
-      .classed("country-count", true)
-      .attr("x", function(data) { return data.point[0]; })
-      .attr("y", function(data) { return 30 + data.point[1]; });
-
-    this.updateCountryCountLabels();
-  },
-
-
-  hideCountryCount: function(country) {
-    this.countryCountSelection.remove();
-    this.countryCountSelection = null;
-  },
-
-
-  drawCountryLabel: function(country, type) {
-    var point = this.projection(this.props.mapModel.getCenterPointOfCountry(country));
-    this.svg.append("text")
-       .classed("country-label", true)
-       .classed(country, true)
-       .classed(type, true)
-       .attr("x", point[0])
-       .attr("y", point[1] + 15)
-       .text(this.props.mapModel.getFriendlyNameForCountry(country));
-  },
-
-
-  updateCountryCountLabels: function() {
-    if (this.tickCount % 5 != 0) {
-      return;
-    }
-
-    if (this.countryCountSelection) {
-      this.countryCountSelection.text(function(data) {
-        var counts = this.props.refugeeModel.getCurrentRefugeeTotal(data.country);
-        return counts.asylumApplications + counts.registeredRefugees;
-      }.bind(this));
-    }
-  },
-
-  
-  removeCountryLabel: function(country) {
-    this.svg.selectAll(".country-label." + country).remove();
-  },
 
 
   render: function() {
@@ -331,9 +282,33 @@ var RefugeeMap = React.createClass({
 
     return (
       <div className="refugee-map">
-        <svg ref="belowCanvas" style={style} />
+        
+        <BordersLayer 
+          mapModel={this.props.mapModel}
+          projection={this.getProjection()}
+          subunitClass="subunit"
+          width={this.getWidth()}
+          height={this.getHeight()} />
+
+        <CountryCountsLayer
+          refugeeModel={this.props.refugeeModel}
+          highlightedCountry={this.state.highlightedCountry}
+          mapModel={this.props.mapModel}
+          projection={this.getProjection()}
+          width={this.getWidth()}
+          height={this.getHeight()} />
+
         <canvas ref="canvas" style={style} />
-        <svg ref="aboveCanvas" style={style} />
+        
+        <BordersLayer
+          mapModel={this.props.mapModel}
+          projection={this.getProjection()}
+          subunitClass="subunit-invisible"
+          width={this.getWidth()}
+          height={this.getHeight()}
+          onMouseOver={this.handleMouseOver}
+          onMouseOut={this.handleMouseOut} />
+      
       </div>
     )
   }

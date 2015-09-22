@@ -60,7 +60,7 @@ gulp.task('html', function() {
 
 // sass
 gulp.task('sass', function() {
-  return gulp.src('./src/scss/**/*.scss')
+  return gulp.src('./src/scss/app.scss')
     .pipe(sass({
       includePaths: require('node-bourbon').includePaths
     }))

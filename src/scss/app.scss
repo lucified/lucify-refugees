@@ -9,7 +9,6 @@
 //	box-sizing: border-box;
 //}
 
-@import "refugee-map.scss";
 
 
 #canvas-wrap {
@@ -166,9 +165,10 @@ svg .country-label.origin {
 }
 
 svg .country-count {
-    fill: #ffffff;
-    opacity: 0.9;
-    font-family: $lucify-header-font;
-    text-anchor: middle;
-    font-size: 12px
+
 }
+
+
+@import "refugee-map.scss";
+
+
