@@ -7,6 +7,7 @@ var React = require('react');
 var BordersLayer = require('./refugee-map-borders-layer.jsx');
 var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
 var CountryLabelsLayer = require('./refugee-map-country-labels-layer.jsx');
+var CountBarsLayer = require('./refugee-map-count-bars-layer.jsx');
 
 
 var RefugeeMap = React.createClass({
@@ -62,8 +63,10 @@ var RefugeeMap = React.createClass({
 
   update: function() {
     this.setState({time: this.props.refugeeModel.currentMoment.unix()});
-    this.drawRefugeeCounts();
+    
+    //this.drawRefugeeCounts();
     //this.updateCountryCountLabels();
+    
     this.renderCanvas();
     this.tickCount++;
   },
@@ -111,9 +114,9 @@ var RefugeeMap = React.createClass({
     this.refugeeContainer.alpha = 1.0;
     this.stage.addChild(this.refugeeContainer);
 
-    this.barContainer = new PIXI.Container();
-    this.barContainer.alpha = 0.7;
-    this.stage.addChild(this.barContainer);
+    //this.barContainer = new PIXI.Container();
+    //this.barContainer.alpha = 0.7;
+    //this.stage.addChild(this.barContainer);
 
     this.refugeeTexture = new PIXI.Texture.fromImage(
       "one-white-pixel.png",
@@ -165,35 +168,33 @@ var RefugeeMap = React.createClass({
   },
 
 
-  drawRefugeeCounts: function() {
-    this.barContainer.removeChildren();
-    var barSizeDivider = 3000;
+  // drawRefugeeCounts: function() {
+  //   this.barContainer.removeChildren();
+  //   var barSizeDivider = 3000;
 
-    console.log("fdads");
+  //   // kludge. should produce country list in a better way
+  //   for (var country in this.props.refugeeModel.arrivedRefugeeCounts) {
+  //     var refugeeCounts = this.props.refugeeModel.getCurrentRefugeeTotal(country);
+  //     var bar = new PIXI.Graphics();
+  //     bar.lineStyle(0);
+  //     var asylumBarSize = refugeeCounts.asylumApplications / barSizeDivider;
+  //     var refugeeBarSize = refugeeCounts.registeredRefugees / barSizeDivider;
+  //     var coordinates = this.getProjection()(mapModel.getCenterPointOfCountry(country));
+  //     var asylumColor = 0xFFFFFF;
+  //     var refugeeColor = 0xFFAD33;
+  //     var bothBarsShown = (refugeeBarSize > 0 && asylumBarSize > 0);
 
-    // kludge. should produce country list in a better way
-    for (var country in this.props.refugeeModel.arrivedRefugeeCounts) {
-      var refugeeCounts = this.props.refugeeModel.getCurrentRefugeeTotal(country);
-      var bar = new PIXI.Graphics();
-      bar.lineStyle(0);
-      var asylumBarSize = refugeeCounts.asylumApplications / barSizeDivider;
-      var refugeeBarSize = refugeeCounts.registeredRefugees / barSizeDivider;
-      var coordinates = this.getProjection(mapModel.getCenterPointOfCountry(country));
-      var asylumColor = 0xFFFFFF;
-      var refugeeColor = 0xFFAD33;
-      var bothBarsShown = (refugeeBarSize > 0 && asylumBarSize > 0);
-
-      if (refugeeBarSize > 0) {
-        bar.beginFill(refugeeColor);
-        bar.drawRect(coordinates[0] + 1, coordinates[1], 5, -refugeeBarSize);
-      }
-      if (asylumBarSize > 0) {
-        bar.beginFill(asylumColor);
-        bar.drawRect(coordinates[0] - (bothBarsShown ? 6 : 2), coordinates[1], 5, -asylumBarSize);
-      }
-      this.barContainer.addChild(bar);
-    }
-  },
+  //     if (refugeeBarSize > 0) {
+  //       bar.beginFill(refugeeColor);
+  //       bar.drawRect(coordinates[0] + 1, coordinates[1], 5, -refugeeBarSize);
+  //     }
+  //     if (asylumBarSize > 0) {
+  //       bar.beginFill(asylumColor);
+  //       bar.drawRect(coordinates[0] - (bothBarsShown ? 6 : 2), coordinates[1], 5, -asylumBarSize);
+  //     }
+  //     this.barContainer.addChild(bar);
+  //   }
+  // },
 
 
   renderCanvas: function() {
@@ -276,6 +277,9 @@ var RefugeeMap = React.createClass({
         <CountryLabelsLayer
           {...this.getStandardLayerParams()}
           highlightedCountry={this.state.highlightedCountry} />
+
+        <CountBarsLayer
+          {...this.getStandardLayerParams()} />
 
         <canvas ref="canvas" style={style} />
         
