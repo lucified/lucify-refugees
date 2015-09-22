@@ -10,7 +10,7 @@ var CountBarsLayer = require('./refugee-map-count-bars-layer.jsx');
 var PointsLayer = require('./refugee-map-points-layer.jsx')
 
 var ControlsAndLegend = require('./refugee-map-controls-and-legend.jsx');
-
+var Time = require('./refugee-map-time.jsx');
 
 var RefugeeMap = React.createClass({
 
@@ -137,6 +137,8 @@ var RefugeeMap = React.createClass({
         <ControlsAndLegend
           speed={this.state.speed}
           onSpeedChange={this.handleSpeedChange} />
+
+        <Time currentMoment={this.props.refugeeModel.currentMoment} />
 
       </div>
     )

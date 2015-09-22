@@ -17,7 +17,7 @@ var RefugeeModel = function(
   this.peoplePerPoint = peoplePerPoint;
   this.refugeesOnPath = {};
   this.arrivedRefugeeCounts = {};
-  this.currentMoment = null;
+  this.currentMoment = moment();
   this.refugeeIndex = 0;
 
   this.onRefugeeStarted = null;
