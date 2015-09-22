@@ -200,6 +200,10 @@ RefugeeModel.prototype.update = function() {
   }
 
   this.activeRefugees = stillActive;
+
+  if (this.onModelUpdated) {
+    this.onModelUpdated();
+  }
 };
 
 

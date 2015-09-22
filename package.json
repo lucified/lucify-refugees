@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "area-polygon": "^1.0.1",
+    "babelify": "^6.3.0",
     "bluebird": "^2.10.0",
     "bower": "^1.5.2",
     "browser-sync": "^2.7.6",
@@ -53,6 +54,7 @@
     "polygon": "^1.0.2",
     "query-string": "^2.4.1",
     "randgen": "^0.1.0",
+    "react": "^0.13.3",
     "sprintf": "^0.1.5",
     "topojson": "^1.6.19",
     "underscore": "^1.8.3",

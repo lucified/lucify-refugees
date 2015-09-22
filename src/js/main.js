@@ -1,8 +1,8 @@
 var d3 = require('d3');
 var topojson = require('topojson');
 var _ = require('underscore');
-
 var moment = require('moment');
+var React = require('react');
 
 var RefugeeMap = require('./refugee-map.js');
 var RefugeeModel = require('./refugee-model.js');
@@ -53,9 +53,9 @@ var onceLoaded = function() {
   refugeeModel = new RefugeeModel(mapModel, asylumData, regionalData, peoplePerPoint, labels);
   console.timeEnd("init refugee model");
 
-  console.time("init map");
-  refugeeMap = new RefugeeMap(refugeeModel, mapModel);
-  console.timeEnd("init map");
+  //console.time("init map");
+  //refugeeMap = new RefugeeMap(refugeeModel, mapModel);
+  //console.timeEnd("init map");
 
   window.refugeeMap = refugeeMap;
   window.mapModel = mapModel;
@@ -66,6 +66,19 @@ var onceLoaded = function() {
     .classed("hide", false);
   d3.select('#speed')
     .classed("hide", false);
+
+
+  console.log("react entry point");
+
+  React.render(
+    <RefugeeMap 
+      refugeeModel={refugeeModel}
+      mapModel={mapModel} />,
+    document.getElementById('content')
+  );
+
+  console.log("after React.render");
+
   //runAnimation();
 
   if (AUTOSTART) {
@@ -126,7 +139,8 @@ var animate = function() {
   d3.select('#time')
     .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
   refugeeModel.update();
-  refugeeMap.update();
+  
+  //refugeeMap.update();
 
   requestAnimationFrame(animate);
 };

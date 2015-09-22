@@ -14,6 +14,7 @@ var streamify    = require('gulp-streamify');
 var shell        = require('gulp-shell');
 var connect      = require('gulp-connect');
 var prod         = gutil.env.prod;
+var babelify     = require('babelify');
 
 var execsyncs = require('gulp-execsyncs');
 
@@ -24,15 +25,21 @@ var onError = function(err) {
 };
 
 // bundling js with browserify and watchify
-var b = watchify(browserify('./src/js/main', {
+
+var config = {
   cache: {},
   packageCache: {},
   fullPaths: true
-}));
+}
+
+var b = watchify(
+  browserify('./src/js/main', config)
+    .transform(babelify.configure({stage: 1})));
 
 gulp.task('js', bundle);
 b.on('update', bundle);
 b.on('log', gutil.log);
+
 
 function bundle() {
   return b.bundle()
