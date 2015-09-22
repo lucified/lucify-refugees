@@ -8,7 +8,7 @@ var DATA_END_MOMENT = moment([2015, 8, 1]); // September 1
 
 
 var RefugeeModel = function(
-  mapModel, asylumData, 
+  mapModel, asylumData,
   regionalData, peoplePerPoint, labels) {
   this.mapModel = mapModel;
   this.labels = labels;
@@ -178,7 +178,7 @@ RefugeeModel.prototype.update = function() {
   // add new ones
   while ((r = this.refugees[this.refugeeIndex]) != null && r.isPastStartMoment(this.currentMoment)) {
     if (window.SMART_SPREAD_ENABLED) {
-      r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.startPoint, r.endPoint));
+      r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.originCountry, r.destinationCountry));
     }
     this.activeRefugees.push(r);
     this.refugeeIndex++;
@@ -195,7 +195,7 @@ RefugeeModel.prototype.update = function() {
 
     if (r.arrived) {
       if (window.SMART_SPREAD_ENABLED) {
-        this.refugeesOnPath[r.startPoint][r.endPoint]--;
+        this.refugeesOnPath[r.originCountry][r.destinationCountry]--;
       }
       this.onRefugeeFinished(r);
     } else {
