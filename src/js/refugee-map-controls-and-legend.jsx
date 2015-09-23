@@ -12,6 +12,15 @@ var RefugeeMapControlsAndLegend = React.createClass({
 	},
 
 
+	handleStampChange: function() {		
+		var node = React.findDOMNode(this.refs.stamp);
+		
+		if (this.props.onStampChange) {
+			this.props.onStampChange(node.value);	
+		}
+	},
+
+
 	render: function() {
 
 		return (
@@ -30,6 +39,18 @@ var RefugeeMapControlsAndLegend = React.createClass({
 	      				id="speed-control" step="1" 
 	      				onChange={this.handleInputChange} />
 	  			</div>
+
+				<div className="stamp">
+	      			<label htmlFor="speed-control">Time</label>
+	      			<input type="range" 
+	      				ref="stamp"
+	      				min={this.props.minStamp} max={this.props.maxStamp} 
+	      				value={this.props.stamp} 
+	      				id="time-control" 
+	      				onChange={this.handleStampChange} />
+	  			</div>
+
+
 
 			</div>
 		);

@@ -47,14 +47,27 @@ RefugeePointsModel.prototype._update = function(newStamp) {
 // as it will iterate through the whole array of refugees
 RefugeePointsModel.prototype._updateBackward = function(stamp) {
 	console.log("update backward");
+
 	this.activeRefugees = this.refugees.filter(function(r) {
-		return r.startMomentUnix > stamp & r.endMomentUnix < stamp;
+		return r.startMomentUnix < stamp && r.endMomentUnix > stamp;
 	});
 
+	var latestStamp = 0;
+	var latestRefugee;
 	this.refugeesOnPath = {};
 	this.activeRefugees.forEach(function(r) {
       	r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.originCountry, r.destinationCountry));
-	});
+		
+      	if (r.startMomentUnix > latestStamp) {
+      		latestStamp = r.startMomentUnix;
+      		latestRefugee = r;
+      	}
+		latestStamp = Math.max(latestStamp, r.startMomentUnix);
+	}.bind(this));
+
+	window.latestRefugee = latestRefugee;
+
+	this.refugeeIndex = this.refugees.indexOf(latestRefugee);
 }
 
 

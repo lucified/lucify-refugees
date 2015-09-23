@@ -12,6 +12,8 @@ var PointsLayer = require('./refugee-map-points-layer.jsx')
 var ControlsAndLegend = require('./refugee-map-controls-and-legend.jsx');
 var Time = require('./refugee-map-time.jsx');
 
+var constants = require('./refugee-constants.js');
+
 var RefugeeMap = React.createClass({
 
 
@@ -25,7 +27,9 @@ var RefugeeMap = React.createClass({
     return {
         highlightedCountry: null,
         stamp: this.props.startStamp, // unix timestamps (seconds-precision)
-        speed: 5};
+        speed: 3,
+        play: this.props.autoStart
+    }
   },
 
 
@@ -42,22 +46,35 @@ var RefugeeMap = React.createClass({
 
 
   componentDidMount: function() {
-    //this.props.refugeeModel.onModelUpdated = this.update;
+    window.rmap = this;
+    this.blockPlay = false;
+
+    this.scheduleUnblockPlay = _.debounce(function() {
+        console.log("unblocking play");
+        this.unblockPlay();
+    }, 500);
+
+    if (this.props.autoStart) {
+      this.play();
+    }
+  },
+
+
+  unblockPlay: function() {
+    this.blockPlay = false;
     this.play();
   },
 
 
   play: function() {
-      var newStamp = this.state.stamp + 60 * 60 * this.state.speed;
-      this.setState({stamp: newStamp});
-      requestAnimationFrame(this.play);
-  },
-
-
-  update: function() {
-    // this will trigger updates for child components
-    // (unless blocked by shouldComponentUpdate)
-    this.setState({time: this.props.refugeeModel.currentMoment.unix()});
+      if (this.state.stamp < constants.DATA_END_MOMENT.unix()) {
+        if (!this.blockPlay && this.state.play) {
+          var increment = (60 * 60 * this.state.speed);
+          var newStamp = this.state.stamp + increment;
+          this.setState({stamp: newStamp});  
+          requestAnimationFrame(this.play);    
+        }
+      }
   },
 
 
@@ -111,9 +128,17 @@ var RefugeeMap = React.createClass({
   },
 
 
+  handleStampChange: function(newStamp) {
+    this.blockPlay = true;
+    this.setState({stamp: parseInt(newStamp)});
+    this.scheduleUnblockPlay();
+  },
+
+
   handleSpeedChange: function(newSpeed) {
-    window.TRAILS_ENABLED = (newSpeed <= 12);
-    window.SPEED_RATIO = 60 * 60 * 24 * newSpeed;
+    //window.TRAILS_ENABLED = (newSpeed <= 12);
+    //window.SPEED_RATIO = 60 * 60 * 24 * newSpeed;
+    console.log("in handlespeedchange");
     this.setState({speed: newSpeed});
   },
 
@@ -155,7 +180,13 @@ var RefugeeMap = React.createClass({
         
         <ControlsAndLegend
           speed={this.state.speed}
-          onSpeedChange={this.handleSpeedChange} />
+          stamp={this.state.stamp}
+          minStamp={this.props.startStamp}
+          maxStamp={constants.DATA_END_MOMENT.unix()}
+          onSpeedChange={this.handleSpeedChange} 
+          onStampChange={this.handleStampChange} />
+
+        <Time stamp={this.state.stamp} />
 
       </div>
     )

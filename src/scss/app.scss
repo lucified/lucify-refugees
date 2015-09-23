@@ -106,12 +106,12 @@ a:hover {
   border: 0px solid white;
   font-family: monospace;
   font-size: 16px;
-  background-color: rgba(50, 50, 50, 0.7);
   color: $lucify-cyan;
   padding: 0.5rem;
 }
 
 .legend {
+  background-color: rgba(50, 50, 50, 0.7);
   font-family: monospace;
   font-size: 16px;
   padding: 0.5rem;
@@ -120,14 +120,34 @@ a:hover {
 }
 
 .speed {
+  background-color: rgba(50, 50, 50, 0.7);
   z-index: 1;
-  padding-right: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+
+  label {
+    padding-right: 0.5rem;
+  }
 }
 
+.stamp {
+  background-color: rgba(50, 50, 50, 0.7);
+  z-index: 1;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+    label {
+    padding-right: 0.5rem;
+  }
+}
 
 #speed-control {
   width: 70%;
 }
+
+#time-control {
+  width: 70%;
+}
+
 
 .hide {
   display: none;

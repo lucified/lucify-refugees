@@ -132,11 +132,16 @@ var RefugeeMapPointsLayer = React.createClass({
         this.refugeeContainer.addChild(r.sprite);
 
     }.bind(this));
-   
-    this.renderer.clearBeforeRender = !window.TRAILS_ENABLED;
+    
+    var diff = this.props.stamp - this.previousStamp;
+    var trailsEnabled = (diff > 0) && (diff < 60 * 60 * 5);
+    
+    this.previousStamp = this.props.stamp;
+
+    this.renderer.clearBeforeRender = !trailsEnabled;
     this.renderer.render(this.stage);
 
-    if (window.TRAILS_ENABLED) {
+    if (trailsEnabled) {
       // snippet adapted from earth.js
       // https://github.com/cambecc/earth/blob/master/public/libs/earth/1.0.0/earth.js
       // see draw()-function
