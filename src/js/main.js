@@ -5,7 +5,10 @@ var moment = require('moment');
 var React = require('react');
 
 var RefugeeMap = require('./refugee-map.js');
-var RefugeeModel = require('./refugee-model.js');
+var RefugeeCountsModel = require('./refugee-counts-model.js');
+var RefugeePointsModel = require('./refugee-points-model.js');
+var createFullPointsList = require('./create-full-point-list.js');
+
 var MapModel = require('./map-model.js');
 
 var Promise = require("bluebird");
@@ -35,7 +38,8 @@ var topomap;
 var asylumData;
 var regionalData;
 var labels;
-var refugeeModel;
+var refugeePointsModel;
+var refugeeCountsModel;
 var refugeeMap;
 
 var onceLoaded = function() {
@@ -49,37 +53,36 @@ var onceLoaded = function() {
   var mapModel = new MapModel(features, labels);
   console.timeEnd("init map model");
 
-  console.time("init refugee model");
-  refugeeModel = new RefugeeModel(mapModel, asylumData, regionalData, peoplePerPoint, labels);
-  console.timeEnd("init refugee model");
+  console.time("create points list");
+  var pointsList = createFullPointsList(mapModel, asylumData, regionalData, peoplePerPoint);
+  console.timeEnd("create points list");
 
-  //console.time("init map");
-  //refugeeMap = new RefugeeMap(refugeeModel, mapModel);
-  //console.timeEnd("init map");
+  console.time("init refugee points model");
+  refugeePointsModel = new RefugeePointsModel(pointsList);
+  console.timeEnd("init refugee points model");
 
-  window.refugeeMap = refugeeMap;
+  refugeeCountsModel = new RefugeeCountsModel(asylumData, regionalData);
+
+  window.refugeeCountsModel = refugeeCountsModel;
+  window.refugeePointsModel = refugeePointsModel;
   window.mapModel = mapModel;
 
   d3.select('#people-per-point')
     .text(peoplePerPoint);
   
-
   React.render(
     <RefugeeMap 
-      refugeeModel={refugeeModel}
+      startStamp={Math.round(START_TIME.getTime() / 1000)}
+      autoStart={AUTOSTART}
+      refugeeCountsModel={refugeeCountsModel}
+      refugeePointsModel={refugeePointsModel}
       mapModel={mapModel} />,
     document.getElementById('content')
   );
 
-
-  //runAnimation();
-
-  if (AUTOSTART) {
-    start();
-  }
-
-  //startc();
-  //run();
+  //if (AUTOSTART) {
+  //  start();
+  //}
 };
 
 
@@ -125,15 +128,13 @@ var animate = function() {
   var millis = -previousMoment.diff();
   var modelMillis = millis * window.SPEED_RATIO;
 
-  if (!refugeeModel.currentMoment.isAfter(END_OF_DATA)) {
-    refugeeModel.currentMoment.add(modelMillis);
-    previousMoment.add(millis);
-  }
+  //
+  //if (!refugeeModel.currentMoment.isAfter(END_OF_DATA)) {
+  //  refugeeModel.currentMoment.add(modelMillis);
+  //  previousMoment.add(millis);
+  //}
 
-  d3.select('#time')
-    .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
-  refugeeModel.update();
-  
+  //refugeeModel.update();
   //refugeeMap.update();
 
   requestAnimationFrame(animate);
@@ -163,38 +164,6 @@ var tick100 = function() {
 window.tick = tick;
 window.tick100 = tick100;
 
-
-// // runner option a
-// // ---------------
-
-// var count = 0;
-
-// var runAnimation = function() {
-// 	console.time("50 frames");
-// 	refugeeModel.currentMoment = moment(START_TIME);
-
-// 	var intervalId = window.setInterval(function() {
-
-// 		refugeeModel.currentMoment.add(STEP_DURATION);
-// 		refugeeModel.updateActiveRefugees();
-
-// 		refugeeMap.drawRefugeePositions();
-// 		refugeeMap.drawRefugeeCounts();
-// 		refugeeMap.render();
-
-// 		d3.select('#time')
-// 			.text(refugeeModel.currentMoment.format('MMM YYYY'));
-
-// 		count++;
-// 		if (count == 50) {
-// 			console.timeEnd("50 frames");
-// 		}
-
-// 		if (refugeeModel.currentMoment.isAfter(END_OF_DATA)) {
-// 			clearInterval(intervalId);
-// 		}
-// 	}, 0);
-// }
 
 
 load();

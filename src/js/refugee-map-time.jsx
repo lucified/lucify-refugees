@@ -1,13 +1,13 @@
 
 var React = require('react');
 var d3 = require('d3');
-
+var moment = require('moment');
 
 var RefugeeMapTime = React.createClass({
 
 
 	getFriendlyTime: function() {
-		return this.props.currentMoment.format('DD.MM.YYYY');
+		return moment(new Date(this.props.stamp * 1000)).format('DD.MM.YYYY');
 	},
 
 	render: function() {

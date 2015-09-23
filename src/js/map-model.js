@@ -102,7 +102,7 @@ MapModel.prototype.getCenterPointOfCountry = function(country) {
   if (!this._countryCentersCache[country]) {
     var feature = this.getFeatureForCountry(country);
     if (feature == null) {
-      console.log("could not find feature for " + country);
+      //console.log("could not find feature for " + country);
       return [0, 0];
     }
     this._countryCentersCache[country] = d3.geo.centroid(feature);

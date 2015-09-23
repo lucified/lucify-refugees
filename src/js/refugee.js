@@ -6,7 +6,9 @@ var randgen = require('randgen');
 var KILOMETERS_PER_DEGREE = 111;
 
 // single refugee
-var Refugee = function(startPoint, endPoint, originCountry, destinationCountry, speed, endMoment, isAsylumSeeker) {
+var Refugee = function(startPoint, endPoint, originCountry, 
+  destinationCountry, speed, endMoment, isAsylumSeeker) {
+  
   this.startPoint = startPoint;
   this.endPoint = endPoint;
   this.originCountry = originCountry;
@@ -20,9 +22,10 @@ var Refugee = function(startPoint, endPoint, originCountry, destinationCountry, 
     this.sideDeviation = randgen.rnorm(0, 1); // mean, std. deviation
     this.maxSideDeviation = 0.3;
   }
-  this.arrived = false;
 
   this.startMoment = this._getStartMoment();
+
+  // these are unix second-precision timestamp
   this.startMomentUnix = this.startMoment.unix();
   this.endMomentUnix = this.endMoment.unix();
 
@@ -70,14 +73,12 @@ Refugee.prototype.isPastStartMoment = function(mom) {
 };
 
 
-Refugee.prototype.update = function(mom) {
-  if (mom.unix() > this.endMomentUnix) {
-    this.arrived = true;
-    this.location = this.endPoint;
-    return;
+Refugee.prototype.getLocation = function(stamp) {
+  if (stamp > this.endMomentUnix) {
+    return this.endPoint;
   }
 
-  var hours = (this.getStartMoment().valueOf() - mom.valueOf()) / (1000 * 60 * 60);
+  var hours = (this.startMomentUnix - stamp) / (60 * 60);
   var distance = hours * this.speed / KILOMETERS_PER_DEGREE;
   var v = [
     this.startPoint[0] + this.directionVector.x * distance,
@@ -91,8 +92,10 @@ Refugee.prototype.update = function(mom) {
     v[1] += this.directionVector.x * sideMotionAmount;
   }
 
-  this.location = v;
+  return v;
 };
+
+
 
 
 module.exports = Refugee;

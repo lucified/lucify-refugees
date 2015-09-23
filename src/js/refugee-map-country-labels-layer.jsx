@@ -10,9 +10,11 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
   getDestinationCountries: function() {
-    var destinationCountries = this.props.refugeeModel.refugeesOnPath[this.props.highlightedCountry];
+    var destinationCountries = this.props.refugeePointsModel
+      .refugeesOnPath[this.props.highlightedCountry];
     if (destinationCountries) {
-      return _.keys(_.pick(destinationCountries, function(count, country) { return count > 0; }));
+      return _.keys(_.pick(destinationCountries, 
+        function(count, country) { return count > 0; }));
     } else {
       return [];
     }
@@ -20,7 +22,7 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
   getOriginCountries: function() {
-    return _.keys(_.pick(this.props.refugeeModel.refugeesOnPath,
+    return _.keys(_.pick(this.props.refugeePointsModel.refugeesOnPath,
       function(destinationCountries, originCountry) {
         return destinationCountries[this.props.highlightedCountry] &&
           destinationCountries[this.props.highlightedCountry] > 0;
@@ -39,6 +41,7 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
   	);
   },
 
+
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.highlightedCountry !== this.props.highlightedCountry) {
       this.storedDestinationCountries = [];
@@ -49,11 +52,11 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
     }
   },
 
-/*
-  shouldComponentUpdate: function(nextProps, nextState) {
-  	return nextProps.highlightedCountry !== this.props.highlightedCountry;
-  },
-*/
+  /*
+    shouldComponentUpdate: function(nextProps, nextState) {
+    	return nextProps.highlightedCountry !== this.props.highlightedCountry;
+    },
+  */
 
   renderCountryLabels: function() {
   	var items = [];
@@ -68,7 +71,7 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
   		items.push(this.renderCountryLabel(country, "destination"));
   	}.bind(this));
 
-	  this.storedOriginCountries.map(function(country) {
+    this.storedOriginCountries.map(function(country) {
   		items.push(this.renderCountryLabel(country, "origin"));
   	}.bind(this));
 
@@ -83,7 +86,7 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 		    {this.renderCountryLabels()}
 		 </svg>
 		)
-   }
+  }
 
 
 });

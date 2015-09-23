@@ -9,7 +9,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
   renderBar: function(country) {
       var barSizeDivider = 3000;
 
-      var refugeeCounts = this.props.refugeeModel.getCurrentRefugeeTotal(country);
+      var refugeeCounts = this.props.refugeeCountsModel.getTotalDestinationCounts(country, this.props.stamp);
       
       var asylumBarSize = refugeeCounts.asylumApplications / barSizeDivider;
       var refugeeBarSize = refugeeCounts.registeredRefugees / barSizeDivider;
@@ -47,15 +47,11 @@ var RefugeeMapCountBarsLayer = React.createClass({
 
   getBarItems: function() {
       var items = [];
-
-      if (this.props.refugeeModel.currentMoment == null) {
-         return items;
-      }
-
-      // kludge. should produce country list in a better way
-      for (var country in this.props.refugeeModel.arrivedRefugeeCounts) {
+   
+      this.props.refugeeCountsModel.getDestinationCountries().forEach(function(country) {
          items.push(this.renderBar(country));
-      }
+      }.bind(this));
+
       return items;
    },
 

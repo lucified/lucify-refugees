@@ -1,3 +1,9 @@
+
+// TO BE REMOVED SOON
+// 
+// this class has been refactored into
+// three smaller classes
+
 var _ = require('underscore');
 var Refugee = require('./refugee.js');
 var moment = require('moment');
@@ -10,6 +16,7 @@ var DATA_END_MOMENT = moment([2015, 8, 1]); // September 1
 var RefugeeModel = function(
   mapModel, asylumData,
   regionalData, peoplePerPoint, labels) {
+  
   this.mapModel = mapModel;
   this.labels = labels;
   this.refugees = [];
@@ -40,6 +47,7 @@ var RefugeeModel = function(
 
 
 
+// MOVE INTO FACTORY ?
 
 RefugeeModel.prototype._addPeopleFromValidCountries = function(isAsylumSeeker) {
   return function(item) {
@@ -60,6 +68,8 @@ RefugeeModel.prototype._addPeopleFromValidCountries = function(isAsylumSeeker) {
     }
   };
 };
+
+// MOVE INTO FACTORY ?  
 
 // this.arrivedRefugeesCounts is a hash with the country as a key. Each country is a 2D array:
 // country[year][month], with year and month 0-based. Year 0 is DATA_START_YEAR.
@@ -134,6 +144,19 @@ RefugeeModel.prototype._calculateMonthlyRefugeeSums = function () {
   }
 };
 
+
+
+
+
+// API
+
+//getRefugeeTotals(startCountry, endCountry, startTime, endTime);
+//getRefugeeTotal(country, startTime, endTime)
+//refugeesOnPath(startCountry, endCountry, startTime, endTime)
+//activeRefugees(startTime, endTime)
+
+
+
 RefugeeModel.prototype.getCurrentRefugeeTotal = function(countryName) {
   var mom;
   if (this.currentMoment.isAfter(DATA_END_MOMENT)) {
@@ -159,6 +182,10 @@ RefugeeModel.prototype.getCurrentRefugeeTotal = function(countryName) {
   }
 };
 
+
+/*
+ * Add info on how many refugees are currently on a given route
+ */
 RefugeeModel.prototype._increaseRefugeeEnRoute = function(start, end) {
   if (!(start in this.refugeesOnPath)) {
     this.refugeesOnPath[start] = {};
@@ -171,6 +198,7 @@ RefugeeModel.prototype._increaseRefugeeEnRoute = function(start, end) {
 
   return this.refugeesOnPath[start][end];
 };
+
 
 RefugeeModel.prototype.update = function() {
   var r;
@@ -220,12 +248,19 @@ RefugeeModel.prototype.prepareRefugeeSpeed = function() {
 };
 
 
+/*
+ * Get an end moment for a random refugee that 
+ * has arrived at given month (zero-based) and year
+ */
 RefugeeModel.prototype.prepareRefugeeEndMoment = function(month, year) {
   return moment(new Date(year, month, 1).getTime() +
     Math.random() * utils.daysInMonth(month, year) * 86400000); // ms in day
 };
 
-// note: month is 0-based
+
+/*
+ * Create a refugee
+ */
 RefugeeModel.prototype.createRefugee = function(startCountry, endCountry, month, year, isAsylumSeeker) {
   var r = new Refugee(
     window.RANDOM_START_POINT ? this.mapModel.getRandomPointFromCountry(startCountry) : this.mapModel.getCenterPointOfCountry(startCountry),

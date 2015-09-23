@@ -18,7 +18,9 @@ var RefugeeMapCountryCountsLayer = React.createClass({
 
       var point = this.props.projection(
          this.props.mapModel.getCenterPointOfCountry(this.props.highlightedCountry));
-      var counts = this.props.refugeeModel.getCurrentRefugeeTotal(this.props.highlightedCountry);
+      
+      var counts = this.props.refugeeCountsModel.getTotalDestinationCounts(
+        this.props.highlightedCountry, this.props.stamp);
       var val = counts.asylumApplications + counts.registeredRefugees;
 
       return (

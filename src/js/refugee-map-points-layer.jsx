@@ -11,9 +11,9 @@ var RefugeeMapPointsLayer = React.createClass({
        this.sprites = {};
 
        // this could also be in componentWillReceiveProps
-       this.props.refugeeModel.onRefugeeUpdated = this.onRefugeeUpdated;
-       this.props.refugeeModel.onRefugeeFinished = this.onRefugeeFinished;
-       this.props.refugeeModel.onRefugeeStarted = this.onRefugeeStarted;
+       // this.props.refugeeModel.onRefugeeUpdated = this.onRefugeeUpdated;
+       // this.props.refugeeModel.onRefugeeFinished = this.onRefugeeFinished;
+       // this.props.refugeeModel.onRefugeeStarted = this.onRefugeeStarted;
 
        this.initializePixiCanvas();
    },
@@ -104,9 +104,34 @@ var RefugeeMapPointsLayer = React.createClass({
 
   renderCanvas: function() {
 
-    // for some strange reason the trails
-    // do not work unless there is some other
-    // graphic on the stage 
+    this.refugeeContainer.removeChildren();
+
+    this.props.refugeePointsModel.forEachActiveRefugee(this.props.stamp, function(r) {
+        if (!r.sprite) {
+          r.sprite = new PIXI.Sprite(this.refugeeTexture);
+          r.sprite.alpha = 1.0;
+        }
+
+        var loc = r.getLocation(this.props.stamp);
+        var point = this.props.projection(loc);
+        r.sprite.position.x = point[0];
+        r.sprite.position.y = point[1];
+
+        if (this.props.highlightedCountry == null) {
+             r.sprite.alpha = 1.0; // make all solid
+        } else {
+           if (r.originCountry == this.props.highlightedCountry) {
+             r.sprite.alpha = 1.0;
+           } else if (r.destinationCountry == this.props.highlightedCountry) {
+             r.sprite.alpha = 1.0;
+           } else {
+             r.sprite.alpha = 0.10;
+           }
+        }
+
+        this.refugeeContainer.addChild(r.sprite);
+
+    }.bind(this));
    
     this.renderer.clearBeforeRender = !window.TRAILS_ENABLED;
     this.renderer.render(this.stage);

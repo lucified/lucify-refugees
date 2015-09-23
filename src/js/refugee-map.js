@@ -24,7 +24,7 @@ var RefugeeMap = React.createClass({
   getInitialState: function() {
     return {
         highlightedCountry: null,
-        time: 0,
+        stamp: this.props.startStamp, // unix timestamps (seconds-precision)
         speed: 5};
   },
 
@@ -36,9 +36,21 @@ var RefugeeMap = React.createClass({
     }
   },
    
+  componentWillMount: function() {
+
+  },
+
 
   componentDidMount: function() {
-    this.props.refugeeModel.onModelUpdated = this.update;
+    //this.props.refugeeModel.onModelUpdated = this.update;
+    this.play();
+  },
+
+
+  play: function() {
+      var newStamp = this.state.stamp + 60 * 60 * this.state.speed;
+      this.setState({stamp: newStamp});
+      requestAnimationFrame(this.play);
   },
 
 
@@ -60,7 +72,6 @@ var RefugeeMap = React.createClass({
 
 
   handleMouseOver: function(country) {
-    
     var hl = country == "RUS" ? null : country;
     this.setState({highlightedCountry: hl});
   },
@@ -92,10 +103,10 @@ var RefugeeMap = React.createClass({
   getStandardLayerParams: function() {
     return {
       mapModel: this.props.mapModel,
-      refugeeModel: this.props.refugeeModel,
       projection: this.getProjection(),
       width: this.getWidth(),
       height: this.getHeight(),
+      stamp: this.state.stamp,
     }
   },
 
@@ -116,21 +127,26 @@ var RefugeeMap = React.createClass({
           {...this.getStandardLayerParams()}
           subunitClass="subunit" />
 
-        <CountryCountsLayer
-          {...this.getStandardLayerParams()}
-          highlightedCountry={this.state.highlightedCountry} />
-
         <CountryLabelsLayer
           {...this.getStandardLayerParams()}
+          refugeeCountsModel={this.props.refugeeCountsModel} 
+          refugeePointsModel={this.props.refugeePointsModel} 
           highlightedCountry={this.state.highlightedCountry} />
 
+        <CountryCountsLayer
+          {...this.getStandardLayerParams()}
+          highlightedCountry={this.state.highlightedCountry}
+          refugeeCountsModel={this.props.refugeeCountsModel}  />
+
         <CountBarsLayer
-          {...this.getStandardLayerParams()} />
+          {...this.getStandardLayerParams()}
+          refugeeCountsModel={this.props.refugeeCountsModel} />
 
         <PointsLayer
           {...this.getStandardLayerParams()}
-          highlightedCountry={this.state.highlightedCountry} />
-        
+          highlightedCountry={this.state.highlightedCountry}
+          refugeePointsModel={this.props.refugeePointsModel} />
+
         <BordersLayer
           {...this.getStandardLayerParams()}
           subunitClass="subunit-invisible"
@@ -141,15 +157,13 @@ var RefugeeMap = React.createClass({
           speed={this.state.speed}
           onSpeedChange={this.handleSpeedChange} />
 
-        <Time currentMoment={this.props.refugeeModel.currentMoment} />
-
       </div>
     )
   }
-
-
 });
 
 
 
 module.exports = RefugeeMap;
+
+
