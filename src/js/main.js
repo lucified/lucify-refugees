@@ -64,8 +64,6 @@ var onceLoaded = function() {
     .text(peoplePerPoint);
   
 
-  console.log("react entry point");
-
   React.render(
     <RefugeeMap 
       refugeeModel={refugeeModel}
@@ -73,7 +71,6 @@ var onceLoaded = function() {
     document.getElementById('content')
   );
 
-  console.log("after React.render");
 
   //runAnimation();
 

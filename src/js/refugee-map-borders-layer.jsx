@@ -42,10 +42,12 @@ var RefugeeMapBordersLayer = React.createClass({
       var path = d3.geo.path().projection(this.props.projection);
 
       return this.props.mapModel.featureData.features.map(function(feature) {
+         var country = feature.properties.ADM0_A3;
          return <path 
+            key={country}
             className={this.props.subunitClass}
-            onMouseOver={this.onMouseOver.bind(this, feature.properties.ADM0_A3)}
-            onMouseOut={this.onMouseOut.bind(this, feature.properties.ADM0_A3)} 
+            onMouseOver={this.onMouseOver.bind(this, country)}
+            onMouseOut={this.onMouseOut.bind(this, country)} 
             d={path(feature)} />
       }.bind(this));
    },
