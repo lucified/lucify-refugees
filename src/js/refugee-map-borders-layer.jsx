@@ -32,12 +32,13 @@ var RefugeeMapBordersLayer = React.createClass({
 
 
    shouldComponentUpdate: function(nextProps, nextState) {
-      return false;
-      //return nextProps.highlightedCountry !== this.props.highlightedCountry;
+      return nextProps.highlightedCountry !== this.props.highlightedCountry;
    },
 
 
    getPaths: function() {
+      // while we use React to manage the DOM,
+      // we still use D3 to calculate the path
       var path = d3.geo.path().projection(this.props.projection);
 
       return this.props.mapModel.featureData.features.map(function(feature) {
