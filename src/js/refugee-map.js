@@ -164,7 +164,7 @@ var RefugeeMap = React.createClass({
 
         <CountryCountsLayer
           {...this.getStandardLayerParams()}
-          highlightedCountry={this.state.highlightedCountry}
+          {...this.getHighlightLayerParams()}
           refugeeCountsModel={this.props.refugeeCountsModel}  />
 
         <CountBarsLayer

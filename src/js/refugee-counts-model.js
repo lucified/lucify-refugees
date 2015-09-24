@@ -210,6 +210,13 @@ RefugeeCountsModel.prototype.getOriginCountries = function(destinationCountry, e
 	});
 }
 
+/*
+ * Get counts of asylum seekers and refugees who
+ * have arrived at destinationCountry before endStamp
+ *
+ * Returned as a hash with the country code of each
+ * origin country as key
+ */
 RefugeeCountsModel.prototype.getDestinationCountsByOriginCountries = function(destinationCountry, endStamp) {
   var ret = {};
   _.keys(this.pairCounts[destinationCountry]).forEach(function(originCountry){

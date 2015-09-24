@@ -1,38 +1,49 @@
 
 var React = require('react');
 var d3 = require('d3');
+var _ = require('underscore');
 
 
 var RefugeeMapCountryCountsLayer = React.createClass({
-
-
-   getDefaultProps: function() {
-      return {highlightedCountry: null};
-   },
   
 
-   renderText: function() {
-      if (this.props.highlightedCountry === null) {
+   renderText: function(country, count) {
+      if (this.props.country === null) {
          return null;
       }
 
       var point = this.props.projection(
-         this.props.mapModel.getCenterPointOfCountry(this.props.highlightedCountry));
-      
-      var counts = this.props.refugeeCountsModel.getTotalDestinationCounts(
-        this.props.highlightedCountry, this.props.stamp);
-      var val = counts.asylumApplications + counts.registeredRefugees;
-
+         this.props.mapModel.getCenterPointOfCountry(country));
       return (
-         <text x={point[0]} y={point[1] + 30}>{val}</text>
+         <text key={country} x={point[0]} y={point[1] + 30}>{count}</text>
       );
    },
+
+
+   renderTexts: function() {
+      var items = [];
+      var totalCount = 0;
+
+      var counts = this.props.refugeeCountsModel
+        .getDestinationCountsByOriginCountries(this.props.country, this.props.stamp);
+
+      this.props.originCountries.forEach(function(country) {
+        var cc = counts[country]
+        var val = cc.asylumApplications + cc.registeredRefugees;
+        items.push(this.renderText(country, val));
+        totalCount += val;
+      }.bind(this));
+      
+      items.push(this.renderText(this.props.country, totalCount));
+      return items;
+   },
+
 
    render: function() {
         return (
          <svg className="refugee-map__country-counts-layer"
             style={{width: this.props.width, height: this.props.height}}>
-            {this.renderText()}
+            {this.renderTexts()}
          </svg> 
         )
     }
