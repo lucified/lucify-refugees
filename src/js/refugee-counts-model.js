@@ -247,6 +247,11 @@ RefugeeCountsModel.prototype.getDestinationCountsByOriginCountries = function(de
 };
 
 
+//RefugeeCountsModel.prototype.getPairCount = function(destinationCountry, originCountry, endStamp) {
+//  return this._prepareTotalCount(this.pairCounts[destinationCountry][originCountry], endStamp);
+//}
+
+
 RefugeeCountsModel.prototype.getOriginCountsByDestinationCountries = function(originCountry, endStamp) {
   var ret = {};
   _.keys(this.pairCountsByOrigin[originCountry]).forEach(function(destinationCountry){

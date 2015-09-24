@@ -161,22 +161,25 @@ svg .subunit {
   opacity: 1.0;
 }
 
-svg .subunit--hovered {
-  fill: rgba(255, 255, 255, 0.25);
-}
 
 svg .subunit--destination {
   opacity: 0.5;
-  //fill: #C9F0CE;
   fill: rgba(95, 196, 114, 0.25);
 }
 
 svg .subunit--origin {
-  opacity: 1.0;
-  //fill: #FFC4D8;
-  fill: rgba(190, 88, 179, 0.15);
+  //opacity: 1.0;
+  //fill: rgba(190, 88, 179, 0.15);
 }
 
+svg .subunit--overlay {
+  stroke: transparent;
+  fill: transparent;
+}
+
+svg .subunit--hovered {
+  fill: rgba(255, 255, 255, 0.10);
+}
 
 svg .subunit-invisible {
   fill: transparent;
