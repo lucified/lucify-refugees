@@ -6,8 +6,6 @@ var _ = require('underscore');
 var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
-
-
   /*
     shouldComponentUpdate: function(nextProps, nextState) {
     	return nextProps.highlightedCountry !== this.props.highlightedCountry;

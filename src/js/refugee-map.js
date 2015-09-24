@@ -156,6 +156,7 @@ var RefugeeMap = React.createClass({
         
         <BordersLayer 
           {...this.getStandardLayerParams()}
+          {...this.getHighlightLayerParams()}
           subunitClass="subunit" />
 
         <CountryLabelsLayer
