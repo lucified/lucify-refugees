@@ -16,7 +16,6 @@ var RefugeeMapBorder = React.createClass({
    },
 
    onMouseOver: function(){
-      console.log("over counry" + this.props.country);
       this.props.onMouseOver(this.props.country);
    },
 

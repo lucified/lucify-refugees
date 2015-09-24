@@ -9,8 +9,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
   renderBar: function(country) {
       var barSizeDivider = 3000;
 
-      var refugeeCounts = this.props.refugeeCountsModel.getTotalDestinationCounts(country, this.props.stamp);
-      
+      var refugeeCounts = this.props.refugeeCountsModel.getTotalDestinationCounts(country, this.props.stamp);     
       var asylumBarSize = refugeeCounts.asylumApplications / barSizeDivider;
       var refugeeBarSize = refugeeCounts.registeredRefugees / barSizeDivider;
       var coordinates = this.props.projection(mapModel.getCenterPointOfCountry(country));
@@ -48,9 +47,19 @@ var RefugeeMapCountBarsLayer = React.createClass({
   getBarItems: function() {
       var items = [];
    
-      this.props.refugeeCountsModel.getDestinationCountries().forEach(function(country) {
-         items.push(this.renderBar(country));
-      }.bind(this));
+      var countries = this.props.refugeeCountsModel.getDestinationCountries();
+
+      if (this.props.highlightedCountry != null) {
+      
+        if (countries.indexOf(this.props.highlightedCountry) != -1) {
+          items.push(this.renderBar(this.props.highlightedCountry));
+        }
+        
+      } else {
+        countries.forEach(function(country) {
+           items.push(this.renderBar(country));
+        }.bind(this));
+      }
 
       return items;
    },

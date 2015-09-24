@@ -144,7 +144,6 @@ var RefugeeMap = React.createClass({
   handleSpeedChange: function(newSpeed) {
     //window.TRAILS_ENABLED = (newSpeed <= 12);
     //window.SPEED_RATIO = 60 * 60 * 24 * newSpeed;
-    console.log("in handlespeedchange");
     this.setState({speed: newSpeed});
   },
 
@@ -170,6 +169,7 @@ var RefugeeMap = React.createClass({
 
         <CountBarsLayer
           {...this.getStandardLayerParams()}
+          highlightedCountry={this.state.highlightedCountry}
           refugeeCountsModel={this.props.refugeeCountsModel} />
 
         <PointsLayer
