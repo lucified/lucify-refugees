@@ -26,10 +26,13 @@ var RefugeeMapCountryCountsLayer = React.createClass({
 
    renderTexts: function() {
       var items = [];
-      var totalCount = 0;
+      
 
       var counts = this.props.refugeeCountsModel
         .getDestinationCountsByOriginCountries(this.props.country, this.props.stamp);
+
+      var totalReceivedCount = 0;
+      var totalLeftCount = 0;
 
       _.difference(this.props.originCountries, refugeeConstants.disableLabels)
         .forEach(function(country) {
@@ -37,7 +40,7 @@ var RefugeeMapCountryCountsLayer = React.createClass({
         if (cc != null) { 
           var val = cc.asylumApplications + cc.registeredRefugees;
           items.push(this.renderText(country, val));
-          totalCount += val;
+          totalReceivedCount += val;
         }
       }.bind(this));
       
@@ -48,11 +51,30 @@ var RefugeeMapCountryCountsLayer = React.createClass({
         .forEach(function(country) {
         var cc = counts[country]
         if (cc != null) {
+          var val = cc.asylumApplications + cc.registeredRefugees;
           items.push(this.renderText(country, cc.asylumApplications + cc.registeredRefugees));
+          totalLeftCount += val;
         }
       }.bind(this));
 
-      items.push(this.renderText(this.props.country, totalCount));
+
+      // on the hovered country we show either the amount of 
+      // people received of the amount of people who have left
+      //
+      // in case there are both, we show nothing, as this would
+      // is an ambiguous situation. this is a problem only for
+      // a few countries
+      var count = 0;
+      if (totalReceivedCount > 0 && totalLeftCount == 0) {
+        count = totalReceivedCount;
+      } else if (totalLeftCount > 0 && totalReceivedCount == 0) {
+        count = totalLeftCount;
+      }
+
+      if (count > 0) {
+        items.push(this.renderText(this.props.country, count));
+      }
+
       return items;
    },
 
