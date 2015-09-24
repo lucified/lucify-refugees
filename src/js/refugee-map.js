@@ -14,6 +14,9 @@ var Time = require('./refugee-map-time.jsx');
 
 var constants = require('./refugee-constants.js');
 
+var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
+
+
 var RefugeeMap = React.createClass({
 
 
@@ -21,6 +24,9 @@ var RefugeeMap = React.createClass({
   //  this.getWidth() = 1920;
   //  this.height = 1080;
   //}
+
+
+  mixins: [RefugeeHighlightMixin],
 
 
   getInitialState: function() {
@@ -90,13 +96,13 @@ var RefugeeMap = React.createClass({
 
   handleMouseOver: function(country) {
     var hl = country == "RUS" ? null : country;
-    this.setState({highlightedCountry: hl});
+    this.setHighlightedCountry(hl);
   },
 
 
   handleMouseOut: function(country) {
     if (this.state.highlightedCountry == country) {
-      this.setState({highlightedCountry: null});
+      this.setHighlightedCountry(null);
     }
   },
 
@@ -154,9 +160,7 @@ var RefugeeMap = React.createClass({
 
         <CountryLabelsLayer
           {...this.getStandardLayerParams()}
-          refugeeCountsModel={this.props.refugeeCountsModel} 
-          refugeePointsModel={this.props.refugeePointsModel} 
-          highlightedCountry={this.state.highlightedCountry} />
+          {...this.getHighlightLayerParams()} />
 
         <CountryCountsLayer
           {...this.getStandardLayerParams()}

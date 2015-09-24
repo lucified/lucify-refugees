@@ -5,52 +5,8 @@ var _ = require('underscore');
 
 var RefugeeMapCountryLabelsLayer = React.createClass({
 
-  storedDestinationCountries: [],
-  storedOriginCountries: [],
 
 
-  getDestinationCountries: function() {
-    var destinationCountries = this.props.refugeePointsModel
-      .refugeesOnPath[this.props.highlightedCountry];
-    if (destinationCountries) {
-      return _.keys(_.pick(destinationCountries, 
-        function(count, country) { return count > 0; }));
-    } else {
-      return [];
-    }
-  },
-
-
-  getOriginCountries: function() {
-    return _.keys(_.pick(this.props.refugeePointsModel.refugeesOnPath,
-      function(destinationCountries, originCountry) {
-        return destinationCountries[this.props.highlightedCountry] &&
-          destinationCountries[this.props.highlightedCountry] > 0;
-      }.bind(this)));
-  },
-
-
-  renderCountryLabel: function(country, type) {
-  	var point = this.props.projection(
-  		this.props.mapModel.getCenterPointOfCountry(country));
-
-  	return (
-		<text key={country + type} x={point[0]} y={point[1] + 15} className={type}>
-			{this.props.mapModel.getFriendlyNameForCountry(country)}
-		</text>
-  	);
-  },
-
-
-  componentWillReceiveProps: function(nextProps) {
-    if (nextProps.highlightedCountry !== this.props.highlightedCountry) {
-      this.storedDestinationCountries = [];
-      this.storedOriginCountries = [];
-    } else {
-      this.storedDestinationCountries = _.union(this.storedDestinationCountries, this.getDestinationCountries());
-      this.storedOriginCountries = _.union(this.storedOriginCountries, this.getOriginCountries());
-    }
-  },
 
   /*
     shouldComponentUpdate: function(nextProps, nextState) {
@@ -58,20 +14,33 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
     },
   */
 
+
+  renderCountryLabel: function(country, type) {
+    var point = this.props.projection(
+      this.props.mapModel.getCenterPointOfCountry(country));
+
+    return (
+    <text key={country + type} x={point[0]} y={point[1] + 15} className={type}>
+      {this.props.mapModel.getFriendlyNameForCountry(country)}
+    </text>
+    );
+  },
+
+
   renderCountryLabels: function() {
   	var items = [];
 
-    if (this.props.highlightedCountry === null) {
+    if (this.props.country === null) {
       return items;
     }
 
-  	items.push(this.renderCountryLabel(this.props.highlightedCountry, "highlighted"))
+  	items.push(this.renderCountryLabel(this.props.country, "highlighted"))
 
-  	this.storedDestinationCountries.map(function(country) {
+  	this.props.destinationCountries.map(function(country) {
   		items.push(this.renderCountryLabel(country, "destination"));
   	}.bind(this));
 
-    this.storedOriginCountries.map(function(country) {
+    this.props.originCountries.map(function(country) {
   		items.push(this.renderCountryLabel(country, "origin"));
   	}.bind(this));
 
