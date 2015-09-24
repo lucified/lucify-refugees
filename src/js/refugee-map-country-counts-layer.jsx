@@ -3,6 +3,8 @@ var React = require('react');
 var d3 = require('d3');
 var _ = require('underscore');
 
+var refugeeConstants = require('./refugee-constants.js');
+
 
 var RefugeeMapCountryCountsLayer = React.createClass({
   
@@ -20,6 +22,8 @@ var RefugeeMapCountryCountsLayer = React.createClass({
    },
 
 
+
+
    renderTexts: function() {
       var items = [];
       var totalCount = 0;
@@ -27,7 +31,8 @@ var RefugeeMapCountryCountsLayer = React.createClass({
       var counts = this.props.refugeeCountsModel
         .getDestinationCountsByOriginCountries(this.props.country, this.props.stamp);
 
-      this.props.originCountries.forEach(function(country) {
+      _.difference(this.props.originCountries, refugeeConstants.disableLabels)
+        .forEach(function(country) {
         var cc = counts[country]
         if (cc != null) { 
           var val = cc.asylumApplications + cc.registeredRefugees;
@@ -39,7 +44,8 @@ var RefugeeMapCountryCountsLayer = React.createClass({
       counts = this.props.refugeeCountsModel
         .getOriginCountsByDestinationCountries(this.props.country, this.props.stamp);
 
-      this.props.destinationCountries.forEach(function(country) {
+      _.difference(this.props.destinationCountries, refugeeConstants.disableLabels)
+        .forEach(function(country) {
         var cc = counts[country]
         if (cc != null) {
           items.push(this.renderText(country, cc.asylumApplications + cc.registeredRefugees));

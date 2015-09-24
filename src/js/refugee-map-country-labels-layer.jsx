@@ -3,6 +3,9 @@ var React = require('react');
 var d3 = require('d3');
 var _ = require('underscore');
 
+var refugeeConstants = require('./refugee-constants.js');
+
+
 var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
@@ -34,11 +37,13 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 
   	items.push(this.renderCountryLabel(this.props.country, "highlighted"))
 
-  	this.props.destinationCountries.map(function(country) {
+  	_.difference(this.props.destinationCountries, refugeeConstants.disableLabels) 
+      .forEach(function(country) {
   		items.push(this.renderCountryLabel(country, "destination"));
   	}.bind(this));
 
-    this.props.originCountries.map(function(country) {
+    _.difference(this.props.originCountries, refugeeConstants.disableLabels) 
+      .forEach(function(country) {
   		items.push(this.renderCountryLabel(country, "origin"));
   	}.bind(this));
 
