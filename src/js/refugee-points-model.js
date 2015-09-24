@@ -46,7 +46,7 @@ RefugeePointsModel.prototype._update = function(newStamp) {
 // Moving backwards not that efficient
 // as it will iterate through the whole array of refugees
 RefugeePointsModel.prototype._updateBackward = function(stamp) {
-	console.log("update backward");
+	//console.log("update backward");
 
 	this.activeRefugees = this.refugees.filter(function(r) {
 		return r.startMomentUnix < stamp && r.endMomentUnix > stamp;

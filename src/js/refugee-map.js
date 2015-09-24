@@ -31,7 +31,6 @@ var RefugeeMap = React.createClass({
 
   getInitialState: function() {
     return {
-        highlightedCountry: null,
         stamp: this.props.startStamp, // unix timestamps (seconds-precision)
         speed: 3,
         play: this.props.autoStart
@@ -56,7 +55,7 @@ var RefugeeMap = React.createClass({
     this.blockPlay = false;
 
     this.scheduleUnblockPlay = _.debounce(function() {
-        console.log("unblocking play");
+        //console.log("unblocking play");
         this.unblockPlay();
     }, 500);
 
@@ -96,13 +95,13 @@ var RefugeeMap = React.createClass({
 
   handleMouseOver: function(country) {
     var hl = country == "RUS" ? null : country;
-    this.setHighlightedCountry(hl);
+    this.setHoveredCountry(hl);
   },
 
 
   handleMouseOut: function(country) {
-    if (this.state.highlightedCountry == country) {
-      this.setHighlightedCountry(null);
+    if (this.state.hoveredCountry == country) {
+      this.setHoveredCountry(null);
     }
   },
 
@@ -148,6 +147,9 @@ var RefugeeMap = React.createClass({
   },
 
 
+
+
+
   render: function() {
     return (
       <div className="refugee-map"
@@ -170,19 +172,20 @@ var RefugeeMap = React.createClass({
 
         <CountBarsLayer
           {...this.getStandardLayerParams()}
-          highlightedCountry={this.state.highlightedCountry}
+          highlightedCountry={this.getHighlightedCountry()}
           refugeeCountsModel={this.props.refugeeCountsModel} />
 
         <PointsLayer
           {...this.getStandardLayerParams()}
-          highlightedCountry={this.state.highlightedCountry}
+          highlightedCountry={this.getHighlightedCountry()}
           refugeePointsModel={this.props.refugeePointsModel} />
 
         <BordersLayer
           {...this.getStandardLayerParams()}
           subunitClass="subunit-invisible"
           onMouseOver={this.handleMouseOver}
-          onMouseOut={this.handleMouseOut} />
+          onMouseOut={this.handleMouseOut} 
+          onClick={this.handleMapClick} />
         
         <ControlsAndLegend
           speed={this.state.speed}

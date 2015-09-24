@@ -97,6 +97,11 @@ var RefugeeMapBordersLayer = React.createClass({
       }
    },
 
+   onClick: function() {
+      if (this.props.onClick) {
+         this.props.onClick();
+      }
+   },
 
    getHighlightParams: function(country) {
       if (!this.props.country) {
@@ -189,7 +194,8 @@ var RefugeeMapBordersLayer = React.createClass({
 
    render: function() {
       return (
-         <svg style={{width: this.props.width, height: this.props.height}}>
+         <svg style={{width: this.props.width, height: this.props.height}}
+            onClick={this.onClick}>
             {this.getPaths()}
          </svg>
       )

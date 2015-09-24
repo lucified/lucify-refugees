@@ -9,14 +9,30 @@ var RefugeeHighlightMixin = {
   highlightStamp: 0,
 
 
-  setHighlightedCountry: function(country) {
-    this.setState({highlightedCountry: country});
+  getInitialState: function() {
+  	return {
+  		hoveredCountry: null,
+  		clickedCountry: null
+  	}
+  },
+
+
+  handleMapClick: function() {
+  	this.setState({clickedCountry: this.state.hoveredCountry});
+  },
+
+
+  setHoveredCountry: function(country) {
+    this.setState({hoveredCountry: country});
     this.updateHighlight();
   },
 
 
   getHighlightedCountry: function(country) {
-  	return this.state.highlightedCountry;
+  	if (this.state.clickedCountry != null) {
+  		return this.state.clickedCountry;
+  	}
+  	return this.state.hoveredCountry;
   },
 
 
@@ -41,21 +57,23 @@ var RefugeeHighlightMixin = {
   },
 
 
-  updateHighlight: function(newCountry) {
-    if (newCountry !== this.getHighlightedCountry()) {
+  updateHighlight: function() {
+    if (this.previousCountry != this.getHighlightedCountry()
+    	|| this.getHighlightedCountry() == null) {
       this.storedDestinationCountries = [];
       this.storedOriginCountries = [];
     } else {
       this.storedDestinationCountries = _.union(this.storedDestinationCountries, this.getDestinationCountries());
       this.storedOriginCountries = _.union(this.storedOriginCountries, this.getOriginCountries());
     }
+    this.previousCountry = this.getHighlightedCountry();
   },
 
 
   getHighlightLayerParams: function() {
   	if (this.highlightStamp != this.state.stamp) {
   		this.highlightStamp = this.state.stamp;
-  		this.updateHighlight(this.state.highlightedCountry);
+  		this.updateHighlight();
   	}
     return {
       country: this.getHighlightedCountry(),

@@ -29,9 +29,11 @@ var RefugeeMapCountryCountsLayer = React.createClass({
 
       this.props.originCountries.forEach(function(country) {
         var cc = counts[country]
-        var val = cc.asylumApplications + cc.registeredRefugees;
-        items.push(this.renderText(country, val));
-        totalCount += val;
+        if (cc != null) { 
+          var val = cc.asylumApplications + cc.registeredRefugees;
+          items.push(this.renderText(country, val));
+          totalCount += val;
+        }
       }.bind(this));
       
       counts = this.props.refugeeCountsModel
@@ -39,7 +41,9 @@ var RefugeeMapCountryCountsLayer = React.createClass({
 
       this.props.destinationCountries.forEach(function(country) {
         var cc = counts[country]
-        items.push(this.renderText(country, cc.asylumApplications + cc.registeredRefugees));
+        if (cc != null) {
+          items.push(this.renderText(country, cc.asylumApplications + cc.registeredRefugees));
+        }
       }.bind(this));
 
       items.push(this.renderText(this.props.country, totalCount));
