@@ -6,10 +6,9 @@ var classNames = require('classnames');
 var _ = require('underscore');
 var sprintf = require('sprintf');
 
-
+window.exponent = 0.5;
 
 var RefugeeMapBorder = React.createClass({
-
 
 
    shouldComponentUpdate: function() {
@@ -131,9 +130,10 @@ var RefugeeMapBordersLayer = React.createClass({
             .getOriginCountsByDestinationCountries(this.props.country, this.props.stamp);
          var maxDestinationCount = getMaxCount(destinationCounts);
 
-         var originScale = d3.scale.pow().domain([0, maxOriginCount]).range([0.05, 0.80]);
-         var destinationScale = d3.scale.pow().domain([0, maxDestinationCount]).range([0.05, 0.80]);
-      
+
+         var originScale = d3.scale.pow().exponent(window.exponent).domain([0, maxOriginCount]).range([0.05, 0.80]);
+         var destinationScale = d3.scale.pow().exponent(window.exponent).domain([1, maxDestinationCount]).range([0.05, 0.80]);
+               
          countData = {
             originCounts: originCounts,
             destinationCounts: destinationCounts,
