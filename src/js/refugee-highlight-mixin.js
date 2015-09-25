@@ -35,7 +35,6 @@ var RefugeeHighlightMixin = {
   	return this.state.hoveredCountry;
   },
 
-
   getDestinationCountries: function() {
     var destinationCountries = this.props.refugeePointsModel
       .refugeesOnPath[this.getHighlightedCountry()];
@@ -46,7 +45,6 @@ var RefugeeHighlightMixin = {
       return [];
     }
   },
-
 
   getOriginCountries: function() {
     return _.keys(_.pick(this.props.refugeePointsModel.refugeesOnPath,

@@ -57,3 +57,37 @@ wget https://gist.githubusercontent.com/julionc/7476620/raw/e8f36f2a2d616720983e
 chmod a+x install_phantomjs.sh
 sudo ./install_phantomjs.sh
 
+# Data
+
+http://data.unhcr.org/
+http://popstats.unhcr.org/en/persons_of_concern
+
+file:///Users/jpo/Downloads/AFADSurveyonSyrianRefugeesinTurkey2013.pdf
+http://data.unhcr.org/dataviz/#_ga=1.261931150.2048212483.1441809196
+
+http://data.unhcr.org/portfolio/
+
+## Operational data portals
+
+(Oikeasta reunasta löytyy linkkejä)
+http://www.unhcr.org/pages/49c3646c4d6.html
+
+http://data.unhcr.org/horn-of-africa/regional.php
+http://data.unhcr.org/cotedivoire/country.php?id=97#_ga=1.191309097.2048212483.1441809196
+http://data.unhcr.org/car/regional.php#_ga=1.191309097.2048212483.1441809196
+http://data.unhcr.org/drc/regional.php#_ga=1.191309097.2048212483.1441809196
+http://data.unhcr.org/mediterranean/regional.php#_ga=1.191309097.2048212483.1441809196
+
+## Country operations profiles
+
+http://www.unhcr.org/pages/49e486676.html#
+http://www.unhcr.org/pages/49e48e0fa7f.html#
+http://www.unhcr.org/pages/49e484936.html
+http://www.unhcr.org/pages/49e486426.html
+http://www.unhcr.org/pages/49e486426.html
+http://www.unhcr.org/pages/49e486a76.html
+
+## Non-UNHCR
+
+https://www.humanitarianresponse.info/en/applications/data/datasets/table/dataset-types/table/locations/syrian-arab-republic
+
