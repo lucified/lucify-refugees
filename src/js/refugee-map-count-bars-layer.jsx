@@ -12,7 +12,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
       var refugeeCounts = this.props.refugeeCountsModel.getTotalDestinationCounts(country, this.props.stamp);     
       var asylumBarSize = refugeeCounts.asylumApplications / barSizeDivider;
       var refugeeBarSize = refugeeCounts.registeredRefugees / barSizeDivider;
-      var coordinates = this.props.projection(mapModel.getCenterPointOfCountry(country));
+      var coordinates = this.props.projection(this.props.mapModel.getCenterPointOfCountry(country));
       var bothBarsShown = (refugeeBarSize > 0 && asylumBarSize > 0);
 
       var rects = [];

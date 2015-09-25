@@ -6,9 +6,9 @@ var _ = require('underscore');
 var countries = require("i18n-iso-countries");
 
 
-var MapModel = function(featureData, labelFeatureData) {
+var MapModel = function(featureData) {
   this.featureData = featureData;
-  this.labelFeatureData = labelFeatureData;
+  //this.labelFeatureData = labelFeatureData;
 
   this._countryFeatureCache = {};
   this._countryBordersCache = {};
@@ -18,6 +18,7 @@ var MapModel = function(featureData, labelFeatureData) {
 
   this.initialize();
 };
+
 
 MapModel.prototype.initialize = function() {
   // the centroid isn't always good. fix for these countries:
@@ -61,15 +62,13 @@ MapModel.prototype.getLabelPointForCountry = function(country) {
 };
 
 
-MapModel.prototype.getLabelFeatureForCountry = function(country) {
-  if (this._labelFeatureCache[country]) return this._labelFeatureCache[country];
-
-  var feature = _.find(
-    this.labelFeatureData.features,
-    function(f) { return f.properties.sr_su_a3 == country; });
-
-  return feature;
-};
+// MapModel.prototype.getLabelFeatureForCountry = function(country) {
+//   if (this._labelFeatureCache[country]) return this._labelFeatureCache[country];
+//   var feature = _.find(
+//     this.labelFeatureData.features,
+//     function(f) { return f.properties.sr_su_a3 == country; });
+//   return feature;
+// };
 
 
 MapModel.prototype.getFriendlyNameForCountry = function(country) {

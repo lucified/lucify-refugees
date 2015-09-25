@@ -61,11 +61,12 @@ sudo ./install_phantomjs.sh
 
 http://data.unhcr.org/
 http://popstats.unhcr.org/en/persons_of_concern
+http://data.unhcr.org/portfolio/
 
-file:///Users/jpo/Downloads/AFADSurveyonSyrianRefugeesinTurkey2013.pdf
 http://data.unhcr.org/dataviz/#_ga=1.261931150.2048212483.1441809196
 
-http://data.unhcr.org/portfolio/
+Background info on Turkey:
+https://www.afad.gov.tr/Dokuman/TR/61-2013123015505-syrian-refugees-in-turkey-2013_print_12.11.2013_eng.pdf
 
 ## Operational data portals
 

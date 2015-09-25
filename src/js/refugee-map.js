@@ -149,8 +149,20 @@ var RefugeeMap = React.createClass({
 
 
 
-
   render: function() {
+
+    if (!this.props.refugeeCountsModel 
+      || !this.props.refugeePointsModel
+      || !this.props.mapModel) {
+    
+      return (
+        <div className="refugee-map"
+          style={{width: this.getWidth(), height: this.getHeight()}}>
+          <div className="refugee-map__loading">Loading...</div>
+        </div>
+      );
+    }
+
     return (
       <div className="refugee-map"
         style={{width: this.getWidth(), height: this.getHeight()}}>
