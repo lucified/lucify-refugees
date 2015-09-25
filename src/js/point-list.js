@@ -4,14 +4,20 @@ var Refugee = require('./refugee.js');
 var moment = require('moment');
 var utils = require('./utils.js');
 
-var createFullPointList = function(mapModel, asylumData, regionalData, peoplePerPoint) {
-	return createPointList(mapModel, asylumData, peoplePerPoint, false)
-		.concat(createPointList(mapModel, regionalData, peoplePerPoint, true));
+
+var createFullList = function(mapModel, asylumData, regionalData, peoplePerPoint) {
+	return createList(mapModel, asylumData, peoplePerPoint, false)
+		.concat(createList(mapModel, regionalData, peoplePerPoint, true));
 }
 
 
-var createPointList = function(mapModel, data, peoplePerPoint, isAsylumSeeker) {
+var createList = function(mapModel, data, peoplePerPoint, isAsylumSeeker) {
   var ret = [];  
+
+  if (!data) {
+    return ret;
+  }
+
   data.forEach(function(item) {
 
   	if (!mapModel.containsCountry(item.ac)) {
@@ -68,5 +74,7 @@ var createRefugee = function(mapModel, startCountry, endCountry, month, year, is
 };
 
 
-module.exports = createFullPointList;
+module.exports.createFullList = createFullList;
+module.exports.createList = createList;
+
 

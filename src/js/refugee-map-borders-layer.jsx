@@ -117,7 +117,6 @@ var RefugeeMapBordersLayer = React.createClass({
 
 
    getCountData: function() {
-
       var getMaxCount = function(counts) {
          return _.values(counts).reduce(function(prev, item) {
             return Math.max(prev, item.asylumApplications + item.registeredRefugees);
@@ -135,10 +134,12 @@ var RefugeeMapBordersLayer = React.createClass({
             .getOriginCountsByDestinationCountries(this.props.country, this.props.stamp);
          var maxDestinationCount = getMaxCount(destinationCounts);
 
-
          var originScale = d3.scale.pow().exponent(window.exponent).domain([0, maxOriginCount]).range([0.05, 0.80]);
          var destinationScale = d3.scale.pow().exponent(window.exponent).domain([1, maxDestinationCount]).range([0.05, 0.80]);
-               
+
+         //var originScale = d3.scale.linear().domain([0, maxOriginCount]).range([0.05, 0.80]);
+         //var destinationScale = d3.scale.linear().domain([1, maxDestinationCount]).range([0.05, 0.80]);
+
          countData = {
             originCounts: originCounts,
             destinationCounts: destinationCounts,
@@ -192,6 +193,7 @@ var RefugeeMapBordersLayer = React.createClass({
       }.bind(this));
    },
 
+
    render: function() {
       return (
          <svg style={{width: this.props.width, height: this.props.height}}
@@ -200,6 +202,7 @@ var RefugeeMapBordersLayer = React.createClass({
          </svg>
       )
    }
+
 
 });
 

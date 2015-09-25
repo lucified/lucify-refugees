@@ -9,6 +9,12 @@
 	}
 }
 
+.refugee-map__loading {
+	font-family: $lucify-header-font;
+	padding: 2rem;
+	font-size: 24px;
+}
+
 
 .refugee-map__country-counts-layer text {
 	fill: #ffffff;

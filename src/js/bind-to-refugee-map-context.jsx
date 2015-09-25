@@ -5,7 +5,7 @@ var React = require('react');
 
 var RefugeeCountsModel = require('./refugee-counts-model.js');
 var RefugeePointsModel = require('./refugee-points-model.js');
-var createFullPointsList = require('./create-full-point-list.js');
+var pointList = require('./point-list.js');
 var MapModel = require('./map-model.js');
 
 var Promise = require("bluebird");
@@ -18,6 +18,7 @@ Promise.promisifyAll(d3);
 //   http://jamesknelson.com/structuring-react-applications-higher-order-components/
 //   http://stackoverflow.com/questions/30845561/how-to-solve-this-using-composition-instead-of-mixins-in-react
 
+
 var bindToRefugeeMapContext = function(Component) {
 
    return React.createClass({
@@ -26,6 +27,7 @@ var bindToRefugeeMapContext = function(Component) {
       getDefaultProps: function() {
          return {
             peoplePerPoint: 25,
+            includeRegionalData: true
          }
       },
 
@@ -42,29 +44,40 @@ var bindToRefugeeMapContext = function(Component) {
       componentDidMount: function() {
 
          console.time("load json");
-         var p1 = d3.jsonAsync('topomap.json').then(function(data) {
+
+         var promises = [];
+
+         promises.push(d3.jsonAsync('topomap.json').then(function(data) {
             this.topomap = data;
-         }.bind(this));
+         }.bind(this)));
 
-         var p2 = d3.jsonAsync('asylum.json').then(function(data) {
+         promises.push(d3.jsonAsync('asylum.json').then(function(data) {
             this.asylumData = data;
-         }.bind(this));
+         }.bind(this)));
 
-         var p3 = d3.jsonAsync('regional-movements.json').then(function(data) {
-            this.regionalData = data;
-         }.bind(this));
+         if (this.props.includeRegionalData) {
+            promises.push(d3.jsonAsync('regional-movements.json').then(function(data) {
+               this.regionalData = data;
+            }.bind(this)));
+         }   
 
          //var p4 = d3.jsonAsync('labels.json').then(function(data) {
          //   labels = data;
          //   window.labels = labels;
          //}.bind(this));
 
-         Promise.all([p1, p2, p3]).then(function() {
+         Promise.all(promises).then(function() {
             console.timeEnd('load json');
             this.dataLoaded();
          }.bind(this), function(error){
             throw error;
          });
+      },
+
+
+      createPointList: function(mapModel) {
+         return pointList.createFullList(
+            mapModel, this.asylumData, this.regionalData, this.props.peoplePerPoint);
       },
 
 
@@ -76,11 +89,10 @@ var bindToRefugeeMapContext = function(Component) {
          console.timeEnd("init map model");
 
          console.time("create points list");
-         var pointsList = createFullPointsList(
-            mapModel, this.asylumData, this.regionalData, this.props.peoplePerPoint);
+         var pointList = this.createPointList(mapModel);
          console.timeEnd("create points list");
 
-         var refugeePointsModel = new RefugeePointsModel(pointsList);
+         var refugeePointsModel = new RefugeePointsModel(pointList);
          var refugeeCountsModel = new RefugeeCountsModel(this.asylumData, this.regionalData);
 
          this.setState({
@@ -104,5 +116,6 @@ var bindToRefugeeMapContext = function(Component) {
    });
 
 }
+
 
 module.exports = bindToRefugeeMapContext;

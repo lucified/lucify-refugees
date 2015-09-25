@@ -11,18 +11,21 @@ var bindToRefugeeMapContext = require('./bind-to-refugee-map-context.jsx');
 var parsed = queryString.parse(location.search);
 window.RANDOM_START_POINT = (parsed.randomStartPoint == "true");
 window.SMART_SPREAD_ENABLED = !window.RANDOM_START_POINT;
-window.HD_RESOLUTION = (parsed.hd == "true");
 
 var RefugeeMapWithContext = bindToRefugeeMapContext(RefugeeMap);
 
 
 var init = function() {
+
+    var includeRegionalData = parsed.includeRegionalData == "false" ? false : true;
+    var hdResolution = (parsed.hd == "true");
     var autostart = parsed.autostart == "false" ? false : true;
     var peoplePerPoint = parsed.peoplePerPoint != null ? parseInt(parsed.peoplePerPoint, 10) : 25;
     var startTime = (parsed.startDate != null) ? new Date(parsed.startDate) : new Date(2012, 0, 1);
 
     React.render(
       <RefugeeMapWithContext
+        includeRegionalData={includeRegionalData}
         peoplePerPoint={peoplePerPoint}
         startStamp={Math.round(startTime.getTime() / 1000)}
         autoStart={autostart} />,

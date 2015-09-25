@@ -30,7 +30,7 @@ var DATA_START_YEAR = 2012;
 
 var RefugeeCountsModel = function(asylumData, regionalData) {
 	should.notEqual(asylumData, null, "asylumData")
-	should.notEqual(regionalData, null, "regionalData")
+  //should.notEqual(regionalData, null, "regionalData")
 
 	this.destinationCountries = {};
 	this.arrivedRefugeeCounts = {};
@@ -52,7 +52,10 @@ var RefugeeCountsModel = function(asylumData, regionalData) {
 
 RefugeeCountsModel.prototype._prepareCountsData = function(asylumData, regionalData) {
 	this._insertData(asylumData, true);
-	this._insertData(regionalData, false);
+
+  if (regionalData != null) {
+	 this._insertData(regionalData, false);
+  }
 	this._calculateMonthlyRefugeeSums();
 }
 
