@@ -79,7 +79,7 @@ MapModel.prototype.getFriendlyNameForCountry = function(country) {
     case "LBY": return "Libya";
     case "RUS": return "Russia";
     case "RCB": return "Congo";
-    case "COG": return "Congo";
+    case "COD": return "Congo";
   }
   return countries.getName(country, "en");
 };

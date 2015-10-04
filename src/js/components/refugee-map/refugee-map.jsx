@@ -119,15 +119,24 @@ var RefugeeMap = React.createClass({
 
   getProjection: function() {
     if (!this._projection){
+    
+      var lo = 26.2206322; // x
+      var la = 46.0485818 - 8; // y
 
+      this._projection = d3.geo.conicConformal()
+        .center([0, la])
+        .rotate([-lo, 0])
+        .scale(this.getWidth()*0.85)
+        .translate([this.getWidth() / 2, this.getHeight() / 2])
+      
       var lo = 26.2206322; // x
       var la = 46.0485818; // y
 
-      this._projection = d3.geo.mercator()
-        .center([0, la])
-        .rotate([-lo, 0])
-        .scale(this.getWidth()*0.55)
-        .translate([this.getWidth() / 2, this.getHeight() / 2])
+      // this._projection = d3.geo.mercator()
+      //   .center([0, la])
+      //   .rotate([-lo, 0])
+      //   .scale(this.getWidth()*0.55)
+      //   .translate([this.getWidth() / 2, this.getHeight() / 2])
     }
     return this._projection;
   },
