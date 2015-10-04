@@ -1,6 +1,7 @@
 
 var _ = require('underscore');
-var MapModel = require('./map-model.js');
+
+//var MapModel = require('./map-model.js');
 
 var React = require('react');
 var BordersLayer = require('./refugee-map-borders-layer.jsx');
@@ -12,7 +13,7 @@ var PointsLayer = require('./refugee-map-points-layer.jsx')
 var ControlsAndLegend = require('./refugee-map-controls-and-legend.jsx');
 var Time = require('./refugee-map-time.jsx');
 
-var constants = require('./refugee-constants.js');
+var constants = require('../../model/refugee-constants.js');
 
 var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
 

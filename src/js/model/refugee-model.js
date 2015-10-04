@@ -7,7 +7,7 @@
 var _ = require('underscore');
 var Refugee = require('./refugee.js');
 var moment = require('moment');
-var utils = require('./utils.js');
+var utils = require('../utils.js');
 
 var DATA_START_YEAR = 2012;
 var DATA_END_MOMENT = moment([2015, 8, 1]); // September 1

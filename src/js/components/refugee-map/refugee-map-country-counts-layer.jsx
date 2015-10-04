@@ -3,7 +3,7 @@ var React = require('react');
 var d3 = require('d3');
 var _ = require('underscore');
 
-var refugeeConstants = require('./refugee-constants.js');
+var refugeeConstants = require('../../model/refugee-constants.js');
 
 
 var RefugeeMapCountryCountsLayer = React.createClass({

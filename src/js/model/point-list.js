@@ -2,7 +2,7 @@
 
 var Refugee = require('./refugee.js');
 var moment = require('moment');
-var utils = require('./utils.js');
+var utils = require('../utils.js');
 
 
 var createFullList = function(mapModel, asylumData, regionalData, peoplePerPoint) {

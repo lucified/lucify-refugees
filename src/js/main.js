@@ -3,7 +3,7 @@ var moment = require('moment');
 var React = require('react');
 var queryString = require('query-string');
 
-var RefugeeMainContent = require('./refugee-main-content.jsx');
+var RefugeeMainContent = require('./components/refugee-main-content.jsx');
 
 var parsed = queryString.parse(location.search);
 window.RANDOM_START_POINT = (parsed.randomStartPoint == "true");

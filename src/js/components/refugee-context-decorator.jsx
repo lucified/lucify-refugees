@@ -3,10 +3,10 @@ var d3 = require('d3');
 var topojson = require('topojson');
 var React = require('react');
 
-var RefugeeCountsModel = require('./refugee-counts-model.js');
-var RefugeePointsModel = require('./refugee-points-model.js');
-var pointList = require('./point-list.js');
-var MapModel = require('./map-model.js');
+var RefugeeCountsModel = require('../model/refugee-counts-model.js');
+var RefugeePointsModel = require('../model/refugee-points-model.js');
+var pointList = require('../model/point-list.js');
+var MapModel = require('../model/map-model.js');
 
 var Promise = require("bluebird");
 Promise.promisifyAll(d3);

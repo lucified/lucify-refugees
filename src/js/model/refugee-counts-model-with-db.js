@@ -3,7 +3,7 @@ var ForerunnerDB = require('forerunnerdb');
 var should = require('should');
 var _ = require('underscore');
 var moment = require('moment');
-var utils = require('./utils.js');
+var utils = require('../utils.js');
 
 
 /*
