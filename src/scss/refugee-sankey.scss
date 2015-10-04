@@ -1,11 +1,22 @@
 
 
+@mixin refugee-sankey-highlight-link() {
+	//stroke: $lucify-dark-blue;
+	stroke-opacity: 0.7;
+}
+
 
 .refugee-sankey {
 
 	.node rect {
-	  cursor: move;
+	  
+	  stroke-width: 1px;
+	  stroke: $lucify-dark-gray;
+	  
+	  //cursor: move
 	  fill-opacity: .9;
+	  fill: transparent;
+
 	  shape-rendering: crispEdges;
 	}
 
@@ -14,14 +25,31 @@
 	  text-shadow: 0 1px 0 #fff;
 	}
 
+	.node--hovered rect {
+		//fill: rgb(200, 200, 200);
+		//fill: $lucify-cyan;
+		fill: $lucify-dark-blue;
+	}
+
 	.link {
 	  fill: none;
-	  stroke: #000;
-	  stroke-opacity: .2;
+	  stroke: $lucify-dark-blue;
+	  stroke-opacity: .30;
+	  transition: stroke 0.4s ease-in-out;
+	  transition: stroke-opacity 0.4s ease-in-out;
+	}
+
+	.link--unselected {
+		stroke-opacity: 0.15;
+	}
+
+	.link--hovered {
+		//stroke: url(#SVGID_1_);
+		@include refugee-sankey-highlight-link();
 	}
 
 	.link:hover {
-	  stroke-opacity: .5;
+		@include refugee-sankey-highlight-link();
 	}
 
 }

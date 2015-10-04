@@ -72,13 +72,14 @@ MapModel.prototype.getLabelPointForCountry = function(country) {
 
 
 MapModel.prototype.getFriendlyNameForCountry = function(country) {
-  
   switch(country) {
     case "SYR": return "Syria";
     case "MKD": return "Macedonia";
     case "IRN": return "Iran";
     case "LBY": return "Libya";
     case "RUS": return "Russia";
+    case "RCB": return "Congo";
+    case "COG": return "Congo";
   }
   return countries.getName(country, "en");
 };
