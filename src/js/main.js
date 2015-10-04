@@ -1,11 +1,12 @@
 
-var moment = require('moment');
 var React = require('react');
 var queryString = require('query-string');
 
 var RefugeeMainContent = require('./components/refugee-main-content.jsx');
 
 var parsed = queryString.parse(location.search);
+
+// TODO: get rid of these global variables
 window.RANDOM_START_POINT = (parsed.randomStartPoint == "true");
 window.SMART_SPREAD_ENABLED = !window.RANDOM_START_POINT;
 

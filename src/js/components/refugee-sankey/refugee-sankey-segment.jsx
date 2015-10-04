@@ -8,18 +8,20 @@ var DividedCols = require('lucify-commons/src/js/components/divided-cols.jsx');
 var FormRow = require('lucify-commons/src/js/components/nice-form-row.jsx');
 var Slider = require('lucify-commons/src/js/components/nice-slider.jsx');
 
+var RefugeeSankey = require('./refugee-sankey.jsx');
 
-var RefugeeMapSegment = React.createClass({
+
+var RefugeeSankeySegment = React.createClass({
 
 	render: function() {
 		return (
-			<div className="refugee-map-segment">
+			<div className="refugee-sankey-segment">
 				<Inputs>
 					<div className="lucify-container">
 						<DividedCols 
 							first={
 								<div className="inputs__instructions">
-									<h3>Countries involved/h3>
+									<h3>Countries involved</h3>
 
 									<p className="first last">
 										The below chart shows
@@ -36,9 +38,11 @@ var RefugeeMapSegment = React.createClass({
 									<p className="first last">
 										Move the slider to move in time.
 									</p>
-						
-									<Slider min={0} max={100} />
-
+							
+									<FormRow
+										title="Time"
+										input={<Slider min={0} max={100} />} />
+			
 									<p className="first last">
 										Hover over countries to show details. 
 										Click on a country to  lock the selection.
@@ -48,6 +52,11 @@ var RefugeeMapSegment = React.createClass({
 					</div>
 				</Inputs>
 
+				<div className="refugee-sankey-segment__sankey">
+					<div className="lucify-container">
+						<RefugeeSankey {...this.props} />
+					</div>
+				</div>
 
 			</div>
 		);
@@ -56,4 +65,4 @@ var RefugeeMapSegment = React.createClass({
 });
 
 
-module.exports = RefugeeMapSegment;
+module.exports = RefugeeSankeySegment;

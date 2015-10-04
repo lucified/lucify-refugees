@@ -96,6 +96,7 @@ var bindToRefugeeMapContext = function(Component) {
          var refugeeCountsModel = new RefugeeCountsModel(this.asylumData, this.regionalData);
 
          this.setState({
+            asylumData: this.asylumData,
             mapModel: mapModel,
             refugeePointsModel: refugeePointsModel,
             refugeeCountsModel: refugeeCountsModel
@@ -105,6 +106,7 @@ var bindToRefugeeMapContext = function(Component) {
          window.refugeeCountsModel = refugeeCountsModel;
          window.refugeePointsModel = refugeePointsModel;
          window.mapModel = mapModel;
+         window.asylumData = this.asylumData;
       },
 
 

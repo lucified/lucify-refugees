@@ -3,6 +3,7 @@ var React = require('react');
 
 var Decorator = require('./refugee-context-decorator.jsx');
 var RefugeeMapSegment = require('./refugee-map/refugee-map-segment.jsx');
+var RefugeeSankeySegment = require('./refugee-sankey/refugee-sankey-segment.jsx');
 
 
 var RefugeeMainContent = React.createClass({
@@ -15,7 +16,9 @@ var RefugeeMainContent = React.createClass({
 
 			<div className="refugee-main-content">
 
-				<RefugeeMapSegment {...this.props} />
+
+
+				<RefugeeSankeySegment {...this.props} />
 
 			</div>
 			
@@ -25,7 +28,9 @@ var RefugeeMainContent = React.createClass({
 
 });
 
-
+/*
+				<RefugeeMapSegment {...this.props} />
+*/
 
 module.exports = Decorator(RefugeeMainContent);
 
