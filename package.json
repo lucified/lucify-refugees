@@ -48,6 +48,8 @@
     "gulp-util": "^3.0.4",
     "i18n-iso-countries": "^0.9.0",
     "jquery": "^2.1.4",
+    "lucify-build-tools": "git+ssh://git@gitlab.com/lucify-internal/lucify-build-tools.git",
+    "lucify-commons": "git+ssh://git@gitlab.com/lucify-internal/lucify-commons.git",
     "moment": "^2.10.6",
     "node-bourbon": "^4.2.3",
     "pixi.js": "^3.0.7",
