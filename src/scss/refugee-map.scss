@@ -1,5 +1,4 @@
 
-
 .refugee-map {
 	position: relative;
 
@@ -9,6 +8,13 @@
 	}
 }
 
+.refugee-map {
+  background-color: $lucify-dark-blue;
+  color: #cccccc;
+  font-weight: 200;
+  letter-spacing: 0.1px;
+}
+
 .refugee-map__loading {
 	font-family: $lucify-header-font;
 	padding: 2rem;
@@ -16,50 +22,8 @@
 }
 
 
-.refugee-map__country-counts-layer text {
-	fill: #ffffff;
-    opacity: 0.9;
-    font-family: $lucify-header-font;
-    text-anchor: middle;
-    font-size: 12px;
-}
-
-.refugee-map__country-labels-layer {
-
-	text {
-	  fill: #ffffff;
-	  opacity: 0.9;
-	  font-family: $lucify-header-font;
-	  text-anchor: middle;
-	  font-size: 12px;
-	}
-
-	.highlighted {
-
-	}
-
-	.destination {
-		fill: #C9F0CE;
-
-	}
-
-	.origin {
-  		fill: #FFC4D8;
-  		//fill: rgba(190, 88, 179, 1.0);
-		//fill: rgba(255, 255, 255, 0.8);
-	}
 
 
-}
-
-
-.refugee-bar {
-	fill: #ffad33;
-}
-
-.asylum-bar {
-	fill: #ffffff;
-}
 
 
 

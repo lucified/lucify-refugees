@@ -30,6 +30,8 @@ var RefugeeMapPointsLayer = React.createClass({
 
 
    componentDidUpdate: function() {
+      // todo: check performance
+      this.renderer.resize(this.getWidth(), this.getHeight());
       this.renderCanvas();
    },
 

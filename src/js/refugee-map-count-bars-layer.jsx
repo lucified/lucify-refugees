@@ -67,7 +67,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
 
    render: function() {
       return (
-         <svg className="count-bars-layer" 
+         <svg className="refugee-map-count-bars-layer" 
              style={{width: this.props.width, height: this.props.height}}>
              {this.getBarItems()}
          </svg>

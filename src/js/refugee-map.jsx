@@ -17,6 +17,7 @@ var constants = require('./refugee-constants.js');
 var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
 
 
+
 var RefugeeMap = React.createClass({
 
 
@@ -29,11 +30,12 @@ var RefugeeMap = React.createClass({
   mixins: [RefugeeHighlightMixin],
 
 
+
   getInitialState: function() {
     return {
         stamp: this.props.startStamp, // unix timestamps (seconds-precision)
         speed: 3,
-        play: this.props.autoStart
+        play: this.props.autoStart,
     }
   },
 
@@ -41,7 +43,8 @@ var RefugeeMap = React.createClass({
   getDefaultProps: function() {
     return {
       width: 1200,
-      height: 1200
+      height: 1200,
+      autoStart: true
     }
   },
    
@@ -105,7 +108,14 @@ var RefugeeMap = React.createClass({
     }
   },
 
- 
+
+  componentWillUpdate: function(nextProps, nextState) {
+    if (this.props.width !== nextProps.width) {
+      this._projection = null;
+    }
+  },
+
+
   getProjection: function() {
     if (!this._projection){
 
@@ -191,7 +201,7 @@ var RefugeeMap = React.createClass({
           {...this.getStandardLayerParams()}
           highlightedCountry={this.getHighlightedCountry()}
           refugeePointsModel={this.props.refugeePointsModel} />
-
+        
         <BordersLayer
           {...this.getStandardLayerParams()}
           subunitClass="subunit-invisible"
@@ -217,4 +227,8 @@ var RefugeeMap = React.createClass({
 
 
 module.exports = RefugeeMap;
+
+
+
+
 

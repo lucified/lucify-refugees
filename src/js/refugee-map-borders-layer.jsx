@@ -11,7 +11,7 @@ window.exponent = 0.5;
 var RefugeeMapBorder = React.createClass({
 
 
-   shouldComponentUpdate: function() {
+   shouldComponentUpdate: function(nextProps, nextState) {
       var sel = d3.select(React.findDOMNode(this.refs.overlay));
 
       sel
@@ -31,7 +31,7 @@ var RefugeeMapBorder = React.createClass({
 
       sel.style('fill', fillStyle);
 
-      return false;
+      return this.props.width !== nextProps.width;
    },
 
 
@@ -193,6 +193,7 @@ var RefugeeMapBordersLayer = React.createClass({
             path={path}
             feature={feature}
             country={country}
+            width={this.props.width}
             {...hparams} />
 
       }.bind(this));
@@ -201,7 +202,8 @@ var RefugeeMapBordersLayer = React.createClass({
 
    render: function() {
       return (
-         <svg style={{width: this.props.width, height: this.props.height}}
+         <svg className="refugee-map-borders-layer" 
+            style={{width: this.props.width, height: this.props.height}}
             onClick={this.onClick}>
             {this.getPaths()}
          </svg>

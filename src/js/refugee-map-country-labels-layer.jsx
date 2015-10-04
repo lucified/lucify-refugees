@@ -53,7 +53,7 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 
   render: function() {
 		return (
-		 <svg className="refugee-map__country-labels-layer"
+		 <svg className="refugee-map-country-labels-layer"
 		    style={{width: this.props.width, height: this.props.height}}>
 		    {this.renderCountryLabels()}
 		 </svg>

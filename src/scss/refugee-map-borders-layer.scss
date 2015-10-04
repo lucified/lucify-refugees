@@ -1,0 +1,39 @@
+
+.refugee-map-borders-layer {
+
+	.subunit {
+	  fill: $lucify-very-dark-blue;
+	  stroke-width: 1px;
+	  stroke: $lucify-cyan;
+	  opacity: 1.0;
+	}
+
+	.subunit--overlay {
+	  stroke: transparent;
+	  stroke-width: 1px;
+	  stroke: $lucify-cyan;
+	  fill: transparent;
+	  fill: rgba(26, 32, 43, 1.0);
+	  transition: fill 0.25s;
+	}
+
+	.subunit--destination {
+	  opacity: 0.5;
+	  fill: rgba(95, 196, 114, 0.25);
+	}
+
+	.subunit--origin {
+	  //opacity: 1.0;
+	  //fill: rgba(190, 88, 179, 0.15);
+	}
+
+	.subunit--hovered {
+	  fill: rgba(255, 255, 255, 0.10);
+	}
+
+	.subunit-invisible {
+	  fill: transparent;
+	  stroke: transparent;
+	}
+
+}

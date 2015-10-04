@@ -1,64 +1,33 @@
 
 @charset 'UTF-8';
-@import "bourbon";
 
-@import "variables.scss";
-
-
-//* {
-//	box-sizing: border-box;
-//}
+@import "../../node_modules/lucify-commons/src/scss/styles-full.scss";
 
 
+// #description {
+//   padding: 2rem 1rem;
+//   max-width: 600px;
+// }
 
-#canvas-wrap {
-  //border: 1px solid black;
-  //height: 400px;
-  //width: 400px;
-  //min-height: 400px;
-  position: relative;
-}
+// #canvas-wrap {
+//   //border: 1px solid black;
+//   //height: 400px;
+//   //width: 400px;
+//   //min-height: 400px;
+//   position: relative;
+// }
 
-body {
-  background-color: $lucify-dark-blue;
-  margin: 0px;
-  color: #cccccc;
-  font: 12pt/16pt "Open Sans", sans-serif;
-  font-weight: 200;
-  letter-spacing: 0.1px;
-}
+// #canvas-wrap svg {
+//   position: absolute;
+//   //border: 1px dashed white;
+// }
 
-strong {
-  font-weight: 600;
-}
+// #canvas-wrap canvas {
+//   position: absolute;
+//   //background-color: green;
+//   //opacity: 0.5
+// }
 
-h2 {
-  font-weight: 400;
-}
-
-a {
-  color: #dddddd;
-}
-
-a:hover {
-  color: #ffffff;
-}
-
-#description {
-  padding: 2rem 1rem;
-  max-width: 600px;
-}
-
-#canvas-wrap svg {
-  position: absolute;
-  //border: 1px dashed white;
-}
-
-#canvas-wrap canvas {
-  position: absolute;
-  //background-color: green;
-  //opacity: 0.5
-}
 
 .time {
   position: absolute;
@@ -74,124 +43,10 @@ a:hover {
 }
 
 
-.dot {
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  font-size: 8px;
-  color: #FFFFFF;
-  vertical-align: middle;
-}
-
-.bar {
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  vertical-align: middle;
-  font-size: 10px;
-  height: 14px;
-}
-
-.asylum {
-  background-color: #FFFFFF;
-}
-
-.refugee {
-  background-color: #FFAD33;
-}
-
-
-.refugee-map-controls-and-legend {
-  position: absolute;
-  top: 12rem;
-  right: 1rem;
-  border: 0px solid white;
-  font-family: monospace;
-  font-size: 16px;
-  color: $lucify-cyan;
-  padding: 0.5rem;
-}
-
-.legend {
-  background-color: rgba(50, 50, 50, 0.7);
-  font-family: monospace;
-  font-size: 16px;
-  padding: 0.5rem;
-  z-index: 1;
-  line-height: 1.5rem;
-}
-
-.speed {
-  background-color: rgba(50, 50, 50, 0.7);
-  z-index: 1;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-
-  label {
-    padding-right: 0.5rem;
-  }
-}
-
-.stamp {
-  background-color: rgba(50, 50, 50, 0.7);
-  z-index: 1;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-    label {
-    padding-right: 0.5rem;
-  }
-}
-
-#speed-control {
-  width: 70%;
-}
-
-#time-control {
-  width: 70%;
-}
-
-
-.hide {
-  display: none;
-}
-
-
-svg .subunit {
-  fill: $lucify-very-dark-blue;
-  stroke-width: 1px;
-  stroke: $lucify-cyan;
-  opacity: 1.0;
-}
-
-svg .subunit--overlay {
-  stroke: transparent;
-  stroke-width: 1px;
-  stroke: $lucify-cyan;
-  fill: transparent;
-  fill: rgba(26, 32, 43, 1.0);
-  transition: fill 0.25s;
-}
-
-svg .subunit--destination {
-  opacity: 0.5;
-  fill: rgba(95, 196, 114, 0.25);
-}
-
-svg .subunit--origin {
-  //opacity: 1.0;
-  //fill: rgba(190, 88, 179, 0.15);
-}
-
-
-
-svg .subunit--hovered {
-  fill: rgba(255, 255, 255, 0.10);
-}
-
-svg .subunit-invisible {
-  fill: transparent;
-  stroke: transparent;
-}
-
-
 @import "refugee-map.scss";
-
+@import "refugee-map-borders-layer.scss";
+@import "refugee-map-country-counts-layer.scss";
+@import "refugee-map-country-labels-layer.scss";
+@import "refugee-map-count-bars-layer.scss";
+@import "refugee-map-controls-and-legend.scss";
 

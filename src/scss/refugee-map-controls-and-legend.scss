@@ -1,0 +1,76 @@
+
+.refugee-map-controls-and-legend {
+  position: absolute;
+  top: 12rem;
+  right: 1rem;
+  border: 0px solid white;
+  font-family: monospace;
+  font-size: 16px;
+  color: $lucify-cyan;
+  padding: 0.5rem;
+
+
+   .bar {
+     margin-right: 0.5rem;
+     margin-left: 0.5rem;
+     vertical-align: middle;
+     font-size: 10px;
+     height: 14px;
+   }
+
+   .asylum {
+     background-color: #FFFFFF;
+   }
+
+   .refugee {
+     background-color: #FFAD33;
+   }
+
+
+   .legend {
+     background-color: rgba(50, 50, 50, 0.7);
+     font-family: monospace;
+     font-size: 16px;
+     padding: 0.5rem;
+     z-index: 1;
+     line-height: 1.5rem;
+
+     .dot {
+       margin-right: 0.5rem;
+       margin-left: 0.5rem;
+       font-size: 8px;
+       color: #FFFFFF;
+       vertical-align: middle;
+     }
+   }
+
+   .speed {
+     background-color: rgba(50, 50, 50, 0.7);
+     z-index: 1;
+     margin-top: 0.5rem;
+     padding: 0.5rem;
+
+     label {
+       padding-right: 0.5rem;
+     }
+   }
+
+   .stamp {
+     background-color: rgba(50, 50, 50, 0.7);
+     z-index: 1;
+     margin-top: 0.5rem;
+     padding: 0.5rem;
+       label {
+       padding-right: 0.5rem;
+     }
+   }
+
+   #speed-control {
+     width: 70%;
+   }
+
+   #time-control {
+     width: 70%;
+   }
+
+}
