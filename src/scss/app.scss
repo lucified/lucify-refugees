@@ -161,6 +161,14 @@ svg .subunit {
   opacity: 1.0;
 }
 
+svg .subunit--overlay {
+  stroke: transparent;
+  stroke-width: 1px;
+  stroke: $lucify-cyan;
+  fill: transparent;
+  fill: rgba(26, 32, 43, 1.0);
+  transition: fill 0.25s;
+}
 
 svg .subunit--destination {
   opacity: 0.5;
@@ -172,10 +180,7 @@ svg .subunit--origin {
   //fill: rgba(190, 88, 179, 0.15);
 }
 
-svg .subunit--overlay {
-  stroke: transparent;
-  fill: transparent;
-}
+
 
 svg .subunit--hovered {
   fill: rgba(255, 255, 255, 0.10);

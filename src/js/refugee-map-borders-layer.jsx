@@ -51,16 +51,20 @@ var RefugeeMapBorder = React.createClass({
 
        var d = path(this.props.feature);
 
+       var overlay = this.props.enableOverlay ? (<path key="p2" ref="overlay"
+               className="subunit--overlay"
+               onMouseOver={this.onMouseOver}
+               onMouseOut={this.onMouseOut} 
+               d={d} />) : null;
+
        return (
          <g>
             <path key="p1"
                className={this.props.subunitClass}
-               d={d} />
-            <path key="p2" ref="overlay"
-               className="subunit--overlay"
+               d={d} 
                onMouseOver={this.onMouseOver}
-               onMouseOut={this.onMouseOut} 
-               d={d} />
+               onMouseOut={this.onMouseOut} />
+            {overlay}
          </g>
       );
 
@@ -180,6 +184,7 @@ var RefugeeMapBordersLayer = React.createClass({
          }
 
          return <RefugeeMapBorder
+            enableOverlay={this.props.enableOverlay}
             {...countDetails}
             subunitClass={this.props.subunitClass}
             key={country}

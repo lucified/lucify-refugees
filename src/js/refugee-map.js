@@ -148,7 +148,6 @@ var RefugeeMap = React.createClass({
 
 
 
-
   render: function() {
 
     if (!this.props.refugeeCountsModel 
@@ -168,6 +167,7 @@ var RefugeeMap = React.createClass({
         style={{width: this.getWidth(), height: this.getHeight()}}>
         
         <BordersLayer 
+          enableOverlay={true}
           {...this.getStandardLayerParams()}
           {...this.getHighlightLayerParams()}
           refugeeCountsModel={this.props.refugeeCountsModel}
@@ -217,5 +217,4 @@ var RefugeeMap = React.createClass({
 
 
 module.exports = RefugeeMap;
-
 
