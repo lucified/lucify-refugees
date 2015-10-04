@@ -117,26 +117,46 @@ var RefugeeMap = React.createClass({
   },
 
 
-  getProjection: function() {
-    if (!this._projection){
-    
+  getConicConformalProjection: function() {
       var lo = 26.2206322; // x
       var la = 46.0485818 - 8; // y
+      return d3.geo.conicConformal()
+         .center([0, la])
+         .rotate([-lo, 0])
+         .scale(this.getWidth()*0.85)
+         .translate([this.getWidth() / 2, this.getHeight() / 2]);
+  },
 
-      this._projection = d3.geo.conicConformal()
+
+  getAzimuthalEqualAreaProjection: function() {
+      var lo = 22.2206322; // x
+      var la = 34.0485818; // y
+
+      return d3.geo.azimuthalEqualArea()
+        //.clipAngle(180 - 1e-3)
         .center([0, la])
         .rotate([-lo, 0])
         .scale(this.getWidth()*0.85)
         .translate([this.getWidth() / 2, this.getHeight() / 2])
-      
-      var lo = 26.2206322; // x
-      var la = 46.0485818; // y
+        .precision(.1);
+  },
 
-      // this._projection = d3.geo.mercator()
-      //   .center([0, la])
-      //   .rotate([-lo, 0])
-      //   .scale(this.getWidth()*0.55)
-      //   .translate([this.getWidth() / 2, this.getHeight() / 2])
+
+  getMercatorProjection: function() {
+    var lo = 26.2206322; // x
+    var la = 46.0485818; // y
+
+    return d3.geo.mercator()
+        .center([0, la])
+        .rotate([-lo, 0])
+        .scale(this.getWidth()*0.55)
+        .translate([this.getWidth() / 2, this.getHeight() / 2])
+  },
+
+
+  getProjection: function() {
+    if (!this._projection){
+      this._projection = this.getAzimuthalEqualAreaProjection();
     }
     return this._projection;
   },
