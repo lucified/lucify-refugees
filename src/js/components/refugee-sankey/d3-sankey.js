@@ -218,6 +218,8 @@ var sk = function() {
       }
     }
 
+
+
     function resolveCollisions() {
       nodesByBreadth.forEach(function(nodes) {
         var node,
@@ -248,6 +250,7 @@ var sk = function() {
             y0 = node.y;
           }
         }
+        
       });
     }
 

@@ -11,6 +11,118 @@ var countries = require("i18n-iso-countries");
 var classNames = require('classNames');
 
 
+var Node = React.createClass({
+
+	componentDidUpdate: function() {
+		this.update(true);
+	},
+
+	componentDidMount: function() {
+		this.update(false);
+	},
+
+	update: function(transition) {
+		var item = this.props.item;
+				
+		var sel = d3.select(this.getDOMNode());
+
+		if (transition) {
+			sel = sel.transition();
+		}
+
+		sel.attr('transform', sprintf('translate(%.2f, %.2f)', item.x, item.y));
+	
+		sel.select('rect')
+			//.transition()
+			.attr('height', Math.round(item.dy))
+			.attr('width', this.props.nodeWidth);
+
+		sel.select('text')
+			//.transition()
+			.attr('y', item.dy / 2);
+	},
+
+
+	render: function() {
+		var item = this.props.item;
+
+		var cond = item.x < this.props.width / 2;
+		var anchor = cond ? "start" : "end";
+		var x = cond ? 6 + this.props.nodeWidth : -6;
+		
+		var classes = classNames({
+			node: true,
+			'node--hovered': item.name == this.props.activeCountry,
+			'node--unselected': item.name !== this.props.activeCountry && this.props.activeCountry != null
+		});
+
+		return (
+			<g className={classes}>
+				<rect 
+					onMouseOver={this.props.onMouseOver}
+					onMouseOut={this.props.onMouseOut} />
+				<text 
+					x={x} 
+					dy="0.35em"
+					textAnchor={anchor}>
+					{this.props.friendlyName}
+				</text>
+			</g>
+		);
+	}
+	
+});
+
+
+var LinkPath = React.createClass({
+
+
+	componentDidUpdate: function() {
+		this.update(true);
+	},
+
+	componentDidMount: function() {
+		this.update(false);
+	},
+
+
+	update: function(transition) {
+		var item = this.props.item;		
+		var sel = d3.select(this.getDOMNode());
+
+		if (transition) {
+			sel = sel.transition();
+		}
+
+		sel.attr('d', this.props.pathFunction(item));
+	},
+
+
+	render: function() {
+		var item = this.props.item;
+		var pathFunction = this.props.pathFunction;
+
+		var classes = classNames({
+			'link': true,
+			'link--unselected': item.sourceName != this.props.activeCountry 
+				&& item.targetName != this.props.activeCountry
+				&& this.props.activeCountry != null,
+			'link--hovered': item.sourceName == this.props.activeCountry
+				|| item.targetName == this.props.activeCountry
+		});
+
+		return (
+			<path 
+				className={classes}
+				strokeWidth={Math.max(1, item.dy)} />
+		);
+	}
+
+
+});
+
+
+
 var RefugeeSankey = React.createClass({
 
 
@@ -185,27 +297,6 @@ var RefugeeSankey = React.createClass({
 	},
 
 
-	renderLinks: function(links, path) {
-		return links.map(function(item) {
-
-			var classes = classNames({
-				'link': true,
-				'link--unselected': item.sourceName != this.getActiveCountry() 
-					&& item.targetName != this.getActiveCountry() 
-					&& this.getActiveCountry() != null,
-				'link--hovered': item.sourceName == this.getActiveCountry() 
-					|| item.targetName == this.getActiveCountry()
-			});
-
-			return (
-				<path 
-					key={item.sourceName + item.targetName}
-					className={classes}
-					d={path(item)} 
-					strokeWidth={Math.max(1, item.dy)} />
-			);
-		}.bind(this));
-	},
 
 
 	getCountryName: function(name) {
@@ -250,46 +341,30 @@ var RefugeeSankey = React.createClass({
 	},
 
 
+	renderLinks: function(links, pathFunction) {
+		return links.map(function(item) {
+			return <LinkPath
+					key={item.sourceName + item.targetName}
+					item={item}
+					pathFunction={pathFunction}
+					activeCountry={this.getActiveCountry()} />
+		}.bind(this));
+	},
+
+
 	renderNodes: function(nodes, sankey) {
 
 		return nodes.map(function(item) {
-			
-			var cond = item.x < this.getWidth() / 2;
-
-			var anchor = cond ? "start" : "end";
-			var x = cond ? 6 + sankey.nodeWidth() : -6;
-			
-			var color = this.colorScale(item.name);
-			var name = this.getCountryName(item.name)
-
-			// this.props.mapModel.getFriendlyNameForCountry(item.name);
-			// fill={color}
-			// style={{stroke: d3.rgb(color).darker(2)}}
-
-			var classes = classNames({
-				node: true,
-				'node--hovered': item.name == this.getActiveCountry(),
-				'node--unselected': item.name !== this.getActiveCountry() && this.getActiveCountry() != null
-			});
-
 			return (
-				<g 
-				   key={item.name}
-				   className={classes}
-				   transform={sprintf('translate(%.2f, %.2f)', item.x, item.y)} >
-					<rect 
-						height={Math.round(item.dy)} 
-						width={sankey.nodeWidth()} 
-						onMouseOver={this.getOnMouseOver(item.name)}
-						onMouseOut={this.getOnMouseOut(item.name)} />
-					<text 
-						x={x} 
-						y={item.dy / 2} 
-						dy="0.35em"
-						textAnchor={anchor} >
-						{name}
-					</text>
-				</g>
+				<Node 
+					width={this.getWidth()}
+					key={item.name}
+				    item={item} 
+					onMouseOver={this.getOnMouseOver(item.name)}
+					onMouseOut={this.getOnMouseOut(item.name)}
+					activeCountry={this.getActiveCountry()}
+					nodeWidth={sankey.nodeWidth()}
+					friendlyName={this.getCountryName(item.name)} />
 			);
 		}.bind(this));
 
@@ -318,8 +393,6 @@ var RefugeeSankey = React.createClass({
 		sankey
 			.nodes(nodes)
 			.links(links);
-
-		window.sankey = sankey;
 
 		sankey.layout(32);
 

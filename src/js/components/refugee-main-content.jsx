@@ -16,7 +16,7 @@ var RefugeeMainContent = React.createClass({
 
 			<div className="refugee-main-content">
 
-				<RefugeeMapSegment {...this.props} />
+
 				
 				<RefugeeSankeySegment {...this.props} />
 
@@ -31,6 +31,8 @@ var RefugeeMainContent = React.createClass({
 /*
 				
 */
+
+//<RefugeeMapSegment {...this.props} />
 
 module.exports = Decorator(RefugeeMainContent);
 
