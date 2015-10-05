@@ -163,13 +163,18 @@ var sk = function() {
 
     //
     initializeNodeDepth();
-    resolveCollisions();
-    for (var alpha = 1; iterations > 0; --iterations) {
-      relaxRightToLeft(alpha *= .99);
-      resolveCollisions();
-      relaxLeftToRight(alpha);
-      resolveCollisions();
-    }
+
+    // hacked this functionality to 
+    // have things ordered by size
+    // -- JO
+    orderBySize();
+    // resolveCollisions();
+    // for (var alpha = 1; iterations > 0; --iterations) {
+    //   relaxRightToLeft(alpha *= .99);
+    //   resolveCollisions();
+    //   relaxLeftToRight(alpha);
+    //   resolveCollisions();
+    // }
 
     function initializeNodeDepth() {
       var ky = d3.min(nodesByBreadth, function(nodes) {
@@ -219,6 +224,29 @@ var sk = function() {
     }
 
 
+    function orderBySize() {
+    	nodesByBreadth.forEach(function(nodes) {
+    		var sorted = nodes.sort(function(nodeA, nodeB) {
+    			// dirty hack to move "others" last
+    			// should use some sortweight thing instead
+    			if (nodeA.name == "othersS" || nodeA.name == "othersT") {
+    				return 1;
+    			}
+				if (nodeB.name == "othersS" || nodeB.name == "othersT") {
+    				return -1;
+    			}
+    			window.jep = nodeA;
+    			return nodeB.dy - nodeA.dy; 
+    		});
+
+    		var currentY = 0;
+    		sorted.forEach(function(node) {
+    			node.y = currentY;
+    			currentY += (node.dy + nodePadding);
+    		});
+    	});
+    }
+
 
     function resolveCollisions() {
       nodesByBreadth.forEach(function(nodes) {
@@ -250,13 +278,13 @@ var sk = function() {
             y0 = node.y;
           }
         }
-        
       });
     }
 
     function ascendingDepth(a, b) {
       return a.y - b.y;
     }
+
   }
 
   function computeLinkDepths() {

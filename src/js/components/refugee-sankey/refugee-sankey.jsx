@@ -183,7 +183,7 @@ var RefugeeSankey = React.createClass({
 		return this.props.asylumData.filter(function(item) {
 			return item.year == this.props.year 
 				&& item.month == this.props.month + 1
-				&& item.count > 100;
+				&& item.count > 0;
 		}.bind(this));
 	},
 
@@ -297,8 +297,6 @@ var RefugeeSankey = React.createClass({
 	},
 
 
-
-
 	getCountryName: function(name) {
 		switch (name) {
 			case "othersS":
@@ -379,9 +377,6 @@ var RefugeeSankey = React.createClass({
 
 		var nodes = this.getNodes();
 		var links = this.getLinks();
-
-		window.nodes = nodes;
-		window.links = links;
 
 		var sankey = d3.sankey()
 			.nodeWidth(15)

@@ -52,7 +52,7 @@ var RefugeeSankeySegment = React.createClass({
 	},
 
 	renderTimeValue: function() {
-		return this.getMonth() + "/" + this.getYear();
+		return (this.getMonth() + 1) + "/" + this.getYear();
 	},
 
 
