@@ -93,6 +93,8 @@ var RefugeeMap = React.createClass({
   },
 
 
+
+
   getStandardLayerParams: function() {
     return {
       mapModel: this.props.mapModel,
@@ -118,7 +120,6 @@ var RefugeeMap = React.createClass({
       }
     }.bind(this), 500);
   },
-
 
 
   render: function() {

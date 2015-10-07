@@ -21,13 +21,15 @@ var RefugeeSankeySegment = React.createClass({
 
 
 	getInitialState: function() {
-		return {offsetMonths: this.getMaximumOffset() - 1}
+		var ret = {offsetMonths: this.getMaximumOffset()}
+		console.log(ret);
+		return ret;
 	},
 
 
 	getMaximumOffset: function() {
 		var years = refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR;
-		return years * 12 + refugeeConstants.DATA_END_MONTH - refugeeConstants.DATA_START_MONTH + 1;
+		return years * 12 + refugeeConstants.DATA_END_MONTH - refugeeConstants.DATA_START_MONTH;
 	},
 
 
@@ -57,6 +59,8 @@ var RefugeeSankeySegment = React.createClass({
 
 
 	render: function() {
+		console.log(this.state.offsetMonths);
+
 		return (
 			<div className="refugee-sankey-segment">
 				<Inputs>
@@ -84,7 +88,11 @@ var RefugeeSankeySegment = React.createClass({
 							
 									<FormRow
 										title="Time"
-										input={<Slider min={0} max={this.getMaximumOffset()} onChange={this.monthOffsetChange} />} 
+										input={<Slider 
+											defaultValue={this.state.offsetMonths}
+											min={0} 
+											max={this.getMaximumOffset()} 
+											onChange={this.monthOffsetChange} />} 
 										value={this.renderTimeValue()} />
 			
 									<p className="first last">

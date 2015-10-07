@@ -13,17 +13,21 @@ var classNames = require('classNames');
 
 var Node = React.createClass({
 
+
 	componentDidUpdate: function() {
 		this.update(true);
 	},
+
 
 	componentDidMount: function() {
 		this.update(false);
 	},
 
+
 	update: function(transition) {
 		var item = this.props.item;
-				
+		var cond = item.x < this.props.width / 2;
+
 		var sel = d3.select(this.getDOMNode());
 
 		if (transition) {
@@ -33,13 +37,47 @@ var Node = React.createClass({
 		sel.attr('transform', sprintf('translate(%.2f, %.2f)', item.x, item.y));
 	
 		sel.select('rect')
-			//.transition()
 			.attr('height', Math.round(item.dy))
 			.attr('width', this.props.nodeWidth);
 
 		sel.select('text')
-			//.transition()
-			.attr('y', item.dy / 2);
+			.attr('y', item.dy / 2)
+			.select('.value')
+				.text(this.getValue());
+	},
+
+
+	getValue: function() {
+
+		var node = this.props.item;
+
+		if (this.props.activeCountry == null || this.props.activeCountry == node.name) {
+			return node.value;
+		}
+
+		window.node =node;
+		window._ = _;
+
+		var found = _.find(node.sourceLinks, function(item) {
+			return item.sourceName == node.name;
+		});
+		if (found != null) {
+			return found.value + " to " + this.props.getCountryName(this.props.activeCountry);
+		}
+
+		found = _.find(node.targetLinks, function(item) {
+			return item.targetName == node.name;
+		});
+		if (found != null) {
+			return found.value;
+			// this is a bit too long probably
+			//return found.value 
+			//	+ " from " 
+			//	+ this.props.getCountryName(this.props.activeCountry)
+			//	+ " to"
+		}
+
+		return "\u00A0";
 	},
 
 
@@ -56,22 +94,41 @@ var Node = React.createClass({
 			'node--unselected': item.name !== this.props.activeCountry && this.props.activeCountry != null
 		});
 
+		var textComponent;
+		var params = {
+			x: x,
+			dy: "0.35em",
+			textAnchor: anchor
+		}
+
+		if (!cond) {
+			textComponent = (
+				<text {...params} dx="-6">
+					<tspan className="value"></tspan>
+					<tspan className="countryName" dx="6">{this.props.friendlyName}</tspan>
+				</text>
+			)
+		} else {
+			textComponent = (
+				<text {...params}>
+					<tspan className="countryName">{this.props.friendlyName}</tspan>
+					<tspan className="value" dx="6"></tspan>
+				</text>
+			)
+		}
+
 		return (
 			<g className={classes}>
 				<rect 
 					onMouseOver={this.props.onMouseOver}
 					onMouseOut={this.props.onMouseOut} />
-				<text 
-					x={x} 
-					dy="0.35em"
-					textAnchor={anchor}>
-					{this.props.friendlyName}
-				</text>
+				{textComponent}
 			</g>
 		);
 	}
 	
 });
+
 
 
 var LinkPath = React.createClass({
@@ -117,8 +174,6 @@ var LinkPath = React.createClass({
 				strokeWidth={Math.max(1, item.dy)} />
 		);
 	}
-
-
 });
 
 
@@ -252,10 +307,6 @@ var RefugeeSankey = React.createClass({
 		var sourceCountries = this.getSourceCountries();
 		var targetCountries = this.getTargetCountries();
 
-		window.sourceCountries = sourceCountries;
-		window.targetCountries = targetCountries;
-
-
 		this.getData().forEach(function(item) {
 			var sourceCountry = sourceCountries.indexOf(item.oc) !== -1 ? item.oc : "othersS";
 			var targetCountry = targetCountries.indexOf(item.ac) !== -1 ? item.ac : "othersT";
@@ -279,8 +330,6 @@ var RefugeeSankey = React.createClass({
 				count: item.count
 			});
 		});
-
-		window.ret = ret;
 
 		return ret;
 	},
@@ -350,10 +399,10 @@ var RefugeeSankey = React.createClass({
 
 
 	renderNodes: function(nodes, sankey) {
-
 		return nodes.map(function(item) {
 			return (
 				<Node 
+					getCountryName={this.getCountryName}
 					width={this.getWidth()}
 					key={item.name}
 				    item={item} 
@@ -364,7 +413,17 @@ var RefugeeSankey = React.createClass({
 					friendlyName={this.getCountryName(item.name)} />
 			);
 		}.bind(this));
+	},
 
+
+	getSankey: function() {
+		if (!this._sankey) {
+			this._sankey = d3.sankey()
+				.nodeWidth(15)
+				.nodePadding(10)
+				.size([this.getWidth(), this.getHeight()]);
+		}
+		return this._sankey;
 	},
 
 
@@ -384,11 +443,26 @@ var RefugeeSankey = React.createClass({
 
 		var path = sankey.link();
 
+		var sankey = this.getSankey();
+		
 		sankey
 			.nodes(nodes)
 			.links(links);
-
 		sankey.layout(32);
+
+		// this will lock the y-scale of the sankey
+		// it is a bit fragile, as the height of the svg 
+		// will not be able to accomodate if refugee counts
+		// are larger than when the y-scale was locked
+		//
+		// this is not a problem as long as we show
+		// initially the latest month and refugee counts
+		// keep increasing
+		//
+		if (!sankey.isLockedKY()) {
+			console.log("locking ky");
+			sankey.lockKY();
+		}
 
 		return (
 			<svg className="refugee-sankey" 

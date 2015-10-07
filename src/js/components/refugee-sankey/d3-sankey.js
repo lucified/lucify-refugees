@@ -1,12 +1,14 @@
 
 
 var sk = function() {
+
   var sankey = {},
       nodeWidth = 24,
       nodePadding = 8,
       size = [1, 1],
       nodes = [],
-      links = [];
+      links = [],
+      lockedKY = null;
 
   sankey.nodeWidth = function(_) {
     if (!arguments.length) return nodeWidth;
@@ -77,6 +79,21 @@ var sk = function() {
 
     return link;
   };
+
+  sankey.calculateKY = function() {
+    return calculateKY();
+  }
+
+  sankey.isLockedKY = function() {
+    return lockedKY;
+  }
+
+  sankey.lockKY = function(val) {
+    if (!val) {
+         lockedKY = calculateKY();
+    }
+  }
+
 
   // Populate the sourceLinks and targetLinks for each node.
   // Also, if the source and target are not objects, assume they are indices.
@@ -154,14 +171,44 @@ var sk = function() {
     });
   }
 
-  function computeNodeDepths(iterations) {
-    var nodesByBreadth = d3.nest()
-        .key(function(d) { return d.x; })
-        .sortKeys(d3.ascending)
-        .entries(nodes)
-        .map(function(d) { return d.values; });
 
-    //
+
+  function getNodesByBreadth() {
+      var nodesByBreadth = d3.nest()
+          .key(function(d) { return d.x; })
+          .sortKeys(d3.ascending)
+          .entries(nodes)
+          .map(function(d) { return d.values; });
+      return nodesByBreadth;
+  }
+
+
+  function calculateKY() {
+      var nodesByBreadth = getNodesByBreadth();
+      return d3.min(nodesByBreadth, function(nodes) {
+        return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
+      });
+  }
+
+
+  function getKY() {
+    if (lockedKY !== null) {
+      return lockedKY;
+    }
+    return calculateKY();
+  }
+
+
+  //function getKY = function() {
+//
+ // }
+
+  // function computeNodeDepths
+  // --------------------------
+
+  function computeNodeDepths(iterations) {
+    var nodesByBreadth = getNodesByBreadth();
+    
     initializeNodeDepth();
 
     // hacked this functionality to 
@@ -177,9 +224,11 @@ var sk = function() {
     // }
 
     function initializeNodeDepth() {
-      var ky = d3.min(nodesByBreadth, function(nodes) {
-        return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
-      });
+      //var ky = d3.min(nodesByBreadth, function(nodes) {
+      //  return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
+      //});
+
+      var ky = getKY();
 
       nodesByBreadth.forEach(function(nodes) {
         nodes.forEach(function(node, i) {
@@ -192,6 +241,23 @@ var sk = function() {
         link.dy = link.value * ky;
       });
     }
+
+
+    // function getKY() {
+    //     if (lockedKy != null) {
+    //       return lockedKy;
+    //     }
+    //     return calculateKY();
+    // }
+
+
+    // function calculateKY() {
+    //     return d3.min(nodesByBreadth, function(nodes) {
+    //       return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
+    //     });
+    // }
+
+
 
     function relaxLeftToRight(alpha) {
       nodesByBreadth.forEach(function(nodes, breadth) {
@@ -285,7 +351,8 @@ var sk = function() {
       return a.y - b.y;
     }
 
-  }
+  } // /function computeNodeDepths() 
+
 
   function computeLinkDepths() {
     nodes.forEach(function(node) {
@@ -311,7 +378,9 @@ var sk = function() {
     function ascendingTargetDepth(a, b) {
       return a.target.y - b.target.y;
     }
-  }
+  
+  } // function computeLinkDepths()
+
 
   function center(node) {
     return node.y + node.dy / 2;
@@ -321,7 +390,10 @@ var sk = function() {
     return link.value;
   }
 
+
   return sankey;
-};
+
+}; // var sk
+
 
 module.exports = sk;

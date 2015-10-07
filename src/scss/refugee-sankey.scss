@@ -23,7 +23,18 @@
 	.node text {
 	  pointer-events: none;
 	  text-shadow: 0 1px 0 #fff;
+	
+	  .countryName {
+	  	//font-weight: bold;
+	  }
+
+	  .value {
+	  	fill: $lucify-gray-text-color;
+	  }
+
 	}
+
+
 
 	.node--hovered rect {
 		//fill: rgb(200, 200, 200);
