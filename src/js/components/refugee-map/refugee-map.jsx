@@ -104,6 +104,23 @@ var RefugeeMap = React.createClass({
   },
 
 
+  handleMouseOver: function(country) {
+    var hl = country == "RUS" ? null : country;
+    this.setHoveredCountry(hl);
+  },
+
+
+  handleMouseOut: function(country) {
+    window.setTimeout(function() {
+      if (this.state.hoveredCountry == country) {
+        console.log("hovered country null");
+        this.setHoveredCountry(null);
+      }
+    }.bind(this), 500);
+  },
+
+
+
   render: function() {
 
     if (!this.props.refugeeCountsModel 

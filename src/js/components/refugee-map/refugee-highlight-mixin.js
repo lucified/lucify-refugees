@@ -35,6 +35,7 @@ var RefugeeHighlightMixin = {
   	return this.state.hoveredCountry;
   },
 
+
   getDestinationCountries: function() {
     var destinationCountries = this.props.refugeePointsModel
       .refugeesOnPath[this.getHighlightedCountry()];
@@ -45,6 +46,7 @@ var RefugeeHighlightMixin = {
       return [];
     }
   },
+
 
   getOriginCountries: function() {
     return _.keys(_.pick(this.props.refugeePointsModel.refugeesOnPath,
@@ -69,8 +71,8 @@ var RefugeeHighlightMixin = {
 
 
   getHighlightLayerParams: function() {
-  	if (this.highlightStamp != this.state.stamp) {
-  		this.highlightStamp = this.state.stamp;
+  	if (this.highlightStamp != this.props.stamp) {
+  		this.highlightStamp = this.props.stamp;
   		this.updateHighlight();
   	}
     return {
