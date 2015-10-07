@@ -9,8 +9,12 @@ var DividedCols = require('lucify-commons/src/js/components/divided-cols.jsx');
 var FormRow = require('lucify-commons/src/js/components/nice-form-row.jsx');
 var Slider = require('lucify-commons/src/js/components/nice-slider.jsx');
 
+var RefugeePlayContextDecorator = require('./refugee-play-context-decorator.jsx');
+
+var TimeLayer = require('./refugee-map-time-layer.jsx');
 
 var RefugeeMapSegment = React.createClass({
+
 
 	render: function() {
 		return (
@@ -36,28 +40,35 @@ var RefugeeMapSegment = React.createClass({
 							}
 							second={
 								<div className="inputs__instructions">
-									<p className="first last">
-										Move the sliders to adjust speed and 
-										move in time. 
-									</p>
-
-									<FormRow
-										title={<div>Speed</div>}
-										input={<Slider min={0} max={100} />} />
 									
 									<FormRow
-										title={<div>Time</div>}
-										input={<Slider min={0} max={100} />} />
-
-									<p className="first last">
+										title={<div>Speed</div>}
+										input={<Slider min={0} max={100} 
+											defaultValue={this.props.speed}
+											onChange={this.props.handleSpeedChange} />} />
+									
+									<p className="first">
 										Hover over countries to
 										show details. Click on a country to 
-										lock the selection.
+										lock the selection. 
 									</p>
+
+									<p className="last">
+										The line chart displays the rate of 
+										asylum seekers over time. Hover over the
+										chart to move the map in time.
+									</p>
+
 								</div>
 							} />
 					</div>
 				</Inputs>
+
+				<TimeLayer
+		          onMouseOver={this.props.handleStampChange}
+		          stamp={this.props.stamp}
+		          refugeeCountsModel={this.props.refugeeCountsModel} />
+
 				<RefugeeMap {...this.props} />
 			</div>
 		);
@@ -66,4 +77,5 @@ var RefugeeMapSegment = React.createClass({
 });
 
 
-module.exports = RefugeeMapSegment;
+
+module.exports = RefugeePlayContextDecorator(RefugeeMapSegment);

@@ -1,8 +1,6 @@
 
 var _ = require('underscore');
 
-//var MapModel = require('./map-model.js');
-
 var React = require('react');
 var BordersLayer = require('./refugee-map-borders-layer.jsx');
 var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
@@ -12,7 +10,6 @@ var PointsLayer = require('./refugee-map-points-layer.jsx')
 var RefugeeMapLineChart = require('./refugee-map-line-chart.jsx');
 
 var ControlsAndLegend = require('./refugee-map-controls-and-legend.jsx');
-var TimeLayer = require('./refugee-map-time-layer.jsx');
 
 var constants = require('../../model/refugee-constants.js');
 
@@ -23,68 +20,14 @@ var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
 var RefugeeMap = React.createClass({
 
 
-  //if (window.HD_RESOLUTION) {
-  //  this.getWidth() = 1920;
-  //  this.height = 1080;
-  //}
-
-
   mixins: [RefugeeHighlightMixin],
-
-
-
-  getInitialState: function() {
-    return {
-        stamp: this.props.startStamp, // unix timestamps (seconds-precision)
-        speed: 3,
-        play: this.props.autoStart,
-    }
-  },
 
 
   getDefaultProps: function() {
     return {
       width: 1200,
       height: 1200,
-      autoStart: true
     }
-  },
-   
-  componentWillMount: function() {
-
-  },
-
-
-  componentDidMount: function() {
-    window.rmap = this;
-    this.blockPlay = false;
-
-    this.scheduleUnblockPlay = _.debounce(function() {
-        //console.log("unblocking play");
-        this.unblockPlay();
-    }, 500);
-
-    if (this.props.autoStart) {
-      this.play();
-    }
-  },
-
-
-  unblockPlay: function() {
-    this.blockPlay = false;
-    this.play();
-  },
-
-
-  play: function() {
-      if (this.state.stamp < constants.DATA_END_MOMENT.unix()) {
-        if (!this.blockPlay && this.state.play) {
-          var increment = (60 * 60 * this.state.speed);
-          var newStamp = this.state.stamp + increment;
-          this.setState({stamp: newStamp});  
-          requestAnimationFrame(this.play);    
-        }
-      }
   },
 
 
@@ -97,27 +40,11 @@ var RefugeeMap = React.createClass({
     return this.props.height;
   },
 
-
-  handleMouseOver: function(country) {
-    var hl = country == "RUS" ? null : country;
-    this.setHoveredCountry(hl);
-  },
-
-
-  handleMouseOut: function(country) {
-    window.setTimeout(function() {
-      if (this.state.hoveredCountry == country) {
-        console.log("hovered country null");
-        this.setHoveredCountry(null);
-      }
-    }.bind(this), 500);
-  },
-
-
+  
   componentWillUpdate: function(nextProps, nextState) {
-    if (this.props.width !== nextProps.width) {
-      this._projection = null;
-    }
+      if (this.props.width !== nextProps.width) {
+        this._projection = null;
+      }
   },
 
 
@@ -172,24 +99,9 @@ var RefugeeMap = React.createClass({
       projection: this.getProjection(),
       width: this.getWidth(),
       height: this.getHeight(),
-      stamp: this.state.stamp,
+      stamp: this.props.stamp,
     }
   },
-
-
-  handleStampChange: function(newStamp) {
-    this.blockPlay = true;
-    this.setState({stamp: parseInt(newStamp)});
-    this.scheduleUnblockPlay();
-  },
-
-
-  handleSpeedChange: function(newSpeed) {
-    //window.TRAILS_ENABLED = (newSpeed <= 12);
-    //window.SPEED_RATIO = 60 * 60 * 24 * newSpeed;
-    this.setState({speed: newSpeed});
-  },
-
 
 
   render: function() {
@@ -244,26 +156,18 @@ var RefugeeMap = React.createClass({
           onClick={this.handleMapClick} />
         
         <ControlsAndLegend
-          speed={this.state.speed}
-          stamp={this.state.stamp}
+          speed={this.props.speed}
+          stamp={this.props.stamp}
           minStamp={this.props.startStamp}
           maxStamp={constants.DATA_END_MOMENT.unix()}
-          onSpeedChange={this.handleSpeedChange} 
-          onStampChange={this.handleStampChange} />
-
-        <TimeLayer
-          onMouseOver={this.handleStampChange}
-          stamp={this.state.stamp}
-          width={this.getWidth()}
-          refugeeCountsModel={this.props.refugeeCountsModel} />
+          onSpeedChange={this.props.handleSpeedChange} 
+          onStampChange={this.props.handleStampChange} />
 
       </div>
     )
   }
 });
 
-
-// <Time stamp={this.state.stamp} />
 
 
 module.exports = RefugeeMap;

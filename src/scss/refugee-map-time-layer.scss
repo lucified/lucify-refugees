@@ -1,25 +1,40 @@
 
 
 .refugee-map-time-layer {
-  position: absolute;
-  right: 0px;
-  left: 0px;
-  top: 0px;
+  //position: absolute;
+  //right: 0px;
+  //left: 0px;
+  //top: 0px;
   width: 100%;
   display: table;
-  background-color: rgba(25, 25, 25, 0.30);
+  //background-color: rgba(25, 25, 25, 0.25);
+  background-color: rgba(36, 44, 57, 0.4);
   height: 100px;
   z-index: 1;
 }
 
+
 .refugee-map-time-layer__line {
   display: table-cell;
   //vertical-align: middle;
+
+  .c3-xgrid-line {
+  	text {
+  		fill: white;
+  		font-weight: bold;
+  		font-size: 12px;
+  	}
+
+  	line {
+  		stroke: white;
+  	}
+
+  }
 }
 
 
 .refugee-map-time-layer__time {
-  display: table-cell;
+  display: none;
   color: white;
   font-size: 28px;
   font-family: $lucify-header-font;
@@ -30,3 +45,6 @@
   padding-left: 1.5rem;
   //border: 1px solid white;
 }
+
+
+

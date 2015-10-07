@@ -17,6 +17,11 @@ var RefugeeMapTimeLayer = React.createClass({
 
 
 	render: function() {
+
+		if (!this.props.refugeeCountsModel) {
+			return <div />
+		};
+
 		return (
 			<div className='refugee-map-time-layer'>
 				<div className="refugee-map-time-layer__line">

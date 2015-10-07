@@ -21,9 +21,6 @@ var ResponsiveRefugeeMap = React.createClass({
 
 
 	render: function() {
-
-		console.log("in render");
-
 		return ( 
 			<div>
 				<RefugeeMap {...this.props} 

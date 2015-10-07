@@ -5,6 +5,9 @@ var C3Chart = require('lucify-commons/src/js/components/react-c3/c3-chart.jsx');
 var refugeeConstants = require('../../model/refugee-constants.js');
 var moment = require('moment');
 
+var theme = require('lucify-commons/src/js/lucify-theme.jsx');
+
+
 var RefugeeMapLineChart = React.createClass({
 
 
@@ -29,6 +32,7 @@ var RefugeeMapLineChart = React.createClass({
 				['data1'].concat(cols)
 			],
 			colors: {
+				//data1: theme.cyan
 				data1: '#ffffff'
 			},
 			onmouseover: this.handleMouseOver
@@ -129,6 +133,7 @@ var RefugeeMapLineChart = React.createClass({
 
 
 	render: function() {
+
 		return (
 			<div className='refugee-map-line-chart'>
 				<C3Chart 
