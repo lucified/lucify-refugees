@@ -9,9 +9,10 @@ var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
 var CountryLabelsLayer = require('./refugee-map-country-labels-layer.jsx');
 var CountBarsLayer = require('./refugee-map-count-bars-layer.jsx');
 var PointsLayer = require('./refugee-map-points-layer.jsx')
+var RefugeeMapLineChart = require('./refugee-map-line-chart.jsx');
 
 var ControlsAndLegend = require('./refugee-map-controls-and-legend.jsx');
-var Time = require('./refugee-map-time.jsx');
+var TimeLayer = require('./refugee-map-time-layer.jsx');
 
 var constants = require('../../model/refugee-constants.js');
 
@@ -250,13 +251,19 @@ var RefugeeMap = React.createClass({
           onSpeedChange={this.handleSpeedChange} 
           onStampChange={this.handleStampChange} />
 
-        <Time stamp={this.state.stamp} />
+        <TimeLayer
+          onMouseOver={this.handleStampChange}
+          stamp={this.state.stamp}
+          width={this.getWidth()}
+          refugeeCountsModel={this.props.refugeeCountsModel} />
 
       </div>
     )
   }
 });
 
+
+// <Time stamp={this.state.stamp} />
 
 
 module.exports = RefugeeMap;

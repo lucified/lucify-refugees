@@ -214,7 +214,6 @@ var RefugeeSankey = React.createClass({
 
 
 	toCappedList: function(obj) {
-
 		var sorted = _.pairs(obj).sort(function(a, b) {
 			return b[1] - a[1];
 		});

@@ -31,7 +31,7 @@ var RefugeeMapPointsLayer = React.createClass({
 
    componentDidUpdate: function() {
       // todo: check performance
-      this.renderer.resize(this.getWidth(), this.getHeight());
+      //this.renderer.resize(this.getWidth(), this.getHeight());
       this.renderCanvas();
    },
 
@@ -142,6 +142,8 @@ var RefugeeMapPointsLayer = React.createClass({
 
     this.renderer.clearBeforeRender = !trailsEnabled;
     this.renderer.render(this.stage);
+
+    window.trailsEnabled = trailsEnabled;
 
     if (trailsEnabled) {
       // snippet adapted from earth.js

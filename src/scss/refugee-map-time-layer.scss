@@ -1,0 +1,32 @@
+
+
+.refugee-map-time-layer {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  display: table;
+  background-color: rgba(25, 25, 25, 0.30);
+  height: 100px;
+  z-index: 1;
+}
+
+.refugee-map-time-layer__line {
+  display: table-cell;
+  //vertical-align: middle;
+}
+
+
+.refugee-map-time-layer__time {
+  display: table-cell;
+  color: white;
+  font-size: 28px;
+  font-family: $lucify-header-font;
+  text-align: right;
+  vertical-align: middle;
+  width: 1rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  //border: 1px solid white;
+}

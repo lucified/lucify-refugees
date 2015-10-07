@@ -5,16 +5,15 @@
 	  fill: $lucify-very-dark-blue;
 	  stroke-width: 1px;
 	  stroke: $lucify-cyan;
-	  opacity: 1.0;
+	  opacity: 0.99;
 	}
 
 	.subunit--overlay {
-	  stroke: transparent;
 	  stroke-width: 1px;
 	  stroke: $lucify-cyan;
-	  fill: transparent;
-	  fill: rgba(26, 32, 43, 1.0);
+	  fill: rgba(26, 32, 43, 0.99);
 	  transition: fill 0.4s ease-in-out;
+	  opacity: 0.99;
 	}
 
 	.subunit--destination {
