@@ -23,8 +23,7 @@ TODO: is migration the correct word for these movements?
 1. `npm install`
 2. `./node_modules/bower/bin/bower install`
 3. `bundle install`
-3. `node ./node_modules/gulp/bin/gulp`
-
+4. `node ./node_modules/gulp/bin/gulp`
 
 ## Notes
 
