@@ -55,9 +55,6 @@ var Node = React.createClass({
 			return node.value;
 		}
 
-		window.node =node;
-		window._ = _;
-
 		var found = _.find(node.sourceLinks, function(item) {
 			return item.sourceName == node.name;
 		});
@@ -460,7 +457,7 @@ var RefugeeSankey = React.createClass({
 		// keep increasing
 		//
 		if (!sankey.isLockedKY()) {
-			console.log("locking ky");
+			//console.log("locking ky");
 			sankey.lockKY();
 		}
 
@@ -471,11 +468,6 @@ var RefugeeSankey = React.createClass({
 					{this.renderNodes(nodes, sankey)}
 				</g>
 				<g>
-					<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="139.0532" y1="201.2666" x2="288.0332" y2="201.2666">
-						<stop offset="0" style={{stopColor: '#6AB3B3'}} />
-						<stop offset="1" style={{stopColor: '#81BBA4'}} />
-					</linearGradient>
-
 					{this.renderLinks(links, path)}
 				</g>
 			</svg>

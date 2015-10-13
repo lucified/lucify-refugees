@@ -22,7 +22,6 @@ var RefugeeSankeySegment = React.createClass({
 
 	getInitialState: function() {
 		var ret = {offsetMonths: this.getMaximumOffset()}
-		console.log(ret);
 		return ret;
 	},
 
@@ -59,8 +58,6 @@ var RefugeeSankeySegment = React.createClass({
 
 
 	render: function() {
-		console.log(this.state.offsetMonths);
-
 		return (
 			<div className="refugee-sankey-segment">
 				<Inputs>

@@ -27,6 +27,7 @@ var RefugeeMap = React.createClass({
     return {
       width: 1200,
       height: 1200,
+
     }
   },
 
@@ -115,7 +116,6 @@ var RefugeeMap = React.createClass({
   handleMouseOut: function(country) {
     window.setTimeout(function() {
       if (this.state.hoveredCountry == country) {
-        console.log("hovered country null");
         this.setHoveredCountry(null);
       }
     }.bind(this), 500);
