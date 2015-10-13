@@ -1,6 +1,8 @@
 
 var React = require('react');
 var _ = require('underscore');
+var moment = require('moment');
+
 
 var constants = require('../../model/refugee-constants.js');
 
@@ -12,7 +14,7 @@ module.exports = function(Component) {
        getInitialState: function() {
           return {
               stamp: this.props.startStamp, // unix timestamps (seconds-precision)
-              speed: 3,
+              speed: 1,
               play: this.props.autoStart,
           }
         },
@@ -20,7 +22,8 @@ module.exports = function(Component) {
 
         getDefaultProps: function() {
           return {
-            autoStart: true
+            autoStart: true,
+            startStamp: moment([2012, 0, 1]).unix()
           }
         },
          

@@ -1,27 +1,31 @@
 #!/bin/bash
 
-rm -f data/map.json
-rm -f data/labels.json
-
+rm -f temp/map.json
+#rm -f temp/data-assets/labels.json
 
 ogr2ogr \
   -f GeoJSON \
   -where "ADM0_A3 IN ('SYR', 'AFG', 'SRB', 'IRQ', 'ALB', 'ERI', 'PAK', 'SOM', 'CHI', 'UKR', 'TUR', 'CYP', 'PSE') OR Continent IN ('Europe') OR REGION_WB IN ('Sub-Saharan Africa', 'Middle East & North Africa') OR SUBREGION IN ('Western Asia', 'Central Asia', 'Southern Asia', 'Eastern Asia', 'South-Eastern Asia')" \
-  data/map.json \
+  temp/map.json \
   data/ne_10m_admin_0_countries.shp
 
 node_modules/topojson/bin/topojson \
-  -o data/topomap.json \
+  -o temp/data-assets/topomap.json \
   -p ADM0_A3 \
   -- \
-  data/map.json
+  temp/map.json
 
-ogr2ogr \
-  -f GeoJSON \
-  -where "scalerank IN (0)" \
-  data/labels.json \
-  data/ne_10m_admin_0_label_points.shp
 
+# we are not using the labels for anything
+
+#ogr2ogr \
+#  -f GeoJSON \
+#  -where "scalerank IN (0)" \
+#  data/labels.json \
+#  data/ne_10m_admin_0_label_points.shp
+
+
+# this was just for development
 
 #ogr2ogr \
 #  -f GeoJSON \

@@ -1,40 +1,57 @@
 
-
 var Refugee = require('./refugee.js');
 var moment = require('moment');
 var utils = require('../utils.js');
 
 
-var createFullList = function(mapModel, asylumData, regionalData, peoplePerPoint) {
-	return createList(mapModel, asylumData, peoplePerPoint, false)
-		.concat(createList(mapModel, regionalData, peoplePerPoint, true));
-}
+/*
+ * Create list of refugees based on given asylum and regional data
+ */
+var createFullList = function(mapModel, asylumData, regionalData, 
+  peoplePerPoint, randomStartPoint, smartSpreadEnabled) {
 
+  return createList(asylumData, false).concat(createList(regionalData, true));
+  
+  function createList(data, isAsylumSeeker) {
+    var ret = [];  
 
-var createList = function(mapModel, data, peoplePerPoint, isAsylumSeeker) {
-  var ret = [];  
+    if (!data) {
+      return ret;
+    }
 
-  if (!data) {
+    data.forEach(function(item) {
+      if (!mapModel.containsCountry(item.ac)) {
+        console.log("asylum country " + item.ac +  " not in map, skipping");
+      } else if (!mapModel.containsCountry(item.oc)) {
+        // console.log("origin country " + item.oc +  " not in map, skipping");
+      } else {
+        // add refugees for journey visualization
+        var refugeesToAdd = Math.round(item.count / peoplePerPoint);
+        for (var i = 0; i < refugeesToAdd; i++) {
+          ret.push(createRefugee(item.oc, item.ac,
+            item.month - 1, item.year, isAsylumSeeker));
+        }
+      }
+    });
     return ret;
   }
 
-  data.forEach(function(item) {
-
-  	if (!mapModel.containsCountry(item.ac)) {
-      console.log("asylum country " + item.ac +  " not in map, skipping");
-    } else if (!mapModel.containsCountry(item.oc)) {
-      // console.log("origin country " + item.oc +  " not in map, skipping");
-    } else {
-      // add refugees for journey visualization
-      var refugeesToAdd = Math.round(item.count / peoplePerPoint);
-      for (var i = 0; i < refugeesToAdd; i++) {
-        ret.push(createRefugee(mapModel, item.oc, item.ac,
-          item.month - 1, item.year, isAsylumSeeker));
-      }
-    }
-  });
-
-  return ret;
+  /*
+   * Create a refugee
+   */
+  function createRefugee(startCountry, endCountry, month, year, isAsylumSeeker) {
+    var r = new Refugee(
+      randomStartPoint ? mapModel.getRandomPointFromCountry(startCountry) : mapModel.getCenterPointOfCountry(startCountry),
+      mapModel.getCenterPointOfCountry(endCountry),
+      startCountry,
+      endCountry,
+      prepareRefugeeSpeed(),
+      prepareRefugeeEndMoment(month, year),
+      isAsylumSeeker,
+      smartSpreadEnabled
+    );
+    return r;
+  };
 }
 
 
@@ -56,25 +73,6 @@ var prepareRefugeeEndMoment = function(month, year) {
 };
 
 
-/*
- * Create a refugee
- */
-var createRefugee = function(mapModel, startCountry, endCountry, month, year, isAsylumSeeker) {
-  var r = new Refugee(
-    window.RANDOM_START_POINT ? mapModel.getRandomPointFromCountry(startCountry) : mapModel.getCenterPointOfCountry(startCountry),
-    mapModel.getCenterPointOfCountry(endCountry),
-    startCountry,
-    endCountry,
-    prepareRefugeeSpeed(),
-    prepareRefugeeEndMoment(month, year),
-    isAsylumSeeker
-  );
-
-  return r;
-};
-
 
 module.exports.createFullList = createFullList;
-module.exports.createList = createList;
-
 

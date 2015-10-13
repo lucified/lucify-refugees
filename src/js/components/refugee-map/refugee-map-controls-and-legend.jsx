@@ -1,4 +1,6 @@
 
+// NOT IN USE
+
 var React = require('react');
 var d3 = require('d3');
 
@@ -49,8 +51,6 @@ var RefugeeMapControlsAndLegend = React.createClass({
 	      				id="time-control" 
 	      				onChange={this.handleStampChange} />
 	  			</div>
-
-
 
 			</div>
 		);

@@ -43,7 +43,7 @@ var RefugeeMapSegment = React.createClass({
 									
 									<FormRow
 										title={<div>Speed</div>}
-										input={<Slider min={0} max={100} 
+										input={<Slider min={1} max={100} 
 											defaultValue={this.props.speed}
 											onChange={this.props.handleSpeedChange} />} />
 									

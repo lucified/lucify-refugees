@@ -7,7 +7,7 @@ var KILOMETERS_PER_DEGREE = 111;
 
 // single refugee
 var Refugee = function(startPoint, endPoint, originCountry, 
-  destinationCountry, speed, endMoment, isAsylumSeeker) {
+  destinationCountry, speed, endMoment, isAsylumSeeker, smartSpreadEnabled) {
   
   this.startPoint = startPoint;
   this.endPoint = endPoint;
@@ -17,8 +17,9 @@ var Refugee = function(startPoint, endPoint, originCountry,
   this.endMoment = endMoment;
   this.isAsylumSeeker = isAsylumSeeker;
   this.totalTravelTime = this.getTravelDistance() / this.speed;
+  this.smartSpreadEnabled = smartSpreadEnabled;
 
-  if (window.SMART_SPREAD_ENABLED) {
+  if (smartSpreadEnabled) {
     this.sideDeviation = randgen.rnorm(0, 1); // mean, std. deviation
     this.maxSideDeviation = 0.3;
   }
@@ -85,7 +86,7 @@ Refugee.prototype.getLocation = function(stamp) {
     this.startPoint[1] + this.directionVector.y * distance
   ];
 
-  if (window.SMART_SPREAD_ENABLED) {
+  if (this.smartSpreadEnabled) {
     var portionOfJourney = hours / this.getTravelTime();
     var sideMotionAmount = Math.sin(portionOfJourney * Math.PI) * this.sideDeviation * this.maxSideDeviation;
     v[0] += -this.directionVector.y * sideMotionAmount; // perpendicular = (-y, x)

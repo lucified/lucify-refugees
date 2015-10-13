@@ -1,7 +1,11 @@
 
 
-var RefugeePointsModel = function(refugees) {
-	this.refugees = refugees;
+var RefugeePointsModel = function(refugees, randomStartPoint, smartSpreadEnabled) {
+	
+  this.randomStartPoint = randomStartPoint;
+  this.smartSpreadEnabled = smartSpreadEnabled;
+
+  this.refugees = refugees;
 	this.activeRefugees = [];
 	this.stamp = 0;
 	this.refugeeIndex = 0;
@@ -65,8 +69,6 @@ RefugeePointsModel.prototype._updateBackward = function(stamp) {
 		latestStamp = Math.max(latestStamp, r.startMomentUnix);
 	}.bind(this));
 
-	window.latestRefugee = latestRefugee;
-
 	this.refugeeIndex = this.refugees.indexOf(latestRefugee);
 }
 
@@ -79,7 +81,7 @@ RefugeePointsModel.prototype._updateForward = function(stamp) {
 
   // add new ones
   while ((r = this.refugees[this.refugeeIndex]) != null && r.startMomentUnix < stamp) {
-    if (window.SMART_SPREAD_ENABLED) {
+    if (this.smartSpreadEnabled) {
       r.setRouteRefugeeCount(this._increaseRefugeeEnRoute(r.originCountry, r.destinationCountry));
     }
     this.activeRefugees.push(r);
@@ -94,7 +96,7 @@ RefugeePointsModel.prototype._updateForward = function(stamp) {
   for (var i = 0; i < length; i++) {
     r = this.activeRefugees[i];
     if (r.endMomentUnix < stamp) {
-      if (window.SMART_SPREAD_ENABLED) {
+      if (this.smartSpreadEnabled) {
         this.refugeesOnPath[r.originCountry][r.destinationCountry]--;
       }
     } else {

@@ -1,5 +1,9 @@
 
-
+//
+// Phantomjs script for rendering a video of the map
+// 
+// this is currently broken
+//
 
 var sprintf = require('sprintf');
 
@@ -39,3 +43,21 @@ page.open('http://localhost:3000/?divider=5&autostart=false&hd=true', function (
 
 
 
+// code from the original main.js used to support
+// video rendering
+
+// var tick = function() {
+//   refugeeModel.currentMoment.add(1, 'hours');
+//   d3.select('#time')
+//     .text(refugeeModel.currentMoment.format('DD.MM.YYYY'));
+//   refugeeModel.update();
+//   refugeeMap.update();
+// };
+
+// // only for testing
+// var tick100 = function() {
+//   _.range(0, 100).forEach(tick);
+// };
+
+// window.tick = tick;
+// window.tick100 = tick100;

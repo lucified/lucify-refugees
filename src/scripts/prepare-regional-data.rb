@@ -3,7 +3,7 @@
 require 'csv'
 require 'json'
 
-OUTPUT_FILE = './data/regional-movements.json'
+OUTPUT_FILE = './temp/data-assets/regional-movements.json'
 INPUT_FILES = [
   {
     filename: "./data/syria-refugees-egypt-150705.csv",

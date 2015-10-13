@@ -4,7 +4,7 @@ require 'csv'
 require 'json'
 require 'iso_country_codes'
 
-OUTPUT_FILE = './data/asylum.json'
+OUTPUT_FILE = './temp/data-assets/asylum.json'
 INPUT_FILE = './data/unhcr_popstats_export_asylum_seekers_monthly_2015_09_20_EU_Africa_Middle_East.csv'
 month_data = []
 $country_codes_cache = {}

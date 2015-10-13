@@ -27,7 +27,9 @@ var bindToRefugeeMapContext = function(Component) {
       getDefaultProps: function() {
          return {
             peoplePerPoint: 25,
-            includeRegionalData: true
+            includeRegionalData: true,
+            smartSpreadEnabled: true,   // different values for these props have
+            randomStartPoint: false     // not been tested and will probably result in bugs
          }
       },
 
@@ -47,24 +49,19 @@ var bindToRefugeeMapContext = function(Component) {
 
          var promises = [];
 
-         promises.push(d3.jsonAsync('topomap.json').then(function(data) {
+         promises.push(d3.jsonAsync('data/topomap.json').then(function(data) {
             this.topomap = data;
          }.bind(this)));
 
-         promises.push(d3.jsonAsync('asylum.json').then(function(data) {
+         promises.push(d3.jsonAsync('data/asylum.json').then(function(data) {
             this.asylumData = data;
          }.bind(this)));
 
          if (this.props.includeRegionalData) {
-            promises.push(d3.jsonAsync('regional-movements.json').then(function(data) {
+            promises.push(d3.jsonAsync('data/regional-movements.json').then(function(data) {
                this.regionalData = data;
             }.bind(this)));
          }   
-
-         //var p4 = d3.jsonAsync('labels.json').then(function(data) {
-         //   labels = data;
-         //   window.labels = labels;
-         //}.bind(this));
 
          Promise.all(promises).then(function() {
             console.timeEnd('load json');
@@ -77,7 +74,8 @@ var bindToRefugeeMapContext = function(Component) {
 
       createPointList: function(mapModel) {
          return pointList.createFullList(
-            mapModel, this.asylumData, this.regionalData, this.props.peoplePerPoint);
+            mapModel, this.asylumData, this.regionalData, this.props.peoplePerPoint,
+            this.props.randomStartPoint, this.props.smartSpreadEnabled);
       },
 
 
@@ -92,7 +90,7 @@ var bindToRefugeeMapContext = function(Component) {
          var pointList = this.createPointList(mapModel);
          console.timeEnd("create points list");
 
-         var refugeePointsModel = new RefugeePointsModel(pointList);
+         var refugeePointsModel = new RefugeePointsModel(pointList, this.props.randomStartPoint, this.props.smartSpreadEnabled);
          var refugeeCountsModel = new RefugeeCountsModel(this.asylumData, this.regionalData);
 
          this.setState({

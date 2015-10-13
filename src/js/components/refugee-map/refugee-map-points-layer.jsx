@@ -67,7 +67,7 @@ var RefugeeMapPointsLayer = React.createClass({
        this.stage.addChild(graphics);
 
        this.refugeeTexture = new PIXI.Texture.fromImage(
-         "one-white-pixel.png",
+         "images/one-white-pixel.png",
          new PIXI.Rectangle(0, 0, 1, 1));
    },
 
