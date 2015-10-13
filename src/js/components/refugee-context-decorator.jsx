@@ -27,7 +27,7 @@ var bindToRefugeeMapContext = function(Component) {
       getDefaultProps: function() {
          return {
             peoplePerPoint: 25,
-            includeRegionalData: true, 
+            includeRegionalData: false, // this is shown separately
             smartSpreadEnabled: true,   // different values for these props have
             randomStartPoint: false     // not been tested and will probably result in bugs
          }

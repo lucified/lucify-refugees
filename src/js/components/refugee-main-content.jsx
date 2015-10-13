@@ -4,6 +4,8 @@ var React = require('react');
 var Decorator = require('./refugee-context-decorator.jsx');
 var RefugeeMapSegment = require('./refugee-map/refugee-map-segment.jsx');
 var RefugeeSankeySegment = require('./refugee-sankey/refugee-sankey-segment.jsx');
+var RefugeeSoccerSegment = require('./refugee-soccer/refugee-soccer-segment.jsx');
+
 
 
 var RefugeeMainContent = React.createClass({
@@ -11,7 +13,9 @@ var RefugeeMainContent = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			mapEnabled: true // this option is for testing
+			mapEnabled: true, 
+			sankeyEnabled: true,
+			soccerEnabled: true
 		}
 	},
 
@@ -21,6 +25,21 @@ var RefugeeMainContent = React.createClass({
 			return <RefugeeMapSegment {...this.props} />
 		}
 		return <div />;
+	},
+
+
+	getSankeySegment: function() {
+		if (this.props.sankeyEnabled) {
+			return <RefugeeSankeySegment {...this.props} />
+		}
+		return <div />;
+	},
+
+
+	getSoccerSegment: function() {
+		if (this.props.soccerEnabled) {
+			return <RefugeeSoccerSegment {...this.props} />
+		}
 	},
 
 
@@ -37,7 +56,8 @@ var RefugeeMainContent = React.createClass({
 			<div className="refugee-main-content"
 				style={{minHeight: 2000}}>
 				{this.getMapSegment()}
-				<RefugeeSankeySegment {...this.props} />
+				{this.getSankeySegment()}
+				{this.getSoccerSegment()}
 			</div>
 			
 		);
