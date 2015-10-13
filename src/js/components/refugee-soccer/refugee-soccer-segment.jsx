@@ -54,10 +54,9 @@ var RefugeeSoccerSegment = React.createClass({
 
 					<p>
 						The United Nations estimates that half a million Syrian 
-						refugees have sought asylum
-						in Europe between April 2011 and September 2015.
-						Standing tighly together, they would fit 
-						on {this.getEuropeanSoccerFieldsCount()} 
+						refugees have sought asylum in Europe between 
+						April 2011 and September 2015. Standing very tighly together, 
+						they would fit 	on {this.getEuropeanSoccerFieldsCount()} 
 						{' '} soccer fields.
 					</p>
 
