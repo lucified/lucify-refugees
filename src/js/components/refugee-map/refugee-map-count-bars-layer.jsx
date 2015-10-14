@@ -6,7 +6,7 @@ var d3 = require('d3');
 var RefugeeMapCountBar = React.createClass({
 
   // for some reason Safari
-  // slows down a lot when
+  // slows down a lot when these
   // updates are rendered with
   // React, so we use D3 instead
 
@@ -25,8 +25,8 @@ var RefugeeMapCountBar = React.createClass({
           .style('display', refugeeBarSize > 0 ? 'inherit' : 'none');
 
       this.asylumSel
-          .attr('y', coordinates[1] - refugeeBarSize)
-          .attr('height', refugeeBarSize)
+          .attr('y', coordinates[1] - asylumBarSize)
+          .attr('height', asylumBarSize)
           .attr('x', coordinates[0] - (bothBarsShown ? 6 : 2))
           .style('display', asylumBarSize > 0 ? 'inherit' : 'none');
   },
@@ -47,7 +47,9 @@ var RefugeeMapCountBar = React.createClass({
 
   render: function() {
       var country = this.props.country;
-      var coordinates = this.props.projection(this.props.mapModel.getCenterPointOfCountry(country));
+      var coordinates = this.props.projection(
+        this.props.mapModel.getCenterPointOfCountry(country));
+      
       var rects = [];
 
       rects.push(
@@ -91,7 +93,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
       if (this.props.highlightedCountry != null) {
       
         if (countries.indexOf(this.props.highlightedCountry) != -1) {
-          items.push(<RefugeeMapCountBar key={this.props.highlightedCountry} {...props} country={this.props.highlightedCountry} />)
+          items.push(<RefugeeMapCountBar key={this.props.highlightedCountry + "_"} {...props} country={this.props.highlightedCountry} />)
         }
         
       } else {
@@ -105,6 +107,10 @@ var RefugeeMapCountBarsLayer = React.createClass({
 
 
    shouldComponentUpdate: function(nextProps) {
+      if (this.props.highlightedCountry !== nextProps.highlightedCountry) {
+        return true;
+      }
+
       // update for five day differences
       return Math.abs(this.lastUpdate - nextProps.stamp) > 60 * 60 * 24 * 5;
    },
