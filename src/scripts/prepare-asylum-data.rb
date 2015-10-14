@@ -5,21 +5,45 @@ require 'json'
 require 'iso_country_codes'
 
 OUTPUT_FILE = './temp/data-assets/asylum.json'
-INPUT_FILE = './data/unhcr_popstats_export_asylum_seekers_monthly_2015_09_20_EU_Africa_Middle_East.csv'
+INPUT_FILE = './data/unhcr_popstats_export_asylum_seekers_monthly.csv'
+countries_to_ignore = ["Stateless", "Various/unknown", "Tibetan", "USA (EOIR)", "USA (INS/DHS)"]
+destination_countries_to_ignore = ["Canada", "Australia", "New Zealand", "Japan", "Rep. of Korea", "Turkey"]
+
+$proper_country_names = {
+  "Dem. Rep. of the Congo" => "Congo (Democratic Republic of the)",
+  "Iran (Islamic Rep. of)" => "Iran (Islamic Republic of)",
+  "Palestinian" => "Palestine, State of",
+  "The former Yugoslav Rep. of Macedonia" => "Macedonia (the former Yugoslav Republic of)",
+  "Rep. of Moldova" => "Moldova (Republic of)",
+  "United Rep. of Tanzania" => "Tanzania, United Republic of",
+  "Serbia and Kosovo (S/RES/1244 (1999))" => "Serbia",
+  "Rep. of Korea" => "Korea (Republic of)",
+  "Dem. People's Rep. of Korea" => "Korea (Democratic People's Republic of)",
+  "Lao People's Dem. Rep." => "Lao People's Democratic Republic"
+}
 month_data = []
 $country_codes_cache = {}
 
+
+def proper_country_name(name)
+  proper_name = $proper_country_names[name]
+  proper_name = name unless proper_name
+  proper_name
+end
+
 def get_country_code_for_name(name)
-	$country_codes_cache[name] ||= IsoCountryCodes.search_by_name(name).first.alpha3
+  $country_codes_cache[name] ||= IsoCountryCodes.search_by_name(name).first.alpha3
 end
 
 File.delete(OUTPUT_FILE) if File.exists?(OUTPUT_FILE)
 
 CSV.foreach(INPUT_FILE) do |row|
   next if row[4] == '*'
+  next if destination_countries_to_ignore.include?(row[0])
+  next if countries_to_ignore.include?(row[1]) || countries_to_ignore.include?(row[0])
   month_data << {
-    oc: get_country_code_for_name(row[1]),
-    ac: get_country_code_for_name(row[0]),
+    oc: get_country_code_for_name(proper_country_name(row[1])),
+    ac: get_country_code_for_name(proper_country_name(row[0])),
     month: Date::MONTHNAMES.index(row[3]),
     year: row[2].to_i,
     count: row[4].to_i
