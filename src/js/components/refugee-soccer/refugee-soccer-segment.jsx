@@ -7,8 +7,8 @@ var RefugeeSoccerSegment = React.createClass({
 
 
 	getSoccerFields: function(count) {
-		return _.range(0, count).map(function() {
-			return <img src='images/soccer-field.svg' />
+		return _.range(0, count).map(function(index) {
+			return <img key={index} src='images/soccer-field.svg' />
 		});
 	},
 
