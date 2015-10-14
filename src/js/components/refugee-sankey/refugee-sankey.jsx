@@ -11,6 +11,12 @@ var countries = require("i18n-iso-countries");
 var classNames = require('classNames');
 
 
+
+var getCountryFromNodeId = function(id) {
+	return id.replace('_dest', '').replace('_origin', '');
+}
+
+
 var Node = React.createClass({
 
 
@@ -51,20 +57,25 @@ var Node = React.createClass({
 
 		var node = this.props.item;
 
-		if (this.props.activeCountry == null || this.props.activeCountry == node.name) {
+		var country = getCountryFromNodeId(node.name);
+
+		if (this.props.activeNode == null || this.props.activeNode == node) {
 			return node.value;
 		}
 
 		var found = _.find(node.sourceLinks, function(item) {
-			return item.sourceName == node.name;
-		});
+			return item.targetName == this.props.activeNode.name;
+		}.bind(this));
+
 		if (found != null) {
-			return found.value + " to " + this.props.getCountryName(this.props.activeCountry);
+			return found.value + " to " + this.props.getCountryName(
+				getCountryFromNodeId(this.props.activeNode.name));
 		}
 
 		found = _.find(node.targetLinks, function(item) {
-			return item.targetName == node.name;
-		});
+			return item.sourceName == this.props.activeNode.name;
+		}.bind(this));
+
 		if (found != null) {
 			return found.value;
 			// this is a bit too long probably
@@ -87,8 +98,8 @@ var Node = React.createClass({
 		
 		var classes = classNames({
 			node: true,
-			'node--hovered': item.name == this.props.activeCountry,
-			'node--unselected': item.name !== this.props.activeCountry && this.props.activeCountry != null
+			'node--hovered': item == this.props.activeNode,
+			'node--unselected': item !== this.props.activeNode && this.props.activeNode != null
 		});
 
 		var textComponent;
@@ -158,11 +169,12 @@ var LinkPath = React.createClass({
 
 		var classes = classNames({
 			'link': true,
-			'link--unselected': item.sourceName != this.props.activeCountry 
-				&& item.targetName != this.props.activeCountry
-				&& this.props.activeCountry != null,
-			'link--hovered': item.sourceName == this.props.activeCountry
-				|| item.targetName == this.props.activeCountry
+			'link--unselected': this.props.activeNode != null
+				&& item.sourceName != this.props.activeNode.name 
+				&& item.targetName != this.props.activeNode.name,
+			'link--hovered': this.props.activeNode != null
+				&& (item.sourceName == this.props.activeNode.name
+				|| item.targetName == this.props.activeNode.name)
 		});
 
 		return (
@@ -204,13 +216,36 @@ var RefugeeSankey = React.createClass({
 	},
 
 
-	getOrderedNodeIds: function() {
-		var items = {};
+	getOriginId: function(country) {
+		return country + "_origin";
+	},
+
+
+	getDestinationId: function(country) {
+		return country + "_dest";
+	},
+
+
+	getOriginNodeIds: function() {
+		var ret = {};
 		this.getSimplifiedData().forEach(function(item) {
-			items[item.oc] = true;
-			items[item.ac] = true;
-		})
- 		return _.keys(items);
+			ret[this.getOriginId(item.oc)] = true;
+		}.bind(this));
+		return _.keys(ret);
+	},
+
+
+	getDestinationNodeIds: function() {
+		var ret = {};
+		this.getSimplifiedData().forEach(function(item) {
+			ret[this.getDestinationId(item.ac)] = true;
+		}.bind(this));
+		return _.keys(ret);	
+	},
+
+
+	getOrderedNodeIds: function() {
+		return this.getOriginNodeIds().concat(this.getDestinationNodeIds());
 	},
 
 
@@ -218,13 +253,13 @@ var RefugeeSankey = React.createClass({
 		var nodes = this.getOrderedNodeIds();
 		return this.getSimplifiedData().map(function(item) {
 			return {
-				source: nodes.indexOf(item.oc),
-				target: nodes.indexOf(item.ac),
-				sourceName: item.oc,
-				targetName: item.ac,
+				source: nodes.indexOf(this.getOriginId(item.oc)),
+				target: nodes.indexOf(this.getDestinationId(item.ac)),
+				sourceName: this.getOriginId(item.oc),
+				targetName: this.getDestinationId(item.ac),
 				value: item.count
 			}
-		});
+		}.bind(this));
 	},
 
 
@@ -305,14 +340,10 @@ var RefugeeSankey = React.createClass({
 		var targetCountries = this.getTargetCountries();
 
 		this.getData().forEach(function(item) {
-			var sourceCountry = sourceCountries.indexOf(item.oc) !== -1 ? item.oc : "othersS";
-			var targetCountry = targetCountries.indexOf(item.ac) !== -1 ? item.ac : "othersT";
+			var sourceCountry = sourceCountries.indexOf(item.oc) !== -1 ? item.oc : "others";
+			var targetCountry = targetCountries.indexOf(item.ac) !== -1 ? item.ac : "others";
 			
-			if (sourceCountry == "TUR") {
-				sourceCountry = "TUR-S";
-			}
-
-			if (sourceCountry == "othersS" || targetCountry == "othersT") {
+			if (sourceCountry == "others" || targetCountry == "others") {
 				var found = _.find(ret, function(val) {
 					return val.oc == sourceCountry && val.ac == targetCountry;
 				});
@@ -343,13 +374,9 @@ var RefugeeSankey = React.createClass({
 
 
 	getCountryName: function(name) {
-		switch (name) {
-			case "othersS":
-			case "othersT":
-				return "Others";
-			case "TUR":
-			case "TUR-S":
-				return "Turkey";
+
+		if (name == "others") {
+			return "Others";
 		}
 
 		var name = this.props.mapModel.getFriendlyNameForCountry(name); 
@@ -362,24 +389,24 @@ var RefugeeSankey = React.createClass({
 	},
 
 
-	getActiveCountry: function() {
+	getActiveNode: function() {
 		return this.state.hovered;
 	},
 
 
-	getOnMouseOut: function(country) {
+	getOnMouseOut: function(item) {
 		return function() {
-			if (this.state.hovered == country) {
+			if (this.state.hovered == item) {
 				this.setState({hovered: null});	
 			}
 		}.bind(this);
 	},
 
 
-	getOnMouseOver: function(country) {
+	getOnMouseOver: function(item) {
 		return function() {
-			console.log("hovering on" + country);
-			this.setState({hovered: country});
+			console.log("hovering on" + item);
+			this.setState({hovered: item});
 		}.bind(this);
 	},
 
@@ -390,24 +417,27 @@ var RefugeeSankey = React.createClass({
 					key={item.sourceName + item.targetName}
 					item={item}
 					pathFunction={pathFunction}
-					activeCountry={this.getActiveCountry()} />
+					activeNode={this.getActiveNode()} />
 		}.bind(this));
 	},
 
 
 	renderNodes: function(nodes, sankey) {
 		return nodes.map(function(item) {
+
+			var country = getCountryFromNodeId(item.name);
+
 			return (
 				<Node 
-					getCountryName={this.getCountryName}
+					getCountryName={this.getCountryName} // sic
 					width={this.getWidth()}
 					key={item.name}
 				    item={item} 
-					onMouseOver={this.getOnMouseOver(item.name)}
-					onMouseOut={this.getOnMouseOut(item.name)}
-					activeCountry={this.getActiveCountry()}
+					onMouseOver={this.getOnMouseOver(item)}
+					onMouseOut={this.getOnMouseOut(item)}
+					activeNode={this.getActiveNode()}
 					nodeWidth={sankey.nodeWidth()}
-					friendlyName={this.getCountryName(item.name)} />
+					friendlyName={this.getCountryName(country)} />
 			);
 		}.bind(this));
 	},
@@ -458,7 +488,7 @@ var RefugeeSankey = React.createClass({
 		//
 		if (!sankey.isLockedKY()) {
 			//console.log("locking ky");
-			sankey.lockKY();
+			//sankey.lockKY();
 		}
 
 		return (
