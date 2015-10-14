@@ -215,6 +215,7 @@ var RefugeeMapBordersLayer = React.createClass({
             || Math.abs(this.lastUpdated - this.props.stamp) > 60 * 60 * 24 * 5)) {
          return true;
       }
+      
       return false;
    },
 

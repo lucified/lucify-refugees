@@ -24,7 +24,6 @@ var RefugeeMapCountryCountsLayer = React.createClass({
 
    renderTexts: function() {
       var items = [];
-      
 
       var counts = this.props.refugeeCountsModel
         .getDestinationCountsByOriginCountries(this.props.country, this.props.stamp);
@@ -55,7 +54,6 @@ var RefugeeMapCountryCountsLayer = React.createClass({
         }
       }.bind(this));
 
-
       // on the hovered country we show either the amount of 
       // people received of the amount of people who have left
       //
@@ -76,6 +74,10 @@ var RefugeeMapCountryCountsLayer = React.createClass({
       return items;
    },
 
+
+   shouldComponentUpdate: function() {
+      return false;
+   },
 
 
    render: function() {
