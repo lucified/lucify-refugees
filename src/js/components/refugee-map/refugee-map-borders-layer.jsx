@@ -8,6 +8,7 @@ var sprintf = require('sprintf');
 
 window.exponent = 0.5;
 
+
 var RefugeeMapBorder = React.createClass({
 
 
@@ -15,22 +16,25 @@ var RefugeeMapBorder = React.createClass({
       var sel = d3.select(React.findDOMNode(this.refs.overlay));
 
       sel
-         .classed('subunit--hovered', this.props.hovered)
-         .classed('subunit--destination', this.props.destination)
-         .classed('subunit--origin', this.props.origin);
+         .classed('subunit--hovered', nextProps.hovered)
+         .classed('subunit--destination', nextProps.destination)
+         .classed('subunit--origin', nextProps.origin);
       
-      var count = this.props.count != null ? this.props.count.asylumApplications + this.props.count.registeredRefugees : 0;
+      var count = nextProps.count != null ? nextProps.count.asylumApplications + nextProps.count.registeredRefugees : 0;
       
       var fillStyle = null;
 
-      if (this.props.origin && count > 0) {
-         fillStyle = sprintf('rgba(190, 88, 179, %.2f)', this.props.originScale(count));
-      } else if (this.props.destination && count > 0){
-         fillStyle = sprintf('rgba(95, 196, 114, %.2f)', this.props.destinationScale(count));
+      if (nextProps.origin && count > 0) {
+         fillStyle = sprintf('rgba(190, 88, 179, %.2f)', nextProps.originScale(count));
+      } else if (nextProps.destination && count > 0){
+         fillStyle = sprintf('rgba(95, 196, 114, %.2f)', nextProps.destinationScale(count));
       }
 
       sel.style('fill', fillStyle);
 
+      // we do the update inside the shouldComponentUpdate 
+      // function to prevent an expensive diff of the svg path
+      // a react render will only be needed if we need to resize
       return this.props.width !== nextProps.width;
    },
 
@@ -48,10 +52,10 @@ var RefugeeMapBorder = React.createClass({
    render: function() {
        var path = this.props.path;
        var country = this.props.country;
-
        var d = path(this.props.feature);
 
-       var overlay = this.props.enableOverlay ? (<path key="p2" ref="overlay"
+       var overlay = this.props.enableOverlay ? (
+         <path key="p2" ref="overlay"
                className="subunit--overlay"
                onMouseOver={this.onMouseOver}
                onMouseOut={this.onMouseOut} 
@@ -78,14 +82,10 @@ var RefugeeMapBordersLayer = React.createClass({
 
 
    getDefaultProps: function() {
-      return {subunitClass: 'subunit'}
+      return {
+            subunitClass: 'subunit',
+            updatesEnabled: true}
    },
-
-
-   componentDidMount: function() {
-  
-   },
-
 
    onMouseOver: function(country) {
       //console.log("over country" + country);
@@ -156,9 +156,6 @@ var RefugeeMapBordersLayer = React.createClass({
 
 
    getPaths: function() {
-
-      window.props = this.props;
-
       var countData = this.getCountData();
 
       // while we use React to manage the DOM,
@@ -166,7 +163,6 @@ var RefugeeMapBordersLayer = React.createClass({
       var path = d3.geo.path().projection(this.props.projection);
       return this.props.mapModel.featureData.features.map(function(feature) {
          var country = feature.properties.ADM0_A3;
-
          var hparams = this.getHighlightParams(country);
 
          var countDetails = {}; 
@@ -200,7 +196,27 @@ var RefugeeMapBordersLayer = React.createClass({
    },
 
 
+   shouldComponentUpdate: function(nextProps, nextState) {
+      if (!this.props.updatesEnabled) {
+         return false;
+      }
+
+      //console.log(this.props.country + " " + nextProps.country);
+      if (nextProps.country !== this.props.country) {
+         return true;
+      }
+
+      if (this.props.country != null 
+         && Math.abs(this.lastUpdated - this.props.stamp) > 60 * 60 * 24 * 5) {
+         return true;
+      }
+      return false;
+   },
+
+
    render: function() {
+      this.lastUpdated = this.props.stamp;
+      console.log("borders re-render");
       return (
          <svg className="refugee-map-borders-layer" 
             style={{width: this.props.width, height: this.props.height}}
@@ -208,7 +224,7 @@ var RefugeeMapBordersLayer = React.createClass({
             {this.getPaths()}
          </svg>
       )
-   }
+   },
 
 
 });

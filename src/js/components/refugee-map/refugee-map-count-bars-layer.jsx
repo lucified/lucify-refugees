@@ -45,8 +45,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
 
 
   getBarItems: function() {
-      var items = [];
-   
+      var items = []; 
       var countries = this.props.refugeeCountsModel.getDestinationCountries();
 
       if (this.props.highlightedCountry != null) {
@@ -65,7 +64,14 @@ var RefugeeMapCountBarsLayer = React.createClass({
    },
 
 
+   shouldComponentUpdate: function(nextProps) {
+      // update for five day differences
+      return Math.abs(this.lastUpdate - nextProps.stamp) > 60 * 60 * 24 * 5;
+   },
+
+
    render: function() {
+      this.lastUpdate = this.props.stamp;
       return (
          <svg className="refugee-map-count-bars-layer" 
              style={{width: this.props.width, height: this.props.height}}>

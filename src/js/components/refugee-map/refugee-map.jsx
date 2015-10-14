@@ -95,7 +95,6 @@ var RefugeeMap = React.createClass({
 
 
 
-
   getStandardLayerParams: function() {
     return {
       mapModel: this.props.mapModel,
@@ -116,6 +115,7 @@ var RefugeeMap = React.createClass({
   handleMouseOut: function(country) {
     window.setTimeout(function() {
       if (this.state.hoveredCountry == country) {
+        console.log("setting hoveredCountry to null");
         this.setHoveredCountry(null);
       }
     }.bind(this), 500);
@@ -167,6 +167,7 @@ var RefugeeMap = React.createClass({
           refugeePointsModel={this.props.refugeePointsModel} />
         
         <BordersLayer
+          updatesEnabled={true}
           {...this.getStandardLayerParams()}
           subunitClass="subunit-invisible"
           onMouseOver={this.handleMouseOver}

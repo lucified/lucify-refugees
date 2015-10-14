@@ -40,7 +40,7 @@ var RefugeeSoccerSegment = React.createClass({
 	},
 
 
-	componentShouldUpdate: function() {
+	shouldComponentUpdate: function() {
 		return false;
 	},
 
