@@ -91,7 +91,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
       if (this.props.highlightedCountry != null) {
       
         if (countries.indexOf(this.props.highlightedCountry) != -1) {
-          items.push(<RefugeeMapCountBar {...props} country={this.props.highlightedCountry} />)
+          items.push(<RefugeeMapCountBar key={this.props.highlightedCountry} {...props} country={this.props.highlightedCountry} />)
         }
         
       } else {

@@ -75,12 +75,17 @@ var RefugeeMapCountryCountsLayer = React.createClass({
    },
 
 
-   shouldComponentUpdate: function() {
-      return false;
+   shouldComponentUpdate: function(nextProps) {
+      if (nextProps.country !== this.props.country) {
+          return true;
+      }
+
+      return Math.abs(this.lastUpdated - nextProps.stamp) > 60 * 60 * 24 * 1;
    },
 
 
    render: function() {
+        this.lastUpdated = this.props.stamp;
         return (
          <svg className="refugee-map-country-counts-layer"
             style={{width: this.props.width, height: this.props.height}}>

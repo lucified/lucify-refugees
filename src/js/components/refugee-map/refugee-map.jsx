@@ -140,6 +140,7 @@ var RefugeeMap = React.createClass({
         style={{width: this.getWidth(), height: this.getHeight()}}>
         
         <BordersLayer 
+          updatesEnabled={true}
           enableOverlay={true}
           {...this.getStandardLayerParams()}
           {...this.getHighlightLayerParams()}

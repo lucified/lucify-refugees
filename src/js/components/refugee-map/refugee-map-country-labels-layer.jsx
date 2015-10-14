@@ -9,13 +9,7 @@ var refugeeConstants = require('../../model/refugee-constants.js');
 var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
-  /*
-    shouldComponentUpdate: function(nextProps, nextState) {
-    	return nextProps.highlightedCountry !== this.props.highlightedCountry;
-    },
-  */
-
-
+ 
   renderCountryLabel: function(country, type) {
     var point = this.props.projection(
       this.props.mapModel.getCenterPointOfCountry(country));
@@ -51,12 +45,23 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
   },
 
 
+  shouldComponentUpdate: function(nextProps, nextState) {
+
+      window.props = nextProps;
+
+      return nextProps.country !== this.props.country
+        || nextProps.originCountries.length !== this.props.originCountries.length
+        || nextProps.destinationCountries.length !== this.props.destinationCountries.length;
+  },
+
+
   render: function() {
+    console.log("render country labels");
 		return (
-		 <svg className="refugee-map-country-labels-layer"
-		    style={{width: this.props.width, height: this.props.height}}>
-		    {this.renderCountryLabels()}
-		 </svg>
+  		 <svg className="refugee-map-country-labels-layer"
+  		    style={{width: this.props.width, height: this.props.height}}>
+  		    {this.renderCountryLabels()}
+  		 </svg>
 		)
   }
 

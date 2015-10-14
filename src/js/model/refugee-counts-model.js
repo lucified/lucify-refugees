@@ -268,12 +268,26 @@ RefugeeCountsModel.prototype.getTotalDestinationCounts = function(countryName, e
  * Get countries that have originated refugees for the given
  * destination country before the given timestamp 
  */
-RefugeeCountsModel.prototype.getOriginCountries = function(destinationCountry, endStamp) {
+RefugeeCountsModel.prototype.getOriginCountriesByStamp = function(destinationCountry, endStamp) {
 	var counts = this.getDestinationCountsByOriginCountries(destinationCountry, endStamp);
-	return _.keys(counts).filter(function(country) {
+	window.counts = counts;
+  return _.keys(counts).filter(function(country) {
 		return counts[country].asylumApplications + counts[country].registeredRefugees > 0;
 	});
 }
+
+
+/*
+ * Get destination countries for refugees originating from the given
+ * origin country before the given timestamp 
+ */
+RefugeeCountsModel.prototype.getDestinationCountriesByStamp = function(originCountry, endStamp) {
+  var counts = this.getOriginCountsByDestinationCountries(originCountry, endStamp);
+  return _.keys(counts).filter(function(country) {
+    return counts[country].asylumApplications + counts[country].registeredRefugees > 0;
+  });
+}
+
 
 
 /*
