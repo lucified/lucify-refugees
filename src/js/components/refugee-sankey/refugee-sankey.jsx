@@ -42,12 +42,14 @@ var Node = React.createClass({
 
 		sel.attr('transform', sprintf('translate(%.2f, %.2f)', item.x, item.y));
 	
+		var height = Math.max(Math.round(item.dy), 2);
+
 		sel.select('rect')
-			.attr('height', Math.round(item.dy))
+			.attr('height', height)
 			.attr('width', this.props.nodeWidth);
 
 		sel.select('text')
-			.attr('y', item.dy / 2)
+			.attr('y', height / 2)
 			.select('.value')
 				.text(this.getValue());
 	},
