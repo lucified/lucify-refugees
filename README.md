@@ -23,7 +23,14 @@ TODO: is migration the correct word for these movements?
 1. `npm install`
 2. `./node_modules/bower/bin/bower install`
 3. `bundle install`
-4. `node ./node_modules/gulp/bin/gulp`
+4. `npm install -g simplify-geojson`
+5. `npm install -g topojson`
+6. `node ./node_modules/gulp/bin/gulp`
+
+Gulp should be version 4, which is defined in package.json and thus will be installed into `node_modules`. To be able to use the plain `gulp` command, make sure you have gulp-cli version 0.4.
+```
+npm install gulpjs/gulp-cli#4.0 -g
+```
 
 ## Notes
 

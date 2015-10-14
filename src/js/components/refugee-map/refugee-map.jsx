@@ -15,7 +15,7 @@ var constants = require('../../model/refugee-constants.js');
 
 var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
 
-
+var FrameRateLayer = require('./frame-rate-layer.jsx');
 
 var RefugeeMap = React.createClass({
 
@@ -92,7 +92,6 @@ var RefugeeMap = React.createClass({
     }
     return this._projection;
   },
-
 
 
   getStandardLayerParams: function() {
@@ -181,6 +180,8 @@ var RefugeeMap = React.createClass({
           maxStamp={constants.DATA_END_MOMENT.unix()}
           onSpeedChange={this.props.handleSpeedChange} 
           onStampChange={this.props.handleStampChange} />
+
+        <FrameRateLayer />
 
       </div>
     )
