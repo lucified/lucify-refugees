@@ -59,7 +59,7 @@ var Node = React.createClass({
 
 		var country = getCountryFromNodeId(node.name);
 
-		if (this.props.activeNode == null || this.props.activeNode == node) {
+		if (this.props.activeNode == null || this.props.activeNode.name == node.name) {
 			return node.value;
 		}
 
@@ -396,9 +396,9 @@ var RefugeeSankey = React.createClass({
 
 	getOnMouseOut: function(item) {
 		return function() {
-			if (this.state.hovered == item) {
-				this.setState({hovered: null});	
-			}
+			this.setState({hovered: null});	
+			//if (this.state.hovered == item) {
+			//}
 		}.bind(this);
 	},
 
