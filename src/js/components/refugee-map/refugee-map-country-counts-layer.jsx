@@ -22,8 +22,6 @@ var RefugeeMapCountryCountsLayer = React.createClass({
    },
 
 
-
-
    renderTexts: function() {
       var items = [];
       
@@ -77,6 +75,7 @@ var RefugeeMapCountryCountsLayer = React.createClass({
 
       return items;
    },
+
 
 
    render: function() {

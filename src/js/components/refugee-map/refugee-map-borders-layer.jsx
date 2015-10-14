@@ -197,6 +197,10 @@ var RefugeeMapBordersLayer = React.createClass({
 
 
    shouldComponentUpdate: function(nextProps, nextState) {
+      if (this.props.width !== nextProps.width) {
+         return true;
+      }
+
       if (!this.props.updatesEnabled) {
          return false;
       }
@@ -206,8 +210,9 @@ var RefugeeMapBordersLayer = React.createClass({
          return true;
       }
 
-      if (this.props.country != null 
-         && Math.abs(this.lastUpdated - this.props.stamp) > 60 * 60 * 24 * 5) {
+      if (nextProps.country != null 
+         && (!this.lastUpdated 
+            || Math.abs(this.lastUpdated - this.props.stamp) > 60 * 60 * 24 * 5)) {
          return true;
       }
       return false;

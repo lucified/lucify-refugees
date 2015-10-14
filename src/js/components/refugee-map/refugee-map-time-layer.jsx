@@ -1,5 +1,4 @@
 
-
 var React = require('react');
 var C3Chart = require('lucify-commons/src/js/components/react-c3/c3-chart.jsx');
 
