@@ -6,7 +6,15 @@ TODO: is migration the correct word for these movements?
 
 ## Data sources
 
-1. Asylum applications: http://popstats.unhcr.org/en/asylum_seekers_monthly
+1. UNHCR asylum applications
+
+	- To get the latest data, open the [UNHCR asylum applications data portal](http://popstats.unhcr.org/en/asylum_seekers_monthly), select the options below and click on Export / Current View / CSV. Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data`:
+		- Years: 2012, 2013, 2014, 2015
+		- Months: All months
+		- Country of asylum: All countries
+		- Origin: All countries
+		- Data item to display: Country of asylum, origin, year
+
 2. Persons of Concern around Syria: http://data.unhcr.org/syrianrefugees/regional.php
 
 ## Installation
@@ -25,7 +33,7 @@ TODO: is migration the correct word for these movements?
 3. `bundle install`
 4. `npm install -g simplify-geojson`
 5. `npm install -g topojson`
-6. `node ./node_modules/gulp/bin/gulp`
+6. `node ./node_modules/gulp/bin/gulp.js`
 
 Gulp should be version 4, which is defined in package.json and thus will be installed into `node_modules`. To be able to use the plain `gulp` command, make sure you have gulp-cli version 0.4.
 ```
@@ -52,7 +60,7 @@ sudo gem install bundler
 ### GDAL
 
 http://www.sarasafavi.com/installing-gdalogr-on-ubuntu.html
-sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable 
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 sudo apt-get update
 sudo apt-get install gdal-bin
 
