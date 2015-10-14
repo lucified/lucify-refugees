@@ -120,6 +120,10 @@ var RefugeeMapBordersLayer = React.createClass({
    },
 
 
+   /*
+    * Get count data for current
+    * this.props.country at this.props.stamp
+    */
    getCountData: function() {
       var getMaxCount = function(counts) {
          return _.values(counts).reduce(function(prev, item) {
@@ -155,6 +159,9 @@ var RefugeeMapBordersLayer = React.createClass({
    },
 
 
+   /*
+    * Get paths representing map borders
+    */
    getPaths: function() {
       var countData = this.getCountData();
 
@@ -205,7 +212,6 @@ var RefugeeMapBordersLayer = React.createClass({
          return false;
       }
 
-      //console.log(this.props.country + " " + nextProps.country);
       if (nextProps.country !== this.props.country) {
          return true;
       }
@@ -215,7 +221,7 @@ var RefugeeMapBordersLayer = React.createClass({
             || Math.abs(this.lastUpdated - this.props.stamp) > 60 * 60 * 24 * 5)) {
          return true;
       }
-      
+
       return false;
    },
 

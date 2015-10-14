@@ -164,10 +164,10 @@ var RefugeeMap = React.createClass({
           refugeeCountsModel={this.props.refugeeCountsModel} />
 
         <PointsLayer
-          {...this.getStandardLayerParams()}
-          highlightedCountry={this.getHighlightedCountry()}
-          refugeePointsModel={this.props.refugeePointsModel} />
-        
+           {...this.getStandardLayerParams()}
+           highlightedCountry={this.getHighlightedCountry()}
+           refugeePointsModel={this.props.refugeePointsModel} />
+
         <BordersLayer
           updatesEnabled={true}
           {...this.getStandardLayerParams()}
@@ -187,6 +187,9 @@ var RefugeeMap = React.createClass({
 
 module.exports = RefugeeMap;
 
+
+
+        
 
 // <ControlsAndLegend
 //      speed={this.props.speed}

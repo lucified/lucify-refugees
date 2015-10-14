@@ -2,6 +2,7 @@
 var React = require('react');
 var PIXI = require('pixi.js');
 
+var isSafari = require('lucify-commons/src/js/lucify-utils.jsx').isSafari;
 
 var RefugeeMapPointsLayer = React.createClass({
 
@@ -9,12 +10,6 @@ var RefugeeMapPointsLayer = React.createClass({
    componentDidMount: function() {
        this.graphics = {};
        this.sprites = {};
-
-       // this could also be in componentWillReceiveProps
-       // this.props.refugeeModel.onRefugeeUpdated = this.onRefugeeUpdated;
-       // this.props.refugeeModel.onRefugeeFinished = this.onRefugeeFinished;
-       // this.props.refugeeModel.onRefugeeStarted = this.onRefugeeStarted;
-
        this.initializePixiCanvas();
    },
 
@@ -133,7 +128,9 @@ var RefugeeMapPointsLayer = React.createClass({
            } else if (r.destinationCountry == this.props.highlightedCountry) {
              r.sprite.alpha = 1.0;
            } else {
-             r.sprite.alpha = 0.10;
+             // safari gets slowed down a lot by alpha
+             // that is not 0 or 1
+             r.sprite.alpha = isSafari() ? 0.0 : 0.10;
            }
         }
 
