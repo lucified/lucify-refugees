@@ -290,7 +290,7 @@ var RefugeeSankey = React.createClass({
 			if (!sourceCounts[item.oc]) {
 				sourceCounts[item.oc] = 0;
 			}
-			sourceCounts[item.ao] += item.count;
+			sourceCounts[item.oc] += item.count;
 		});
 
 		return {
@@ -305,7 +305,7 @@ var RefugeeSankey = React.createClass({
 			return b[1] - a[1];
 		});
 
-		return sorted.slice(0, Math.min(10, sorted.length)).map(function(item) {
+		return sorted.slice(0, Math.min(15, sorted.length)).map(function(item) {
 			return item[0];
 		});
 	},
@@ -313,7 +313,7 @@ var RefugeeSankey = React.createClass({
 
 	/*
 	 * Get a list of source countries that
-	 * are significatn enough to be shown
+	 * are significant enough to be shown
 	 */
 	getSourceCountries: function() {
 		return this.toCappedList(this.getCountryTotals().sourceCountries);
