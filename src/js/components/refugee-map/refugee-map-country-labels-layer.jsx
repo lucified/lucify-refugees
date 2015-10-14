@@ -46,9 +46,6 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
   shouldComponentUpdate: function(nextProps, nextState) {
-
-      window.props = nextProps;
-
       return nextProps.country !== this.props.country
         || nextProps.originCountries.length !== this.props.originCountries.length
         || nextProps.destinationCountries.length !== this.props.destinationCountries.length;
@@ -56,7 +53,6 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 
 
   render: function() {
-    console.log("render country labels");
 		return (
   		 <svg className="refugee-map-country-labels-layer"
   		    style={{width: this.props.width, height: this.props.height}}>

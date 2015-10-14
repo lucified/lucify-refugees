@@ -106,15 +106,17 @@ var RefugeeMap = React.createClass({
 
 
   handleMouseOver: function(country) {
+    this.pendingHoverOut = false;
     var hl = country == "RUS" ? null : country;
     this.setHoveredCountry(hl);
   },
 
 
   handleMouseOut: function(country) {
+    this.pendingHoverOut = true;
     window.setTimeout(function() {
-      if (this.state.hoveredCountry == country) {
-        console.log("setting hoveredCountry to null");
+      if (this.pendingHoverOut) {
+        //console.log("setting hoveredCountry to null");
         this.setHoveredCountry(null);
       }
     }.bind(this), 500);
@@ -174,14 +176,6 @@ var RefugeeMap = React.createClass({
           onMouseOut={this.handleMouseOut} 
           onClick={this.handleMapClick} />
         
-        <ControlsAndLegend
-          speed={this.props.speed}
-          stamp={this.props.stamp}
-          minStamp={this.props.startStamp}
-          maxStamp={constants.DATA_END_MOMENT.unix()}
-          onSpeedChange={this.props.handleSpeedChange} 
-          onStampChange={this.props.handleStampChange} />
-
         <FrameRateLayer />
 
       </div>
@@ -194,6 +188,13 @@ var RefugeeMap = React.createClass({
 module.exports = RefugeeMap;
 
 
+// <ControlsAndLegend
+//      speed={this.props.speed}
+//      stamp={this.props.stamp}
+//      minStamp={this.props.startStamp}
+//      maxStamp={constants.DATA_END_MOMENT.unix()}
+//      onSpeedChange={this.props.handleSpeedChange} 
+//      onStampChange={this.props.handleStampChange} />
 
 
 

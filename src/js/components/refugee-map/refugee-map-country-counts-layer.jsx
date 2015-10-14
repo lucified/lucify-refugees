@@ -9,7 +9,7 @@ var refugeeConstants = require('../../model/refugee-constants.js');
 var RefugeeMapCountryCountsLayer = React.createClass({
   
 
-   renderText: function(country, count) {
+     renderText: function(country, count) {
       if (this.props.country === null) {
          return null;
       }
@@ -80,7 +80,7 @@ var RefugeeMapCountryCountsLayer = React.createClass({
           return true;
       }
 
-      return Math.abs(this.lastUpdated - nextProps.stamp) > 60 * 60 * 24 * 1;
+      return Math.abs(this.lastUpdated - nextProps.stamp) > 60 * 60 * 24 * 2;
    },
 
 
