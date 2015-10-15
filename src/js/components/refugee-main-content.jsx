@@ -13,10 +13,10 @@ var RefugeeMainContent = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			mapEnabled: true, 
+			mapEnabled: true,
 			sankeyEnabled: true,
 			soccerEnabled: true
-		}
+		};
 	},
 
 
@@ -40,6 +40,7 @@ var RefugeeMainContent = React.createClass({
 		if (this.props.soccerEnabled) {
 			return <RefugeeSoccerSegment {...this.props} />
 		}
+		return <div />;
 	},
 
 
@@ -59,18 +60,11 @@ var RefugeeMainContent = React.createClass({
 				{this.getSankeySegment()}
 				{this.getSoccerSegment()}
 			</div>
-			
 		);
 
 	}
 
 });
 
-/*
-				
-*/
-
 
 module.exports = Decorator(RefugeeMainContent);
-
-
