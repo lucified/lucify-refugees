@@ -2,15 +2,10 @@
 var React = require('react');
 var _ = require('underscore');
 
+var SoccerFields = require('lucify-commons/src/js/components/soccer-fields.jsx');
+
 
 var RefugeeSoccerSegment = React.createClass({
-
-
-	getSoccerFields: function(count) {
-		return _.range(0, count).map(function(index) {
-			return <img key={index} src='images/soccer-field.svg' />
-		});
-	},
 
 
 	getEuropeanCount: function() {
@@ -60,7 +55,7 @@ var RefugeeSoccerSegment = React.createClass({
 						{' '} soccer fields.
 					</p>
 
-					{this.getSoccerFields(this.getEuropeanSoccerFieldsCount())}
+					<SoccerFields count={this.getEuropeanSoccerFieldsCount()} />
 
 					<p>
 						Only a small fraction of refugees fleeing 
@@ -73,7 +68,8 @@ var RefugeeSoccerSegment = React.createClass({
 						{' '}soccer fields.
 					</p>
 
-					{this.getSoccerFields(this.getRegionalSoccerFieldsCount())}
+					<SoccerFields count={this.getRegionalSoccerFieldsCount()} />
+
 				</div>
 			</div>
 		);

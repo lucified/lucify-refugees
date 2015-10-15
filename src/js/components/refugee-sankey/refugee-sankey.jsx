@@ -167,8 +167,6 @@ var LinkPath = React.createClass({
 
 	render: function() {
 		var item = this.props.item;
-		var pathFunction = this.props.pathFunction;
-
 		var classes = classNames({
 			'link': true,
 			'link--unselected': this.props.activeNode != null
@@ -180,12 +178,12 @@ var LinkPath = React.createClass({
 		});
 
 		return (
-			<path 
-				className={classes}
+			<path className={classes}
 				strokeWidth={Math.max(1, item.dy)} />
 		);
 	}
 });
+
 
 
 
@@ -371,7 +369,7 @@ var RefugeeSankey = React.createClass({
 
 
 	getHeight: function() {
-		return this.props.width;
+		return this.props.width; // SIC
 	},
 
 
@@ -445,6 +443,13 @@ var RefugeeSankey = React.createClass({
 	},
 
 
+	componentWillReceiveProps: function(nextProps) {
+		if (nextProps.width !== this.props.width) {
+			this._sankey = null;
+		}
+	},
+
+
 	getSankey: function() {
 		if (!this._sankey) {
 			this._sankey = d3.sankey()
@@ -465,14 +470,9 @@ var RefugeeSankey = React.createClass({
 		var nodes = this.getNodes();
 		var links = this.getLinks();
 
-		var sankey = d3.sankey()
-			.nodeWidth(15)
-			.nodePadding(10)
-			.size([this.getWidth(), this.getHeight()]);
+		var sankey = this.getSankey();
 
 		var path = sankey.link();
-
-		var sankey = this.getSankey();
 		
 		sankey
 			.nodes(nodes)
