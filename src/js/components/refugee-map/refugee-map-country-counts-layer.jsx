@@ -9,7 +9,12 @@ var refugeeConstants = require('../../model/refugee-constants.js');
 var RefugeeMapCountryCountsLayer = React.createClass({
   
 
-     renderText: function(country, count) {
+    getInitialState: function() {
+      return {state: null}
+    },
+
+
+    renderText: function(country, count) {
       if (this.props.country === null) {
          return null;
       }
@@ -19,15 +24,15 @@ var RefugeeMapCountryCountsLayer = React.createClass({
       return (
          <text key={country} x={point[0]} y={point[1] + 30}>{count}</text>
       );
-   },
+    },
 
 
-   renderTexts: function() {
+    renderTexts: function() {
       var items = [];
 
       if (this.props.width > refugeeConstants.labelShowBreakPoint) {
         var counts = this.props.refugeeCountsModel
-          .getDestinationCountsByOriginCountries(this.props.country, this.props.stamp);
+          .getDestinationCountsByOriginCountries(this.props.country, this.state.stamp);
 
         var totalReceivedCount = 0;
         var totalLeftCount = 0;
@@ -43,7 +48,7 @@ var RefugeeMapCountryCountsLayer = React.createClass({
         }.bind(this));
 
        counts = this.props.refugeeCountsModel
-          .getOriginCountsByDestinationCountries(this.props.country, this.props.stamp);
+          .getOriginCountsByDestinationCountries(this.props.country, this.state.stamp);
         
         _.difference(this.props.destinationCountries, refugeeConstants.disableLabels)
           .forEach(function(country) {
@@ -77,17 +82,21 @@ var RefugeeMapCountryCountsLayer = React.createClass({
    },
 
 
-   shouldComponentUpdate: function(nextProps) {
+   updateForStamp: function(stamp) {
+      this.setState({stamp: stamp});
+   },
+
+
+   shouldComponentUpdate: function(nextProps, nextState) {
       if (nextProps.country !== this.props.country) {
           return true;
       }
-
-      return Math.abs(this.lastUpdated - nextProps.stamp) > 60 * 60 * 24 * 2;
+      return !this.lastUpdated || Math.abs(this.lastUpdated - nextState.stamp) > 60 * 60 * 24 * 1;
    },
 
 
    render: function() {
-        this.lastUpdated = this.props.stamp;
+        this.lastUpdated = this.state.stamp;
         return (
          <svg className="refugee-map-country-counts-layer"
             style={{width: this.props.width, height: this.props.height}}>

@@ -10,20 +10,24 @@ var RefugeeMapLineChart = require('./refugee-map-line-chart.jsx');
 var RefugeeMapTimeLayer = React.createClass({
 
 
-	getFriendlyTime: function() {
-		return moment(new Date(this.props.stamp * 1000)).format('DD.MM.YYYY');
+	getInitialState: function() {
+		return {}		
+	},
+
+
+	updateForStamp: function(stamp) {
+		this.setState({stamp: stamp});
 	},
 
 
 	render: function() {
-
 		if (!this.props.refugeeCountsModel) {
 			return <div />
 		};
 
 		return (
 			<div className='refugee-map-time-layer'>
-				<RefugeeMapLineChart {...this.props} />
+				<RefugeeMapLineChart {...this.props} stamp={this.state.stamp} />
 			</div>
 		);
 	}

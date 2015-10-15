@@ -19,6 +19,17 @@ var sprintf = require('sprintf');
 var RefugeeMapSegment = React.createClass({
 
 
+	componentWillMount: function() {
+      	this.props.addStampListener(this.updateForStamp);
+	},
+
+
+    updateForStamp: function(stamp) {
+    	this.refs.rmap.updateForStamp(stamp);
+    	this.refs.time.updateForStamp(stamp);
+	},
+
+
 	getPeoplePerPointText: function() {
 		if (this.props.peoplePerPoint == 25) {
 			return <span>
@@ -92,11 +103,12 @@ var RefugeeMapSegment = React.createClass({
 				</Inputs>
 
 				<TimeLayer
+				  ref="time"
 		          onMouseOver={this.props.handleStampChange}
 		          stamp={this.props.stamp}
 		          refugeeCountsModel={this.props.refugeeCountsModel} />
 
-				<RefugeeMap {...this.props} />
+				<RefugeeMap ref="rmap" {...this.props} />
 			</div>
 		);
 	}

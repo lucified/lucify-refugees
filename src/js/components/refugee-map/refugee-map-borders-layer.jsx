@@ -8,6 +8,7 @@ var sprintf = require('sprintf');
 
 window.exponent = 0.5;
 
+
 var getFullCount = function(counts) {
    if (!counts) {
       return 0;
@@ -199,23 +200,12 @@ var RefugeeMapBordersLayer = React.createClass({
    },
 
 
-   updateForStamp: function(stamp) {
-     var countData = this.getCountData(stamp);
-     return this.props.mapModel.featureData.features.map(function(feature) {
-         var country = feature.properties.ADM0_A3;
-         var countDetails = {}; 
-         if (countData != null) {
-            countDetails = {
-               originScale: countData.originScale,
-               destinationScale: countData.destinationScale
-            }
-            countDetails.destinationCounts = countData.destinationCounts[country];
-            countDetails.originCounts = countData.originCounts[country];
-         }
-         this.refs[country].updateWithCountDetails(countDetails);
-      }.bind(this));
+   componentDidUpdate: function() {
+      if (this.lastUpdate != null) {
+         this.doUpdate(this.lastUpdate);
+      }
    },
-
+   
 
    shouldComponentUpdate: function(nextProps, nextState) {
       if (this.props.width !== nextProps.width) {
@@ -244,6 +234,34 @@ var RefugeeMapBordersLayer = React.createClass({
          </svg>
       )
    },
+
+
+   // quick update
+   // ------------
+
+   updateForStamp: function(stamp) {
+       if (!this.lastUpdate || Math.abs(this.lastUpdate - stamp) > 60 * 60 * 24 * 5) {
+          this.doUpdate(stamp);
+      }
+   },
+
+   doUpdate: function(stamp) {
+     this.lastUpdate = stamp;
+     var countData = this.getCountData(stamp);
+     return this.props.mapModel.featureData.features.map(function(feature) {
+         var country = feature.properties.ADM0_A3;
+         var countDetails = {}; 
+         if (countData != null) {
+            countDetails = {
+               originScale: countData.originScale,
+               destinationScale: countData.destinationScale
+            }
+            countDetails.destinationCounts = countData.destinationCounts[country];
+            countDetails.originCounts = countData.originCounts[country];
+         }
+         this.refs[country].updateWithCountDetails(countDetails);
+      }.bind(this));
+   }
 
 
 });

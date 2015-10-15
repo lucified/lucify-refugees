@@ -24,7 +24,7 @@ var RefugeeHighlightMixin = {
 
   setHoveredCountry: function(country) {
     this.setState({hoveredCountry: country});
-    //this.updateHighlight();
+    this.updateHighlight(country);
   },
 
 
@@ -38,29 +38,31 @@ var RefugeeHighlightMixin = {
 
   getDestinationCountries: function(country) {
     return this.props.refugeeCountsModel
-      .getDestinationCountriesByStamp(country, this.props.stamp);
+      .getDestinationCountriesByStamp(country, this.getStamp());
   },
 
 
   getOriginCountries: function(country) {
     return this.props.refugeeCountsModel
-      .getOriginCountriesByStamp(country, this.props.stamp);
+      .getOriginCountriesByStamp(country, this.getStamp());
   },
 
 
   updateHighlight: function(country) {
-      this.storedDestinationCountries = this.getDestinationCountries(country);
-      this.storedOriginCountries = this.getOriginCountries(country);
-      this.highlightStamp = this.props.stamp;
-      this.country = this.props.country;
+    var dc = this.getDestinationCountries(country);
+    var oc = this.getOriginCountries(country);
+    
+    this.country = country;
+    if (dc.length != this.storedDestinationCountries.length
+      || oc.length != this.storedOriginCountries.length) {
+      this.storedDestinationCountries = dc;
+      this.storedOriginCountries = oc;
+      this.setState({});
+    }
   },
 
 
   getHighlightLayerParams: function() {
-  	if (this.highlightStamp !== this.props.stamp 
-      || this.country !== this.getHighlightedCountry()) {
-  		this.updateHighlight(this.getHighlightedCountry());
-  	}
     return {
       country: this.getHighlightedCountry(),
       originCountries: this.storedOriginCountries,

@@ -36,7 +36,7 @@ var RefugeeMapPointsLayer = React.createClass({
 
 
    usesWebGLRenderer: function() {
-      return true;
+      return false;
    },
 
 
@@ -125,7 +125,10 @@ var RefugeeMapPointsLayer = React.createClass({
            }
         }
 
-        this.refugeeContainer.addChild(r.sprite);
+        // this gives best performance
+        if (r.sprite.alpha == 1.0) {
+          this.refugeeContainer.addChild(r.sprite);  
+        }
 
     }.bind(this));
     

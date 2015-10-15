@@ -11,10 +11,9 @@ var RefugeeMapCountBar = React.createClass({
   // updates are rendered with
   // React, so we use D3 instead
 
-  update: function() {
-      
+  updateForStamp: function(stamp) {
       var country = this.props.country;
-      var refugeeCounts = this.props.refugeeCountsModel.getTotalDestinationCounts(country, this.props.stamp);     
+      var refugeeCounts = this.props.refugeeCountsModel.getTotalDestinationCounts(country, stamp);     
       var asylumBarSize = this.props.scale(refugeeCounts.asylumApplications)
       var refugeeBarSize = this.props.scale(refugeeCounts.registeredRefugees);
       var coordinates = this.props.projection(this.props.mapModel.getCenterPointOfCountry(country));
@@ -34,7 +33,6 @@ var RefugeeMapCountBar = React.createClass({
 
 
   shouldComponentUpdate: function(nextProps) {
-      this.update();
       return this.props.height !== nextProps.height;
   },
 
@@ -42,12 +40,7 @@ var RefugeeMapCountBar = React.createClass({
   componentDidMount: function() {
     this.refugeeSel = d3.select(React.findDOMNode(this.refs.refugeeBar));
     this.asylumSel = d3.select(React.findDOMNode(this.refs.asylumBar));
-    this.update();
-  },
-
-
-  componentDidUpdate: function() {
-    this.update();
+    //this.update();
   },
 
 
@@ -116,21 +109,19 @@ var RefugeeMapCountBarsLayer = React.createClass({
         refugeeCountsModel: this.props.refugeeCountsModel,
         projection: this.props.projection,
         mapModel: this.props.mapModel,
-        stamp: this.props.stamp,
         scale: this.getBarSizeScale(),
         width: this.props.width,
         height: this.props.height
       }
 
       if (this.props.highlightedCountry != null) {
-      
         if (countries.indexOf(this.props.highlightedCountry) != -1) {
-          items.push(<RefugeeMapCountBar key={this.props.highlightedCountry + "_"} {...props} country={this.props.highlightedCountry} />)
+          items.push(<RefugeeMapCountBar ref={this.props.highlightedCountry} key={this.props.highlightedCountry + "_"} {...props} country={this.props.highlightedCountry} />)
         }
         
       } else {
         countries.forEach(function(country) {
-           items.push(<RefugeeMapCountBar key={country} {...props} country={country} />);
+           items.push(<RefugeeMapCountBar ref={country} key={country} {...props} country={country} />);
         }.bind(this));
       }
 
@@ -139,20 +130,43 @@ var RefugeeMapCountBarsLayer = React.createClass({
 
 
    shouldComponentUpdate: function(nextProps) {
-      
-      window.dja = this;
       if (this.props.highlightedCountry !== nextProps.highlightedCountry
         || this.props.width !== nextProps.width) {
         return true;
       }
 
-      // update for five day differences
-      return Math.abs(this.lastUpdate - nextProps.stamp) > 60 * 60 * 24 * 5;
+      return false;
+   },
+
+
+   componentDidUpdate: function() {
+      if (this.lastUpdate != null) {
+        this.doUpdate(this.lastUpdate);
+      }
+   },
+
+
+   doUpdate: function(stamp) {
+      this.lastUpdate = stamp;
+      var countries = this.props.refugeeCountsModel.getDestinationCountries();
+      countries.forEach(function(country) {
+          if (this.refs[country] != null) {
+            this.refs[country].updateForStamp(stamp);  
+          }
+      }.bind(this));
+   },
+
+
+   updateForStamp: function(stamp) {
+      // this update is for some reason pretty heavy
+      // so only do it when stamp jumps more than five days
+      if (!this.lastUpdate || Math.abs(this.lastUpdate - stamp) > 60 * 60 * 24 * 5) {
+          this.doUpdate(stamp);
+      }
    },
 
 
    render: function() {
-      this.lastUpdate = this.props.stamp;
       return (
          <svg className="refugee-map-count-bars-layer" 
              style={{width: this.props.width, height: this.props.height}}>
@@ -160,6 +174,7 @@ var RefugeeMapCountBarsLayer = React.createClass({
          </svg>
       );
    }
+
 
 });
 

@@ -126,7 +126,6 @@ var RefugeeMap = React.createClass({
 
   componentWillMount: function() {
       this.stamp = this.props.stamp;
-      this.props.addStampListener(this.updateForStamp);
   },
 
 
@@ -136,6 +135,9 @@ var RefugeeMap = React.createClass({
         this.refs.pointsLayer.updateForStamp(stamp);  
         this.refs.frameRateLayer.update();
         this.refs.bordersLayer.updateForStamp(stamp);
+        this.refs.countBars.updateForStamp(stamp);
+        this.refs.countsLayer.updateForStamp(stamp);
+        this.updateHighlight(this.getHighlightedCountry());
       }
   },
 
@@ -143,6 +145,7 @@ var RefugeeMap = React.createClass({
   getStamp: function() {
       return this.stamp;
   },
+
 
 
   render: function() {
@@ -174,6 +177,23 @@ var RefugeeMap = React.createClass({
           refugeeCountsModel={this.props.refugeeCountsModel}
           subunitClass="subunit" />
 
+        <CountBarsLayer
+           ref="countBars"
+           {...this.getStandardLayerParams()}
+           highlightedCountry={this.getHighlightedCountry()}
+           refugeeCountsModel={this.props.refugeeCountsModel} />
+
+        <CountryLabelsLayer
+          ref="countryLabels"
+          {...this.getStandardLayerParams()}
+          {...this.getHighlightLayerParams()} />
+
+        <CountryCountsLayer
+          ref="countsLayer"
+          {...this.getStandardLayerParams()}
+          {...this.getHighlightLayerParams()}
+          refugeeCountsModel={this.props.refugeeCountsModel}  />
+
         <PointsLayer
            ref="pointsLayer"
            {...this.getStandardLayerParams()}
@@ -183,7 +203,7 @@ var RefugeeMap = React.createClass({
         <FrameRateLayer ref="frameRateLayer" />
 
         <BordersLayer
-            updatesEnabled={true}
+            updatesEnabled={false}
             {...this.getStandardLayerParams()}
             subunitClass="subunit-invisible"
             onMouseOver={this.handleMouseOver}
@@ -200,38 +220,6 @@ var RefugeeMap = React.createClass({
 module.exports = RefugeeMap;
 
 
-     
 
+    
 
-
-        // <CountryLabelsLayer
-        //   {...this.getStandardLayerParams()}
-        //   {...this.getHighlightLayerParams()} />
-
-        // <CountryCountsLayer
-        //   {...this.getStandardLayerParams()}
-        //   {...this.getHighlightLayerParams()}
-        //   refugeeCountsModel={this.props.refugeeCountsModel}  />
-
-        // <CountBarsLayer
-        //   {...this.getStandardLayerParams()}
-        //   highlightedCountry={this.getHighlightedCountry()}
-        //   refugeeCountsModel={this.props.refugeeCountsModel} />
-        
-
-// <ControlsAndLegend
-//      speed={this.props.speed}
-//      stamp={this.props.stamp}
-//      minStamp={this.props.startStamp}
-//      maxStamp={constants.DATA_END_MOMENT.unix()}
-//      onSpeedChange={this.props.handleSpeedChange} 
-//      onStampChange={this.props.handleStampChange} />
-
-
-     // <BordersLayer
-     //      updatesEnabled={true}
-     //      {...this.getStandardLayerParams()}
-     //      subunitClass="subunit-invisible"
-     //      onMouseOver={this.handleMouseOver}
-     //      onMouseOut={this.handleMouseOut} 
-     //      onClick={this.handleMapClick} />
