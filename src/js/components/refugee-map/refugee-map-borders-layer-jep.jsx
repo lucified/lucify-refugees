@@ -27,8 +27,8 @@ var RefugeeMapBorder = React.createClass({
          .classed('subunit--hovered', nextProps.hovered)
          .classed('subunit--destination', nextProps.destination)
          .classed('subunit--origin', nextProps.origin);
-      
-      var count = nextProps.count != null ? nextProps.count.asylumApplications + nextProps.count.registeredRefugees : 0;
+
+      var count = nextProps.count != null ? nextProps.count.asylumApplications : 0;
       var fillStyle = null;
 
       if (nextProps.origin && count > 0) {
@@ -130,7 +130,7 @@ var RefugeeMapBordersLayer = React.createClass({
    getCountData: function() {
       var getMaxCount = function(counts) {
          return _.values(counts).reduce(function(prev, item) {
-            return Math.max(prev, item.asylumApplications + item.registeredRefugees);
+            return Math.max(prev, item.asylumApplications);
          },0);
       }
       var countData = null;

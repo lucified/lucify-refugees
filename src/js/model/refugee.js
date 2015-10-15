@@ -6,16 +6,15 @@ var randgen = require('randgen');
 var KILOMETERS_PER_DEGREE = 111;
 
 // single refugee
-var Refugee = function(startPoint, endPoint, originCountry, 
-  destinationCountry, speed, endMoment, isAsylumSeeker, smartSpreadEnabled) {
-  
+var Refugee = function(startPoint, endPoint, originCountry, destinationCountry,
+  speed, endMoment, smartSpreadEnabled) {
+
   this.startPoint = startPoint;
   this.endPoint = endPoint;
   this.originCountry = originCountry;
   this.destinationCountry = destinationCountry;
   this.speed = speed;
   this.endMoment = endMoment;
-  this.isAsylumSeeker = isAsylumSeeker;
   this.totalTravelTime = this.getTravelDistance() / this.speed;
   this.smartSpreadEnabled = smartSpreadEnabled;
 
