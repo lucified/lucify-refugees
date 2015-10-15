@@ -37,6 +37,10 @@ var bindToRefugeeMapContext = function(Component) {
 
 
       getPeoplePerPoint: function() {
+         if (isFinite(this.props.peoplePerPoint)) {
+             return this.props.peoplePerPoint;
+         }
+
          if (lucifyUtils.isSlowDevice()) {
             return 50;
          }
@@ -84,7 +88,7 @@ var bindToRefugeeMapContext = function(Component) {
 
       createPointList: function(mapModel) {
          return pointList.createFullList(
-            mapModel, this.asylumData, this.regionalData, this.props.peoplePerPoint,
+            mapModel, this.asylumData, this.regionalData, this.getPeoplePerPoint(),
             this.props.randomStartPoint, this.props.smartSpreadEnabled);
       },
 
@@ -121,7 +125,7 @@ var bindToRefugeeMapContext = function(Component) {
       render: function() {
          return <Component 
             {...this.state} 
-            {...this.props}
+            {...this.props} 
             peoplePerPoint={this.getPeoplePerPoint()} />
       }
 
