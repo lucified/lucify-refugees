@@ -46,7 +46,7 @@ var RefugeeMapSegment = React.createClass({
 			</span>
 		};
 
-		if (this.props.peoplePerPoint == 25) {
+		if (this.props.peoplePerPoint == 50) {
 			return <span>
 				Each moving point on the map represents
 				50 people. This corresponds approximately 
