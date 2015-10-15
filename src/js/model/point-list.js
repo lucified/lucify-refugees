@@ -7,19 +7,11 @@ var utils = require('../utils.js');
 /*
  * Create list of refugees based on given asylum and regional data
  */
-var createFullList = function(mapModel, asylumData, regionalData, 
-  peoplePerPoint, randomStartPoint, smartSpreadEnabled) {
+var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartPoint, smartSpreadEnabled) {
+  var ret = [];
 
-  return createList(asylumData, false).concat(createList(regionalData, true));
-  
-  function createList(data, isAsylumSeeker) {
-    var ret = [];  
-
-    if (!data) {
-      return ret;
-    }
-
-    data.forEach(function(item) {
+  if (asylumData) {
+    asylumData.forEach(function(item) {
       if (!mapModel.containsCountry(item.ac)) {
         console.log("asylum country " + item.ac +  " not in map, skipping");
       } else if (!mapModel.containsCountry(item.oc)) {
@@ -28,31 +20,29 @@ var createFullList = function(mapModel, asylumData, regionalData,
         // add refugees for journey visualization
         var refugeesToAdd = Math.round(item.count / peoplePerPoint);
         for (var i = 0; i < refugeesToAdd; i++) {
-          ret.push(createRefugee(item.oc, item.ac,
-            item.month - 1, item.year, isAsylumSeeker));
+          ret.push(createRefugee(item.oc, item.ac, item.month - 1, item.year));
         }
       }
     });
-    return ret;
   }
+
+  return ret;
 
   /*
    * Create a refugee
    */
-  function createRefugee(startCountry, endCountry, month, year, isAsylumSeeker) {
-    var r = new Refugee(
+  function createRefugee(startCountry, endCountry, month, year) {
+    return new Refugee(
       randomStartPoint ? mapModel.getRandomPointFromCountry(startCountry) : mapModel.getCenterPointOfCountry(startCountry),
       mapModel.getCenterPointOfCountry(endCountry),
       startCountry,
       endCountry,
       prepareRefugeeSpeed(),
       prepareRefugeeEndMoment(month, year),
-      isAsylumSeeker,
       smartSpreadEnabled
     );
-    return r;
-  };
-}
+  }
+};
 
 
 /*
@@ -73,6 +63,4 @@ var prepareRefugeeEndMoment = function(month, year) {
 };
 
 
-
 module.exports.createFullList = createFullList;
-

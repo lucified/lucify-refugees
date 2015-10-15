@@ -7,8 +7,7 @@ gulp.task('prepare-data', function(cb) {
   execsyncs({
     cmds : [
       './prepare.sh',
-      'src/scripts/prepare-asylum-data.rb',
-      'src/scripts/prepare-regional-data.rb'
+      'src/scripts/prepare-asylum-data.rb'
       ]
   });
   cb();
