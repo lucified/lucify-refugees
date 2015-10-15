@@ -17,6 +17,7 @@ var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
 
 var FrameRateLayer = require('./frame-rate-layer.jsx');
 
+
 var RefugeeMap = React.createClass({
 
 
@@ -27,7 +28,6 @@ var RefugeeMap = React.createClass({
     return {
       width: 1200,
       height: 1200,
-
     }
   },
 
@@ -100,7 +100,8 @@ var RefugeeMap = React.createClass({
       projection: this.getProjection(),
       width: this.getWidth(),
       height: this.getHeight(),
-      stamp: this.props.stamp,
+      stamp: this.getStamp(),
+      addStampListener: this.props.addStampListener
     }
   },
 
@@ -123,7 +124,30 @@ var RefugeeMap = React.createClass({
   },
 
 
+  componentWillMount: function() {
+      this.stamp = this.props.stamp;
+      this.props.addStampListener(this.updateForStamp);
+  },
+
+
+  updateForStamp: function(stamp) {
+      this.stamp = stamp;
+      if (this.refs.pointsLayer != null) {
+        this.refs.pointsLayer.updateForStamp(stamp);  
+        this.refs.frameRateLayer.update();
+        this.refs.bordersLayer.updateForStamp(stamp);
+      }
+  },
+
+
+  getStamp: function() {
+      return this.stamp;
+  },
+
+
   render: function() {
+
+    console.log("render refugee map");
 
     if (!this.props.refugeeCountsModel 
       || !this.props.refugeePointsModel
@@ -142,6 +166,7 @@ var RefugeeMap = React.createClass({
         style={{width: this.getWidth(), height: this.getHeight()}}>
         
         <BordersLayer 
+          ref="bordersLayer"
           updatesEnabled={true}
           enableOverlay={true}
           {...this.getStandardLayerParams()}
@@ -149,34 +174,21 @@ var RefugeeMap = React.createClass({
           refugeeCountsModel={this.props.refugeeCountsModel}
           subunitClass="subunit" />
 
-        <CountryLabelsLayer
-          {...this.getStandardLayerParams()}
-          {...this.getHighlightLayerParams()} />
-
-        <CountryCountsLayer
-          {...this.getStandardLayerParams()}
-          {...this.getHighlightLayerParams()}
-          refugeeCountsModel={this.props.refugeeCountsModel}  />
-
-        <CountBarsLayer
-          {...this.getStandardLayerParams()}
-          highlightedCountry={this.getHighlightedCountry()}
-          refugeeCountsModel={this.props.refugeeCountsModel} />
-
         <PointsLayer
+           ref="pointsLayer"
            {...this.getStandardLayerParams()}
            highlightedCountry={this.getHighlightedCountry()}
            refugeePointsModel={this.props.refugeePointsModel} />
+        
+        <FrameRateLayer ref="frameRateLayer" />
 
         <BordersLayer
-          updatesEnabled={true}
-          {...this.getStandardLayerParams()}
-          subunitClass="subunit-invisible"
-          onMouseOver={this.handleMouseOver}
-          onMouseOut={this.handleMouseOut} 
-          onClick={this.handleMapClick} />
-        
-        <FrameRateLayer />
+            updatesEnabled={true}
+            {...this.getStandardLayerParams()}
+            subunitClass="subunit-invisible"
+            onMouseOver={this.handleMouseOver}
+            onMouseOut={this.handleMouseOut} 
+            onClick={this.handleMapClick} />
 
       </div>
     )
@@ -188,7 +200,23 @@ var RefugeeMap = React.createClass({
 module.exports = RefugeeMap;
 
 
+     
 
+
+
+        // <CountryLabelsLayer
+        //   {...this.getStandardLayerParams()}
+        //   {...this.getHighlightLayerParams()} />
+
+        // <CountryCountsLayer
+        //   {...this.getStandardLayerParams()}
+        //   {...this.getHighlightLayerParams()}
+        //   refugeeCountsModel={this.props.refugeeCountsModel}  />
+
+        // <CountBarsLayer
+        //   {...this.getStandardLayerParams()}
+        //   highlightedCountry={this.getHighlightedCountry()}
+        //   refugeeCountsModel={this.props.refugeeCountsModel} />
         
 
 // <ControlsAndLegend
@@ -200,4 +228,10 @@ module.exports = RefugeeMap;
 //      onStampChange={this.props.handleStampChange} />
 
 
-
+     // <BordersLayer
+     //      updatesEnabled={true}
+     //      {...this.getStandardLayerParams()}
+     //      subunitClass="subunit-invisible"
+     //      onMouseOver={this.handleMouseOver}
+     //      onMouseOut={this.handleMouseOut} 
+     //      onClick={this.handleMapClick} />

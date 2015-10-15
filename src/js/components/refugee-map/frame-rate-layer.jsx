@@ -1,5 +1,6 @@
 
 var React = require('react');
+var d3 = require('d3');
 
 // only used for testing, this will be disabled
 // in production
@@ -12,7 +13,12 @@ var FrameRateLayer = React.createClass({
 	},
 
 
-	render: function() {
+	componentDidMount: function() {
+		this.sel = d3.select(React.findDOMNode(this.refs.fpsVal));
+	},
+
+
+	update: function() {
 		var diff = Date.now() - this.previousStamp;
 		this.previousStamp = Date.now();
 		
@@ -23,10 +29,15 @@ var FrameRateLayer = React.createClass({
 			this.smoothFps = this.smoothFps 
 				+ (fps - this.smoothFps) / smoothing;
 		}
-		
+
+		this.sel.text(this.smoothFps.toFixed(1));
+	},
+
+
+	render: function() {		
 		return (
 			<div className="frame-rate-layer" style={{padding: '1rem'}}>
-				{this.smoothFps.toFixed(1)} fps
+				<span ref="fpsVal">?</span> fps
 			</div>
 		);
 	}

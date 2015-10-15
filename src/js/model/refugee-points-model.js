@@ -30,7 +30,10 @@ RefugeePointsModel.prototype.getNumRefugeesOnPath = function(startCountry, endCo
 
 RefugeePointsModel.prototype.forEachActiveRefugee = function(stamp, func) {
 	this._moveToStamp(stamp);
-	this.activeRefugees.forEach(func);
+  var length = this.activeRefugees.length;
+  for (var i = 0; i < length; i++) {
+      func(this.activeRefugees[i]);
+  }
 }
 
 

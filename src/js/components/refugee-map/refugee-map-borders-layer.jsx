@@ -8,34 +8,43 @@ var sprintf = require('sprintf');
 
 window.exponent = 0.5;
 
+var getFullCount = function(counts) {
+   if (!counts) {
+      return 0;
+   }
+   return counts.asylumApplications + counts.registeredRefugees;
+}
+
 
 var RefugeeMapBorder = React.createClass({
 
 
-   shouldComponentUpdate: function(nextProps, nextState) {
-      var sel = d3.select(React.findDOMNode(this.refs.overlay));
+   componentDidMount: function() {
+      this.sel = d3.select(React.findDOMNode(this.refs.overlay));
+   },
 
-      sel
+
+   shouldComponentUpdate: function(nextProps, nextState) {      
+      this.sel
          .classed('subunit--hovered', nextProps.hovered)
          .classed('subunit--destination', nextProps.destination)
          .classed('subunit--origin', nextProps.origin);
       
-      var count = nextProps.count != null ? nextProps.count.asylumApplications + nextProps.count.registeredRefugees : 0;
-      
-      var fillStyle = null;
-
-      if (nextProps.origin && count > 0) {
-         fillStyle = sprintf('rgba(190, 88, 179, %.2f)', nextProps.originScale(count));
-      } else if (nextProps.destination && count > 0){
-         fillStyle = sprintf('rgba(95, 196, 114, %.2f)', nextProps.destinationScale(count));
-      }
-
-      sel.style('fill', fillStyle);
-
       // we do the update inside the shouldComponentUpdate 
       // function to prevent an expensive diff of the svg path
       // a react render will only be needed if we need to resize
       return this.props.width !== nextProps.width;
+   },
+
+
+   updateWithCountDetails: function(details) {      
+      var fillStyle = null;
+      if (getFullCount(details.originCounts) > 0) {
+         fillStyle = sprintf('rgba(190, 88, 179, %.2f)', details.originScale(getFullCount(details.originCounts)));
+      } else if (getFullCount(details.destinationCounts) > 0) {
+         fillStyle = sprintf('rgba(95, 196, 114, %.2f)', details.destinationScale(getFullCount(details.destinationCounts)));
+      }
+      this.sel.style('fill', fillStyle);
    },
 
 
@@ -101,11 +110,13 @@ var RefugeeMapBordersLayer = React.createClass({
       }
    },
 
+
    onClick: function() {
       if (this.props.onClick) {
          this.props.onClick();
       }
    },
+
 
    getHighlightParams: function(country) {
       if (!this.props.country) {
@@ -124,7 +135,8 @@ var RefugeeMapBordersLayer = React.createClass({
     * Get count data for current
     * this.props.country at this.props.stamp
     */
-   getCountData: function() {
+   getCountData: function(stamp) {
+
       var getMaxCount = function(counts) {
          return _.values(counts).reduce(function(prev, item) {
             return Math.max(prev, item.asylumApplications + item.registeredRefugees);
@@ -135,11 +147,11 @@ var RefugeeMapBordersLayer = React.createClass({
 
       if (this.props.country != null) {
          var originCounts = this.props.refugeeCountsModel
-            .getDestinationCountsByOriginCountries(this.props.country, this.props.stamp);
+            .getDestinationCountsByOriginCountries(this.props.country, stamp);
          var maxOriginCount = getMaxCount(originCounts);
 
          var destinationCounts = this.props.refugeeCountsModel
-            .getOriginCountsByDestinationCountries(this.props.country, this.props.stamp);
+            .getOriginCountsByDestinationCountries(this.props.country, stamp);
          var maxDestinationCount = getMaxCount(destinationCounts);
 
          var originScale = d3.scale.pow().exponent(window.exponent).domain([0, maxOriginCount]).range([0.05, 0.80]);
@@ -163,8 +175,6 @@ var RefugeeMapBordersLayer = React.createClass({
     * Get paths representing map borders
     */
    getPaths: function() {
-      var countData = this.getCountData();
-
       // while we use React to manage the DOM,
       // we still use D3 to calculate the path
       var path = d3.geo.path().projection(this.props.projection);
@@ -172,23 +182,9 @@ var RefugeeMapBordersLayer = React.createClass({
          var country = feature.properties.ADM0_A3;
          var hparams = this.getHighlightParams(country);
 
-         var countDetails = {}; 
-         if (countData != null) {
-            countDetails = {
-               originScale: countData.originScale,
-               destinationScale: countData.destinationScale
-            }
-            if (hparams.destination) {
-               countDetails.count = countData.destinationCounts[country];
-            }
-            if (hparams.origin) {
-               countDetails.count = countData.originCounts[country];
-            }
-         }
-
          return <RefugeeMapBorder
+            ref={country}
             enableOverlay={this.props.enableOverlay}
-            {...countDetails}
             subunitClass={this.props.subunitClass}
             key={country}
             onMouseOut={this.onMouseOut}
@@ -199,6 +195,24 @@ var RefugeeMapBordersLayer = React.createClass({
             width={this.props.width}
             {...hparams} />
 
+      }.bind(this));
+   },
+
+
+   updateForStamp: function(stamp) {
+     var countData = this.getCountData(stamp);
+     return this.props.mapModel.featureData.features.map(function(feature) {
+         var country = feature.properties.ADM0_A3;
+         var countDetails = {}; 
+         if (countData != null) {
+            countDetails = {
+               originScale: countData.originScale,
+               destinationScale: countData.destinationScale
+            }
+            countDetails.destinationCounts = countData.destinationCounts[country];
+            countDetails.originCounts = countData.originCounts[country];
+         }
+         this.refs[country].updateWithCountDetails(countDetails);
       }.bind(this));
    },
 
@@ -216,18 +230,11 @@ var RefugeeMapBordersLayer = React.createClass({
          return true;
       }
 
-      if (nextProps.country != null 
-         && (!this.lastUpdated 
-            || Math.abs(this.lastUpdated - this.props.stamp) > 60 * 60 * 24 * 5)) {
-         return true;
-      }
-
       return false;
    },
 
 
    render: function() {
-      this.lastUpdated = this.props.stamp;
       console.log("borders re-render");
       return (
          <svg className="refugee-map-borders-layer" 

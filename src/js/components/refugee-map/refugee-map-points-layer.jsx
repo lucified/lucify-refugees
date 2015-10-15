@@ -14,8 +14,14 @@ var RefugeeMapPointsLayer = React.createClass({
    },
 
 
+   updateForStamp: function(stamp) {
+      this.stamp = stamp;
+      this.renderCanvas();
+   },
+
+
    getWidth: function() {
-    return this.props.width;
+     return this.props.width;
    },
 
 
@@ -25,9 +31,30 @@ var RefugeeMapPointsLayer = React.createClass({
 
 
    componentDidUpdate: function() {
-      // todo: check performance
-
       this.renderCanvas();
+   },
+
+
+   usesWebGLRenderer: function() {
+      return true;
+   },
+
+
+   createRenderer: function() {
+      var opts = {
+          transparent: true,
+          antialias: true,
+          preserveDrawingBuffer: true,
+          clearBeforeRender: false,
+          view: React.findDOMNode(this.getDOMNode())
+      }      
+      if (this.usesWebGLRenderer()) {
+        opts.preserveDrawingBuffer = false;
+        opts.clearBeforeRender = true;
+        return new PIXI.WebGLRenderer(this.getWidth(), this.getHeight(), opts)
+      }
+
+      return new PIXI.CanvasRenderer(this.getWidth(), this.getHeight(), opts);
    },
 
 
@@ -37,16 +64,7 @@ var RefugeeMapPointsLayer = React.createClass({
        PIXI.doNotSayHello = true;
        PIXI.AUTO_PREVENT_DEFAULT = false;
 
-       this.renderer = new PIXI.CanvasRenderer(
-           this.getWidth(), this.getHeight(),
-           {
-             transparent: true,
-             antialias: true,
-             preserveDrawingBuffer: true,
-             clearBeforeRender: false,
-             view: React.findDOMNode(this.getDOMNode())
-           });
-
+       this.renderer = this.createRenderer();
        this.renderer.plugins.interaction.autoPreventDefault = false;
 
        this.stage = new PIXI.Container();
@@ -67,39 +85,12 @@ var RefugeeMapPointsLayer = React.createClass({
    },
 
 
-   onRefugeeStarted: function(r) {
-      r.sprite = new PIXI.Sprite(this.refugeeTexture);
-      r.sprite.alpha = 1.0;
-      this.refugeeContainer.addChild(r.sprite);
+   getStamp: function() {
+      return this.stamp;
    },
 
 
-   onRefugeeFinished: function(r) {
-      this.refugeeContainer.removeChild(r.sprite);
-   },
-
-
-   onRefugeeUpdated: function(r) {
-      var loc = r.location;
-      var point = this.props.projection(loc);
-      r.sprite.position.x = point[0];
-      r.sprite.position.y = point[1];
-
-      if (this.props.highlightedCountry == null) {
-           r.sprite.alpha = 1.0; // make all solid
-      } else {
-         if (r.originCountry == this.props.highlightedCountry) {
-           r.sprite.alpha = 1.0;
-         } else if (r.destinationCountry == this.props.highlightedCountry) {
-           r.sprite.alpha = 1.0;
-         } else {
-           r.sprite.alpha = 0.10;
-         }
-      }
-   },
-
-
-  renderCanvas: function() {
+   renderCanvas: function() {
 
     if (this.getWidth() !== this.lastWidth) {
       this.renderer.resize(this.getWidth(), this.getHeight());
@@ -109,13 +100,13 @@ var RefugeeMapPointsLayer = React.createClass({
 
     this.refugeeContainer.removeChildren();
 
-    this.props.refugeePointsModel.forEachActiveRefugee(this.props.stamp, function(r) {
+    this.props.refugeePointsModel.forEachActiveRefugee(this.getStamp(), function(r) {
         if (!r.sprite) {
           r.sprite = new PIXI.Sprite(this.refugeeTexture);
           r.sprite.alpha = 1.0;
         }
 
-        var loc = r.getLocation(this.props.stamp);
+        var loc = r.getLocation(this.getStamp());
         var point = this.props.projection(loc);
         r.sprite.position.x = point[0];
         r.sprite.position.y = point[1];
@@ -123,9 +114,9 @@ var RefugeeMapPointsLayer = React.createClass({
         if (this.props.highlightedCountry == null) {
              r.sprite.alpha = 1.0; // make all solid
         } else {
-           if (r.originCountry == this.props.highlightedCountry) {
+           if (r.originCountry === this.props.highlightedCountry) {
              r.sprite.alpha = 1.0;
-           } else if (r.destinationCountry == this.props.highlightedCountry) {
+           } else if (r.destinationCountry === this.props.highlightedCountry) {
              r.sprite.alpha = 1.0;
            } else {
              // safari gets slowed down a lot by alpha
@@ -138,38 +129,38 @@ var RefugeeMapPointsLayer = React.createClass({
 
     }.bind(this));
     
-    var diff = this.props.stamp - this.previousStamp;
-    var trailsEnabled = (diff > 0) && (diff < 60 * 60 * 5);
+    var diff = this.getStamp() - this.previousStamp;
+    var trailsEnabled = !this.usesWebGLRenderer() 
+      && (diff > 0) && (diff < 60 * 60 * 5);
     
-    this.previousStamp = this.props.stamp;
+    this.previousStamp = this.getStamp();
 
     this.renderer.clearBeforeRender = !trailsEnabled;
     this.renderer.render(this.stage);
-
-    window.trailsEnabled = trailsEnabled;
 
     if (trailsEnabled) {
       // snippet adapted from earth.js
       // https://github.com/cambecc/earth/blob/master/public/libs/earth/1.0.0/earth.js
       // see draw()-function
       var g = this.renderer.view.getContext("2d");
-      g.fillStyle = "rgba(0, 0, 0, 0.95)";
-
-      var prevAlpha = g.globalAlpha;
-      var prev = g.globalCompositeOperation;
-      g.globalAlpha = 0.90;
-      g.globalCompositeOperation = "destination-in";
-      g.fillRect(0, 0, this.getWidth(), this.getHeight());
-      g.globalCompositeOperation = prev;
-      g.globalAlpha = prevAlpha;
+      if (g != null) {
+        g.fillStyle = "rgba(0, 0, 0, 0.95)";
+        var prevAlpha = g.globalAlpha;
+        var prev = g.globalCompositeOperation;
+        g.globalAlpha = 0.90;
+        g.globalCompositeOperation = "destination-in";
+        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+        g.globalCompositeOperation = prev;
+        g.globalAlpha = prevAlpha;
+      }
     }
 
   },
 
-
   render: function() {
       return <canvas style={{width: this.props.width, height: this.props.height}} />
   }
+
 
 });
 

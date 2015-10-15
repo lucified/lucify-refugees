@@ -8,7 +8,13 @@ var constants = require('../../model/refugee-constants.js');
 
 module.exports = function(Component) {
 
-   var RefugeePlayContextDecorator = React.createClass({
+  var RefugeePlayContextDecorator = React.createClass({
+
+
+      componentWillMount: function() {
+          this.listeners = [];
+          this.stamp = this.props.startStamp
+       },
 
 
        getInitialState: function() {
@@ -49,20 +55,28 @@ module.exports = function(Component) {
 
 
         play: function() {
-            if (this.state.stamp < constants.DATA_END_MOMENT.unix()) {
+            if (this.stamp < constants.DATA_END_MOMENT.unix()) {
               if (!this.blockPlay && this.state.play) {
                 var increment = (60 * 60 * this.state.speed);
-                var newStamp = this.state.stamp + increment;
-                this.setState({stamp: newStamp});  
+                var newStamp = this.stamp + increment;
+                this.updateStamp(newStamp);
                 requestAnimationFrame(this.play);    
               }
             }
         },
 
 
+        updateStamp: function(stamp) {
+          this.stamp = stamp;
+          this.listeners.forEach(function(listener) {
+            listener(stamp);
+          });
+        },
+
+
         handleStampChange: function(newStamp) {
           this.blockPlay = true;
-          this.setState({stamp: parseInt(newStamp)});
+          this.updateStamp(parseInt(newStamp));
           this.scheduleUnblockPlay();
         },
 
@@ -72,11 +86,17 @@ module.exports = function(Component) {
         },
 
 
+        addStampListener: function(listener) {
+          this.listeners.push(listener);
+        },
+
+
         render: function() {
             return <Component 
                {...this.state} 
                handleSpeedChange={this.handleSpeedChange}
                handleStampChange={this.handleStampChange}
+               addStampListener={this.addStampListener}
                {...this.props} />
         }
 
