@@ -12,3 +12,5 @@ module.exports.DATA_END_MONTH = 8;
 module.exports.DATA_END_MOMENT = moment([module.exports.DATA_END_YEAR, module.exports.DATA_END_MONTH, 1]); 
 
 module.exports.disableLabels = ['BIH', 'MKD', 'ALB', 'LUX', 'MNE', 'ARM', 'AZE', 'LBN'];
+
+module.exports.labelShowBreakPoint = 992;

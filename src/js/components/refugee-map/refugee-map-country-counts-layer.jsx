@@ -25,34 +25,36 @@ var RefugeeMapCountryCountsLayer = React.createClass({
    renderTexts: function() {
       var items = [];
 
-      var counts = this.props.refugeeCountsModel
-        .getDestinationCountsByOriginCountries(this.props.country, this.props.stamp);
+      if (this.props.width > refugeeConstants.labelShowBreakPoint) {
+        var counts = this.props.refugeeCountsModel
+          .getDestinationCountsByOriginCountries(this.props.country, this.props.stamp);
 
-      var totalReceivedCount = 0;
-      var totalLeftCount = 0;
+        var totalReceivedCount = 0;
+        var totalLeftCount = 0;
 
-      _.difference(this.props.originCountries, refugeeConstants.disableLabels)
-        .forEach(function(country) {
-        var cc = counts[country]
-        if (cc != null) { 
-          var val = cc.asylumApplications + cc.registeredRefugees;
-          items.push(this.renderText(country, val));
-          totalReceivedCount += val;
-        }
-      }.bind(this));
-      
-      counts = this.props.refugeeCountsModel
-        .getOriginCountsByDestinationCountries(this.props.country, this.props.stamp);
+        _.difference(this.props.originCountries, refugeeConstants.disableLabels)
+          .forEach(function(country) {
+          var cc = counts[country]
+          if (cc != null) { 
+            var val = cc.asylumApplications + cc.registeredRefugees;
+            items.push(this.renderText(country, val));
+            totalReceivedCount += val;
+          }
+        }.bind(this));
 
-      _.difference(this.props.destinationCountries, refugeeConstants.disableLabels)
-        .forEach(function(country) {
-        var cc = counts[country]
-        if (cc != null) {
-          var val = cc.asylumApplications + cc.registeredRefugees;
-          items.push(this.renderText(country, cc.asylumApplications + cc.registeredRefugees));
-          totalLeftCount += val;
-        }
-      }.bind(this));
+       counts = this.props.refugeeCountsModel
+          .getOriginCountsByDestinationCountries(this.props.country, this.props.stamp);
+        
+        _.difference(this.props.destinationCountries, refugeeConstants.disableLabels)
+          .forEach(function(country) {
+          var cc = counts[country]
+          if (cc != null) {
+            var val = cc.asylumApplications + cc.registeredRefugees;
+            items.push(this.renderText(country, cc.asylumApplications + cc.registeredRefugees));
+            totalLeftCount += val;
+          }
+        }.bind(this));
+      }
 
       // on the hovered country we show either the amount of 
       // people received of the amount of people who have left

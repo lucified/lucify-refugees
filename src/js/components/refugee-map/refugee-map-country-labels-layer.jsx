@@ -31,15 +31,17 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
 
   	items.push(this.renderCountryLabel(this.props.country, "highlighted"))
 
-  	_.difference(this.props.destinationCountries, refugeeConstants.disableLabels) 
-      .forEach(function(country) {
-  		items.push(this.renderCountryLabel(country, "destination"));
-  	}.bind(this));
+    if (this.props.width > refugeeConstants.labelShowBreakPoint) {
+      _.difference(this.props.destinationCountries, refugeeConstants.disableLabels) 
+        .forEach(function(country) {
+        items.push(this.renderCountryLabel(country, "destination"));
+      }.bind(this));
 
-    _.difference(this.props.originCountries, refugeeConstants.disableLabels) 
-      .forEach(function(country) {
-  		items.push(this.renderCountryLabel(country, "origin"));
-  	}.bind(this));
+      _.difference(this.props.originCountries, refugeeConstants.disableLabels) 
+        .forEach(function(country) {
+        items.push(this.renderCountryLabel(country, "origin"));
+      }.bind(this));      
+    }
 
     return items;
   },
