@@ -60,9 +60,35 @@ var RefugeeMapBorder = React.createClass({
 
 
    render: function() {
+       
+       // round pixels using a custom rendering context
+       var d = "";
+       var context = {
+         beginPath: function() {
+            d += ""
+         },
+         moveTo: function(x, y) {
+            d += "M" + Math.round(x) + "," + Math.round(y)
+         },
+         lineTo: function(x, y) {
+            d += "L" + Math.round(x) + "," + Math.round(y)
+         },
+         closePath: function() {
+            d += "Z"
+         },
+         arc: function() {
+            d += ""
+         }
+       }
+
        var path = this.props.path;
+       path.context(context);
+
+       path(this.props.feature);
+
        var country = this.props.country;
-       var d = path(this.props.feature);
+       
+       //var d = path(this.props.feature);
 
        var overlay = this.props.enableOverlay ? (
          <path key="p2" ref="overlay"
@@ -179,6 +205,7 @@ var RefugeeMapBordersLayer = React.createClass({
       // while we use React to manage the DOM,
       // we still use D3 to calculate the path
       var path = d3.geo.path().projection(this.props.projection);
+
       return this.props.mapModel.featureData.features.map(function(feature) {
          var country = feature.properties.ADM0_A3;
          var hparams = this.getHighlightParams(country);

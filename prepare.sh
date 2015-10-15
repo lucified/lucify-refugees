@@ -9,6 +9,7 @@ ogr2ogr \
   temp/detailed-map.json \
   data/ne_10m_admin_0_countries.shp
 
+# 0.15
 cat temp/detailed-map.json | simplify-geojson -t 0.15 > temp/map.json
 
 node_modules/topojson/bin/topojson \

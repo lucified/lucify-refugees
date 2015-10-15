@@ -15,6 +15,8 @@ var TimeLayer = require('./refugee-map-time-layer.jsx');
 
 var sprintf = require('sprintf');
 
+var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
+
 
 var RefugeeMapSegment = React.createClass({
 
@@ -27,6 +29,11 @@ var RefugeeMapSegment = React.createClass({
     updateForStamp: function(stamp) {
     	this.refs.rmap.updateForStamp(stamp);
     	this.refs.time.updateForStamp(stamp);
+	},
+
+
+	interactionsEnabled: function() {
+		return !lucifyUtils.isSlowDevice();
 	},
 
 
@@ -108,7 +115,9 @@ var RefugeeMapSegment = React.createClass({
 		          stamp={this.props.stamp}
 		          refugeeCountsModel={this.props.refugeeCountsModel} />
 
-				<RefugeeMap ref="rmap" {...this.props} />
+				<RefugeeMap ref="rmap" 
+					{...this.props} 
+					interactionsEnabled={this.interactionsEnabled()} />
 			</div>
 		);
 	}

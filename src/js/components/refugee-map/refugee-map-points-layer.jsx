@@ -2,7 +2,9 @@
 var React = require('react');
 var PIXI = require('pixi.js');
 
-var isSafari = require('lucify-commons/src/js/lucify-utils.jsx').isSafari;
+var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx'); 
+var isSafari = lucifyUtils.isSafari;
+var isSlowDevice = lucifyUtils.isSlowDevice;
 
 var RefugeeMapPointsLayer = React.createClass({
 
@@ -36,7 +38,7 @@ var RefugeeMapPointsLayer = React.createClass({
 
 
    usesWebGLRenderer: function() {
-      return false;
+      return isSlowDevice();
    },
 
 
