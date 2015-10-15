@@ -23,7 +23,7 @@ var createFullList = function(mapModel, asylumData, regionalData,
       if (!mapModel.containsCountry(item.ac)) {
         console.log("asylum country " + item.ac +  " not in map, skipping");
       } else if (!mapModel.containsCountry(item.oc)) {
-        // console.log("origin country " + item.oc +  " not in map, skipping");
+        console.log("origin country " + item.oc +  " not in map, skipping");
       } else {
         // add refugees for journey visualization
         var refugeesToAdd = Math.round(item.count / peoplePerPoint);

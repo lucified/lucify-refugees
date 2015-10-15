@@ -23,12 +23,7 @@ var RefugeeMapTimeLayer = React.createClass({
 
 		return (
 			<div className='refugee-map-time-layer'>
-				<div className="refugee-map-time-layer__line">
-					<RefugeeMapLineChart {...this.props} />
-				</div>
-				<div className="refugee-map-time-layer__time">
-					{this.getFriendlyTime()}
-				</div>
+				<RefugeeMapLineChart {...this.props} />
 			</div>
 		);
 	}
