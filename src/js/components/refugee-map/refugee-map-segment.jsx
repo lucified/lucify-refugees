@@ -13,7 +13,36 @@ var RefugeePlayContextDecorator = require('./refugee-play-context-decorator.jsx'
 
 var TimeLayer = require('./refugee-map-time-layer.jsx');
 
+var sprintf = require('sprintf');
+
+
 var RefugeeMapSegment = React.createClass({
+
+
+	getPeoplePerPointText: function() {
+		if (this.props.peoplePerPoint == 25) {
+			return <span>
+				Each moving point on the map represents
+				25 people. This corresponds approximately to 
+				a bus with every other seat taken.
+			</span>
+		};
+
+		if (this.props.peoplePerPoint == 25) {
+			return <span>
+				Each moving point on the map represents
+				50 people. This corresponds approximately 
+				to a bus with no empty seats.
+			</span>
+		};
+
+		return (
+			<span>
+				Each moving point on the map corresponds
+				to {this.props.peoplePerPoint} people.
+			</span>
+		)
+	},
 
 
 	render: function() {
@@ -31,9 +60,7 @@ var RefugeeMapSegment = React.createClass({
 									</p>
 									
 									<p className="last">
-										Most refugees never make it to Europe.
-										UNHCR estimates that only 10% of Syrian
-										refugees have sought asylum in Europe.
+										{this.getPeoplePerPointText()}
 									</p>
 								
 								</div>

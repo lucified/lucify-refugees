@@ -8,6 +8,9 @@ var RefugeePointsModel = require('../model/refugee-points-model.js');
 var pointList = require('../model/point-list.js');
 var MapModel = require('../model/map-model.js');
 
+var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
+
+
 var Promise = require("bluebird");
 Promise.promisifyAll(d3);
 
@@ -26,11 +29,18 @@ var bindToRefugeeMapContext = function(Component) {
 
       getDefaultProps: function() {
          return {
-            peoplePerPoint: 25,
             includeRegionalData: false, // this is shown separately
             smartSpreadEnabled: true,   // different values for these props have
             randomStartPoint: false     // not been tested and will probably result in bugs
          }
+      },
+
+
+      getPeoplePerPoint: function() {
+         if (lucifyUtils.isSlowDevice()) {
+            return 50;
+         }
+         return 25;
       },
 
 
@@ -109,7 +119,10 @@ var bindToRefugeeMapContext = function(Component) {
 
 
       render: function() {
-         return <Component {...this.state} {...this.props} />
+         return <Component 
+            {...this.state} 
+            {...this.props}
+            peoplePerPoint={this.getPeoplePerPoint()} />
       }
 
 
