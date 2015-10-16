@@ -152,7 +152,7 @@ var RefugeeMap = React.createClass({
         this.refs.countsLayer.updateForStamp(stamp);
       }
         
-      if (this.props.refugeeCountsModel != null) {
+      if (this.interactionsEnabled() && this.props.refugeeCountsModel != null) {
         this.updateHighlight(this.getHighlightedCountry());  
       }
   },
