@@ -118,6 +118,7 @@ var RefugeeSankeySegment = React.createClass({
 											defaultValue={this.state.offsetMonths}
 											min={0} 
 											max={this.getMaximumOffset()} 
+											step={1}
 											onChange={this.monthOffsetChange} />} 
 										value={this.renderTimeValue()} />
 			

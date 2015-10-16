@@ -471,7 +471,8 @@ var RefugeeSankey = React.createClass({
 		return this.props.month !== nextProps.month
 			|| this.props.year !== nextProps.year
 			|| this.state.hovered !== nextState.hovered
-			|| this.props.asylumData !== nextProps.asylumData;
+			|| this.props.asylumData !== nextProps.asylumData
+			|| this.props.width !== nextProps.width;
 	},
 
 
