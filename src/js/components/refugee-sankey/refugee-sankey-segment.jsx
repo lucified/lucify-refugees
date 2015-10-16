@@ -1,19 +1,17 @@
 
-
 var React = require('react');
+var _ = require('underscore');
+var moment = require('moment');
 
 var Inputs = require('lucify-commons/src/js/components/inputs.jsx');
 var DividedCols = require('lucify-commons/src/js/components/divided-cols.jsx');
-
 var FormRow = require('lucify-commons/src/js/components/nice-form-row.jsx');
 var Slider = require('lucify-commons/src/js/components/nice-slider.jsx');
-
 var ResponsiveDecorator = require('lucify-commons/src/js/decorators/responsive-decorator.jsx');
+var debounceTime = require('lucify-commons/src/js/debounce-time.jsx');
 
-var moment = require('moment');
 
 var refugeeConstants = require('../../model/refugee-constants.js');
-
 var RefugeeSankey = ResponsiveDecorator(require('./refugee-sankey.jsx'));
 
 
@@ -21,7 +19,9 @@ var RefugeeSankeySegment = React.createClass({
 
 
 	getInitialState: function() {
-		var ret = {offsetMonths: this.getMaximumOffset()}
+		var ret = {
+			offsetMonths: this.getMaximumOffset(),
+			debouncedOffsetMonths: this.getMaximumOffset()}
 		return ret;
 	},
 
@@ -37,9 +37,17 @@ var RefugeeSankeySegment = React.createClass({
 			.add(this.state.offsetMonths, 'months');
 	},
 
+
+	getDebouncedMoment: function() {
+		return moment([refugeeConstants.DATA_START_YEAR, refugeeConstants.DATA_START_MONTH])
+			.add(this.state.debouncedOffsetMonths, 'months');
+	},
+
+
 	getMonth: function() {
 		return this.getMoment().month();
 	},
+
 
 	getYear: function() {
 		return this.getMoment().year();
@@ -47,13 +55,36 @@ var RefugeeSankeySegment = React.createClass({
 
 
 	monthOffsetChange: function(newOffset) {
+		this.updateMonthOffset(newOffset);
+		this.scheduleUpdateDebouncedOffset();	
+	},
+
+
+	updateMonthOffset: function(newOffset) {
 		this.setState({
 			offsetMonths: newOffset
-		})
+		});
 	},
+
+
+	updateDebouncedOffset: function() {
+		this.setState({
+			debouncedOffsetMonths: this.state.offsetMonths
+		});	
+		console.log(this.state.offsetMonths);
+	},
+
 
 	renderTimeValue: function() {
 		return (this.getMonth() + 1) + "/" + this.getYear();
+	},
+
+
+	componentDidMount: function() {
+	  this.scheduleUpdateDebouncedOffset = _.debounce(function() {
+        console.log("updating debounced moth offse");
+        this.updateDebouncedOffset();
+  	  }.bind(this), debounceTime(750, 50));
 	},
 
 
@@ -103,7 +134,8 @@ var RefugeeSankeySegment = React.createClass({
 
 				<div className="refugee-sankey-segment__sankey">
 					<div className="lucify-container">
-						<RefugeeSankey {...this.props} month={this.getMonth()} year={this.getYear()} />
+						<RefugeeSankey {...this.props} 
+							month={this.getDebouncedMoment().month()} year={this.getDebouncedMoment().year()} />
 					</div>
 				</div>
 

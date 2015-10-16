@@ -17,6 +17,10 @@ var getCountryFromNodeId = function(id) {
 }
 
 
+// Child components 
+// ----------------
+
+
 var Node = React.createClass({
 
 
@@ -185,6 +189,8 @@ var LinkPath = React.createClass({
 });
 
 
+// Main Component 
+// --------------
 
 
 var RefugeeSankey = React.createClass({
@@ -461,7 +467,16 @@ var RefugeeSankey = React.createClass({
 	},
 
 
+	shouldComponentUpdate: function(nextProps, nextState) {
+		return this.props.month !== nextProps.month
+			|| this.props.year !== nextProps.year
+			|| this.state.hovered !== nextState.hovered
+			|| this.props.asylumData !== nextProps.asylumData;
+	},
+
+
 	render: function() {
+		console.log("sankey re-render");
 
 		if (!this.props.asylumData) {
 			return <svg />
