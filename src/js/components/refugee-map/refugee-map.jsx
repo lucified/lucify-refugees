@@ -221,8 +221,6 @@ var RefugeeMap = React.createClass({
 
   render: function() {
 
-    console.log("render refugee map");
-
     if (!this.props.refugeeCountsModel 
       || !this.props.refugeePointsModel
       || !this.props.mapModel) {

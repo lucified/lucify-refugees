@@ -2,6 +2,7 @@
 var d3 = require('d3');
 var topojson = require('topojson');
 var React = require('react');
+var console = require("console-browserify")
 
 var RefugeeCountsModel = require('../model/refugee-counts-model.js');
 var RefugeePointsModel = require('../model/refugee-points-model.js');
@@ -9,10 +10,9 @@ var pointList = require('../model/point-list.js');
 var MapModel = require('../model/map-model.js');
 
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
-
-
 var Promise = require("bluebird");
 Promise.promisifyAll(d3);
+
 
 
 // Bind refugee and map data to given map component

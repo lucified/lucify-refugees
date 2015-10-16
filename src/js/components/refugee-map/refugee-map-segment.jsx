@@ -58,6 +58,31 @@ var RefugeeMapSegment = React.createClass({
 	},
 
 
+	getInteractionsInstruction: function() {
+		if (this.interactionsEnabled()) {
+			return <div>
+				<p className="first">
+					Hover over countries to
+					show details. Click on a country to 
+					lock the selection. 
+				</p>
+
+				<p className="last">
+					The line chart displays the rate of 
+					asylum seekers over time. Hover over the
+					chart to move the map in time.
+				</p>
+			</div>
+		} else {
+			return <p className="first last">
+					The line chart displays the rate of 
+					asylum seekers over time. Hover over the
+					chart to move the map in time.
+			</p>
+		}
+	},
+
+
 	render: function() {
 		return (
 			<div className="refugee-map-segment">
@@ -87,17 +112,7 @@ var RefugeeMapSegment = React.createClass({
 											defaultValue={this.props.speed}
 											onChange={this.props.handleSpeedChange} />} />
 									
-									<p className="first">
-										Hover over countries to
-										show details. Click on a country to 
-										lock the selection. 
-									</p>
-
-									<p className="last">
-										The line chart displays the rate of 
-										asylum seekers over time. Hover over the
-										chart to move the map in time.
-									</p>
+									{this.getInteractionsInstruction()}
 
 								</div>
 							} />

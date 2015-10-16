@@ -1,10 +1,10 @@
 
 var React = require('react');
 var d3 = require('d3');
-
 var classNames = require('classnames');
 var _ = require('underscore');
 var sprintf = require('sprintf');
+var console = require("console-browserify")
 
 
 

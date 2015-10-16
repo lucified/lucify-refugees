@@ -50,10 +50,13 @@ var RefugeeMapPointsLayer = React.createClass({
           clearBeforeRender: false,
           view: React.findDOMNode(this.getDOMNode())
       }      
+
       if (this.usesWebGLRenderer()) {
+        console.log("using autodetectrenderer");
         opts.preserveDrawingBuffer = false;
         opts.clearBeforeRender = true;
-        return new PIXI.WebGLRenderer(this.getWidth(), this.getHeight(), opts)
+        return PIXI.autoDetectRenderer(this.getWidth(), this.getHeight(), opts)
+        //return new PIXI.WebGLRenderer(this.getWidth(), this.getHeight(), opts)
       }
 
       return new PIXI.CanvasRenderer(this.getWidth(), this.getHeight(), opts);

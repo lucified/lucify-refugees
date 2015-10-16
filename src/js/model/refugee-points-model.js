@@ -1,4 +1,6 @@
 
+var console = require("console-browserify")
+
 
 var RefugeePointsModel = function(refugees, randomStartPoint, smartSpreadEnabled) {
 	
