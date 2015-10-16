@@ -3,8 +3,11 @@ var React = require('react');
 var PIXI = require('pixi.js');
 
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx'); 
+
 var isSafari = lucifyUtils.isSafari;
 var isSlowDevice = lucifyUtils.isSlowDevice;
+var isMobile = lucifyUtils.isMobile;
+
 
 var RefugeeMapPointsLayer = React.createClass({
 
@@ -37,8 +40,19 @@ var RefugeeMapPointsLayer = React.createClass({
    },
 
 
-   usesWebGLRenderer: function() {
+   autoDetectRenderer: function() {
+      if (window.navigator.userAgent.indexOf('IEMobile/11') != -1) {
+        return false;
+      }
+
+      // for fast devices we always use canvas renderer
+      // since it allows for displaying trails
       return isSlowDevice();
+   },
+
+
+   isCanvasRenderer: function() {
+      return this.renderer.type === PIXI.RENDERER_TYPE.CANVAS;
    },
 
 
@@ -46,20 +60,27 @@ var RefugeeMapPointsLayer = React.createClass({
       var opts = {
           transparent: true,
           antialias: true,
-          preserveDrawingBuffer: true,
-          clearBeforeRender: false,
           view: React.findDOMNode(this.getDOMNode())
       }      
 
-      if (this.usesWebGLRenderer()) {
-        console.log("using autodetectrenderer");
-        opts.preserveDrawingBuffer = false;
-        opts.clearBeforeRender = true;
-        return PIXI.autoDetectRenderer(this.getWidth(), this.getHeight(), opts)
-        //return new PIXI.WebGLRenderer(this.getWidth(), this.getHeight(), opts)
+      var ret;
+
+      if (this.autoDetectRenderer()) {
+        ret = PIXI.autoDetectRenderer(this.getWidth(), this.getHeight(), opts)
+      } else {
+        ret = new PIXI.CanvasRenderer(this.getWidth(), this.getHeight(), opts);
       }
 
-      return new PIXI.CanvasRenderer(this.getWidth(), this.getHeight(), opts);
+      if (ret.type === PIXI.RENDERER_TYPE.CANVAS) {
+        console.log("using canvas renderer");
+        ret.preserveDrawingBuffer = true;
+        ret.clearBeforeRender = false;
+      } else {
+        console.log("using webgl renderer");
+        ret.preserveDrawingBuffer = false;
+        ret.clearBeforeRender = true;
+      }
+      return ret;
    },
 
 
@@ -138,7 +159,7 @@ var RefugeeMapPointsLayer = React.createClass({
     }.bind(this));
     
     var diff = this.getStamp() - this.previousStamp;
-    var trailsEnabled = !this.usesWebGLRenderer() 
+    var trailsEnabled = this.isCanvasRenderer()
       && (diff > 0) && (diff < 60 * 60 * 5);
     
     this.previousStamp = this.getStamp();
