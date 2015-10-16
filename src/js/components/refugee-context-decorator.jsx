@@ -29,7 +29,6 @@ var bindToRefugeeMapContext = function(Component) {
 
       getDefaultProps: function() {
          return {
-            includeRegionalData: false, // this is shown separately
             smartSpreadEnabled: true,   // different values for these props have
             randomStartPoint: false     // not been tested and will probably result in bugs
          }
@@ -71,12 +70,6 @@ var bindToRefugeeMapContext = function(Component) {
             this.asylumData = data;
          }.bind(this)));
 
-         if (this.props.includeRegionalData) {
-            promises.push(d3.jsonAsync('data/regional-movements.json').then(function(data) {
-               this.regionalData = data;
-            }.bind(this)));
-         }   
-
          Promise.all(promises).then(function() {
             console.timeEnd('load json');
             this.dataLoaded();
@@ -88,7 +81,7 @@ var bindToRefugeeMapContext = function(Component) {
 
       createPointList: function(mapModel) {
          return pointList.createFullList(
-            mapModel, this.asylumData, this.regionalData, this.getPeoplePerPoint(),
+            mapModel, this.asylumData, this.getPeoplePerPoint(),
             this.props.randomStartPoint, this.props.smartSpreadEnabled);
       },
 
@@ -105,7 +98,7 @@ var bindToRefugeeMapContext = function(Component) {
          console.timeEnd("create points list");
 
          var refugeePointsModel = new RefugeePointsModel(pointList, this.props.randomStartPoint, this.props.smartSpreadEnabled);
-         var refugeeCountsModel = new RefugeeCountsModel(this.asylumData, this.regionalData);
+         var refugeeCountsModel = new RefugeeCountsModel(this.asylumData);
 
          this.setState({
             asylumData: this.asylumData,
@@ -123,9 +116,9 @@ var bindToRefugeeMapContext = function(Component) {
 
 
       render: function() {
-         return <Component 
-            {...this.state} 
-            {...this.props} 
+         return <Component
+            {...this.state}
+            {...this.props}
             peoplePerPoint={this.getPeoplePerPoint()} />
       }
 

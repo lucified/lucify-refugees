@@ -12,7 +12,7 @@ var getFullCount = function(counts) {
    if (!counts) {
       return 0;
    }
-   return counts.asylumApplications + counts.registeredRefugees;
+   return counts.asylumApplications;
 }
 
 
@@ -167,7 +167,7 @@ var RefugeeMapBordersLayer = React.createClass({
 
       var getMaxCount = function(counts) {
          return _.values(counts).reduce(function(prev, item) {
-            return Math.max(prev, item.asylumApplications + item.registeredRefugees);
+            return Math.max(prev, item.asylumApplications);
          },0);
       }
 

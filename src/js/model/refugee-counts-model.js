@@ -16,32 +16,24 @@ var refugeeConstants = require('./refugee-constants.js');
  *
  * With each item having the following fields:
  *
- *   asylum.count                      count of asylum seekers during the month
- *   asylum.totalArrivedStartOfMonth   count of asylum seeksers who have arrived at start of month
- *   asylum.arrivingPerDay             asylum seekers arriving per day during the month
+ *   count                      count of asylum seekers during the month
+ *   totalArrivedStartOfMonth   count of asylum seeksers who have arrived at start of month
+ *   arrivingPerDay             asylum seekers arriving per day during the month
  *
- *   refugees.count
- *   refugees.totalArrivedStartOfMonth
- *   refugees.arrivingPerDay
  */
 
-var RefugeeCountsModel = function(asylumData, regionalData) {
-	should.notEqual(asylumData, null, "asylumData")
-  //should.notEqual(regionalData, null, "regionalData")
+var RefugeeCountsModel = function(asylumData) {
+  should.notEqual(asylumData, null, "asylumData");
 
-	this.destinationCountries = {};
-	this.arrivedRefugeeCounts = {};
-
-  this.totalCounts = this._prepareYearsMonthsArray();
-
-  // pair counts by destination
-  this.pairCounts = {};
-
-  // pair counts by origin
+  this.destinationCountries = {};
+  this.arrivedRefugeesToCountry = {};
+  this.pairCountsByDestination = {};
   this.pairCountsByOrigin = {};
+  this.globalRefugees = [];
 
-	this._prepareCountsData(asylumData, regionalData);
-}
+  this._initializeDataStructures(asylumData);
+  this._addData(asylumData);
+};
 
 
 //
@@ -49,52 +41,29 @@ var RefugeeCountsModel = function(asylumData, regionalData) {
 // ------------------------------------------
 //
 
-RefugeeCountsModel.prototype._prepareCountsData = function(asylumData, regionalData) {
-	this._insertData(asylumData, true);
+RefugeeCountsModel.prototype._initializeDataStructures = function(data) {
+  this.globalRefugees = this._prepareYearsMonthsArray();
 
-  if (regionalData != null) {
-	 this._insertData(regionalData, false);
-  }
-	this._calculateMonthlyRefugeeSums();
+  data.forEach(function(item) {
+    if (!this.arrivedRefugeesToCountry[item.ac]) {
+      this.arrivedRefugeesToCountry[item.ac] = this._prepareYearsMonthsArray();
+    }
+
+    this._ensurePairInitialized(this.pairCountsByDestination, item.ac, item.oc);
+    this._ensurePairInitialized(this.pairCountsByOrigin, item.oc, item.ac);
+  }.bind(this));
 }
 
 
-RefugeeCountsModel.prototype._insertData = function(data, isAsylumSeeker) {
-	data.forEach(function(item) {
-		this._addMonthlyArrivals(
-			item.ac,
-			item.oc,
-			item.year,
-			item.month,
-			item.count,
-			isAsylumSeeker);
-		this.destinationCountries[item.ac] = true;
-	}.bind(this));
-}
-
-
-RefugeeCountsModel.prototype._addMonthlyArrivals = function(destinationCountry, originCountry, year, month, count, isAsylumSeeker) {
-  var yearIndex = year - refugeeConstants.DATA_START_YEAR;
-  var monthIndex = month - 1;
-
-  if (year < refugeeConstants.DATA_START_YEAR) return;
-
-  console.assert(monthIndex >= 0 && monthIndex < 12, "Month is between 0 and 11");
-  console.assert(yearIndex >= 0 && yearIndex < 4, "Year is between 0 and 4");
-
-  if (!this.arrivedRefugeeCounts[destinationCountry]) {
-  	this.arrivedRefugeeCounts[destinationCountry] = this._prepareYearsMonthsArray();
+RefugeeCountsModel.prototype._prepareYearsMonthsArray = function() {
+  var ret = new Array(4); // years, 2012-2015
+  for (var y = 0; y < ret.length; y++) {
+    ret[y] = new Array(12);
+    for (var m = 0; m < ret[y].length; m++) {
+      ret[y][m] = { count: 0 };
+    }
   }
-
-  this._ensurePairInitialized(this.pairCounts, destinationCountry, originCountry);
-  this._ensurePairInitialized(this.pairCountsByOrigin, originCountry, destinationCountry);
-
-  var fieldName = isAsylumSeeker ? 'asylum' : 'refugees';
-
-  this.totalCounts[yearIndex][monthIndex][fieldName].count += count;
-  this.arrivedRefugeeCounts[destinationCountry][yearIndex][monthIndex][fieldName].count += count;
-  this.pairCounts[destinationCountry][originCountry][yearIndex][monthIndex][fieldName].count += count;
-  this.pairCountsByOrigin[originCountry][destinationCountry][yearIndex][monthIndex][fieldName].count += count;
+  return ret;
 };
 
 
@@ -105,31 +74,38 @@ RefugeeCountsModel.prototype._ensurePairInitialized = function(pc, dim1, dim2) {
   if (!pc[dim1][dim2]) {
     pc[dim1][dim2] = this._prepareYearsMonthsArray();
   }
-}
+};
 
 
-RefugeeCountsModel.prototype._prepareYearsMonthsArray = function() {
-	var ret = new Array(4); // years, 2012-2015
-    for (var y = 0; y < ret.length; y++) {
-      ret[y] = new Array(12);
-      for (var m = 0; m < ret[y].length; m++) {
-        ret[y][m] = {
-          asylum: {
-            count: 0
-          },
-          refugees: {
-            count: 0
-          }
-        };
-      }
-    }
-    return ret;
-}
+RefugeeCountsModel.prototype._addData = function(data) {
+  data.forEach(function(item) {
+    this._addMonthlyArrivals(item.ac, item.oc, item.year, item.month, item.count);
+    this.destinationCountries[item.ac] = true;
+  }.bind(this));
+
+  this._calculateMonthlyRefugeeSums();
+};
+
+
+RefugeeCountsModel.prototype._addMonthlyArrivals = function(destinationCountry, originCountry, year, month, count) {
+  if (year < refugeeConstants.DATA_START_YEAR) return;
+
+  var yearIndex = year - refugeeConstants.DATA_START_YEAR;
+  var monthIndex = month - 1;
+
+  console.assert(monthIndex >= 0 && monthIndex < 12, "Month is between 0 and 11");
+  console.assert(yearIndex >= 0 && yearIndex < 4, "Year is between 0 and 4");
+
+  this.globalRefugees[yearIndex][monthIndex].count += count;
+  this.arrivedRefugeesToCountry[destinationCountry][yearIndex][monthIndex].count += count;
+  this.pairCountsByDestination[destinationCountry][originCountry][yearIndex][monthIndex].count += count;
+  this.pairCountsByOrigin[originCountry][destinationCountry][yearIndex][monthIndex].count += count;
+};
 
 
 RefugeeCountsModel.prototype._calculateMonthlyRefugeeSums = function () {
-  this._enrichYearsMonthsArray(this.totalCounts);
-	this._enrichCountsArray(this.arrivedRefugeeCounts);
+  this._enrichYearsMonthsArray(this.globalRefugees);
+  this._enrichCountsArray(this.arrivedRefugeesToCountry);
 
   var enrichPairCounts = function(pc) {
     _.keys(pc).forEach(function(key) {
@@ -138,18 +114,16 @@ RefugeeCountsModel.prototype._calculateMonthlyRefugeeSums = function () {
     }.bind(this));
   }.bind(this);
 
-  enrichPairCounts(this.pairCounts);
+  enrichPairCounts(this.pairCountsByDestination);
   enrichPairCounts(this.pairCountsByOrigin);
-}
+};
 
 
 // Adds the totalArrivedAtStartOfMonth and arrivingPerDay
 // properties to each item in the given array
 RefugeeCountsModel.prototype._enrichYearsMonthsArray = function (country) {
-  country[0][0].asylum.totalArrivedAtStartOfMonth = 0;
-  country[0][0].asylum.arrivingPerDay = country[0][0].asylum.count / utils.daysInMonth(0, refugeeConstants.DATA_START_YEAR);
-  country[0][0].refugees.totalArrivedAtStartOfMonth = 0;
-  country[0][0].refugees.arrivingPerDay = country[0][0].refugees.count / utils.daysInMonth(0, refugeeConstants.DATA_START_YEAR);
+  country[0][0].totalArrivedAtStartOfMonth = 0;
+  country[0][0].arrivingPerDay = country[0][0].count / utils.daysInMonth(0, refugeeConstants.DATA_START_YEAR);
   for (var year = 0; year < country.length; year++) {
     for (var month = 0; month < country[year].length; month++) {
       if (month === 0 && year === 0) continue;
@@ -162,17 +136,13 @@ RefugeeCountsModel.prototype._enrichYearsMonthsArray = function (country) {
       }
       var daysInMonth = utils.daysInMonth(month, year + refugeeConstants.DATA_START_YEAR);
 
-      country[year][month].asylum.totalArrivedAtStartOfMonth =
-        country[previousMonthsYear][previousMonth].asylum.totalArrivedAtStartOfMonth +
-        country[previousMonthsYear][previousMonth].asylum.count;
-      country[year][month].refugees.totalArrivedAtStartOfMonth =
-        country[previousMonthsYear][previousMonth].refugees.totalArrivedAtStartOfMonth +
-        country[previousMonthsYear][previousMonth].refugees.count;
-      country[year][month].asylum.arrivingPerDay = country[year][month].asylum.count / daysInMonth;
-      country[year][month].refugees.arrivingPerDay = country[year][month].refugees.count / daysInMonth;
+      country[year][month].totalArrivedAtStartOfMonth =
+        country[previousMonthsYear][previousMonth].totalArrivedAtStartOfMonth +
+        country[previousMonthsYear][previousMonth].count;
+      country[year][month].arrivingPerDay = country[year][month].count / daysInMonth;
     }
   }
-}
+};
 
 
 
@@ -201,16 +171,14 @@ RefugeeCountsModel.prototype._prepareTotalCount = function(item, endStamp, debug
   var country = item;
 
   if (!country) {
-    return { asylumApplications: 0, registeredRefugees: 0 };
+    return { asylumApplications: 0 };
   } else if (!country[yearIndex]) {
-  	console.log("nothing found for year " + yearIndex + ", debugInfo: " + debugInfo + ", stamp " + endStamp);
-	return { asylumApplications: 0, registeredRefugees: 0 };
+    console.log("nothing found for year " + yearIndex + ", debugInfo: " + debugInfo + ", stamp " + endStamp);
+    return { asylumApplications: 0 };
   } else {
     return {
-      asylumApplications: Math.round(country[yearIndex][monthIndex].asylum.totalArrivedAtStartOfMonth +
-        dayOfMonth * country[yearIndex][monthIndex].asylum.arrivingPerDay),
-      registeredRefugees: Math.round(country[yearIndex][monthIndex].refugees.totalArrivedAtStartOfMonth +
-        dayOfMonth * country[yearIndex][monthIndex].refugees.arrivingPerDay)
+      asylumApplications: Math.round(country[yearIndex][monthIndex].totalArrivedAtStartOfMonth +
+        dayOfMonth * country[yearIndex][monthIndex].arrivingPerDay)
     };
   }
 };
@@ -235,18 +203,17 @@ RefugeeCountsModel.prototype.getGlobalArrivingPerDayCounts = function(stamp) {
   var monthIndex = mom.month();
 
   return {
-      asylumApplications: this.totalCounts[yearIndex][monthIndex].asylum.arrivingPerDay,
-      registeredRefugees: this.totalCounts[yearIndex][monthIndex].refugees.arrivingPerDay
-  }
+      asylumApplications: this.globalRefugees[yearIndex][monthIndex].arrivingPerDay
+  };
 
-  //return this._prepareTotalCount(this.totalCounts, endStamp, 'totalcount');
-}
+  //return this._prepareTotalCount(this.globalRefugees, endStamp, 'totalcount');
+};
 
 
 
 RefugeeCountsModel.prototype.getGlobalTotalCounts = function(endStamp) {
-  return this._prepareTotalCount(this.totalCounts, endStamp, 'totalcount');
-}
+  return this._prepareTotalCount(this.globalRefugees, endStamp, 'totalcount');
+};
 
 /*
  * Get total counts for people that have arrived in
@@ -254,10 +221,9 @@ RefugeeCountsModel.prototype.getGlobalTotalCounts = function(endStamp) {
  *
  *  Returned in an object with fields
  *    asylumApplications - total count of asylum applications
- *    registeredRefugees - total count of registered refugees
  */
 RefugeeCountsModel.prototype.getTotalDestinationCounts = function(countryName, endStamp) {
-  return this._prepareTotalCount(this.arrivedRefugeeCounts[countryName], endStamp, countryName);
+  return this._prepareTotalCount(this.arrivedRefugeesToCountry[countryName], endStamp, countryName);
 };
 
 
@@ -266,12 +232,11 @@ RefugeeCountsModel.prototype.getTotalDestinationCounts = function(countryName, e
  * destination country before the given timestamp
  */
 RefugeeCountsModel.prototype.getOriginCountriesByStamp = function(destinationCountry, endStamp) {
-	var counts = this.getDestinationCountsByOriginCountries(destinationCountry, endStamp);
-	window.counts = counts;
+  var counts = this.getDestinationCountsByOriginCountries(destinationCountry, endStamp);
   return _.keys(counts).filter(function(country) {
-		return counts[country].asylumApplications + counts[country].registeredRefugees > 0;
-	});
-}
+    return counts[country].asylumApplications > 0;
+  });
+};
 
 
 /*
@@ -281,9 +246,9 @@ RefugeeCountsModel.prototype.getOriginCountriesByStamp = function(destinationCou
 RefugeeCountsModel.prototype.getDestinationCountriesByStamp = function(originCountry, endStamp) {
   var counts = this.getOriginCountsByDestinationCountries(originCountry, endStamp);
   return _.keys(counts).filter(function(country) {
-    return counts[country].asylumApplications + counts[country].registeredRefugees > 0;
+    return counts[country].asylumApplications > 0;
   });
-}
+};
 
 
 
@@ -296,9 +261,9 @@ RefugeeCountsModel.prototype.getDestinationCountriesByStamp = function(originCou
  */
 RefugeeCountsModel.prototype.getDestinationCountsByOriginCountries = function(destinationCountry, endStamp) {
   var ret = {};
-  _.keys(this.pairCounts[destinationCountry]).forEach(function(originCountry){
-  	ret[originCountry] = this._prepareTotalCount(
-  		this.pairCounts[destinationCountry][originCountry], endStamp);
+  _.keys(this.pairCountsByDestination[destinationCountry]).forEach(function(originCountry){
+    ret[originCountry] = this._prepareTotalCount(
+      this.pairCountsByDestination[destinationCountry][originCountry], endStamp);
   }.bind(this));
   return ret;
 };
@@ -321,13 +286,9 @@ RefugeeCountsModel.prototype.getOriginCountsByDestinationCountries = function(or
 
 
 RefugeeCountsModel.prototype.getDestinationCountries = function() {
-	return _.keys(this.destinationCountries);
-}
+  return _.keys(this.destinationCountries);
+};
 
 
 
 module.exports = RefugeeCountsModel;
-
-
-
-
