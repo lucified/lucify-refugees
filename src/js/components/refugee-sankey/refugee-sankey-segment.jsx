@@ -82,7 +82,7 @@ var RefugeeSankeySegment = React.createClass({
 	componentDidMount: function() {
 	  this.scheduleUpdateDebouncedOffset = _.debounce(function() {
         this.updateDebouncedOffset();
-  	  }.bind(this), debounceTime(750, 50));
+  	  }.bind(this), debounceTime(250, 50));
 	},
 
 
