@@ -476,8 +476,6 @@ var RefugeeSankey = React.createClass({
 
 
 	render: function() {
-		console.log("sankey re-render");
-
 		if (!this.props.asylumData) {
 			return <svg />
 		}	

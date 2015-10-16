@@ -71,7 +71,6 @@ var RefugeeSankeySegment = React.createClass({
 		this.setState({
 			debouncedOffsetMonths: this.state.offsetMonths
 		});	
-		console.log(this.state.offsetMonths);
 	},
 
 
@@ -82,7 +81,6 @@ var RefugeeSankeySegment = React.createClass({
 
 	componentDidMount: function() {
 	  this.scheduleUpdateDebouncedOffset = _.debounce(function() {
-        console.log("updating debounced moth offse");
         this.updateDebouncedOffset();
   	  }.bind(this), debounceTime(750, 50));
 	},

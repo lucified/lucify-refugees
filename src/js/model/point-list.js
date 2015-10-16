@@ -1,6 +1,8 @@
 
-var Refugee = require('./refugee.js');
 var moment = require('moment');
+var _ = require('underscore');
+
+var Refugee = require('./refugee.js');
 var utils = require('../utils.js');
 
 
@@ -10,12 +12,14 @@ var utils = require('../utils.js');
 var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartPoint, smartSpreadEnabled) {
   var ret = [];
 
+  var skipped = {};
+
   if (asylumData) {
     asylumData.forEach(function(item) {
       if (!mapModel.containsCountry(item.ac)) {
-        console.log("asylum country " + item.ac +  " not in map, skipping");
+        skipped[item.ac] = true;
       } else if (!mapModel.containsCountry(item.oc)) {
-        console.log("origin country " + item.oc +  " not in map, skipping");
+        skipped[item.oc] = true;
       } else {
         // add refugees for journey visualization
         var refugeesToAdd = Math.round(item.count / peoplePerPoint);
@@ -24,6 +28,9 @@ var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartP
         }
       }
     });
+
+    console.log("Skipped the following countries that were not on map: " 
+        + _.keys(skipped).join(', '));
   }
 
   return ret;
