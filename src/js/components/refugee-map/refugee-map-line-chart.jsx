@@ -46,8 +46,12 @@ var RefugeeMapLineChart = React.createClass({
 	},
 
 
-	shouldComponentUpdate: function() {
+	componentWillReceiveProps: function() {
 		this.updateLine(this.props.stamp);
+	},
+
+
+	shouldComponentUpdate: function() {
 		return false;
 	},
 
@@ -128,7 +132,6 @@ var RefugeeMapLineChart = React.createClass({
 
 
 	render: function() {
-
 		return (
 			<div className='refugee-map-line-chart'>
 				<C3Chart 

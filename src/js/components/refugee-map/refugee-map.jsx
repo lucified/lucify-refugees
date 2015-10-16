@@ -1,24 +1,18 @@
 
 var _ = require('underscore');
-
 var React = require('react');
+
 var BordersLayer = require('./refugee-map-borders-layer.jsx');
 var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
 var CountryLabelsLayer = require('./refugee-map-country-labels-layer.jsx');
 var CountBarsLayer = require('./refugee-map-count-bars-layer.jsx');
 var PointsLayer = require('./refugee-map-points-layer.jsx')
 var RefugeeMapLineChart = require('./refugee-map-line-chart.jsx');
-
-var ControlsAndLegend = require('./refugee-map-controls-and-legend.jsx');
-
+var SimpleBordersLayer = require('./refugee-map-simple-borders-layer.jsx');
+var FrameRateLayer = require('./frame-rate-layer.jsx');
+var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
 var constants = require('../../model/refugee-constants.js');
 
-var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
-
-var FrameRateLayer = require('./frame-rate-layer.jsx');
-
-
-var SimpleBordersLayer = require('./refugee-map-simple-borders-layer.jsx');
 
 
 var RefugeeMap = React.createClass({
@@ -104,8 +98,7 @@ var RefugeeMap = React.createClass({
       projection: this.getProjection(),
       width: this.getWidth(),
       height: this.getHeight(),
-      stamp: this.getStamp(),
-      addStampListener: this.props.addStampListener
+      stamp: this.getStamp()
     }
   },
 
@@ -132,6 +125,9 @@ var RefugeeMap = React.createClass({
       this.stamp = this.props.stamp;
   },
 
+
+  // see refugee-play-context-decorator.jsx
+  // for explanation
 
   updateForStamp: function(stamp) {
       this.stamp = stamp;
@@ -272,17 +268,5 @@ var RefugeeMap = React.createClass({
 
 
 module.exports = RefugeeMap;
-
-
-//      <BordersLayer 
-//           ref="bordersLayer"
-//           updatesEnabled={true}
-//           enableOverlay={true}
-//           {...this.getStandardLayerParams()}
-//           {...this.getHighlightLayerParams()}
-//           refugeeCountsModel={this.props.refugeeCountsModel}
-//           subunitClass="subunit" />
-
-
     
 

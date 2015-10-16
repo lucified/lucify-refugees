@@ -21,11 +21,6 @@ var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
 var RefugeeMapSegment = React.createClass({
 
 
-	componentWillMount: function() {
-      	this.props.addStampListener(this.updateForStamp);
-	},
-
-
     updateForStamp: function(stamp) {
     	this.refs.rmap.updateForStamp(stamp);
     	this.refs.time.updateForStamp(stamp);

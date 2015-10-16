@@ -46,11 +46,15 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
     return items;
   },
 
-
+  // refugee-map is updating the originCountries 
+  // and destinationCountries in refugee-map's state
+  // regularly when stamps are updated, so any changes
+  // will trigger a render as appropriate
   shouldComponentUpdate: function(nextProps, nextState) {
       return nextProps.country !== this.props.country
         || nextProps.originCountries.length !== this.props.originCountries.length
-        || nextProps.destinationCountries.length !== this.props.destinationCountries.length;
+        || nextProps.destinationCountries.length !== this.props.destinationCountries.length
+        || nextProps.width !== this.props.width;
   },
 
 

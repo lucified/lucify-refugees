@@ -6,7 +6,6 @@ var classNames = require('classnames');
 var _ = require('underscore');
 var sprintf = require('sprintf');
 
-window.exponent = 0.5;
 
 
 var getFullCount = function(counts) {
@@ -25,14 +24,16 @@ var RefugeeMapBorder = React.createClass({
    },
 
 
-   shouldComponentUpdate: function(nextProps, nextState) {      
+   componentWillReceiveProps: function(nextProps, nextState) {
       this.sel
          .classed('subunit--hovered', nextProps.hovered)
          .classed('subunit--destination', nextProps.destination)
          .classed('subunit--origin', nextProps.origin);
-      
-      // we do the update inside the shouldComponentUpdate 
-      // function to prevent an expensive diff of the svg path
+   },
+
+
+   shouldComponentUpdate: function(nextProps, nextState) {      
+      // it is important to prevent an expensive diff of the svg path
       // a react render will only be needed if we need to resize
       return this.props.width !== nextProps.width;
    },
@@ -172,6 +173,9 @@ var RefugeeMapBordersLayer = React.createClass({
 
       var countData = null;
 
+      var exponent = 0.5;
+
+
       if (this.props.country != null) {
          var originCounts = this.props.refugeeCountsModel
             .getDestinationCountsByOriginCountries(this.props.country, stamp);
@@ -181,8 +185,8 @@ var RefugeeMapBordersLayer = React.createClass({
             .getOriginCountsByDestinationCountries(this.props.country, stamp);
          var maxDestinationCount = getMaxCount(destinationCounts);
 
-         var originScale = d3.scale.pow().exponent(window.exponent).domain([0, maxOriginCount]).range([0.05, 0.80]);
-         var destinationScale = d3.scale.pow().exponent(window.exponent).domain([1, maxDestinationCount]).range([0.05, 0.80]);
+         var originScale = d3.scale.pow().exponent(exponent).domain([0, maxOriginCount]).range([0.05, 0.80]);
+         var destinationScale = d3.scale.pow().exponent(exponent).domain([1, maxDestinationCount]).range([0.05, 0.80]);
 
          //var originScale = d3.scale.linear().domain([0, maxOriginCount]).range([0.05, 0.80]);
          //var destinationScale = d3.scale.linear().domain([1, maxDestinationCount]).range([0.05, 0.80]);

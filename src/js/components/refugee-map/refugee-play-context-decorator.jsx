@@ -12,7 +12,6 @@ module.exports = function(Component) {
 
 
       componentWillMount: function() {
-          this.listeners = [];
           this.stamp = this.props.startStamp
        },
 
@@ -68,9 +67,21 @@ module.exports = function(Component) {
 
         updateStamp: function(stamp) {
           this.stamp = stamp;
-          this.listeners.forEach(function(listener) {
-            listener(stamp);
-          });
+
+          // updating of stamp is not done with a
+          // regular React state object, as this will
+          // trigger the relatively costly render
+          // operation for the whole subtree
+          //
+          // for the purposes of the animation it is 
+          // a bit costly even when shouldComponentUpdate
+          // is implemented
+          //
+          // thus the stamp is updated by calling a special 
+          // updateForStamp() method for all relevant
+          // subcomponents
+          //
+          this.refs.comp.updateForStamp(stamp);
         },
 
 
@@ -86,13 +97,9 @@ module.exports = function(Component) {
         },
 
 
-        addStampListener: function(listener) {
-          this.listeners.push(listener);
-        },
-
-
         render: function() {
             return <Component 
+               ref='comp'
                {...this.state} 
                handleSpeedChange={this.handleSpeedChange}
                handleStampChange={this.handleStampChange}

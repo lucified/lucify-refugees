@@ -82,6 +82,8 @@ var RefugeeMapCountryCountsLayer = React.createClass({
    },
 
 
+   // by passing along the stamp to the state of this component,
+   // we can trigger a re-render for specifically this component
    updateForStamp: function(stamp) {
       this.setState({stamp: stamp});
    },
