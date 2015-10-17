@@ -35,7 +35,8 @@ var RefugeeMapLineChart = React.createClass({
 				//data1: theme.cyan
 				data1: '#ffffff'
 			},
-			onmouseover: this.handleMouseOver
+			onmouseover: this.handleMouseOverChart,
+			onclick: this.handleOnClick
 		}
 		return ret;
 	},
@@ -87,11 +88,65 @@ var RefugeeMapLineChart = React.createClass({
 	},
 
 
-	handleMouseOver: function(d) {
+	updatePosition: function(d) {
 		this.updateLine(d.x);
 		if (this.props.onMouseOver) {
 			this.props.onMouseOver(d.x);
 		}
+	},
+
+
+	handleOnClick: function(d) {
+		// Touch devices are never really
+		// hovering on the timeline, so the
+		// timing logic will not work, even
+		// when the touch device is sending
+		// a mouseOverEvent for a tap.
+		//
+		// We should always update on a "click" 
+		// event to support touch devices.
+		// 
+		// However the onClick on c3.js only supports
+		// clicks on the line itself. We will listen
+		// to onClick of the parent component and use
+		// the position conveyed via onMouseOver.
+		//  
+		// To be sure that the onMouseOver runs
+		// before the onClick event, we execute
+		// the update after a small delay
+		// 
+		window.setTimeout(function() {
+			if (this.d != null) {
+				this.updatePosition(this.d);	
+			}
+		}.bind(this), 100);
+	},
+
+
+	handleMouseOverChart: function(d) {
+		this.d = d;
+
+		// use a simple timing logic to ignore occasions where
+		// the mouse clickly passed over the timeline chart,
+		// while maintaining the ability to scroll through time
+		// on hover
+		if (!this.mouseOverStamp || Date.now() - this.mouseOverStamp < 250) {
+			return;
+		}
+		
+		this.updatePosition(d);
+	},
+
+
+	handleMouseOver: function() {
+		if (!this.mouseOverStamp) {
+			this.mouseOverStamp = Date.now();	
+		}
+	},
+
+
+	handleMouseLeave: function() {
+		this.mouseOverStamp = null;
 	},
 
 
@@ -133,7 +188,10 @@ var RefugeeMapLineChart = React.createClass({
 
 	render: function() {
 		return (
-			<div className='refugee-map-line-chart'>
+			<div className='refugee-map-line-chart'
+				onMouseOver={this.handleMouseOver}
+				onMouseLeave={this.handleMouseLeave}
+				onClick={this.handleOnClick} >
 				<C3Chart 
 					ref='c3Chart'
 					lineStrokeWidth={2}
