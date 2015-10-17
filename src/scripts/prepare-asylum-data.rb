@@ -41,6 +41,8 @@ CSV.foreach(INPUT_FILE) do |row|
   next if row[4] == '*'
   next if destination_countries_to_ignore.include?(row[0])
   next if countries_to_ignore.include?(row[1]) || countries_to_ignore.include?(row[0])
+  next if row[1] == row[0] # for some reason the data includes rows where
+                           # the destination is the same as the source country
   month_data << {
     oc: get_country_code_for_name(proper_country_name(row[1])),
     ac: get_country_code_for_name(proper_country_name(row[0])),
