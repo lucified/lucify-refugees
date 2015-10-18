@@ -5,4 +5,4 @@ data/~*.xlsx
 data/*.json
 refugees.mp4
 *.mov
-temp
+temp/
