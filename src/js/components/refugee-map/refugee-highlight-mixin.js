@@ -58,16 +58,13 @@ var RefugeeHighlightMixin = {
     //
     // In such a situtation we decide on which
     // which side to display based on whether 
-    // [country] is mainly a sender or receiver 
+    // [country] is mainly a sender or receiver. 
     //
     if (oc.length > dc.length) {
       dc =_.difference(dc, oc);
     } else {
       oc = _.difference(oc, dc);
     }
-
-    window._ = require('underscore');
-    window.jdas = this;
 
     this.country = country;
     if (dc.length != this.storedDestinationCountries.length
