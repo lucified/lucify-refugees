@@ -18,13 +18,40 @@ var RefugeeHighlightMixin = {
 
 
   handleMapClick: function() {
-  	this.setState({clickedCountry: this.state.hoveredCountry});
+  	if (this.state.clickedCountry == this.state.hoveredCountry) {
+      // clicking a country again should clear the 
+      // "lock" on the country
+      this.setState({clickedCountry: null});
+    } else {
+      this.setState({clickedCountry: this.state.hoveredCountry});  
+    }
+  },
+
+
+  handleMouseOver: function(country) {
+    this.pendingHoverOut = false;
+    var hl = country == "RUS" ? null : country;
+    this.setHoveredCountry(hl);
+  },
+
+
+  handleMouseLeave: function(country) {
+    this.pendingHoverOut = true;
+    window.setTimeout(function() {
+      if (this.pendingHoverOut) {
+        //console.log("setting hoveredCountry to null");
+        this.setHoveredCountry(null);
+      }
+    }.bind(this), 500);
   },
 
 
   setHoveredCountry: function(country) {
     this.setState({hoveredCountry: country});
-    this.updateHighlight(country);
+    
+    if (!this.state.clickedCountry) {
+      this.updateHighlight(country);  
+    }
   },
 
 
