@@ -16,6 +16,7 @@ var getFullCount = function(counts) {
 }
 
 
+
 var RefugeeMapBorder = React.createClass({
 
 
@@ -41,11 +42,13 @@ var RefugeeMapBorder = React.createClass({
 
    updateWithCountDetails: function(details) {      
       var fillStyle = null;
-      if (getFullCount(details.originCounts) > 0) {
+
+      if (this.props.origin && getFullCount(details.originCounts) > 0) {
          fillStyle = sprintf('rgba(190, 88, 179, %.2f)', details.originScale(getFullCount(details.originCounts)));
-      } else if (getFullCount(details.destinationCounts) > 0) {
+      } else if (this.props.destination && getFullCount(details.destinationCounts) > 0) {
          fillStyle = sprintf('rgba(95, 196, 114, %.2f)', details.destinationScale(getFullCount(details.destinationCounts)));
       }
+      
       this.sel.style('fill', fillStyle);
    },
 
@@ -172,9 +175,7 @@ var RefugeeMapBordersLayer = React.createClass({
       }
 
       var countData = null;
-
       var exponent = 0.5;
-
 
       if (this.props.country != null) {
          var originCounts = this.props.refugeeCountsModel
@@ -206,6 +207,9 @@ var RefugeeMapBordersLayer = React.createClass({
     * Get paths representing map borders
     */
    getPaths: function() {
+
+      var countries = {};
+
       // while we use React to manage the DOM,
       // we still use D3 to calculate the path
       var path = d3.geo.path().projection(this.props.projection);
@@ -213,6 +217,11 @@ var RefugeeMapBordersLayer = React.createClass({
       return this.props.mapModel.featureData.features.map(function(feature) {
          var country = feature.properties.ADM0_A3;
          var hparams = this.getHighlightParams(country);
+
+         if (countries[country]) {
+            console.log("duplicate for " + country);
+         }
+         countries[country] = true;
 
          return <RefugeeMapBorder
             ref={country}
@@ -275,6 +284,7 @@ var RefugeeMapBordersLayer = React.createClass({
           this.doUpdate(stamp);
       }
    },
+
 
    doUpdate: function(stamp) {
      this.lastUpdate = stamp;

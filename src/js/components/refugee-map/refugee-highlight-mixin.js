@@ -51,7 +51,24 @@ var RefugeeHighlightMixin = {
   updateHighlight: function(country) {
     var dc = this.getDestinationCountries(country);
     var oc = this.getOriginCountries(country);
-    
+
+    // In some cases there are people
+    // seeking asylum in both directions
+    // for a country pair.
+    //
+    // In such a situtation we decide on which
+    // which side to display based on whether 
+    // [country] is mainly a sender or receiver 
+    //
+    if (oc.length > dc.length) {
+      dc =_.difference(dc, oc);
+    } else {
+      oc = _.difference(oc, dc);
+    }
+
+    window._ = require('underscore');
+    window.jdas = this;
+
     this.country = country;
     if (dc.length != this.storedDestinationCountries.length
       || oc.length != this.storedOriginCountries.length) {
