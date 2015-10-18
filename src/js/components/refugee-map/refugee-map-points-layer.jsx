@@ -160,7 +160,7 @@ var RefugeeMapPointsLayer = React.createClass({
     
     var diff = this.getStamp() - this.previousStamp;
     var trailsEnabled = this.isCanvasRenderer()
-      && (diff > 0) && (diff < 60 * 60 * 5);
+      && (diff >= 0) && (diff < 60 * 60 * 5);
     
     this.previousStamp = this.getStamp();
 

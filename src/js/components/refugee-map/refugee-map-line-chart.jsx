@@ -22,7 +22,7 @@ var RefugeeMapLineChart = React.createClass({
 			cols.push(counts.asylumApplications);
 			xvals.push(mom.unix());
 			mom.add(5, 'days');
-		} while (endMoment.diff(mom) > 0);
+		} while (endMoment.diff(mom) >= 0);
 
 
 		var ret = {
@@ -181,8 +181,21 @@ var RefugeeMapLineChart = React.createClass({
 						{value: this.props.stamp, text: this.getFriendlyTime()}
 					]
 				}
-			}
+			},
+			regions: [
+				{
+					axis: 'x', 
+					class: 'refugee-map-line-chart__missing-data',
+					start: this.getDataMissingStartStamp(),
+					end: refugeeConstants.DATA_END_MOMENT.unix() 
+				}
+			]
 		};
+	},
+
+
+	getDataMissingStartStamp: function() {
+		return moment(refugeeConstants.DATA_END_MOMENT).add(-2, 'months').unix();
 	},
 
 
