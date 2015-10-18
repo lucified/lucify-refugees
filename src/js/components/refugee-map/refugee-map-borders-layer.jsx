@@ -58,8 +58,8 @@ var RefugeeMapBorder = React.createClass({
    },
 
 
-   onMouseOut: function(){
-      this.props.onMouseOut(this.props.country);
+   onMouseLeave: function(){
+      this.props.onMouseLeave(this.props.country);
    },
 
 
@@ -98,7 +98,7 @@ var RefugeeMapBorder = React.createClass({
          <path key="p2" ref="overlay"
                className="subunit--overlay"
                onMouseOver={this.onMouseOver}
-               onMouseOut={this.onMouseOut} 
+               onMouseLeave={this.onMouseLeave} 
                d={d} />) : null;
 
        return (
@@ -107,7 +107,7 @@ var RefugeeMapBorder = React.createClass({
                className={this.props.subunitClass}
                d={d} 
                onMouseOver={this.onMouseOver}
-               onMouseOut={this.onMouseOut} />
+               onMouseLeave={this.onMouseLeave} />
             {overlay}
          </g>
       );
@@ -134,10 +134,10 @@ var RefugeeMapBordersLayer = React.createClass({
       }
    },
 
-   onMouseOut: function(country) {
+   onMouseLeave: function(country) {
       //console.log("out of country" + country);
-      if (this.props.onMouseOut) {
-         this.props.onMouseOut(country);
+      if (this.props.onMouseLeave) {
+         this.props.onMouseLeave(country);
       }
    },
 
@@ -228,7 +228,7 @@ var RefugeeMapBordersLayer = React.createClass({
             enableOverlay={this.props.enableOverlay}
             subunitClass={this.props.subunitClass}
             key={country}
-            onMouseOut={this.onMouseOut}
+            onMouseLeave={this.onMouseLeave}
             onMouseOver={this.onMouseOver}
             path={path}
             feature={feature}
@@ -265,7 +265,6 @@ var RefugeeMapBordersLayer = React.createClass({
 
 
    render: function() {
-      console.log("borders re-render");
       return (
          <svg className="refugee-map-borders-layer" 
             style={{width: this.props.width, height: this.props.height}}

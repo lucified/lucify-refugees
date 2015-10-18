@@ -110,7 +110,7 @@ var RefugeeMap = React.createClass({
   },
 
 
-  handleMouseOut: function(country) {
+  handleMouseLeave: function(country) {
     this.pendingHoverOut = true;
     window.setTimeout(function() {
       if (this.pendingHoverOut) {
@@ -192,7 +192,7 @@ var RefugeeMap = React.createClass({
              {...this.getStandardLayerParams()}
              subunitClass="subunit-invisible"
              onMouseOver={this.handleMouseOver}
-             onMouseOut={this.handleMouseOut} 
+             onMouseLeave={this.handleMouseLeave} 
              onClick={this.handleMapClick} />
     }
   },
