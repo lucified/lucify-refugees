@@ -13,7 +13,7 @@ var RefugeeMapLineChart = React.createClass({
 
 	getData: function() {
 		var mom = moment([refugeeConstants.DATA_START_YEAR, refugeeConstants.DATA_START_MONTH]);
-		var endMoment = moment([refugeeConstants.DATA_END_YEAR, refugeeConstants.DATA_END_MONTH]);
+		var endMoment = refugeeConstants.DATA_END_MOMENT;
 		var cols = [];
 		var xvals = [];
 
