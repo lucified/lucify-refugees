@@ -186,8 +186,8 @@ var RefugeeMapBordersLayer = React.createClass({
             .getOriginCountsByDestinationCountries(this.props.country, stamp);
          var maxDestinationCount = getMaxCount(destinationCounts);
 
-         var originScale = d3.scale.pow().exponent(exponent).domain([0, maxOriginCount]).range([0.05, 0.80]);
-         var destinationScale = d3.scale.pow().exponent(exponent).domain([1, maxDestinationCount]).range([0.05, 0.80]);
+         var originScale = d3.scale.pow().exponent(exponent).domain([0, maxOriginCount]).range([0.075, 0.80]);
+         var destinationScale = d3.scale.pow().exponent(exponent).domain([1, maxDestinationCount]).range([0.075, 0.80]);
 
          //var originScale = d3.scale.linear().domain([0, maxOriginCount]).range([0.05, 0.80]);
          //var destinationScale = d3.scale.linear().domain([1, maxDestinationCount]).range([0.05, 0.80]);
