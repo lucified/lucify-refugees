@@ -1,10 +1,15 @@
 
 var React = require('react');
 
+var HideableContainer = require('lucify-commons/src/js/components/hideable-container.jsx');
+
 var Decorator = require('./refugee-context-decorator.jsx');
 var RefugeeMapSegment = require('./refugee-map/refugee-map-segment.jsx');
 var RefugeeSankeySegment = require('./refugee-sankey/refugee-sankey-segment.jsx');
 var RefugeeSoccerSegment = require('./refugee-soccer/refugee-soccer-segment.jsx');
+
+var Loading = require('lucify-commons/src/js/components/loading.jsx');
+
 
 
 
@@ -22,14 +27,18 @@ var RefugeeMainContent = React.createClass({
 
 	getMapSegment: function() {
 		if (this.props.mapEnabled) {
-			return <RefugeeMapSegment {...this.props} />
+			return (
+				<HideableContainer visible={this.props.loaded}>
+					<RefugeeMapSegment {...this.props} />
+				</HideableContainer>
+			);
 		}
 		return <div />;
 	},
 
 
 	getSankeySegment: function() {
-		if (this.props.sankeyEnabled) {
+		if (this.props.loaded && this.props.sankeyEnabled) {
 			return <RefugeeSankeySegment {...this.props} />
 		}
 		return <div />;
@@ -37,10 +46,21 @@ var RefugeeMainContent = React.createClass({
 
 
 	getSoccerSegment: function() {
-		if (this.props.soccerEnabled) {
+		if (this.props.loaded && this.props.soccerEnabled) {
 			return <RefugeeSoccerSegment {...this.props} />
 		}
 		return <div />;
+	},
+
+
+	getLoadingSegment: function() {
+		if (!this.props.loaded) {
+			return (
+				<div className="lucify-container">
+					<Loading progress={this.props.loadProgress} />
+				</div>
+			);
+		}
 	},
 
 
@@ -56,6 +76,7 @@ var RefugeeMainContent = React.createClass({
 		return (
 			<div className="refugee-main-content"
 				style={{minHeight: 2000}}>
+				{this.getLoadingSegment()}
 				{this.getMapSegment()}
 				{this.getSankeySegment()}
 				{this.getSoccerSegment()}

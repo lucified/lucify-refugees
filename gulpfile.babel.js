@@ -13,5 +13,11 @@ gulp.task('prepare-data', function(cb) {
   cb();
 });
 
+
+var opts = {
+	pretasks: ['prepare-data'],
+	paths: ['node_modules/lucify-commons']
+}
+
 var taskCreator = require('lucify-embed');
-taskCreator(gulp, {pretasks: ['prepare-data']});
+taskCreator(gulp, opts);

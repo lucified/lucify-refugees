@@ -49,6 +49,8 @@ var bindToRefugeeMapContext = function(Component) {
 
       getInitialState: function() {
          return {
+            loaded: false,
+            loadProgress: null,
             mapModel: null,
             refugeeCountsModel: null,
             refugeePointsModel: null
@@ -86,32 +88,75 @@ var bindToRefugeeMapContext = function(Component) {
       },
 
 
-      dataLoaded: function() {
-         var features = topojson.feature(this.topomap, this.topomap.objects.map);
+      progress: function(percent) {
+         this.setState({loadProgress: percent});
+      },
 
+
+      initFeatures: function() {
+         this.features = topojson.feature(this.topomap, this.topomap.objects.map);
+         window.setTimeout(this.initMapModel, 15);
+      },
+
+
+      initMapModel: function() {
          console.time("init map model");
-         var mapModel = new MapModel(features);
+         this.mapModel = new MapModel(this.features);
+         this.progress(20);
          console.timeEnd("init map model");
+         window.setTimeout(this.initPointsList, 15);
+      },
 
+
+      initPointsList: function() {
          console.time("create points list");
-         var pointList = this.createPointList(mapModel);
+         this.pointList = this.createPointList(this.mapModel);
+         this.progress(85);
          console.timeEnd("create points list");
+         window.setTimeout(this.initModels, 15);
+      },
 
-         var refugeePointsModel = new RefugeePointsModel(pointList, this.props.randomStartPoint, this.props.smartSpreadEnabled);
-         var refugeeCountsModel = new RefugeeCountsModel(this.asylumData);
 
+      initModels: function() {
+         this.refugeePointsModel = new RefugeePointsModel(this.pointList, this.props.randomStartPoint, this.props.smartSpreadEnabled);
+         this.refugeeCountsModel = new RefugeeCountsModel(this.asylumData);
+         this.progress(95);  
+         window.setTimeout(this.finishLoading, 15);
+      },
+
+
+      finishLoading: function() {
          this.setState({
             asylumData: this.asylumData,
-            mapModel: mapModel,
-            refugeePointsModel: refugeePointsModel,
-            refugeeCountsModel: refugeeCountsModel
+            mapModel: this.mapModel,
+            refugeePointsModel: this.refugeePointsModel,
+            refugeeCountsModel: this.refugeeCountsModel,
+            loaded: true,
+            loadProgress: 100
          });
 
-         // only for debugging
-         window.refugeeCountsModel = refugeeCountsModel;
-         window.refugeePointsModel = refugeePointsModel;
-         window.mapModel = mapModel;
+        // only for debugging
+         window.refugeeCountsModel = this.refugeeCountsModel;
+         window.refugeePointsModel = this.refugeePointsModel;
+         window.mapModel = this.mapModel;
          window.asylumData = this.asylumData;
+      },
+
+
+      dataLoaded: function() {
+         this.progress(10);
+
+         // This will trigger also the other inits
+         //
+         // We need to use setTimeout to allow for the 
+         // UI to update between parts of the loading 
+         // progress.
+         //
+         // For optimal results we would have to allow
+         // this also during individual steps in createPointList,
+         // which is taking most of the load time.
+         //
+         this.initFeatures();
       },
 
 

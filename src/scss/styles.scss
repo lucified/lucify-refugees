@@ -1,6 +1,7 @@
 
 @import "../../node_modules/lucify-commons/src/scss/styles-full.scss";
 
+@import "refugee-main-content.scss";
 @import "refugee-map.scss";
 @import "refugee-map-borders-layer.scss";
 @import "refugee-map-country-counts-layer.scss";
@@ -11,3 +12,4 @@
 @import "refugee-sankey.scss";
 @import "refugee-sankey-segment.scss";
 @import "refugee-soccer-segment.scss";
+
