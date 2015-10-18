@@ -195,7 +195,15 @@ var RefugeeMapLineChart = React.createClass({
 
 
 	getDataMissingStartStamp: function() {
-		return moment(refugeeConstants.DATA_END_MOMENT).add(-2, 'months').unix();
+		var timestamp = moment(refugeeConstants.DATA_END_MOMENT);
+		var countriesWithMissingData = this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(timestamp);
+
+		while (countriesWithMissingData.length > 0) {
+			timestamp.subtract(1, 'months');
+			countriesWithMissingData = this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(timestamp);
+		}
+
+		return timestamp.endOf('month').unix();
 	},
 
 
