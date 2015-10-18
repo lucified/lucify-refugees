@@ -42,7 +42,7 @@ var RefugeeHighlightMixin = {
         //console.log("setting hoveredCountry to null");
         this.setHoveredCountry(null);
       }
-    }.bind(this), 500);
+    }.bind(this), 50);
   },
 
 
