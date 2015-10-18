@@ -61,20 +61,23 @@ var RefugeeMapCountryCountsLayer = React.createClass({
         }.bind(this));
       }
 
-      // on the hovered country we show either the amount of 
+      // On the hovered country we show either the amount of 
       // people received of the amount of people who have left
       //
-      // in case there are both, we show nothing, as this would
-      // is an ambiguous situation. this is a problem only for
-      // a few countries
-      var count = 0;
-      if (totalReceivedCount > 0 && totalLeftCount == 0) {
-        count = totalReceivedCount;
-      } else if (totalLeftCount > 0 && totalReceivedCount == 0) {
-        count = totalLeftCount;
-      }
+      // Some countries both receive and generate asylum seekers
+      // in most cases the other count is much larger, and 
+      // each country is either mainly a receiver or originator
+      // country.
+      //
+      // For such countries it is appropriate to simply know
+      // whichever count is bigger
+      //
+      // Serbia is however a problem, as both numbers are similar
+      // and the balance even shifts along the way
+      // 
+      var count = Math.max(totalReceivedCount, totalLeftCount);
 
-      if (count > 0) {
+      if (count > 0 && this.props.country !== "SRB") {
         items.push(this.renderText(this.props.country, count));
       }
 
