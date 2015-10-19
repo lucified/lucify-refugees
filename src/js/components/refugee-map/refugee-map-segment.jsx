@@ -91,7 +91,7 @@ var RefugeeMapSegment = React.createClass({
 						<DividedCols 
 							first={
 								<div className="inputs__instructions">
-									<h3>The flow towards Europe</h3>
+									<h3>Instructions</h3>
 									<p className="first">
 										The below map shows the flow asylum
 										seekers to European countries over time.

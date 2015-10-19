@@ -94,7 +94,7 @@ var RefugeeSankeySegment = React.createClass({
 						<DividedCols 
 							first={
 								<div className="inputs__instructions">
-									<h3>Countries involved</h3>
+									<h3>Country by country</h3>
 
 									<p className="first last">
 										The below chart shows
