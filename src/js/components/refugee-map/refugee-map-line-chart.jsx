@@ -4,6 +4,7 @@ var C3Chart = require('lucify-commons/src/js/components/react-c3/c3-chart.jsx');
 
 var refugeeConstants = require('../../model/refugee-constants.js');
 var moment = require('moment');
+var _ = require('underscore');
 
 var theme = require('lucify-commons/src/js/lucify-theme.jsx');
 
@@ -80,6 +81,35 @@ var RefugeeMapLineChart = React.createClass({
 		this.lineSel.select('text')
 			.attr('y', xval)
 			.text(this.getFriendlyTime());
+
+		this.updateCountriesWithMissingData(stamp);
+	},
+
+	updateCountriesWithMissingData: function(stamp) {
+		var countriesWithMissingData
+			= this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(moment.unix(stamp));
+		var labelSelection = d3.select(this.getDOMNode()).select('#missing-data-countries');
+		if (countriesWithMissingData.length > 0) {
+			var missingDataText;
+			countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
+				return this.props.mapModel.getFriendlyNameForCountry(countryCode);
+			}.bind(this));
+			if (countriesWithMissingData.length > 5) {
+				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 4).join(', ') +
+					" and " + (countriesWithMissingData.length - 4) + " other countries";
+			} else {
+				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, length - 1).join(', ') +
+					" and " + countriesWithMissingData[countriesWithMissingData.length - 1];
+			}
+			labelSelection
+				.attr('title', "Missing data for " + countriesWithMissingData.join(', '))
+				.text(missingDataText);
+		} else {
+			labelSelection
+				.attr('title', '')
+				.text('');
+		}
+
 
 		// we update the line with the above code
 		// since the c3 api function xgrids triggers a redraw
@@ -212,7 +242,8 @@ var RefugeeMapLineChart = React.createClass({
 				onMouseOver={this.handleMouseOver}
 				onMouseLeave={this.handleMouseLeave}
 				onClick={this.handleOnClick} >
-				<C3Chart 
+				<span id='missing-data-countries' />
+				<C3Chart
 					ref='c3Chart'
 					lineStrokeWidth={2}
 					height={100}

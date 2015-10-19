@@ -123,7 +123,8 @@ var RefugeeMapSegment = React.createClass({
 				  ref="time"
 		          onMouseOver={this.props.handleStampChange}
 		          stamp={this.props.stamp}
-		          refugeeCountsModel={this.props.refugeeCountsModel} />
+		          refugeeCountsModel={this.props.refugeeCountsModel}
+		          mapModel={this.props.mapModel} />
 
 				<RefugeeMap ref="rmap" 
 					{...this.props} 
