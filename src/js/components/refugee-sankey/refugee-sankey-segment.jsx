@@ -54,6 +54,27 @@ var RefugeeSankeySegment = React.createClass({
 	},
 
 
+	getCountriesWithMissingData: function() {
+		var countriesWithMissingData
+			= this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(this.getDebouncedMoment());
+		if (countriesWithMissingData.length > 0) {
+			var missingDataText;
+			countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
+				return this.props.mapModel.getFriendlyNameForCountry(countryCode);
+			}.bind(this));
+			if (countriesWithMissingData.length > 7) {
+				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 6).join(', ') +
+					" and " + (countriesWithMissingData.length - 6) + " other countries";
+			} else {
+				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, length - 1).join(', ') +
+					" and " + countriesWithMissingData[countriesWithMissingData.length - 1];
+			}
+			return missingDataText;
+		} else {
+			return '';
+		}
+	},
+
 	monthOffsetChange: function(newOffset) {
 		this.updateMonthOffset(newOffset);
 		this.scheduleUpdateDebouncedOffset();	
@@ -131,6 +152,22 @@ var RefugeeSankeySegment = React.createClass({
 					</div>
 				</Inputs>
 
+				<div className="refugee-sankey-segment__metadata lucify-container">
+					<DividedCols
+						first={
+							<div className="inputs__instructions">
+								<h3>{this.getDebouncedMoment().format("MMMM YYYY")}</h3>
+							</div>
+						}
+
+						second={
+							<div className="inputs__instructions missing-countries">
+								<p className="first last">
+									{this.getCountriesWithMissingData()}
+								</p>
+							</div>
+						} />
+				</div>
 				<div className="refugee-sankey-segment__sankey">
 					<div className="lucify-container">
 						<RefugeeSankey {...this.props} 
