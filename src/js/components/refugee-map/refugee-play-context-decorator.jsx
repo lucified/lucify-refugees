@@ -12,16 +12,16 @@ module.exports = function(Component) {
 
 
       componentWillMount: function() {
-          this.stamp = this.props.startStamp
+          this.stamp = this.props.startStamp;
        },
 
 
        getInitialState: function() {
           return {
               stamp: this.props.startStamp, // unix timestamps (seconds-precision)
-              speed: 1,
+              speed: 2,
               play: this.props.autoStart,
-          }
+          };
         },
 
 
@@ -29,7 +29,7 @@ module.exports = function(Component) {
           return {
             autoStart: true,
             startStamp: moment([2012, 0, 1]).unix()
-          }
+          };
         },
          
 
