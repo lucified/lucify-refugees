@@ -36,8 +36,15 @@ var RefugeeMapLineChart = React.createClass({
 				data1: '#ffffff'
 			},
 			onmouseover: this.handleMouseOverChart,
-			onclick: this.handleOnClick
-		}
+			onclick: this.handleOnClick,
+			regions: {
+				'data1': [{
+						start: this.getDataMissingStartStamp(),
+						end: refugeeConstants.DATA_END_MOMENT.unix(),
+						style: 'dashed'
+				}]
+			}
+		};
 		return ret;
 	},
 
@@ -181,15 +188,7 @@ var RefugeeMapLineChart = React.createClass({
 						{value: this.props.stamp, text: this.getFriendlyTime()}
 					]
 				}
-			},
-			regions: [
-				{
-					axis: 'x', 
-					class: 'refugee-map-line-chart__missing-data',
-					start: this.getDataMissingStartStamp(),
-					end: refugeeConstants.DATA_END_MOMENT.unix() 
-				}
-			]
+			}
 		};
 	},
 
