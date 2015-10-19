@@ -103,29 +103,43 @@ var RefugeeMapLineChart = React.createClass({
 
 
 	updateCountriesWithMissingData: function(stamp) {
-		var countriesWithMissingData
-			= this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(moment.unix(stamp));
-		
-		if (countriesWithMissingData.length > 0) {
-			var missingDataText;
-			countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
-				return this.props.mapModel.getFriendlyNameForCountry(countryCode);
-			}.bind(this));
-			if (countriesWithMissingData.length > 5) {
-				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 4).join(', ') +
-					" and " + (countriesWithMissingData.length - 4) + " other countries";
+		var timestampMoment = moment.unix(stamp);
+		var res = this.countriesWithMissingDataCache[timestampMoment.year() * 12 + timestampMoment.month()];
+
+		if (res == null) {
+			var countriesWithMissingData
+				= this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(timestampMoment);
+
+			if (countriesWithMissingData.length > 0) {
+				var missingDataText;
+				countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
+					return this.props.mapModel.getFriendlyNameForCountry(countryCode);
+				}.bind(this));
+				if (countriesWithMissingData.length > 5) {
+					missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 4).join(', ') +
+						" and " + (countriesWithMissingData.length - 4) + " other countries";
+				} else {
+					missingDataText = "Missing data from " + countriesWithMissingData.slice(0, length - 1).join(', ') +
+						" and " + countriesWithMissingData[countriesWithMissingData.length - 1];
+				}
+
+				res = {
+					title: "Missing data for " + countriesWithMissingData.join(', '),
+					text: missingDataText
+				};
+
 			} else {
-				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, length - 1).join(', ') +
-					" and " + countriesWithMissingData[countriesWithMissingData.length - 1];
+				res = {
+					title: '',
+					text: ''
+				};
 			}
-			this.labelSelection
-				.attr('title', "Missing data for " + countriesWithMissingData.join(', '))
-				.text(missingDataText);
-		} else {
-			this.labelSelection
-				.attr('title', '')
-				.text('');
+			this.countriesWithMissingDataCache[timestampMoment.year() * 12 + timestampMoment.month()] = res;
 		}
+
+		this.labelSelection
+			.attr('title', res.title)
+			.text(res.text);
 	},
 
 
@@ -242,6 +256,7 @@ var RefugeeMapLineChart = React.createClass({
 
 	componentDidMount: function() {
 		this.labelSelection = d3.select(React.findDOMNode(this.refs.missingData));
+		this.countriesWithMissingDataCache = {};
 	},
 
 
