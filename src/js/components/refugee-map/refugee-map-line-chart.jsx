@@ -82,6 +82,18 @@ var RefugeeMapLineChart = React.createClass({
 			.attr('y', xval)
 			.text(this.getFriendlyTime());
 
+		// we update the line with the above code
+		// since the c3 api function xgrids triggers a redraw
+		// for the whole chart
+
+		//chart.xgrids([
+		//	{value: this.props.stamp, text: this.getFriendlyTime()},
+		//]);
+
+		//chart.regions([
+		//	{axis: 'x', end: this.props.stamp, 'class': 'regionX'}
+		//]);
+
 		this.updateCountriesWithMissingData(stamp);
 	},
 
@@ -109,19 +121,6 @@ var RefugeeMapLineChart = React.createClass({
 				.attr('title', '')
 				.text('');
 		}
-
-
-		// we update the line with the above code
-		// since the c3 api function xgrids triggers a redraw
-		// for the whole chart
-
-		//chart.xgrids([
-   		//	{value: this.props.stamp, text: this.getFriendlyTime()},
-  		//]);
-
-		//chart.regions([
-		//	{axis: 'x', end: this.props.stamp, 'class': 'regionX'}
-		//]);
 	},
 
 
