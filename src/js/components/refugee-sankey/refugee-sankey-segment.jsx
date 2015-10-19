@@ -145,7 +145,6 @@ var RefugeeSankeySegment = React.createClass({
 			
 									<p className="first last">
 										Hover over countries to show details. 
-										Click on a country to  lock the selection.
 									</p>
 								</div>
 							} />
