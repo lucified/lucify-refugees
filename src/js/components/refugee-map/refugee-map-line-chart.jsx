@@ -73,6 +73,10 @@ var RefugeeMapLineChart = React.createClass({
 		}
 		
 		var xval = chart.internal.x(stamp);
+
+		// we update the line directly 
+		// since the c3 api function xgrids 
+		// triggers a redraw for the whole chart
 		
 		this.lineSel.select('line')
 			.attr('x1', xval)
@@ -85,10 +89,11 @@ var RefugeeMapLineChart = React.createClass({
 		this.updateCountriesWithMissingData(stamp);
 	},
 
+
 	updateCountriesWithMissingData: function(stamp) {
 		var countriesWithMissingData
 			= this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(moment.unix(stamp));
-		var labelSelection = d3.select(this.getDOMNode()).select('#missing-data-countries');
+		
 		if (countriesWithMissingData.length > 0) {
 			var missingDataText;
 			countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
@@ -101,27 +106,14 @@ var RefugeeMapLineChart = React.createClass({
 				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, length - 1).join(', ') +
 					" and " + countriesWithMissingData[countriesWithMissingData.length - 1];
 			}
-			labelSelection
+			this.labelSelection
 				.attr('title', "Missing data for " + countriesWithMissingData.join(', '))
 				.text(missingDataText);
 		} else {
-			labelSelection
+			this.labelSelection
 				.attr('title', '')
 				.text('');
 		}
-
-
-		// we update the line with the above code
-		// since the c3 api function xgrids triggers a redraw
-		// for the whole chart
-
-		//chart.xgrids([
-   		//	{value: this.props.stamp, text: this.getFriendlyTime()},
-  		//]);
-
-		//chart.regions([
-		//	{axis: 'x', end: this.props.stamp, 'class': 'regionX'}
-		//]);
 	},
 
 
@@ -236,13 +228,19 @@ var RefugeeMapLineChart = React.createClass({
 	},
 
 
+	componentDidMount: function() {
+		this.labelSelection = d3.select(React.findDOMNode(this.refs.missingData));
+	},
+
+
+
 	render: function() {
 		return (
 			<div className='refugee-map-line-chart'
 				onMouseOver={this.handleMouseOver}
 				onMouseLeave={this.handleMouseLeave}
 				onClick={this.handleOnClick} >
-				<span id='missing-data-countries' />
+				<span ref="missingData" className="refugee-map-line-chart__missing-data" />
 				<C3Chart
 					ref='c3Chart'
 					lineStrokeWidth={2}

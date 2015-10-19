@@ -8,34 +8,6 @@
   height: 100px;
   z-index: 1;
   position: relative;
-
-  .c3-xgrid-line {
-    text {
-      fill: white;
-      font-weight: bold;
-      font-size: 12px;
-    }
-
-    line {
-      stroke: white;
-    }
-  }
 }
-
-
-#missing-data-countries {
-  position: absolute;
-  left: 1em;
-  top: 0.5em;
-  z-index: 2;
-  color: white;
-  font-size: 14px;
-  padding-right: 4em; // don't go on top of the time chart at small screen sizes
-}
-
-// .refugee-map-time-layer__line {
-//   display: table-cell;
-//   //vertical-align: middle;
-// }
 
 
