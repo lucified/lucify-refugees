@@ -36,16 +36,16 @@ var RefugeeMapSegment = React.createClass({
 		if (this.props.peoplePerPoint == 25) {
 			return <span>
 				Each moving point on the map represents
-				25 people. This corresponds approximately to 
-				a bus with every other seat taken.
+				25 people. That corresponds to approximately
+				one busload with every other seat taken.
 			</span>
 		};
 
 		if (this.props.peoplePerPoint == 50) {
 			return <span>
 				Each moving point on the map represents
-				50 people. This corresponds approximately 
-				to a bus with no empty seats.
+				50 people. That corresponds to approximately
+				one busload with no empty seats.
 			</span>
 		};
 
@@ -68,14 +68,14 @@ var RefugeeMapSegment = React.createClass({
 				</p>
 
 				<p className="last">
-					The line chart displays the rate of 
+					The line chart displays the total rate of
 					asylum seekers over time. Hover over the
 					chart to move the map in time.
 				</p>
 			</div>
 		} else {
 			return <p className="first last">
-					The line chart displays the rate of 
+					The line chart displays the total rate of
 					asylum seekers over time. Hover over the
 					chart to move the map in time.
 			</p>
@@ -93,7 +93,7 @@ var RefugeeMapSegment = React.createClass({
 								<div className="inputs__instructions">
 									<h3>Instructions</h3>
 									<p className="first">
-										The below map shows the flow asylum
+										The map below shows the flow of asylum
 										seekers to European countries over time.
 									</p>
 									

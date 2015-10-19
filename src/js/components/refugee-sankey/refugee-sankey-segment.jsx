@@ -118,10 +118,10 @@ var RefugeeSankeySegment = React.createClass({
 									<h3>Country by country</h3>
 
 									<p className="first last">
-										The below chart shows
-										the monthly amount of refugees
-										originating and seeking asylum
-										from different countries.
+										The chart below shows the
+										monthly total refugees
+										originating from and seeking
+										asylum in different countries.
 									</p>
 								
 								</div>
@@ -129,10 +129,6 @@ var RefugeeSankeySegment = React.createClass({
 
 							second={
 								<div className="inputs__instructions">
-									<p className="first last">
-										Move the slider to move in time.
-									</p>
-							
 									<FormRow
 										title="Time"
 										input={<Slider 
@@ -142,9 +138,12 @@ var RefugeeSankeySegment = React.createClass({
 											step={1}
 											onChange={this.monthOffsetChange} />} 
 										value={this.renderTimeValue()} />
-			
+
 									<p className="first last">
-										Hover over countries to show details. 
+										Move the slider to move in time.
+									</p>
+									<p className="first last">
+										Hover over countries to show details.
 									</p>
 								</div>
 							} />
