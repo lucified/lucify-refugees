@@ -7,6 +7,7 @@
   background-color: rgba(36, 44, 57, 0.4);
   height: 100px;
   z-index: 1;
+  position: relative;
 
   .c3-xgrid-line {
     text {
@@ -22,15 +23,15 @@
 }
 
 
-.refugee-map-line-chart__missing-data {
-  
-  rect {
-    fill: rgb(0,0,0);
-    fill-opacity: 0.25 !important;
-  }
-  
+#missing-data-countries {
+  position: absolute;
+  left: 1em;
+  top: 0.5em;
+  z-index: 2;
+  color: white;
+  font-size: 14px;
+  padding-right: 4em; // don't go on top of the time chart at small screen sizes
 }
-
 
 // .refugee-map-time-layer__line {
 //   display: table-cell;
