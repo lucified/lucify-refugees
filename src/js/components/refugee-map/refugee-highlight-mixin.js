@@ -18,12 +18,15 @@ var RefugeeHighlightMixin = {
 
 
   handleMapClick: function() {
-  	if (this.state.clickedCountry == this.state.hoveredCountry) {
-      // clicking a country again should clear the 
+    if (this.state.clickedCountry == this.state.hoveredCountry) {
+      // clicking a country again should clear the
       // "lock" on the country
       this.setState({clickedCountry: null});
     } else {
-      this.setState({clickedCountry: this.state.hoveredCountry});  
+      if (this.state.clickedCountry != null) {
+        this.updateHighlight(this.state.hoveredCountry);
+      }
+      this.setState({clickedCountry: this.state.hoveredCountry});
     }
   },
 
