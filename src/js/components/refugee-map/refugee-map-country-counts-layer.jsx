@@ -77,14 +77,14 @@ var RefugeeMapCountryCountsLayer = React.createClass({
       // 
       
       var count = totalReceivedCount - totalLeftCount;
-      
+
       // if (totalReceivedCount > totalLeftCount) {
       //   count = totalReceivedCount;
       // } else {
       //   count = -totalLeftCount;
       // }
 
-      if (count != 0 && this.props.country !== "SRB") {
+      if (isFinite(count) && count != 0 && this.props.country !== "SRB") {
         items.push(this.renderText(this.props.country, count));
       }
 
