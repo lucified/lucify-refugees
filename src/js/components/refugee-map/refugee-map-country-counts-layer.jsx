@@ -42,7 +42,7 @@ var RefugeeMapCountryCountsLayer = React.createClass({
           var cc = counts[country]
           if (cc != null) {
             var val = cc.asylumApplications;
-            items.push(this.renderText(country, val));
+            items.push(this.renderText(country, -val));
             totalReceivedCount += val;
           }
         }.bind(this));
@@ -75,9 +75,16 @@ var RefugeeMapCountryCountsLayer = React.createClass({
       // Serbia is however a problem, as both numbers are similar
       // and the balance even shifts along the way
       // 
-      var count = Math.max(totalReceivedCount, totalLeftCount);
+      
+      var count = totalReceivedCount - totalLeftCount;
+      
+      // if (totalReceivedCount > totalLeftCount) {
+      //   count = totalReceivedCount;
+      // } else {
+      //   count = -totalLeftCount;
+      // }
 
-      if (count > 0 && this.props.country !== "SRB") {
+      if (count != 0 && this.props.country !== "SRB") {
         items.push(this.renderText(this.props.country, count));
       }
 
