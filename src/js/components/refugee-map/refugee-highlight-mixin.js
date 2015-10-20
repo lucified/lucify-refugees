@@ -30,8 +30,7 @@ var RefugeeHighlightMixin = {
 
   handleMouseOver: function(country) {
     this.pendingHoverOut = false;
-    var hl = country == "RUS" ? null : country;
-    this.setHoveredCountry(hl);
+    this.setHoveredCountry(country);
   },
 
 
