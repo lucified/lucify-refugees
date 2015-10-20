@@ -136,9 +136,7 @@ var RefugeeSankeySegment = React.createClass({
 											min={0} 
 											max={this.getMaximumOffset()} 
 											step={1}
-											onChange={this.monthOffsetChange} />} 
-										value={this.renderTimeValue()} />
-
+											onChange={this.monthOffsetChange} />}  />
 									<p className="first last">
 										Move the slider to move in time.
 									</p>
@@ -153,13 +151,13 @@ var RefugeeSankeySegment = React.createClass({
 				<div className="refugee-sankey-segment__metadata lucify-container">
 					<DividedCols
 						first={
-							<div className="inputs__instructions">
-								<h3>{this.getDebouncedMoment().format("MMMM YYYY")}</h3>
+							<div className="refugee-sankey-segment__time-title">
+								{this.getMoment().format("MMMM YYYY")}
 							</div>
 						}
 
 						second={
-							<div className="inputs__instructions missing-countries">
+							<div className="refugee-sankey-segment__missing-countries">
 								<p className="first last">
 									{this.getCountriesWithMissingData()}
 								</p>

@@ -20,9 +20,28 @@
 .refugee-sankey-segment__metadata {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
+
+	.divided-cols__parent {
+		//max-width: 20rem;
+	}
+
+	.divided-cols__first {
+		vertical-align: middle;
+	}
+
+	.divided-cols__second {
+		 vertical-align: middle;
+		 border-left: 0px dotted #c8cacc;
+	}
 }
 
-.missing-countries p {
+.refugee-sankey-segment__time-title {
+	@include lucify-header-font();
+	font-size: 1.0rem;
+}
+
+.refugee-sankey-segment__missing-countries p {
+	@include lucify-medium-paragraph();
 	font-size: 0.9rem;
 	max-width: 90%;
 }
