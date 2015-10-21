@@ -3,6 +3,7 @@ var React = require('react');
 var PIXI = require('pixi.js');
 
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx'); 
+var assets = require('lucify-commons/src/js/lucify-assets.js');
 
 var isSafari = lucifyUtils.isSafari;
 var isSlowDevice = lucifyUtils.isSlowDevice;
@@ -106,7 +107,7 @@ var RefugeeMapPointsLayer = React.createClass({
        this.stage.addChild(graphics);
 
        this.refugeeTexture = new PIXI.Texture.fromImage(
-         "images/one-white-pixel.png",
+         assets.img('one-white-pixel.png'),
          new PIXI.Rectangle(0, 0, 1, 1));
    },
 

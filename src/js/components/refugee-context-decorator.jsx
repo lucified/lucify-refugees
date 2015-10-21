@@ -3,6 +3,7 @@ var d3 = require('d3');
 var topojson = require('topojson');
 var React = require('react');
 var console = require("console-browserify")
+var Promise = require("bluebird");
 
 var RefugeeCountsModel = require('../model/refugee-counts-model.js');
 var RefugeePointsModel = require('../model/refugee-points-model.js');
@@ -10,10 +11,9 @@ var pointList = require('../model/point-list.js');
 var MapModel = require('../model/map-model.js');
 
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
-var Promise = require("bluebird");
+var assets = require('lucify-commons/src/js/lucify-assets.js');
+
 Promise.promisifyAll(d3);
-
-
 
 // Bind refugee and map data to given map component
 //
@@ -64,11 +64,11 @@ var bindToRefugeeMapContext = function(Component) {
 
          var promises = [];
 
-         promises.push(d3.jsonAsync('data/topomap.json').then(function(data) {
+         promises.push(d3.jsonAsync(assets.data('topomap.json')).then(function(data) {
             this.topomap = data;
          }.bind(this)));
 
-         promises.push(d3.jsonAsync('data/asylum.json').then(function(data) {
+         promises.push(d3.jsonAsync(assets.data('asylum.json')).then(function(data) {
             this.asylumData = data;
          }.bind(this)));
 

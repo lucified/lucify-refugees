@@ -138,7 +138,8 @@ var RefugeeSankeySegment = React.createClass({
 											step={1}
 											onChange={this.monthOffsetChange} />}  />
 									<p className="first last">
-										Move the slider to move in time.
+										Move the slider to move the 
+										chart in time.
 									</p>
 									<p className="first last">
 										Hover over countries to show details.
