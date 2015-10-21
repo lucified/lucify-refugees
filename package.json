@@ -20,7 +20,7 @@
     "type": "git",
     "url": ""
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "gulpjs/gulp#4.0",
     "gulp-watch": "^4.2.4"
