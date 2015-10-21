@@ -346,8 +346,8 @@ var RefugeeSankey = React.createClass({
 		var targetCountries = this.getTargetCountries();
 
 		this.getData().forEach(function(item) {
-			var sourceCountry = sourceCountries.indexOf(item.oc) !== -1 ? item.oc : "others";
-			var targetCountry = targetCountries.indexOf(item.ac) !== -1 ? item.ac : "others";
+			var sourceCountry = sourceCountries.indexOf(item.oc) !== -1 && item.oc !== 'XXX' ? item.oc : "others";
+			var targetCountry = targetCountries.indexOf(item.ac) !== -1 && item.ac !== 'XXX' ? item.ac : "others";
 			
 			if (sourceCountry == "others" || targetCountry == "others") {
 				var found = _.find(ret, function(val) {
