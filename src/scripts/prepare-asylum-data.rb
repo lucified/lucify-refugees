@@ -83,4 +83,20 @@ grouped_monthly_data.each_with_index do |years, month|
   end
 end
 
+month_data.sort! do |a, b|
+  if a[:year] < b[:year]
+    -1
+  elsif a[:year] > b[:year]
+    1
+  elsif a[:month] < b[:month]
+    -1
+  elsif a[:month] > b[:month]
+    1
+  elsif a[:ac] == b[:ac]
+    a[:oc] <=> b[:oc]
+  else
+    a[:ac] <=> b[:ac]
+  end
+end
+
 File.open(OUTPUT_FILE, 'w') { |f| f.write(month_data.to_json) }
