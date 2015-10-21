@@ -28,6 +28,7 @@
   "dependencies": {
     "area-polygon": "^1.0.1",
     "babelify": "^6.3.0",
+    "babyparse": "^0.4.3",
     "bluebird": "^2.10.0",
     "bower": "^1.5.2",
     "browser-sync": "^2.7.6",
