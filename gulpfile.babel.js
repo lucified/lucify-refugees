@@ -16,7 +16,12 @@ gulp.task('prepare-data', function(cb) {
 
 var opts = {
 	pretasks: ['prepare-data'],
-	paths: ['node_modules/lucify-commons']
+	paths: ['node_modules/lucify-commons'],
+	publishFromFolder: 'dist',
+	defaultBucket: 'lucify-dev',
+	maxAge: 60,
+	assetContext: 'embed/the-flow-towards-europe/',
+	embedBaseUrl: 'http://localhost:8000/embed/the-flow-towards-europe/'
 }
 
 var taskCreator = require('lucify-embed');
