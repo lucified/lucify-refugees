@@ -2,6 +2,8 @@
 
 A visualization of the flow of asylum seekers in European countries from 2012 onwards. Based on UNHCR data. See it in action [here](http://dev.lucify.com/the-flow-towards-europe/). For a more in-depth explanation, read [this blog post](https://medium.com/@lucify/a-novel-visualisation-of-the-refugee-crisis-565e40ab5a50).
 
+![Visualization screenshot](asulym-seekers-screenshot.png)
+
 This project uses a combination of [React](https://facebook.github.io/react/), [D3.js](http://d3js.org/) and [PIXI.js](http://www.pixijs.com/).
 
 
@@ -34,7 +36,9 @@ npm install gulpjs/gulp-cli#4.0 -g
 
 Unit tests are started with:
 
-`mocha`
+```
+mocha
+```
 
 
 ## Data sources
