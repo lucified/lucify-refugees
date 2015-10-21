@@ -33,7 +33,8 @@ TODO: is migration the correct word for these movements?
 3. `bundle install`
 4. `npm install -g simplify-geojson`
 5. `npm install -g topojson`
-6. `node ./node_modules/gulp/bin/gulp.js`
+6. `npm install -g mocha` (for unit testing)
+7. `node ./node_modules/gulp/bin/gulp.js`
 
 Gulp should be version 4, which is defined in package.json and thus will be installed into `node_modules`. To be able to use the plain `gulp` command, make sure you have gulp-cli version 0.4.
 ```
