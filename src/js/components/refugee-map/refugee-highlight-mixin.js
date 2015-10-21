@@ -22,12 +22,10 @@ var RefugeeHighlightMixin = {
       // clicking a country again should clear the
       // "lock" on the country
       this.setState({clickedCountry: null});
-    } else {
-      if (this.state.clickedCountry != null) {
-        this.updateHighlight(this.state.hoveredCountry);
-      }
-      this.setState({clickedCountry: this.state.hoveredCountry});
+      return;
     }
+    this.setState({clickedCountry: this.state.hoveredCountry});
+    this.updateHighlight(this.state.hoveredCountry);
   },
 
 
@@ -50,7 +48,6 @@ var RefugeeHighlightMixin = {
 
   setHoveredCountry: function(country) {
     this.setState({hoveredCountry: country});
-    
     if (!this.state.clickedCountry) {
       this.updateHighlight(country);  
     }
@@ -78,6 +75,7 @@ var RefugeeHighlightMixin = {
 
 
   updateHighlight: function(country) {
+
     var dc = this.getDestinationCountries(country);
     var oc = this.getOriginCountries(country);
 
@@ -95,12 +93,24 @@ var RefugeeHighlightMixin = {
       oc = _.difference(oc, dc);
     }
 
+    // We should update if the destination 
+    // countries or origin countries have changed
+    // 
+    // To avoid slow deep comparison we 
+    // only compare length. 
+    
+    var update = country != this.country 
+      || dc.length != this.storedDestinationCountries.length
+      || oc.length != this.storedOriginCountries.length;
+
     this.country = country;
-    if (dc.length != this.storedDestinationCountries.length
-      || oc.length != this.storedOriginCountries.length) {
-      this.storedDestinationCountries = dc;
-      this.storedOriginCountries = oc;
-      this.setState({});
+    this.storedDestinationCountries = dc;
+    this.storedOriginCountries = oc;
+    
+    // if the list of destination countries was updated,
+    // we call set state to trigger a re-render for borders
+    if (update) {
+      this.setState({}); 
     }
   },
 

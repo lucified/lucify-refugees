@@ -265,6 +265,7 @@ var RefugeeMapBordersLayer = React.createClass({
 
 
    render: function() {
+      //console.log("re-render borders " + this.props.country);
       return (
          <svg className="refugee-map-borders-layer" 
             style={{width: this.props.width, height: this.props.height}}
