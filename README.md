@@ -1,109 +1,71 @@
-# Migration visualized
+# The flow of asylum seekers in Europe
 
-See asylum seekers and displaced people in and around Europe from 2012 onwards.By default, each dot represents around 25 people.
+A visualization of the flow of asylum seekers in European countries from 2012 onwards. Based on UNHCR data. See it in action [here](http://dev.lucify.com/the-flow-towards-europe/). For a more in-depth explanation, read [this blog post](https://medium.com/@lucify/a-novel-visualisation-of-the-refugee-crisis-565e40ab5a50).
 
-TODO: is migration the correct word for these movements?
+This project uses a combination of [React](https://facebook.github.io/react/), [D3.js](http://d3js.org/) and [PIXI.js](http://www.pixijs.com/).
+
+
+## Installation
+
+### Dependencies
+
+- Node + npm
+- Ruby + [RubyGems](https://rubygems.org/pages/download)
+- Bundler: `gem install bundler`
+- GDAL: `brew install gdal`
+- simplify-geojson: `npm install -g simplify-geojson`
+- topojson: `npm install -g topojson`
+- mocha (for running unit tests): `npm install -g mocha`
+
+### Setup and running
+
+Run the following in the project directory:
+
+1. `npm install`
+2. `bundle install`
+3. `node ./node_modules/gulp/bin/gulp.js`
+
+This project requires gulp 4.0, which is installed under node_modules. To be able to use the plain `gulp` command, make sure you have gulp-cli version 0.4 installed:
+```
+npm install gulpjs/gulp-cli#4.0 -g
+```
+
+### Tests
+
+Unit tests are started with:
+
+`mocha`
+
 
 ## Data sources
 
-1. UNHCR asylum applications
+1. [UNHCR monthly asylum applications](http://popstats.unhcr.org/en/asylum_seekers_monthly)
 
-	- To get the latest data, open the [UNHCR asylum applications data portal](http://popstats.unhcr.org/en/asylum_seekers_monthly), select the options below and click on Export / Current View / CSV. Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data`:
+	To update to the latest data, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
+
 		- Years: 2012, 2013, 2014, 2015
 		- Months: All months
 		- Country of asylum: All countries
 		- Origin: All countries
 		- Data item to display: Country of asylum, origin, year
 
-2. Persons of Concern around Syria: http://data.unhcr.org/syrianrefugees/regional.php
+	Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data` to generate the required JSON file for the visualization.
 
-## Installation
+	Once you have new data, you can change the time period during which the visualization runs by updating the values in `src/js/model/refugee-constants.js`. Note that changing these values has not been extensively tested, and might result in glitches.
 
-### Dependencies
+2. [Persons of Concern around Syria](http://data.unhcr.org/syrianrefugees/regional.php)
 
-- Node + NPM
-- Ruby + [RubyGems](https://rubygems.org/pages/download)
-- Bundler: `gem install bundler`
-- GDAL: `brew install gdal`
 
-### Setup
+## Authors
 
-1. `npm install`
-2. `./node_modules/bower/bin/bower install`
-3. `bundle install`
-4. `npm install -g simplify-geojson`
-5. `npm install -g topojson`
-6. `npm install -g mocha` (for unit testing)
-7. `node ./node_modules/gulp/bin/gulp.js`
+Have feedback? Contact us!
 
-Gulp should be version 4, which is defined in package.json and thus will be installed into `node_modules`. To be able to use the plain `gulp` command, make sure you have gulp-cli version 0.4.
-```
-npm install gulpjs/gulp-cli#4.0 -g
-```
+- [Juho Ojala](https://twitter.com/ojalajuho)
+- [Ville Saarinen](https://twitter.com/vsaarinen)
 
-## Notes
 
-http://www.goodboydigital.com/pixijs/bunnymark_v3/
-https://github.com/cambecc/earth/blob/master/public/libs/earth/1.0.0/earth.js
-draw() -funktio
+## License
 
-## Ubuntu install
+???
 
-(Incomplete notes)
-
-sudo apt-get install nodejs
-sudo ln -s /usr/bin/nodejs /usr/bin/node
-sudo apt-get install git
-sudo apt-get install npm libav-tool
-sudo npm install -g gulp topojson bower
-sudo gem install bundler
-
-### GDAL
-
-http://www.sarasafavi.com/installing-gdalogr-on-ubuntu.html
-sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
-sudo apt-get update
-sudo apt-get install gdal-bin
-
-### Phantomjs
-
-Must be version 1.9.8.
-wget https://gist.githubusercontent.com/julionc/7476620/raw/e8f36f2a2d616720983e8556b49ec21780c96f0c/install_phantomjs.sh
-chmod a+x install_phantomjs.sh
-sudo ./install_phantomjs.sh
-
-# Data
-
-http://data.unhcr.org/
-http://popstats.unhcr.org/en/persons_of_concern
-http://data.unhcr.org/portfolio/
-
-http://data.unhcr.org/dataviz/#_ga=1.261931150.2048212483.1441809196
-
-Background info on Turkey:
-https://www.afad.gov.tr/Dokuman/TR/61-2013123015505-syrian-refugees-in-turkey-2013_print_12.11.2013_eng.pdf
-
-## Operational data portals
-
-(Oikeasta reunasta löytyy linkkejä)
-http://www.unhcr.org/pages/49c3646c4d6.html
-
-http://data.unhcr.org/horn-of-africa/regional.php
-http://data.unhcr.org/cotedivoire/country.php?id=97#_ga=1.191309097.2048212483.1441809196
-http://data.unhcr.org/car/regional.php#_ga=1.191309097.2048212483.1441809196
-http://data.unhcr.org/drc/regional.php#_ga=1.191309097.2048212483.1441809196
-http://data.unhcr.org/mediterranean/regional.php#_ga=1.191309097.2048212483.1441809196
-
-## Country operations profiles
-
-http://www.unhcr.org/pages/49e486676.html#
-http://www.unhcr.org/pages/49e48e0fa7f.html#
-http://www.unhcr.org/pages/49e484936.html
-http://www.unhcr.org/pages/49e486426.html
-http://www.unhcr.org/pages/49e486426.html
-http://www.unhcr.org/pages/49e486a76.html
-
-## Non-UNHCR
-
-https://www.humanitarianresponse.info/en/applications/data/datasets/table/dataset-types/table/locations/syrian-arab-republic
 
