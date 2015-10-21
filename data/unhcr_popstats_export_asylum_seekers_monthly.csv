@@ -7967,6 +7967,7 @@ Bulgaria,Afghanistan,2015,May,291
 Bulgaria,Afghanistan,2015,June,253
 Bulgaria,Afghanistan,2015,July,522
 Bulgaria,Afghanistan,2015,August,333
+Bulgaria,Afghanistan,2015,September,747
 Bulgaria,Albania,2013,August,1
 Bulgaria,Algeria,2012,January,3
 Bulgaria,Algeria,2012,March,2
@@ -8153,6 +8154,7 @@ Bulgaria,Georgia,2013,June,2
 Bulgaria,Georgia,2013,August,2
 Bulgaria,Georgia,2014,December,*
 Bulgaria,Georgia,2015,January,*
+Bulgaria,Georgia,2015,September,*
 Bulgaria,Ghana,2012,January,1
 Bulgaria,Ghana,2012,December,3
 Bulgaria,Ghana,2013,February,1
@@ -8258,6 +8260,7 @@ Bulgaria,"Iran (Islamic Rep. of)",2015,May,5
 Bulgaria,"Iran (Islamic Rep. of)",2015,June,13
 Bulgaria,"Iran (Islamic Rep. of)",2015,July,12
 Bulgaria,"Iran (Islamic Rep. of)",2015,August,21
+Bulgaria,"Iran (Islamic Rep. of)",2015,September,32
 Bulgaria,Iraq,2012,January,21
 Bulgaria,Iraq,2012,February,27
 Bulgaria,Iraq,2012,March,26
@@ -8302,6 +8305,7 @@ Bulgaria,Iraq,2015,May,434
 Bulgaria,Iraq,2015,June,417
 Bulgaria,Iraq,2015,July,560
 Bulgaria,Iraq,2015,August,507
+Bulgaria,Iraq,2015,September,749
 Bulgaria,Israel,2012,May,2
 Bulgaria,Jordan,2013,May,1
 Bulgaria,Jordan,2013,June,2
@@ -8346,6 +8350,7 @@ Bulgaria,Lebanon,2015,January,5
 Bulgaria,Lebanon,2015,February,*
 Bulgaria,Lebanon,2015,July,*
 Bulgaria,Lebanon,2015,August,*
+Bulgaria,Lebanon,2015,September,5
 Bulgaria,"Sri Lanka",2012,June,1
 Bulgaria,"Sri Lanka",2012,August,2
 Bulgaria,"Sri Lanka",2014,March,*
@@ -8355,9 +8360,11 @@ Bulgaria,"Sri Lanka",2015,April,*
 Bulgaria,"Sri Lanka",2015,May,*
 Bulgaria,"Sri Lanka",2015,June,*
 Bulgaria,"Sri Lanka",2015,July,*
+Bulgaria,"Sri Lanka",2015,September,*
 Bulgaria,Mauritania,2013,January,1
 Bulgaria,Mauritania,2013,February,1
 Bulgaria,Mauritania,2014,February,*
+Bulgaria,"The former Yugoslav Rep. of Macedonia",2015,September,*
 Bulgaria,"Rep. of Moldova",2012,March,1
 Bulgaria,Mali,2012,October,2
 Bulgaria,Mali,2012,November,2
@@ -8427,6 +8434,7 @@ Bulgaria,Myanmar,2015,June,*
 Bulgaria,Myanmar,2015,July,5
 Bulgaria,Myanmar,2015,August,*
 Bulgaria,Nepal,2014,August,*
+Bulgaria,Nepal,2015,September,*
 Bulgaria,Niger,2013,January,1
 Bulgaria,Niger,2013,August,1
 Bulgaria,Niger,2014,February,*
@@ -8445,6 +8453,7 @@ Bulgaria,Nigeria,2014,October,*
 Bulgaria,Nigeria,2014,December,*
 Bulgaria,Nigeria,2015,February,*
 Bulgaria,Nigeria,2015,March,*
+Bulgaria,Nigeria,2015,September,*
 Bulgaria,Pakistan,2012,January,2
 Bulgaria,Pakistan,2012,February,8
 Bulgaria,Pakistan,2012,April,1
@@ -8482,6 +8491,7 @@ Bulgaria,Pakistan,2015,May,36
 Bulgaria,Pakistan,2015,June,37
 Bulgaria,Pakistan,2015,July,24
 Bulgaria,Pakistan,2015,August,19
+Bulgaria,Pakistan,2015,September,35
 Bulgaria,Philippines,2013,June,1
 Bulgaria,Philippines,2015,August,*
 Bulgaria,"Russian Federation",2012,August,1
@@ -8543,6 +8553,7 @@ Bulgaria,Somalia,2014,February,*
 Bulgaria,Somalia,2014,May,*
 Bulgaria,Somalia,2014,July,*
 Bulgaria,Somalia,2014,November,*
+Bulgaria,Somalia,2015,September,*
 Bulgaria,"Viet Nam",2012,March,1
 Bulgaria,Stateless,2012,January,5
 Bulgaria,Stateless,2012,February,6
@@ -8588,6 +8599,7 @@ Bulgaria,Stateless,2015,May,15
 Bulgaria,Stateless,2015,June,8
 Bulgaria,Stateless,2015,July,21
 Bulgaria,Stateless,2015,August,6
+Bulgaria,Stateless,2015,September,12
 Bulgaria,Sudan,2013,January,5
 Bulgaria,Sudan,2013,February,2
 Bulgaria,Sudan,2013,March,8
@@ -8652,6 +8664,7 @@ Bulgaria,"Syrian Arab Rep.",2015,May,530
 Bulgaria,"Syrian Arab Rep.",2015,June,852
 Bulgaria,"Syrian Arab Rep.",2015,July,677
 Bulgaria,"Syrian Arab Rep.",2015,August,517
+Bulgaria,"Syrian Arab Rep.",2015,September,453
 Bulgaria,"United Rep. of Tanzania",2012,December,1
 Bulgaria,Turkmenistan,2013,June,1
 Bulgaria,Togo,2012,November,1
@@ -8685,6 +8698,7 @@ Bulgaria,Tunisia,2014,March,*
 Bulgaria,Tunisia,2014,May,*
 Bulgaria,Tunisia,2014,June,*
 Bulgaria,Tunisia,2015,February,*
+Bulgaria,Tunisia,2015,September,*
 Bulgaria,Turkey,2012,February,1
 Bulgaria,Turkey,2012,March,1
 Bulgaria,Turkey,2012,April,1
@@ -8695,6 +8709,7 @@ Bulgaria,Turkey,2013,November,1
 Bulgaria,Turkey,2014,June,6
 Bulgaria,Turkey,2014,September,*
 Bulgaria,Turkey,2014,December,*
+Bulgaria,Turkey,2015,September,*
 Bulgaria,"United Arab Emirates",2012,November,1
 Bulgaria,Uganda,2013,June,1
 Bulgaria,Uganda,2013,August,1
@@ -8719,6 +8734,8 @@ Bulgaria,Ukraine,2015,May,*
 Bulgaria,Ukraine,2015,June,*
 Bulgaria,Ukraine,2015,July,*
 Bulgaria,Ukraine,2015,August,*
+Bulgaria,Ukraine,2015,September,6
+Bulgaria,Uruguay,2015,September,*
 Bulgaria,Uzbekistan,2012,January,1
 Bulgaria,"Venezuela (Bolivarian Republic of)",2013,January,1
 Bulgaria,"Western Sahara",2013,May,1
@@ -13952,6 +13969,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Afghanistan,2015,May,*
 "Czech Rep.",Afghanistan,2015,June,6
 "Czech Rep.",Afghanistan,2015,August,*
+"Czech Rep.",Afghanistan,2015,September,*
 "Czech Rep.",Albania,2012,October,1
 "Czech Rep.",Albania,2013,April,1
 "Czech Rep.",Algeria,2012,January,1
@@ -13974,6 +13992,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Algeria,2015,May,*
 "Czech Rep.",Algeria,2015,June,*
 "Czech Rep.",Algeria,2015,July,*
+"Czech Rep.",Algeria,2015,September,*
 "Czech Rep.",Egypt,2012,August,1
 "Czech Rep.",Egypt,2012,September,1
 "Czech Rep.",Egypt,2013,January,1
@@ -14017,6 +14036,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Armenia,2015,May,*
 "Czech Rep.",Armenia,2015,July,*
 "Czech Rep.",Armenia,2015,August,*
+"Czech Rep.",Armenia,2015,September,6
 "Czech Rep.",Azerbaijan,2012,February,4
 "Czech Rep.",Azerbaijan,2012,April,1
 "Czech Rep.",Azerbaijan,2012,May,1
@@ -14087,6 +14107,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",China,2015,April,*
 "Czech Rep.",China,2015,July,*
 "Czech Rep.",China,2015,August,*
+"Czech Rep.",China,2015,September,10
 "Czech Rep.",Cameroon,2012,June,1
 "Czech Rep.",Cameroon,2012,July,1
 "Czech Rep.",Cameroon,2013,March,1
@@ -14136,6 +14157,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Cuba,2015,June,*
 "Czech Rep.",Cuba,2015,July,5
 "Czech Rep.",Cuba,2015,August,*
+"Czech Rep.",Cuba,2015,September,5
 "Czech Rep.","Dominican Rep.",2014,December,*
 "Czech Rep.",Ecuador,2013,August,3
 "Czech Rep.",Eritrea,2012,February,1
@@ -14225,6 +14247,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Iraq,2015,May,*
 "Czech Rep.",Iraq,2015,June,*
 "Czech Rep.",Iraq,2015,July,*
+"Czech Rep.",Iraq,2015,September,7
 "Czech Rep.",Italy,2012,January,1
 "Czech Rep.",Jordan,2012,January,1
 "Czech Rep.",Kazakhstan,2012,January,2
@@ -14276,6 +14299,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Libya,2014,December,*
 "Czech Rep.",Libya,2015,February,*
 "Czech Rep.",Libya,2015,August,5
+"Czech Rep.",Libya,2015,September,*
 "Czech Rep.",Lebanon,2014,January,*
 "Czech Rep.",Lebanon,2014,March,*
 "Czech Rep.",Lebanon,2014,June,*
@@ -14313,6 +14337,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.","Rep. of Moldova",2015,May,*
 "Czech Rep.","Rep. of Moldova",2015,June,*
 "Czech Rep.","Rep. of Moldova",2015,July,*
+"Czech Rep.","Rep. of Moldova",2015,September,*
 "Czech Rep.",Mali,2012,April,1
 "Czech Rep.",Mongolia,2012,January,6
 "Czech Rep.",Mongolia,2012,March,1
@@ -14377,6 +14402,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Nigeria,2015,March,*
 "Czech Rep.",Nigeria,2015,April,*
 "Czech Rep.",Nigeria,2015,August,*
+"Czech Rep.",Nigeria,2015,September,*
 "Czech Rep.",Pakistan,2012,January,1
 "Czech Rep.",Pakistan,2012,March,1
 "Czech Rep.",Pakistan,2012,June,8
@@ -14435,6 +14461,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.","Russian Federation",2015,June,*
 "Czech Rep.","Russian Federation",2015,July,*
 "Czech Rep.","Russian Federation",2015,August,*
+"Czech Rep.","Russian Federation",2015,September,6
 "Czech Rep.","El Salvador",2015,July,*
 "Czech Rep.","Saudi Arabia",2012,February,3
 "Czech Rep.","Sierra Leone",2014,January,*
@@ -14482,6 +14509,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.","Viet Nam",2015,May,*
 "Czech Rep.","Viet Nam",2015,June,6
 "Czech Rep.","Viet Nam",2015,August,*
+"Czech Rep.","Viet Nam",2015,September,*
 "Czech Rep.",Stateless,2012,February,4
 "Czech Rep.",Stateless,2012,March,1
 "Czech Rep.",Stateless,2012,May,3
@@ -14517,6 +14545,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Stateless,2015,June,*
 "Czech Rep.",Stateless,2015,July,*
 "Czech Rep.",Stateless,2015,August,*
+"Czech Rep.",Stateless,2015,September,*
 "Czech Rep.",Sudan,2014,September,*
 "Czech Rep.",Slovakia,2012,May,2
 "Czech Rep.",Slovakia,2012,August,1
@@ -14578,6 +14607,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.","Syrian Arab Rep.",2015,June,12
 "Czech Rep.","Syrian Arab Rep.",2015,July,7
 "Czech Rep.","Syrian Arab Rep.",2015,August,8
+"Czech Rep.","Syrian Arab Rep.",2015,September,*
 "Czech Rep.",Thailand,2012,June,1
 "Czech Rep.",Togo,2014,May,*
 "Czech Rep.",Togo,2015,January,*
@@ -14604,6 +14634,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Turkey,2014,November,*
 "Czech Rep.",Turkey,2015,July,*
 "Czech Rep.",Turkey,2015,August,*
+"Czech Rep.",Turkey,2015,September,*
 "Czech Rep.",Uganda,2012,June,2
 "Czech Rep.",Uganda,2012,September,2
 "Czech Rep.",Uganda,2015,February,*
@@ -14649,6 +14680,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Ukraine,2015,June,40
 "Czech Rep.",Ukraine,2015,July,36
 "Czech Rep.",Ukraine,2015,August,36
+"Czech Rep.",Ukraine,2015,September,49
 "Czech Rep.","United States of America",2012,August,1
 "Czech Rep.","United States of America",2013,September,1
 "Czech Rep.",Uzbekistan,2012,February,2
@@ -14674,6 +14706,7 @@ Cyprus,Zimbabwe,2015,April,*
 "Czech Rep.",Yemen,2014,June,*
 "Czech Rep.",Yemen,2015,April,*
 "Czech Rep.",Yemen,2015,July,*
+"Czech Rep.",Yemen,2015,September,*
 "Czech Rep.",Zimbabwe,2014,April,*
 Denmark,Afghanistan,2012,January,46
 Denmark,Afghanistan,2012,February,51

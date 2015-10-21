@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+## NOTE: This script is currently not used
+
 require 'csv'
 require 'json'
 
