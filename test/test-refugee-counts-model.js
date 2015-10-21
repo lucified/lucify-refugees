@@ -46,11 +46,11 @@ describe('RefugeeCountsModel', function() {
 		 		'DEU', moment([2012, 0, 31]).unix()).asylumApplications, 4667);
 		});		
 		it('correct total for germany at end of 2014', function() {
-			assert.equal(model.getTotalDestinationCounts('DEU', stamp)
+			assert.equal(model.getTotalDestinationCounts('DEU', moment([2014, 11, 31]).unix())
 				.asylumApplications, 346633);
 		});
 		it('correct total for finland at end of 2014', function() {
-			assert.equal(model.getTotalDestinationCounts('FIN', stamp)
+			assert.equal(model.getTotalDestinationCounts('FIN', moment([2014, 11, 31]).unix())
 				.asylumApplications, 8894);
 		});
 	});
