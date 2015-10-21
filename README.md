@@ -14,7 +14,7 @@ This project uses a combination of [React](https://facebook.github.io/react/), [
 - Node + npm
 - Ruby + [RubyGems](https://rubygems.org/pages/download)
 - Bundler: `gem install bundler`
-- GDAL: `brew install gdal`
+- GDAL: `brew install gdal` (works on OS X, for other options see <http://www.gdal.org/>)
 - simplify-geojson: `npm install -g simplify-geojson`
 - topojson: `npm install -g topojson`
 - mocha (for running unit tests): `npm install -g mocha`
@@ -27,7 +27,7 @@ Run the following in the project directory:
 2. `bundle install`
 3. `node ./node_modules/gulp/bin/gulp.js`
 
-This project requires gulp 4.0, which is installed under node_modules. To be able to use the plain `gulp` command, make sure you have gulp-cli version 0.4 installed:
+This project requires gulp 4.0, which is installed by `npm install` under `node_modules`. To be able to use the plain `gulp` command, make sure you have gulp-cli version 0.4 installed:
 ```
 npm install gulpjs/gulp-cli#4.0 -g
 ```
@@ -59,7 +59,6 @@ mocha
 
 2. [Persons of Concern around Syria](http://data.unhcr.org/syrianrefugees/regional.php)
 
-
 ## Authors
 
 Have feedback? Contact us!
@@ -67,9 +66,28 @@ Have feedback? Contact us!
 - [Juho Ojala](https://twitter.com/ojalajuho)
 - [Ville Saarinen](https://twitter.com/vsaarinen)
 
-
 ## License
 
-???
+The MIT License (MIT)
+
+Copyright (c) 2015 Juho Ojala and Ville Väänänen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 
