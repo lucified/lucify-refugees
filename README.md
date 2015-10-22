@@ -59,17 +59,17 @@ mocha
 
 [UNHCR monthly asylum applications](http://popstats.unhcr.org/en/asylum_seekers_monthly)
 
-	To update to the latest data, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
+To update to the latest data, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
 
-		- Years: 2012, 2013, 2014, 2015
-		- Months: All months
-		- Country of asylum: All countries
-		- Origin: All countries
-		- Data item to display: Country of asylum, origin, year
+    + Years: 2012, 2013, 2014, 2015
+    + Months: All months
+    + Country of asylum: All countries
+    + Origin: All countries
+    + Data item to display: Country of asylum, origin, year
 
-	Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data` to generate the required JSON file for the visualization.
+Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data` to generate the required JSON file for the visualization.
 
-	Once you have new data, you can change the time period during which the visualization runs by updating the values in `src/js/model/refugee-constants.js`. Note that changing these values has not been extensively tested, and might result in glitches.
+Once you have new data, you can change the time period during which the visualization runs by updating the values in `src/js/model/refugee-constants.js`. Note that changing these values has not been extensively tested, and might result in glitches.
 
 ## Authors
 
