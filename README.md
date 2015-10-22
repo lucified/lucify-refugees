@@ -14,7 +14,7 @@ This project uses a combination of [React](https://facebook.github.io/react/), [
 - Node + npm
 - Ruby + [RubyGems](https://rubygems.org/pages/download)
 - Bundler: `gem install bundler`
-- GDAL: `brew install gdal` (works on OS X, for other options see <http://www.gdal.org/>)
+- GDAL: `brew install gdal` (this works on OS X, for other options see <http://www.gdal.org/>)
 - simplify-geojson: `npm install -g simplify-geojson`
 - topojson: `npm install -g topojson`
 - mocha (for running unit tests): `npm install -g mocha`
@@ -32,6 +32,20 @@ This project requires gulp 4.0, which is installed by `npm install` under `node_
 npm install gulpjs/gulp-cli#4.0 -g
 ```
 
+### Distribution build
+
+A distribution is built by the command `gulp dist` or `node ./node_modules/gulp/bin/gulp.js dist`.
+
+You will likely need to edit the `embedBaseUrl` and `assetContext` parameters in `gulpfile.babel.js` to match your hosting environment. If you are hosting the component at `http://www.example.com/static/lucify-refugees`, you should set embedBaseUrl to `http://www.example.com/static/lucify-refugees/` and `assetContext` to `static/lucify-refugees`.
+
+### Publish to Amazon S3
+
+The project includes a gulp task for publishing the project to Amazon S3. It will use credentials from the AWS credentials file (<http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html>).
+
+In addition to setting up the credentials file, you should change the `defaultBucket` option in `gulfile.babel.js` to match the name of your S3 bucket. Additionally, you may wish to change the `maxAge` option, which affects the cache-control header of assets whose filenames have content hashes.
+
+Run the publish task with `gulp s3-deploy` or `node ./node_modules/gulp/bin/gulp.js s3-deploy`.
+
 ### Tests
 
 Unit tests are started with:
@@ -41,9 +55,9 @@ mocha
 ```
 
 
-## Data sources
+## Data source
 
-1. [UNHCR monthly asylum applications](http://popstats.unhcr.org/en/asylum_seekers_monthly)
+[UNHCR monthly asylum applications](http://popstats.unhcr.org/en/asylum_seekers_monthly)
 
 	To update to the latest data, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
 
@@ -56,8 +70,6 @@ mocha
 	Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data` to generate the required JSON file for the visualization.
 
 	Once you have new data, you can change the time period during which the visualization runs by updating the values in `src/js/model/refugee-constants.js`. Note that changing these values has not been extensively tested, and might result in glitches.
-
-2. [Persons of Concern around Syria](http://data.unhcr.org/syrianrefugees/regional.php)
 
 ## Authors
 
