@@ -36,7 +36,7 @@ npm install gulpjs/gulp-cli#4.0 -g
 
 A distribution is built by the command `gulp dist` or `node ./node_modules/gulp/bin/gulp.js dist`.
 
-You will likely need to edit the `embedBaseUrl` and `assetContext` parameters in `gulpfile.babel.js` to match your hosting environment. If you are hosting the component at `http://www.example.com/static/lucify-refugees`, you should set embedBaseUrl to `http://www.example.com/static/lucify-refugees/` and `assetContext` to `static/lucify-refugees`.
+You will likely need to edit the `embedBaseUrl` and `assetContext` parameters in `gulpfile.babel.js` to match your hosting environment. If you are hosting the component at `http://www.example.com/static/lucify-refugees`, you should set embedBaseUrl to `http://www.example.com/static/lucify-refugees/` and `assetContext` to `static/lucify-refugees/`.
 
 ### Publish to Amazon S3
 
