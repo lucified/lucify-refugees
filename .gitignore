@@ -7,3 +7,4 @@ data/*.json
 refugees.mp4
 *.mov
 temp/
+.awspublish*
