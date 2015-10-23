@@ -18,7 +18,7 @@ var opts = {
 	pretasks: ['prepare-data'],
 	paths: ['node_modules/lucify-commons'],
 	publishFromFolder: 'dist',
-	defaultBucket: 'lucify-dev',
+	defaultBucket: 'lucify-prod',
 	maxAge: 60,
 	assetContext: 'embed/the-flow-towards-europe/',
 	embedBaseUrl: 'http://www.lucify.com/embed/the-flow-towards-europe/'
