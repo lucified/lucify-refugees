@@ -21,7 +21,7 @@ var opts = {
 	defaultBucket: 'lucify-dev',
 	maxAge: 60,
 	assetContext: 'embed/the-flow-towards-europe/',
-	embedBaseUrl: 'http://dev.lucify.com/embed/the-flow-towards-europe/'
+	embedBaseUrl: 'http://www.lucify.com/embed/the-flow-towards-europe/'
 }
 
 var taskCreator = require('lucify-embed');
