@@ -24,5 +24,5 @@ var opts = {
 	baseUrl: 'http://www.lucify.com/'
 }
 
-var taskCreator = require('lucify-embed');
-taskCreator(gulp, opts);
+var builder = require('lucify-component-builder');
+builder(gulp, opts);

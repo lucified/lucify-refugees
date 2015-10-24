@@ -51,7 +51,7 @@
     "i18n-iso-countries": "^0.9.0",
     "jquery": "^2.1.4",
     "lucify-commons": "git+ssh://git@gitlab.com/lucify/lucify-commons.git",
-    "lucify-embed": "git+ssh://git@gitlab.com/lucify/lucify-embed.git",
+    "lucify-component-builder": "git+ssh://git@gitlab.com/lucify/lucify-component-builder.git",
     "moment": "^2.10.6",
     "node-bourbon": "^4.2.3",
     "pixi.js": "^3.0.7",
