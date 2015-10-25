@@ -15,9 +15,7 @@ This project uses a combination of [React](https://facebook.github.io/react/), [
 - Ruby + [RubyGems](https://rubygems.org/pages/download)
 - Bundler: `gem install bundler`
 - GDAL: `brew install gdal` (this works on OS X, for other options see <http://www.gdal.org/>)
-- simplify-geojson: `npm install -g simplify-geojson`
-- topojson: `npm install -g topojson`
-- mocha (for running unit tests): `npm install -g mocha`
+- Mocha (for running unit tests): `npm install -g mocha`
 
 ### Setup and running
 
