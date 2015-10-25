@@ -25,7 +25,8 @@ var RefugeeMap = React.createClass({
     return {
       width: 1200,
       height: 1200,
-      interactionsEnabled: true
+      interactionsEnabled: true,
+      showFps: false,
     }
   },
 
@@ -214,6 +215,14 @@ var RefugeeMap = React.createClass({
   },
 
 
+  getFrameRateLayer: function() {
+    if (this.props.showFps) {
+      return <FrameRateLayer ref="frameRateLayer" />
+    }
+    return null;
+  },
+
+
   render: function() {
 
     if (!this.props.refugeeCountsModel 
@@ -251,7 +260,7 @@ var RefugeeMap = React.createClass({
         
         {this.getSecondBordersLayer()}
 
-        <FrameRateLayer ref="frameRateLayer" />
+        {this.getFrameRateLayer()}
 
         {this.getOverlayLayer()}
 
