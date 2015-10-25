@@ -8,3 +8,4 @@ refugees.mp4
 *.mov
 temp/
 .awspublish*
+npm-debug.log
