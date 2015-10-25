@@ -14,8 +14,8 @@ This project uses a combination of [React](https://facebook.github.io/react/), [
 - Node + npm
 - Ruby + [RubyGems](https://rubygems.org/pages/download)
 - Bundler: `gem install bundler`
-- GDAL: `brew install gdal` (this works on OS X, for other options see <http://www.gdal.org/>)
-- Mocha (for running unit tests): `npm install -g mocha`
+- GDAL (<http://www.gdal.org/>). On OS X with homebrew install with `brew install gdal`.
+- Mocha, needed only for running unit tests: `npm install -g mocha`
 
 ### Setup and running
 
@@ -32,9 +32,9 @@ npm install gulpjs/gulp-cli#4.0 -g
 
 ### Distribution build
 
-A distribution is built by the command `gulp dist` or `node ./node_modules/gulp/bin/gulp.js dist`.
+A distribution is built by the command `gulp dist`.
 
-You will likely need to edit the `embedBaseUrl` and `assetContext` parameters in `gulpfile.babel.js` to match your hosting environment. If you are hosting the component at `http://www.example.com/static/lucify-refugees`, you should set embedBaseUrl to `http://www.example.com/static/lucify-refugees/` and `assetContext` to `static/lucify-refugees/`.
+You will likely need to edit the `embedBaseUrl` and `assetContext` parameters in `gulpfile.babel.js` to match your hosting environment. If you are hosting the component at `http://www.example.com/static/refugees`, you should set embedBaseUrl to `http://www.example.com/` and `assetContext` to `static/refugees/`.
 
 ### Publish to Amazon S3
 
@@ -42,16 +42,11 @@ The project includes a gulp task for publishing the project to Amazon S3. It wil
 
 In addition to setting up the credentials file, you should change the `defaultBucket` option in `gulfile.babel.js` to match the name of your S3 bucket. Additionally, you may wish to change the `maxAge` option, which affects the cache-control header of assets whose filenames have content hashes.
 
-Run the publish task with `gulp s3-deploy` or `node ./node_modules/gulp/bin/gulp.js s3-deploy`.
+Run the publish task with `gulp s3-deploy`.
 
 ### Tests
 
-Unit tests are started with:
-
-```
-mocha
-```
-
+Run unit test with the command `mocha` in thr project directory.
 
 ## Data source
 
@@ -59,11 +54,11 @@ mocha
 
 To update to the latest data, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
 
-    + Years: 2012, 2013, 2014, 2015
-    + Months: All months
-    + Country of asylum: All countries
-    + Origin: All countries
-    + Data item to display: Country of asylum, origin, year
++ Years: 2012, 2013, 2014, 2015
++ Months: All months
++ Country of asylum: All countries
++ Origin: All countries
++ Data item to display: Country of asylum, origin, year
 
 Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data` to generate the required JSON file for the visualization.
 
