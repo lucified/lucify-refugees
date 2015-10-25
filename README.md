@@ -1,13 +1,13 @@
-# The flow of asylum seekers in Europe
+# The flow towards Europe
 
-A visualization of the flow of asylum seekers in European countries from 2012 onwards. Based on UNHCR data. See it in action [here](http://dev.lucify.com/the-flow-towards-europe/). For a more in-depth explanation, read [this blog post](https://medium.com/@lucify/a-novel-visualisation-of-the-refugee-crisis-565e40ab5a50).
+A visualization of the flow of asylum seekers to European countries from 2012 onwards. Based on UNHCR data. See it in action [here](http://www.lucify.com/the-flow-towards-europe/). For a more in-depth explanation, read [this blog post](https://medium.com/@lucify/a-novel-visualisation-of-the-refugee-crisis-565e40ab5a50).
 
 ![Visualization screenshot](screenshot.png)
 
 This project uses a combination of [React](https://facebook.github.io/react/), [D3.js](http://d3js.org/) and [PIXI.js](http://www.pixijs.com/).
 
 
-## Installation
+## Development
 
 ### Dependencies
 
@@ -23,9 +23,9 @@ Run the following in the project directory:
 
 1. `npm install`
 2. `bundle install`
-3. `node ./node_modules/gulp/bin/gulp.js`
+3. `gulp` or `node ./node_modules/gulp/bin/gulp.js`
 
-This project requires gulp 4.0, which is installed by `npm install` under `node_modules`. To be able to use the plain `gulp` command, make sure you have gulp-cli version 0.4 installed:
+This project requires gulp 4.0, which is installed by `npm install` under `node_modules`. To be able to use the plain `gulp` command as above, make sure you have gulp-cli version 0.4 installed:
 ```
 npm install gulpjs/gulp-cli#4.0 -g
 ```
@@ -40,13 +40,19 @@ You will likely need to edit the `embedBaseUrl` and `assetContext` parameters in
 
 The project includes a gulp task for publishing the project to Amazon S3. It will use credentials from the AWS credentials file (<http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html>).
 
-In addition to setting up the credentials file, you should change the `defaultBucket` option in `gulfile.babel.js` to match the name of your S3 bucket. Additionally, you may wish to change the `maxAge` option, which affects the cache-control header of assets whose filenames have content hashes.
+In addition to setting up the credentials file, you should change the `defaultBucket` option in `gulfile.babel.js` to match the name of your S3 bucket. Additionally, you may wish to change the `maxAge` option, which affects the cache-control header of assets with filenames having content hashes.
 
 Run the publish task with `gulp s3-deploy`.
 
-### Tests
+### Unit tests
 
 Run unit test with the command `mocha` in thr project directory.
+
+### Embed codes
+
+The build automatically creates a file called `embed-codes.html` alongside `index.html`. It contains embed codes for embedding the visualisation into other pages through an iFrame. 
+
+Use embed codes from <http://www.lucify.com/embed/the-flow-towards-europe/embed-codes.html> to embed the visualisation via our Akamai-backed hosting.
 
 ## Data source
 
