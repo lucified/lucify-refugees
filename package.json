@@ -61,6 +61,7 @@
     "randgen": "^0.1.0",
     "react": "0.13.3",
     "should": "^7.1.0",
+    "simplify-geojson": "0.0.2",
     "sprintf": "^0.1.5",
     "topojson": "^1.6.19",
     "underscore": "^1.8.3",
