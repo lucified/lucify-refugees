@@ -3,6 +3,8 @@ var React = require('react');
 var _ = require('underscore');
 var moment = require('moment');
 
+var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
+
 
 var constants = require('../../model/refugee-constants.js');
 
@@ -19,9 +21,17 @@ module.exports = function(Component) {
        getInitialState: function() {
           return {
               stamp: this.props.startStamp, // unix timestamps (seconds-precision)
-              speed: 2,
+              speed: this.getDefaultSpeed(),
               play: this.props.autoStart,
           };
+        },
+
+
+        getDefaultSpeed: function() {
+          if (lucifyUtils.isSlowDevice()) {
+              return 6;
+          }
+          return 2;
         },
 
 
