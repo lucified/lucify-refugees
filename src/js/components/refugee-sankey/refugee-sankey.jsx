@@ -453,6 +453,12 @@ var RefugeeSankey = React.createClass({
 		if (nextProps.width !== this.props.width) {
 			this._sankey = null;
 		}
+
+		if (nextProps.month !== this.props.month
+			|| nextProps.year !== this.props.year) {
+			this._nodes = null;
+			this._links = null;
+		}
 	},
 
 
@@ -476,13 +482,29 @@ var RefugeeSankey = React.createClass({
 	},
 
 
+	getCachedNodes: function() {
+		if (!this._nodes) {
+			this._nodes = this.getNodes();
+		}
+		return this._nodes;
+	},
+
+
+	getCachedLinks: function() {
+		if (!this._links) {
+			this._links = this.getLinks();
+		}
+		return this._links;
+	},
+
+
 	render: function() {
 		if (!this.props.asylumData) {
 			return <svg />
 		}	
 
-		var nodes = this.getNodes();
-		var links = this.getLinks();
+		var nodes = this.getCachedNodes();
+		var links = this.getCachedLinks();
 
 		var sankey = this.getSankey();
 

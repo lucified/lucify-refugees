@@ -33,13 +33,6 @@
 	  }
 	}
 
-	.node--hovered rect {
-		//fill: rgb(200, 200, 200);
-		//fill: $lucify-cyan;
-		fill: $lucify-dark-blue;
-		fill: red;
-	}
-
 	.node rect:hover {
 		//fill: $lucify-dark-blue;
 		fill-opacity: 1.0;
