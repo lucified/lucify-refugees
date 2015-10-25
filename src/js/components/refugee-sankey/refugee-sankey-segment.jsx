@@ -118,7 +118,7 @@ var RefugeeSankeySegment = React.createClass({
 									<h3>Country by country</h3>
 
 									<p className="first last">
-										The chart below shows the
+										<em>The chart below</em> shows the
 										monthly total refugees
 										originating from and seeking
 										asylum in different countries.
