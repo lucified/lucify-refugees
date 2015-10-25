@@ -1,9 +1,10 @@
 
 
 .refugee-sankey-segment__sankey {
-	margin-top: 2rem;
+	margin-top: 0rem;
 	margin-bottom: 3rem;
 }
+
 
 .refugee-sankey-segment {
 
@@ -12,17 +13,36 @@
 		min-width: 4.25rem;
 		text-align: right;
 	}
-	//.nice-form-row__input {
-	//	padding-left: 0rem;
-	//}
+
+	.inputs {
+		.divided-cols--stacked__parent {	
+			.refugee-sankey-segment__instructions {
+				display: none;
+			}
+			margin-bottom: -1rem;
+		}
+	}
 }
 
+
+
+
 .refugee-sankey-segment__metadata {
-	margin-top: 2rem;
-	margin-bottom: 1rem;
+	margin-top: 0rem;
+	margin-bottom: 0rem;
 
 	.divided-cols__parent {
-		//max-width: 20rem;
+		margin-top: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.divided-cols--narrow__parent {
+		@extend .divided-cols__parent;
+	}
+
+	.divided-cols--stacked__parent {
+		margin-top: 1.0rem;
+		margin-bottom: 1.0rem;
 	}
 
 	.divided-cols__first {
@@ -33,7 +53,14 @@
 		 vertical-align: middle;
 		 border-left: 0px dotted #c8cacc;
 	}
+
+	.divided-cols--stacked__first {
+		margin-bottom: 0.4rem;
+	}
 }
+
+
+
 
 .refugee-sankey-segment__time-title {
 	@include lucify-header-font();
@@ -45,3 +72,4 @@
 	font-size: 0.9rem;
 	max-width: 90%;
 }
+

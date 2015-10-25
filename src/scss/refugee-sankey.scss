@@ -61,5 +61,14 @@
 		@include refugee-sankey-highlight-link();
 	}
 
+	.refugee-sankey-segment__metadata {
+		border: 1px solid red;
+		.divided-cols--stacked__first {
+			margin-bottom: 0rem;
+		}
+	}
+
+	
+
 }
 

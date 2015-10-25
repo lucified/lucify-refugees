@@ -137,13 +137,15 @@ var RefugeeSankeySegment = React.createClass({
 											max={this.getMaximumOffset()} 
 											step={1}
 											onChange={this.monthOffsetChange} />}  />
-									<p className="first last">
-										Move the slider to move the 
-										chart in time.
-									</p>
-									<p className="first last">
-										Hover over countries to show details.
-									</p>
+									<div className="refugee-sankey-segment__instructions">
+										<p className="first last">
+											Move the slider to move the 
+											chart in time.
+										</p>
+										<p className="first last">
+											Hover over countries to show details.
+										</p>
+									</div>
 								</div>
 							} />
 					</div>
