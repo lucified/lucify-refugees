@@ -375,7 +375,7 @@ var RefugeeSankey = React.createClass({
 
 
 	getHeight: function() {
-		return this.props.width; // SIC
+		return Math.min(this.props.width, Math.max(window.innerHeight * 0.6, 600));
 	},
 
 

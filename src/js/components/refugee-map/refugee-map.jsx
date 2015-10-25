@@ -14,7 +14,6 @@ var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
 var constants = require('../../model/refugee-constants.js');
 
 
-
 var RefugeeMap = React.createClass({
 
 
@@ -270,7 +269,5 @@ var RefugeeMap = React.createClass({
 });
 
 
-
 module.exports = RefugeeMap;
     
-
