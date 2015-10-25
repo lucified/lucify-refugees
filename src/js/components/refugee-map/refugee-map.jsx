@@ -146,7 +146,7 @@ var RefugeeMap = React.createClass({
 
 
   interactionsEnabled: function() {
-      return this.props.interactionsEnabled
+      return this.props.interactionsEnabled;
   },
 
 
@@ -201,6 +201,19 @@ var RefugeeMap = React.createClass({
   },
 
 
+  getOverlayLayer: function() {
+    if (this.interactionsEnabled()) {
+        return null;
+    }
+    return (
+      <div 
+        className="refugee-map__overlay-layer" 
+        style={{width: this.getWidth(), height: this.getHeight()}}>
+      </div>
+    );
+  },
+
+
   render: function() {
 
     if (!this.props.refugeeCountsModel 
@@ -239,6 +252,8 @@ var RefugeeMap = React.createClass({
         {this.getSecondBordersLayer()}
 
         <FrameRateLayer ref="frameRateLayer" />
+
+        {this.getOverlayLayer()}
 
       </div>
     )
