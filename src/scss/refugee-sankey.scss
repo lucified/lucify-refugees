@@ -10,12 +10,11 @@
 
 	.node rect {
 	  
-	  stroke-width: 1px;
-	  stroke: $lucify-dark-gray;
-	  
-	  //cursor: move
-	  fill-opacity: .9;
-	  fill: transparent;
+	  //stroke-width: 1px;
+	  //stroke: $lucify-dark-blue;
+	  	
+	  fill-opacity: 0.75;
+	  fill: $lucify-muted-blue;
 
 	  shape-rendering: crispEdges;
 	}
@@ -38,8 +37,14 @@
 		//fill: rgb(200, 200, 200);
 		//fill: $lucify-cyan;
 		fill: $lucify-dark-blue;
+		fill: red;
 	}
 
+	.node rect:hover {
+		//fill: $lucify-dark-blue;
+		fill-opacity: 1.0;
+	}
+	
 	.link {
 	  fill: none;
 	  stroke: $lucify-dark-blue;
@@ -53,21 +58,12 @@
 	}
 
 	.link--hovered {
-		//stroke: url(#SVGID_1_);
 		@include refugee-sankey-highlight-link();
 	}
 
 	.link:hover {
 		@include refugee-sankey-highlight-link();
 	}
-
-	.refugee-sankey-segment__metadata {
-		border: 1px solid red;
-		.divided-cols--stacked__first {
-			margin-bottom: 0rem;
-		}
-	}
-
 	
 
 }

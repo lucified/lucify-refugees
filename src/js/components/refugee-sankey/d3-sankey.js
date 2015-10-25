@@ -1,4 +1,6 @@
 
+// Dirty hack based on the D3 sankey plugin
+// https://github.com/d3/d3-plugins/blob/master/sankey/sankey.js
 
 var sk = function() {
 
