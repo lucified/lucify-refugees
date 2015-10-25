@@ -1,24 +1,24 @@
 
 var React = require('react');
-
-var RefugeeMap = require('./responsive-refugee-map.jsx');
+var sprintf = require('sprintf');
 
 var Inputs = require('lucify-commons/src/js/components/inputs.jsx');
 var DividedCols = require('lucify-commons/src/js/components/divided-cols.jsx');
-
 var FormRow = require('lucify-commons/src/js/components/nice-form-row.jsx');
 var Slider = require('lucify-commons/src/js/components/nice-slider.jsx');
-
-var RefugeePlayContextDecorator = require('./refugee-play-context-decorator.jsx');
-
-var TimeLayer = require('./refugee-map-time-layer.jsx');
-
-var sprintf = require('sprintf');
-
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
+var ComponentWidthMixin = require('lucify-commons/src/js/components/container-width-mixin.js');
+
+var RefugeeMap = require('./responsive-refugee-map.jsx');
+var RefugeePlayContextDecorator = require('./refugee-play-context-decorator.jsx');
+var TimeLayer = require('./refugee-map-time-layer.jsx');
+var refugeeConstants = require('../../model/refugee-constants.js');
 
 
 var RefugeeMapSegment = React.createClass({
+
+
+	mixins: [ComponentWidthMixin],
 
 
     updateForStamp: function(stamp) {
@@ -58,13 +58,28 @@ var RefugeeMapSegment = React.createClass({
 	},
 
 
+	getCountsInstruction: function() {
+		if (refugeeConstants.labelShowBreakPoint < this.componentWidth) {
+			return (
+				<span>
+					The counts shown on hover represent the number
+					of people who have left or arrived in a country
+					since 2012.
+				</span>
+			);
+		}
+		return null;
+	},
+
+
 	getInteractionsInstruction: function() {
 		if (this.interactionsEnabled()) {
 			return <div>
 				<p className="first">
 					Hover over countries to
 					show details. Click on a country to 
-					lock the selection. 
+					lock the selection.
+					{' '}{this.getCountsInstruction()}
 				</p>
 
 				<p className="last">
