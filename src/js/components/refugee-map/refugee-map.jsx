@@ -13,6 +13,8 @@ var FrameRateLayer = require('./frame-rate-layer.jsx');
 var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
 var constants = require('../../model/refugee-constants.js');
 
+var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
+
 
 var RefugeeMap = React.createClass({
 
@@ -213,6 +215,17 @@ var RefugeeMap = React.createClass({
     );
   },
 
+  getCountBarsLayer: function() {
+    if (lucifyUtils.detectIE() !== 9) {
+        return <CountBarsLayer
+           ref="countBars"
+           {...this.getStandardLayerParams()}
+           highlightedCountry={this.getHighlightedCountry()}
+           refugeeCountsModel={this.props.refugeeCountsModel} />
+    }
+    return null;
+  },
+
 
   getFrameRateLayer: function() {
     if (this.props.showFps) {
@@ -242,11 +255,7 @@ var RefugeeMap = React.createClass({
         
         {this.getFirstBordersLayer()}
 
-        <CountBarsLayer
-           ref="countBars"
-           {...this.getStandardLayerParams()}
-           highlightedCountry={this.getHighlightedCountry()}
-           refugeeCountsModel={this.props.refugeeCountsModel} />
+        {this.getCountBarsLayer()}
 
         {this.getCountryLabelsLayer()}
         {this.getCountryCountsLayer()}
