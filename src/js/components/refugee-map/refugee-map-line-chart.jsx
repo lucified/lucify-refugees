@@ -119,8 +119,11 @@ var RefugeeMapLineChart = React.createClass({
 					missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 4).join(', ') +
 						" and " + (countriesWithMissingData.length - 4) + " other countries";
 				} else {
-					missingDataText = "Missing data from " + countriesWithMissingData.slice(0, length - 1).join(', ') +
-						" and " + countriesWithMissingData[countriesWithMissingData.length - 1];
+					missingDataText = "Missing data from ";
+					if (countriesWithMissingData.length > 1) {
+						 missingDataText += countriesWithMissingData.slice(0, length - 1).join(', ') +	" and ";
+					}
+					missingDataText += countriesWithMissingData[countriesWithMissingData.length - 1];
 				}
 
 				res = {

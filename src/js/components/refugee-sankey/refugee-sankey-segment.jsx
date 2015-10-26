@@ -66,8 +66,11 @@ var RefugeeSankeySegment = React.createClass({
 				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 6).join(', ') +
 					" and " + (countriesWithMissingData.length - 6) + " other countries";
 			} else {
-				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, length - 1).join(', ') +
-					" and " + countriesWithMissingData[countriesWithMissingData.length - 1];
+				missingDataText = "Missing data from ";
+				if (countriesWithMissingData.length > 1) {
+					 missingDataText += countriesWithMissingData.slice(0, length - 1).join(', ') +	" and ";
+				}
+				missingDataText += countriesWithMissingData[countriesWithMissingData.length - 1];
 			}
 			return missingDataText;
 		} else {
