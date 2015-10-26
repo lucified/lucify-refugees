@@ -57,20 +57,21 @@ var RefugeeSankeySegment = React.createClass({
 	getCountriesWithMissingData: function() {
 		var countriesWithMissingData
 			= this.props.refugeeCountsModel.getDestinationCountriesWithMissingData(this.getDebouncedMoment());
-		if (countriesWithMissingData.length > 0) {
+		var length = countriesWithMissingData.length;
+		if (length > 0) {
 			var missingDataText;
 			countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
 				return this.props.mapModel.getFriendlyNameForCountry(countryCode);
 			}.bind(this));
-			if (countriesWithMissingData.length > 7) {
+			if (length > 7) {
 				missingDataText = "Missing data from " + countriesWithMissingData.slice(0, 6).join(', ') +
-					" and " + (countriesWithMissingData.length - 6) + " other countries";
+					" and " + (length - 6) + " other countries";
 			} else {
 				missingDataText = "Missing data from ";
-				if (countriesWithMissingData.length > 1) {
+				if (length > 1) {
 					 missingDataText += countriesWithMissingData.slice(0, length - 1).join(', ') +	" and ";
 				}
-				missingDataText += countriesWithMissingData[countriesWithMissingData.length - 1];
+				missingDataText += countriesWithMissingData[length - 1];
 			}
 			return missingDataText;
 		} else {
