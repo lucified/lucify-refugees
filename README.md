@@ -50,7 +50,7 @@ Run unit test with the command `mocha` in thr project directory.
 
 ### Embed codes
 
-The build automatically creates a file called `embed-codes.html` alongside `index.html`. It contains embed codes for embedding the visualisation into other pages through an iFrame. 
+The build automatically creates a file called `embed-codes.html` alongside `index.html`. It contains embed codes for embedding the visualisation into other pages through an iFrame.
 
 Use embed codes from <http://www.lucify.com/embed/the-flow-towards-europe/embed-codes.html> to embed the visualisation via our Akamai-backed hosting.
 
@@ -58,7 +58,15 @@ Use embed codes from <http://www.lucify.com/embed/the-flow-towards-europe/embed-
 
 [UNHCR monthly asylum applications](http://popstats.unhcr.org/en/asylum_seekers_monthly)
 
-To update to the latest data, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
+If you update the data, you can change the time period during which the visualization runs by updating the values in `src/js/model/refugee-constants.js`. Note that changing these values has not been extensively tested, and might result in glitches.
+
+### Automatic download
+
+Run the included `download-unhcr-data.sh` script. Run `gulp prepare-data` to generate the JSON file for the visualization.
+
+### Manual download
+
+If you prefer to download the data manually, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
 
 + Years: 2012, 2013, 2014, 2015
 + Months: All months
@@ -66,9 +74,8 @@ To update to the latest data, open the UNHCR asylum applications data portal, se
 + Origin: All countries
 + Data item to display: Country of asylum, origin, year
 
-Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data` to generate the required JSON file for the visualization.
+Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data` to generate the JSON file for the visualization.
 
-Once you have new data, you can change the time period during which the visualization runs by updating the values in `src/js/model/refugee-constants.js`. Note that changing these values has not been extensively tested, and might result in glitches.
 
 ## Authors
 

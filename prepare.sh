@@ -19,6 +19,9 @@ node_modules/.bin/topojson \
   temp/map.json
 
 
+### Process UNHCR data
+src/scripts/prepare-asylum-data.rb
+
 # we are not using the labels for anything
 
 #ogr2ogr \
