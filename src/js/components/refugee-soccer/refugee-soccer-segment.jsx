@@ -9,13 +9,14 @@ var RefugeeSoccerSegment = React.createClass({
 
 
 	getEuropeanCount: function() {
-		return 507421;
+		// http://data.unhcr.org/syrianrefugees/regional.php, Total Syrian Asylum Applications in Europe
+		return 512909; // Updated 31.10.2015
 	},
 
 
 	getRegionalCount: function() {
-		// http://data.unhcr.org/syrianrefugees/regional.php
-		return 4185302;
+		// http://data.unhcr.org/syrianrefugees/regional.php, Registered Syrian Refugees
+		return 4180631; // Updated 31.10.2015
 	},
 
 
@@ -48,17 +49,17 @@ var RefugeeSoccerSegment = React.createClass({
 					<h3>Only a fraction makes it to Europe</h3>
 
 					<p>
-						The United Nations estimates that half a million Syrian 
-						refugees have sought asylum in Europe between 
-						April 2011 and September 2015. Standing very tighly together, 
-						they would fit 	on {this.getEuropeanSoccerFieldsCount()} 
+						The United Nations estimates that half a million Syrian
+						refugees have sought asylum in Europe between
+						April 2011 and September 2015. Standing very tighly together,
+						they would fit 	on {this.getEuropeanSoccerFieldsCount()}
 						{' '} soccer fields.
 					</p>
 
 					<SoccerFields count={this.getEuropeanSoccerFieldsCount()} />
 
 					<p>
-						Only a small fraction of refugees fleeing 
+						Only a small fraction of refugees fleeing
 						their homes make it to Europe. The UN
 						has registered four million Syrian
 						refugees in Turkey, Lebanon, Jordan, Iraq, Egypt and
