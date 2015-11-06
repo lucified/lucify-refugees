@@ -385,13 +385,13 @@ var RefugeeSankey = React.createClass({
 			return "Others";
 		}
 
-		var name = this.props.mapModel.getFriendlyNameForCountry(name); 
+		var friendlyName = this.props.mapModel.getFriendlyNameForCountry(name);
 
-		if (!name) {
-			console.log("no name for" + name);
+		if (!friendlyName) {
+			console.log("no name for " + name);
 		}
 
-		return name;
+		return friendlyName;
 	},
 
 

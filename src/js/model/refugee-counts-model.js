@@ -62,7 +62,7 @@ RefugeeCountsModel.prototype._initializeDataStructures = function(data) {
 
 
 RefugeeCountsModel.prototype._prepareYearsMonthsArray = function(initialDataGenerator) {
-  var ret = new Array(4); // years, 2012-2015
+  var ret = new Array(refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1);
   for (var y = 0; y < ret.length; y++) {
     ret[y] = new Array(12);
     for (var m = 0; m < ret[y].length; m++) {
@@ -100,7 +100,8 @@ RefugeeCountsModel.prototype._addMonthlyArrivals = function(destinationCountry, 
   var monthIndex = month - 1;
 
   console.assert(monthIndex >= 0 && monthIndex < 12, "Month is between 0 and 11");
-  console.assert(yearIndex >= 0 && yearIndex < 4, "Year is between 0 and 4");
+  console.assert(yearIndex >= 0 && yearIndex < (refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1),
+    "Year is between 0 and " + (refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1));
 
   this.globalRefugees[yearIndex][monthIndex].count += count;
   this.arrivedRefugeesToCountry[destinationCountry][yearIndex][monthIndex].count += count;
