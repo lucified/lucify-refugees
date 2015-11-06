@@ -2,7 +2,7 @@
 var d3 = require('d3');
 var topojson = require('topojson');
 var React = require('react');
-var console = require("console-browserify")
+var console = require("console-browserify");
 var Promise = require("bluebird");
 
 var RefugeeCountsModel = require('../model/refugee-counts-model.js');
@@ -31,7 +31,7 @@ var bindToRefugeeMapContext = function(Component) {
          return {
             smartSpreadEnabled: true,   // different values for these props have
             randomStartPoint: false     // not been tested and will probably result in bugs
-         }
+         };
       },
 
 
@@ -54,7 +54,7 @@ var bindToRefugeeMapContext = function(Component) {
             mapModel: null,
             refugeeCountsModel: null,
             refugeePointsModel: null
-         }
+         };
       },
 
 

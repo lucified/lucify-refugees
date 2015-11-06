@@ -6,7 +6,7 @@ var moment = require('moment');
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
 
 
-var constants = require('../../model/refugee-constants.js');
+var RefugeeConstants = require('../../model/refugee-constants.js');
 
 module.exports = function(Component) {
 
@@ -38,7 +38,7 @@ module.exports = function(Component) {
         getDefaultProps: function() {
           return {
             autoStart: true,
-            startStamp: moment([2012, 0, 1]).unix()
+            startStamp: moment([RefugeeConstants.DATA_START_YEAR, RefugeeConstants.DATA_START_MONTH, 1]).unix()
           };
         },
          
@@ -64,7 +64,7 @@ module.exports = function(Component) {
 
 
         play: function() {
-            if (this.stamp <= constants.DATA_END_MOMENT.unix()) {
+            if (this.stamp <= RefugeeConstants.DATA_END_MOMENT.unix()) {
               if (!this.blockPlay && this.state.play) {
                 var increment = (60 * 60 * this.state.speed);
                 var newStamp = this.stamp + increment;
