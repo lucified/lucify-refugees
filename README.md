@@ -81,8 +81,8 @@ Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.cs
 
 Have feedback? Contact us!
 
-- [Juho Ojala](https://twitter.com/ojalajuho)
-- [Ville Saarinen](https://twitter.com/vsaarinen)
+- [Juho Ojala](https://github.com/juhoojala)
+- [Ville Saarinen](https://github.com/vsaarinen)
 
 ## License
 
