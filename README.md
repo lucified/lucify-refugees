@@ -62,7 +62,13 @@ If you update the data, you can change the time period during which the visualiz
 
 ### Automatic download
 
-Run the included `download-unhcr-data.sh` script. Run `gulp prepare-data` to generate the JSON file for the visualization.
+Run the included download script:
+
+```
+$ src/scripts/download-unhcr-data.sh
+```
+
+Run `gulp prepare-data` to generate the JSON file for the visualization.
 
 ### Manual download
 
