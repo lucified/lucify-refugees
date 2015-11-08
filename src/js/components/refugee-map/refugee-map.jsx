@@ -11,7 +11,8 @@ var RefugeeMapLineChart = require('./refugee-map-line-chart.jsx');
 var SimpleBordersLayer = require('./refugee-map-simple-borders-layer.jsx');
 var FrameRateLayer = require('./frame-rate-layer.jsx');
 var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
-var constants = require('../../model/refugee-constants.js');
+var DataUpdated = require('../refugee-data-updated.jsx');
+var RefugeeConstants = require('../../model/refugee-constants.js');
 
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
 
@@ -271,6 +272,8 @@ var RefugeeMap = React.createClass({
         {this.getFrameRateLayer()}
 
         {this.getOverlayLayer()}
+
+        <DataUpdated className="light" updatedAt={RefugeeConstants.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT} />
 
       </div>
     )
