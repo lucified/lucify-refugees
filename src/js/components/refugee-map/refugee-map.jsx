@@ -253,7 +253,7 @@ var RefugeeMap = React.createClass({
     return (
       <div className="refugee-map"
         style={{width: this.getWidth(), height: this.getHeight()}}>
-        
+
         {this.getFirstBordersLayer()}
 
         {this.getCountBarsLayer()}
@@ -273,7 +273,7 @@ var RefugeeMap = React.createClass({
 
         {this.getOverlayLayer()}
 
-        <DataUpdated className="light" updatedAt={RefugeeConstants.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT} />
+        <DataUpdated updatedAt={RefugeeConstants.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT} />
 
       </div>
     )

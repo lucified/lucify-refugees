@@ -75,7 +75,7 @@ var RefugeeSoccerSegment = React.createClass({
 
 				</div>
 
-				<DataUpdated className="dark" updatedAt={RefugeeConstants.SYRIA_REFUGEES_DATA_UPDATED_MOMENT} />
+				<DataUpdated updatedAt={RefugeeConstants.SYRIA_REFUGEES_DATA_UPDATED_MOMENT} />
 			</div>
 		);
 	}
