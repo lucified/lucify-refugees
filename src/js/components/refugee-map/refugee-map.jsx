@@ -6,12 +6,13 @@ var BordersLayer = require('./refugee-map-borders-layer.jsx');
 var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
 var CountryLabelsLayer = require('./refugee-map-country-labels-layer.jsx');
 var CountBarsLayer = require('./refugee-map-count-bars-layer.jsx');
-var PointsLayer = require('./refugee-map-points-layer.jsx')
+var PointsLayer = require('./refugee-map-points-layer.jsx');
 var RefugeeMapLineChart = require('./refugee-map-line-chart.jsx');
 var SimpleBordersLayer = require('./refugee-map-simple-borders-layer.jsx');
 var FrameRateLayer = require('./frame-rate-layer.jsx');
 var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
-var constants = require('../../model/refugee-constants.js');
+var DataUpdated = require('../refugee-data-updated.jsx');
+var RefugeeConstants = require('../../model/refugee-constants.js');
 
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
 
@@ -28,7 +29,7 @@ var RefugeeMap = React.createClass({
       height: 1200,
       interactionsEnabled: true,
       showFps: false,
-    }
+    };
   },
 
 
@@ -41,7 +42,7 @@ var RefugeeMap = React.createClass({
     return this.props.height;
   },
 
-  
+
   componentWillUpdate: function(nextProps, nextState) {
       if (this.props.width !== nextProps.width) {
         this._projection = null;
@@ -82,7 +83,7 @@ var RefugeeMap = React.createClass({
         .center([0, la])
         .rotate([-lo, 0])
         .scale(this.getWidth()*0.55)
-        .translate([this.getWidth() / 2, this.getHeight() / 2])
+        .translate([this.getWidth() / 2, this.getHeight() / 2]);
   },
 
 
@@ -101,7 +102,7 @@ var RefugeeMap = React.createClass({
       width: this.getWidth(),
       height: this.getHeight(),
       stamp: this.getStamp()
-    }
+    };
   },
 
 
@@ -117,9 +118,9 @@ var RefugeeMap = React.createClass({
       this.stamp = stamp;
 
       if (this.refs.pointsLayer != null) {
-        this.refs.pointsLayer.updateForStamp(stamp); 
-      } 
-      
+        this.refs.pointsLayer.updateForStamp(stamp);
+      }
+
       if (this.refs.frameRateLayer != null) {
         this.refs.frameRateLayer.update();
       }
@@ -131,13 +132,13 @@ var RefugeeMap = React.createClass({
       if (this.refs.countBars != null) {
         this.refs.countBars.updateForStamp(stamp);
       }
-        
+
       if (this.refs.countsLayer != null) {
         this.refs.countsLayer.updateForStamp(stamp);
       }
-        
+
       if (this.interactionsEnabled() && this.props.refugeeCountsModel != null) {
-        this.updateHighlight(this.getHighlightedCountry());  
+        this.updateHighlight(this.getHighlightedCountry());
       }
   },
 
@@ -155,7 +156,7 @@ var RefugeeMap = React.createClass({
   getFirstBordersLayer: function() {
     if (this.interactionsEnabled()) {
        return (
-          <BordersLayer 
+          <BordersLayer
             ref="bordersLayer"
             updatesEnabled={true}
             enableOverlay={true}
@@ -164,7 +165,7 @@ var RefugeeMap = React.createClass({
             refugeeCountsModel={this.props.refugeeCountsModel}
             subunitClass="subunit" />);
     } else {
-        return <SimpleBordersLayer {...this.getStandardLayerParams()} />
+        return (<SimpleBordersLayer {...this.getStandardLayerParams()} />);
     }
   },
 
@@ -176,7 +177,7 @@ var RefugeeMap = React.createClass({
              {...this.getStandardLayerParams()}
              subunitClass="subunit-invisible"
              onMouseOver={this.handleMouseOver}
-             onMouseLeave={this.handleMouseLeave} 
+             onMouseLeave={this.handleMouseLeave}
              onClick={this.handleMapClick} />
     }
   },
@@ -198,7 +199,7 @@ var RefugeeMap = React.createClass({
           ref="countsLayer"
           {...this.getStandardLayerParams()}
           {...this.getHighlightLayerParams()}
-          refugeeCountsModel={this.props.refugeeCountsModel} />      
+          refugeeCountsModel={this.props.refugeeCountsModel} />
     }
   },
 
@@ -208,8 +209,8 @@ var RefugeeMap = React.createClass({
         return null;
     }
     return (
-      <div 
-        className="refugee-map__overlay-layer" 
+      <div
+        className="refugee-map__overlay-layer"
         style={{width: this.getWidth(), height: this.getHeight()}}>
       </div>
     );
@@ -237,10 +238,10 @@ var RefugeeMap = React.createClass({
 
   render: function() {
 
-    if (!this.props.refugeeCountsModel 
+    if (!this.props.refugeeCountsModel
       || !this.props.refugeePointsModel
       || !this.props.mapModel) {
-    
+
       return (
         <div className="refugee-map"
           style={{width: this.getWidth(), height: this.getHeight()}}>
@@ -252,7 +253,7 @@ var RefugeeMap = React.createClass({
     return (
       <div className="refugee-map"
         style={{width: this.getWidth(), height: this.getHeight()}}>
-        
+
         {this.getFirstBordersLayer()}
 
         {this.getCountBarsLayer()}
@@ -265,12 +266,14 @@ var RefugeeMap = React.createClass({
            {...this.getStandardLayerParams()}
            highlightedCountry={this.getHighlightedCountry()}
            refugeePointsModel={this.props.refugeePointsModel} />
-        
+
         {this.getSecondBordersLayer()}
 
         {this.getFrameRateLayer()}
 
         {this.getOverlayLayer()}
+
+        <DataUpdated updatedAt={RefugeeConstants.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT} />
 
       </div>
     )
@@ -279,4 +282,3 @@ var RefugeeMap = React.createClass({
 
 
 module.exports = RefugeeMap;
-    

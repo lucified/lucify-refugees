@@ -161,10 +161,12 @@ var bindToRefugeeMapContext = function(Component) {
 
 
       render: function() {
-         return <Component
+         return (
+           <Component
             {...this.state}
             {...this.props}
             peoplePerPoint={this.getPeoplePerPoint()} />
+        );
       }
 
 

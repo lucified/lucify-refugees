@@ -3,6 +3,8 @@ var React = require('react');
 var _ = require('underscore');
 
 var SoccerFields = require('lucify-commons/src/js/components/soccer-fields.jsx');
+var DataUpdated = require('../refugee-data-updated.jsx');
+var RefugeeConstants = require('../../model/refugee-constants.js');
 
 
 var RefugeeSoccerSegment = React.createClass({
@@ -65,13 +67,15 @@ var RefugeeSoccerSegment = React.createClass({
 						refugees in Turkey, Lebanon, Jordan, Iraq, Egypt and
 						North Africa. Most of them live in refugee camps
 						close to the border.
- 						They would fit on {this.getRegionalSoccerFieldsCount()}
+						They would fit on {this.getRegionalSoccerFieldsCount()}
 						{' '}soccer fields.
 					</p>
 
 					<SoccerFields count={this.getRegionalSoccerFieldsCount()} />
 
 				</div>
+
+				<DataUpdated updatedAt={RefugeeConstants.SYRIA_REFUGEES_DATA_UPDATED_MOMENT} />
 			</div>
 		);
 	}
