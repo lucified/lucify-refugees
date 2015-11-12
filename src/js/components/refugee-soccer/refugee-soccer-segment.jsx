@@ -84,7 +84,7 @@ var RefugeeSoccerSegment = React.createClass({
 
 				</div>
 
-				<DataUpdated updatedAt={RefugeeConstants.SYRIA_REFUGEES_DATA_UPDATED_MOMENT} />
+				
 			</div>
 		);
 	}
@@ -93,3 +93,5 @@ var RefugeeSoccerSegment = React.createClass({
 
 
 module.exports = RefugeeSoccerSegment;
+
+//<DataUpdated updatedAt={RefugeeConstants.SYRIA_REFUGEES_DATA_UPDATED_MOMENT} />
