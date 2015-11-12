@@ -9,6 +9,14 @@ var RefugeeConstants = require('../../model/refugee-constants.js');
 
 var RefugeeSoccerSegment = React.createClass({
 
+	// Note:
+	//
+	// When updating counts, also make sure 
+	// to check that texts are still valid.
+	//
+	// This unfortunately cannot be done automatically
+	// as we wish to use friendly wordings for numbers.
+	// (unless there is an elaborate library for that)
 
 	getEuropeanCount: function() {
 		// http://data.unhcr.org/syrianrefugees/regional.php, Total Syrian Asylum Applications in Europe
@@ -51,10 +59,11 @@ var RefugeeSoccerSegment = React.createClass({
 					<h3>Only a fraction makes it to Europe</h3>
 
 					<p>
-						The United Nations estimates that half a million Syrian
-						refugees have sought asylum in Europe between
-						April 2011 and September 2015. Standing very tighly together,
-						they would fit 	on {this.getEuropeanSoccerFieldsCount()}
+						The United Nations counts that 
+						around 700 000 Syrian refugees have sought 
+						asylum in Europe between April 2011 and October 2015. 
+						Standing very tighly together,
+						they would fit on {this.getEuropeanSoccerFieldsCount()}
 						{' '} soccer fields.
 					</p>
 

@@ -19,7 +19,7 @@ var opts = {
 	publishFromFolder: 'dist',
 	defaultBucket: 'lucify-dev',
 	maxAge: 3600,
-	assetContext: 'embed/the-flow-towards-europe/',
+	assetContext: 'embed/the-flow-towards-europe-updating/',
 	baseUrl: 'http://www.lucify.com/'
 }
 
