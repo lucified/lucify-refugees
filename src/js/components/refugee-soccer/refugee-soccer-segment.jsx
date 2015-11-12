@@ -3,7 +3,6 @@ var React = require('react');
 var _ = require('underscore');
 
 var SoccerFields = require('lucify-commons/src/js/components/soccer-fields.jsx');
-var DataUpdated = require('../refugee-data-updated.jsx');
 var RefugeeConstants = require('../../model/refugee-constants.js');
 
 
@@ -11,7 +10,7 @@ var RefugeeSoccerSegment = React.createClass({
 
 	// Note:
 	//
-	// When updating counts, also make sure 
+	// When updating counts, also make sure
 	// to check that texts are still valid.
 	//
 	// This unfortunately cannot be done automatically
@@ -59,9 +58,9 @@ var RefugeeSoccerSegment = React.createClass({
 					<h3>Only a fraction makes it to Europe</h3>
 
 					<p>
-						The United Nations counts that 
-						around 700 000 Syrian refugees have sought 
-						asylum in Europe between April 2011 and October 2015. 
+						The United Nations counts that
+						around 700 000 Syrian refugees have sought
+						asylum in Europe between April 2011 and October 2015.
 						Standing very tighly together,
 						they would fit on {this.getEuropeanSoccerFieldsCount()}
 						{' '} soccer fields.
@@ -84,7 +83,7 @@ var RefugeeSoccerSegment = React.createClass({
 
 				</div>
 
-				
+
 			</div>
 		);
 	}
@@ -93,5 +92,3 @@ var RefugeeSoccerSegment = React.createClass({
 
 
 module.exports = RefugeeSoccerSegment;
-
-//<DataUpdated updatedAt={RefugeeConstants.SYRIA_REFUGEES_DATA_UPDATED_MOMENT} />
