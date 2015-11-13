@@ -30334,15 +30334,16 @@ Greece,Afghanistan,2014,September,133
 Greece,Afghanistan,2014,October,170
 Greece,Afghanistan,2014,November,184
 Greece,Afghanistan,2014,December,144
-Greece,Afghanistan,2015,January,180
-Greece,Afghanistan,2015,February,191
-Greece,Afghanistan,2015,March,180
-Greece,Afghanistan,2015,April,191
-Greece,Afghanistan,2015,May,139
-Greece,Afghanistan,2015,June,137
-Greece,Afghanistan,2015,July,185
-Greece,Afghanistan,2015,August,151
-Greece,Afghanistan,2015,September,139
+Greece,Afghanistan,2015,January,164
+Greece,Afghanistan,2015,February,183
+Greece,Afghanistan,2015,March,168
+Greece,Afghanistan,2015,April,181
+Greece,Afghanistan,2015,May,131
+Greece,Afghanistan,2015,June,126
+Greece,Afghanistan,2015,July,163
+Greece,Afghanistan,2015,August,129
+Greece,Afghanistan,2015,September,114
+Greece,Afghanistan,2015,October,74
 Greece,Albania,2012,January,35
 Greece,Albania,2012,February,22
 Greece,Albania,2012,March,32
@@ -30379,15 +30380,16 @@ Greece,Albania,2014,September,31
 Greece,Albania,2014,October,23
 Greece,Albania,2014,November,17
 Greece,Albania,2014,December,19
-Greece,Albania,2015,January,27
+Greece,Albania,2015,January,22
 Greece,Albania,2015,February,33
-Greece,Albania,2015,March,46
+Greece,Albania,2015,March,43
 Greece,Albania,2015,April,29
-Greece,Albania,2015,May,44
-Greece,Albania,2015,June,55
-Greece,Albania,2015,July,74
-Greece,Albania,2015,August,71
-Greece,Albania,2015,September,149
+Greece,Albania,2015,May,42
+Greece,Albania,2015,June,54
+Greece,Albania,2015,July,67
+Greece,Albania,2015,August,64
+Greece,Albania,2015,September,126
+Greece,Albania,2015,October,167
 Greece,Algeria,2012,January,5
 Greece,Algeria,2012,February,10
 Greece,Algeria,2012,March,11
@@ -30424,15 +30426,16 @@ Greece,Algeria,2014,September,15
 Greece,Algeria,2014,October,19
 Greece,Algeria,2014,November,5
 Greece,Algeria,2014,December,16
-Greece,Algeria,2015,January,17
-Greece,Algeria,2015,February,18
-Greece,Algeria,2015,March,13
-Greece,Algeria,2015,April,13
-Greece,Algeria,2015,May,11
-Greece,Algeria,2015,June,6
+Greece,Algeria,2015,January,12
+Greece,Algeria,2015,February,14
+Greece,Algeria,2015,March,10
+Greece,Algeria,2015,April,11
+Greece,Algeria,2015,May,8
+Greece,Algeria,2015,June,*
 Greece,Algeria,2015,July,6
 Greece,Algeria,2015,August,*
-Greece,Algeria,2015,September,14
+Greece,Algeria,2015,September,12
+Greece,Algeria,2015,October,*
 Greece,Angola,2012,October,1
 Greece,Angola,2013,March,3
 Greece,Angola,2013,October,2
@@ -30472,15 +30475,16 @@ Greece,Egypt,2014,September,9
 Greece,Egypt,2014,October,23
 Greece,Egypt,2014,November,19
 Greece,Egypt,2014,December,6
-Greece,Egypt,2015,January,8
-Greece,Egypt,2015,February,14
-Greece,Egypt,2015,March,18
-Greece,Egypt,2015,April,12
-Greece,Egypt,2015,May,17
-Greece,Egypt,2015,June,18
-Greece,Egypt,2015,July,17
-Greece,Egypt,2015,August,18
-Greece,Egypt,2015,September,30
+Greece,Egypt,2015,January,6
+Greece,Egypt,2015,February,10
+Greece,Egypt,2015,March,14
+Greece,Egypt,2015,April,11
+Greece,Egypt,2015,May,10
+Greece,Egypt,2015,June,13
+Greece,Egypt,2015,July,15
+Greece,Egypt,2015,August,12
+Greece,Egypt,2015,September,24
+Greece,Egypt,2015,October,39
 Greece,Armenia,2012,January,5
 Greece,Armenia,2012,March,2
 Greece,Armenia,2012,April,4
@@ -30521,9 +30525,9 @@ Greece,Armenia,2015,March,*
 Greece,Armenia,2015,April,*
 Greece,Armenia,2015,May,*
 Greece,Armenia,2015,June,*
-Greece,Armenia,2015,July,*
-Greece,Armenia,2015,August,5
+Greece,Armenia,2015,August,*
 Greece,Armenia,2015,September,*
+Greece,Armenia,2015,October,*
 Greece,Azerbaijan,2012,February,2
 Greece,Azerbaijan,2012,April,1
 Greece,Azerbaijan,2012,July,1
@@ -30534,7 +30538,6 @@ Greece,Bahrain,2012,August,3
 Greece,Bahrain,2013,March,1
 Greece,Burundi,2014,March,*
 Greece,Burundi,2014,April,*
-Greece,Burundi,2015,February,*
 Greece,Burundi,2015,July,*
 Greece,Burundi,2015,September,*
 Greece,Benin,2012,January,1
@@ -30581,15 +30584,16 @@ Greece,Bangladesh,2014,September,59
 Greece,Bangladesh,2014,October,57
 Greece,Bangladesh,2014,November,37
 Greece,Bangladesh,2014,December,91
-Greece,Bangladesh,2015,January,81
-Greece,Bangladesh,2015,February,73
-Greece,Bangladesh,2015,March,63
-Greece,Bangladesh,2015,April,50
-Greece,Bangladesh,2015,May,72
-Greece,Bangladesh,2015,June,84
-Greece,Bangladesh,2015,July,30
-Greece,Bangladesh,2015,August,37
-Greece,Bangladesh,2015,September,50
+Greece,Bangladesh,2015,January,58
+Greece,Bangladesh,2015,February,53
+Greece,Bangladesh,2015,March,45
+Greece,Bangladesh,2015,April,30
+Greece,Bangladesh,2015,May,46
+Greece,Bangladesh,2015,June,63
+Greece,Bangladesh,2015,July,23
+Greece,Bangladesh,2015,August,26
+Greece,Bangladesh,2015,September,33
+Greece,Bangladesh,2015,October,47
 Greece,Bhutan,2013,July,1
 Greece,"Burkina Faso",2012,January,1
 Greece,"Burkina Faso",2012,April,1
@@ -30613,7 +30617,7 @@ Greece,"Burkina Faso",2014,March,*
 Greece,"Burkina Faso",2014,May,*
 Greece,"Burkina Faso",2014,June,*
 Greece,"Burkina Faso",2014,October,*
-Greece,"Burkina Faso",2015,January,6
+Greece,"Burkina Faso",2015,January,*
 Greece,"Burkina Faso",2015,March,*
 Greece,"Burkina Faso",2015,May,*
 Greece,"Burkina Faso",2015,June,*
@@ -30675,15 +30679,16 @@ Greece,China,2014,September,*
 Greece,China,2014,October,8
 Greece,China,2014,November,*
 Greece,China,2014,December,7
-Greece,China,2015,January,5
+Greece,China,2015,January,*
 Greece,China,2015,February,*
 Greece,China,2015,March,7
 Greece,China,2015,April,*
-Greece,China,2015,May,7
-Greece,China,2015,June,7
+Greece,China,2015,May,6
+Greece,China,2015,June,5
 Greece,China,2015,July,7
-Greece,China,2015,August,10
+Greece,China,2015,August,8
 Greece,China,2015,September,12
+Greece,China,2015,October,17
 Greece,Chile,2015,February,*
 Greece,Cameroon,2012,March,1
 Greece,Cameroon,2012,April,1
@@ -30717,14 +30722,15 @@ Greece,Cameroon,2014,October,51
 Greece,Cameroon,2014,November,21
 Greece,Cameroon,2014,December,19
 Greece,Cameroon,2015,January,21
-Greece,Cameroon,2015,February,22
-Greece,Cameroon,2015,March,21
+Greece,Cameroon,2015,February,21
+Greece,Cameroon,2015,March,20
 Greece,Cameroon,2015,April,16
-Greece,Cameroon,2015,May,28
+Greece,Cameroon,2015,May,27
 Greece,Cameroon,2015,June,17
-Greece,Cameroon,2015,July,20
-Greece,Cameroon,2015,August,7
-Greece,Cameroon,2015,September,10
+Greece,Cameroon,2015,July,19
+Greece,Cameroon,2015,August,6
+Greece,Cameroon,2015,September,8
+Greece,Cameroon,2015,October,*
 Greece,Congo,2012,January,1
 Greece,Congo,2012,February,2
 Greece,Congo,2012,March,5
@@ -30753,7 +30759,7 @@ Greece,Congo,2014,November,*
 Greece,Congo,2014,December,*
 Greece,Congo,2015,January,*
 Greece,Congo,2015,February,7
-Greece,Congo,2015,March,5
+Greece,Congo,2015,March,*
 Greece,Congo,2015,April,*
 Greece,Congo,2015,May,*
 Greece,Congo,2015,June,*
@@ -30786,13 +30792,14 @@ Greece,"Dem. Rep. of the Congo",2014,November,12
 Greece,"Dem. Rep. of the Congo",2014,December,22
 Greece,"Dem. Rep. of the Congo",2015,January,12
 Greece,"Dem. Rep. of the Congo",2015,February,19
-Greece,"Dem. Rep. of the Congo",2015,March,11
-Greece,"Dem. Rep. of the Congo",2015,April,10
+Greece,"Dem. Rep. of the Congo",2015,March,12
+Greece,"Dem. Rep. of the Congo",2015,April,12
 Greece,"Dem. Rep. of the Congo",2015,May,10
-Greece,"Dem. Rep. of the Congo",2015,June,13
+Greece,"Dem. Rep. of the Congo",2015,June,12
 Greece,"Dem. Rep. of the Congo",2015,July,8
-Greece,"Dem. Rep. of the Congo",2015,August,11
+Greece,"Dem. Rep. of the Congo",2015,August,6
 Greece,"Dem. Rep. of the Congo",2015,September,6
+Greece,"Dem. Rep. of the Congo",2015,October,6
 Greece,Comoros,2012,March,1
 Greece,Comoros,2012,April,1
 Greece,Comoros,2012,June,1
@@ -30815,7 +30822,7 @@ Greece,Comoros,2014,February,*
 Greece,Comoros,2014,September,*
 Greece,Comoros,2015,February,*
 Greece,Comoros,2015,March,*
-Greece,Comoros,2015,May,8
+Greece,Comoros,2015,May,7
 Greece,Comoros,2015,June,*
 Greece,Colombia,2012,March,1
 Greece,Cuba,2012,February,1
@@ -30861,7 +30868,7 @@ Greece,"Dominican Rep.",2015,March,*
 Greece,"Dominican Rep.",2015,April,*
 Greece,"Dominican Rep.",2015,May,6
 Greece,"Dominican Rep.",2015,June,6
-Greece,"Dominican Rep.",2015,July,7
+Greece,"Dominican Rep.",2015,July,6
 Greece,"Dominican Rep.",2015,August,*
 Greece,"Dominican Rep.",2015,September,5
 Greece,"Equatorial Guinea",2012,August,3
@@ -30901,15 +30908,16 @@ Greece,Eritrea,2014,September,9
 Greece,Eritrea,2014,October,33
 Greece,Eritrea,2014,November,17
 Greece,Eritrea,2014,December,23
-Greece,Eritrea,2015,January,17
-Greece,Eritrea,2015,February,7
+Greece,Eritrea,2015,January,14
+Greece,Eritrea,2015,February,5
 Greece,Eritrea,2015,March,9
 Greece,Eritrea,2015,April,*
-Greece,Eritrea,2015,May,11
-Greece,Eritrea,2015,June,9
+Greece,Eritrea,2015,May,9
+Greece,Eritrea,2015,June,8
 Greece,Eritrea,2015,July,6
 Greece,Eritrea,2015,August,*
 Greece,Eritrea,2015,September,*
+Greece,Eritrea,2015,October,7
 Greece,Ethiopia,2012,January,1
 Greece,Ethiopia,2012,February,7
 Greece,Ethiopia,2012,March,29
@@ -30946,22 +30954,21 @@ Greece,Ethiopia,2014,September,*
 Greece,Ethiopia,2014,October,8
 Greece,Ethiopia,2014,November,*
 Greece,Ethiopia,2014,December,*
-Greece,Ethiopia,2015,January,7
+Greece,Ethiopia,2015,January,6
 Greece,Ethiopia,2015,February,*
-Greece,Ethiopia,2015,March,5
-Greece,Ethiopia,2015,April,10
-Greece,Ethiopia,2015,May,5
+Greece,Ethiopia,2015,March,*
+Greece,Ethiopia,2015,April,6
+Greece,Ethiopia,2015,May,*
 Greece,Ethiopia,2015,June,10
 Greece,Ethiopia,2015,July,*
 Greece,Ethiopia,2015,August,*
-Greece,Ethiopia,2015,September,*
+Greece,Ethiopia,2015,October,6
 Greece,Gabon,2012,December,1
 Greece,Gabon,2013,June,1
 Greece,Gabon,2014,April,*
 Greece,Gabon,2014,July,*
 Greece,Gabon,2014,September,*
 Greece,Gabon,2015,February,*
-Greece,Gabon,2015,March,*
 Greece,Gabon,2015,April,*
 Greece,Gambia,2012,January,1
 Greece,Gambia,2012,March,1
@@ -30992,12 +30999,9 @@ Greece,Gambia,2014,August,*
 Greece,Gambia,2014,September,*
 Greece,Gambia,2014,October,*
 Greece,Gambia,2014,November,*
-Greece,Gambia,2015,February,*
 Greece,Gambia,2015,March,*
 Greece,Gambia,2015,April,*
 Greece,Gambia,2015,May,*
-Greece,Gambia,2015,July,*
-Greece,Gambia,2015,September,5
 Greece,Palestinian,2012,March,4
 Greece,Palestinian,2012,April,7
 Greece,Palestinian,2012,May,2
@@ -31029,7 +31033,7 @@ Greece,Palestinian,2014,September,11
 Greece,Palestinian,2014,October,6
 Greece,Palestinian,2014,November,*
 Greece,Palestinian,2014,December,*
-Greece,Palestinian,2015,January,34
+Greece,Palestinian,2015,January,33
 Greece,Palestinian,2015,February,15
 Greece,Palestinian,2015,March,*
 Greece,Palestinian,2015,May,*
@@ -31072,15 +31076,16 @@ Greece,Georgia,2014,September,19
 Greece,Georgia,2014,October,24
 Greece,Georgia,2014,November,13
 Greece,Georgia,2014,December,11
-Greece,Georgia,2015,January,14
-Greece,Georgia,2015,February,21
-Greece,Georgia,2015,March,16
-Greece,Georgia,2015,April,17
-Greece,Georgia,2015,May,23
-Greece,Georgia,2015,June,18
-Greece,Georgia,2015,July,30
-Greece,Georgia,2015,August,28
-Greece,Georgia,2015,September,56
+Greece,Georgia,2015,January,12
+Greece,Georgia,2015,February,15
+Greece,Georgia,2015,March,14
+Greece,Georgia,2015,April,10
+Greece,Georgia,2015,May,17
+Greece,Georgia,2015,June,15
+Greece,Georgia,2015,July,20
+Greece,Georgia,2015,August,23
+Greece,Georgia,2015,September,48
+Greece,Georgia,2015,October,37
 Greece,Germany,2015,March,*
 Greece,Ghana,2012,January,28
 Greece,Ghana,2012,February,15
@@ -31113,20 +31118,20 @@ Greece,Ghana,2014,September,*
 Greece,Ghana,2014,October,*
 Greece,Ghana,2014,November,*
 Greece,Ghana,2014,December,*
-Greece,Ghana,2015,January,9
+Greece,Ghana,2015,January,7
 Greece,Ghana,2015,February,5
 Greece,Ghana,2015,March,*
 Greece,Ghana,2015,April,5
-Greece,Ghana,2015,May,8
+Greece,Ghana,2015,May,7
 Greece,Ghana,2015,June,*
 Greece,Ghana,2015,July,*
-Greece,Ghana,2015,August,8
+Greece,Ghana,2015,August,*
 Greece,Ghana,2015,September,*
+Greece,Ghana,2015,October,*
 Greece,Guinea-Bissau,2012,March,2
 Greece,Guinea-Bissau,2012,April,2
 Greece,Guinea-Bissau,2013,December,1
 Greece,Guinea-Bissau,2015,June,*
-Greece,Guinea-Bissau,2015,September,*
 Greece,Guinea,2012,January,2
 Greece,Guinea,2012,February,4
 Greece,Guinea,2012,March,12
@@ -31162,9 +31167,8 @@ Greece,Guinea,2014,December,*
 Greece,Guinea,2015,January,*
 Greece,Guinea,2015,March,*
 Greece,Guinea,2015,April,*
-Greece,Guinea,2015,May,*
-Greece,Guinea,2015,July,5
 Greece,Guinea,2015,September,*
+Greece,Guinea,2015,October,*
 Greece,Haiti,2014,November,*
 Greece,Haiti,2015,June,*
 Greece,Honduras,2012,March,1
@@ -31203,15 +31207,14 @@ Greece,"Côte d'Ivoire",2014,September,6
 Greece,"Côte d'Ivoire",2014,October,10
 Greece,"Côte d'Ivoire",2014,November,13
 Greece,"Côte d'Ivoire",2014,December,*
-Greece,"Côte d'Ivoire",2015,January,8
+Greece,"Côte d'Ivoire",2015,January,7
 Greece,"Côte d'Ivoire",2015,February,*
-Greece,"Côte d'Ivoire",2015,March,7
+Greece,"Côte d'Ivoire",2015,March,6
 Greece,"Côte d'Ivoire",2015,April,5
 Greece,"Côte d'Ivoire",2015,May,*
 Greece,"Côte d'Ivoire",2015,June,5
-Greece,"Côte d'Ivoire",2015,July,7
-Greece,"Côte d'Ivoire",2015,August,5
-Greece,"Côte d'Ivoire",2015,September,*
+Greece,"Côte d'Ivoire",2015,July,6
+Greece,"Côte d'Ivoire",2015,August,*
 Greece,India,2012,January,13
 Greece,India,2012,February,16
 Greece,India,2012,March,17
@@ -31248,15 +31251,15 @@ Greece,India,2014,September,*
 Greece,India,2014,October,*
 Greece,India,2014,November,*
 Greece,India,2014,December,6
-Greece,India,2015,January,6
+Greece,India,2015,January,*
 Greece,India,2015,February,*
 Greece,India,2015,March,*
-Greece,India,2015,April,*
-Greece,India,2015,May,8
-Greece,India,2015,June,11
+Greece,India,2015,May,5
+Greece,India,2015,June,9
 Greece,India,2015,July,*
-Greece,India,2015,August,5
+Greece,India,2015,August,*
 Greece,India,2015,September,*
+Greece,India,2015,October,5
 Greece,Indonesia,2012,June,1
 Greece,Indonesia,2012,July,1
 Greece,Indonesia,2012,September,1
@@ -31274,10 +31277,8 @@ Greece,Indonesia,2014,April,*
 Greece,Indonesia,2014,July,*
 Greece,Indonesia,2014,September,*
 Greece,Indonesia,2014,November,*
-Greece,Indonesia,2015,April,*
 Greece,Indonesia,2015,June,*
 Greece,Indonesia,2015,August,*
-Greece,Indonesia,2015,September,*
 Greece,"Iran (Islamic Rep. of)",2012,January,11
 Greece,"Iran (Islamic Rep. of)",2012,February,32
 Greece,"Iran (Islamic Rep. of)",2012,March,22
@@ -31314,15 +31315,16 @@ Greece,"Iran (Islamic Rep. of)",2014,September,15
 Greece,"Iran (Islamic Rep. of)",2014,October,38
 Greece,"Iran (Islamic Rep. of)",2014,November,16
 Greece,"Iran (Islamic Rep. of)",2014,December,34
-Greece,"Iran (Islamic Rep. of)",2015,January,36
-Greece,"Iran (Islamic Rep. of)",2015,February,18
-Greece,"Iran (Islamic Rep. of)",2015,March,12
-Greece,"Iran (Islamic Rep. of)",2015,April,18
-Greece,"Iran (Islamic Rep. of)",2015,May,27
-Greece,"Iran (Islamic Rep. of)",2015,June,16
-Greece,"Iran (Islamic Rep. of)",2015,July,29
-Greece,"Iran (Islamic Rep. of)",2015,August,17
-Greece,"Iran (Islamic Rep. of)",2015,September,26
+Greece,"Iran (Islamic Rep. of)",2015,January,28
+Greece,"Iran (Islamic Rep. of)",2015,February,16
+Greece,"Iran (Islamic Rep. of)",2015,March,10
+Greece,"Iran (Islamic Rep. of)",2015,April,15
+Greece,"Iran (Islamic Rep. of)",2015,May,24
+Greece,"Iran (Islamic Rep. of)",2015,June,12
+Greece,"Iran (Islamic Rep. of)",2015,July,20
+Greece,"Iran (Islamic Rep. of)",2015,August,13
+Greece,"Iran (Islamic Rep. of)",2015,September,16
+Greece,"Iran (Islamic Rep. of)",2015,October,*
 Greece,Iraq,2012,January,11
 Greece,Iraq,2012,February,15
 Greece,Iraq,2012,March,18
@@ -31359,15 +31361,16 @@ Greece,Iraq,2014,September,17
 Greece,Iraq,2014,October,21
 Greece,Iraq,2014,November,20
 Greece,Iraq,2014,December,14
-Greece,Iraq,2015,January,21
-Greece,Iraq,2015,February,16
-Greece,Iraq,2015,March,13
-Greece,Iraq,2015,April,23
-Greece,Iraq,2015,May,26
-Greece,Iraq,2015,June,26
-Greece,Iraq,2015,July,54
-Greece,Iraq,2015,August,67
-Greece,Iraq,2015,September,55
+Greece,Iraq,2015,January,19
+Greece,Iraq,2015,February,15
+Greece,Iraq,2015,March,8
+Greece,Iraq,2015,April,14
+Greece,Iraq,2015,May,18
+Greece,Iraq,2015,June,24
+Greece,Iraq,2015,July,44
+Greece,Iraq,2015,August,56
+Greece,Iraq,2015,September,44
+Greece,Iraq,2015,October,55
 Greece,Israel,2012,September,1
 Greece,Israel,2013,January,1
 Greece,Israel,2014,June,*
@@ -31411,12 +31414,11 @@ Greece,Kenya,2014,July,*
 Greece,Kenya,2014,August,*
 Greece,Kenya,2014,November,*
 Greece,Kenya,2014,December,*
-Greece,Kenya,2015,January,*
-Greece,Kenya,2015,March,*
 Greece,Kenya,2015,May,*
 Greece,Kenya,2015,July,*
 Greece,Kenya,2015,August,*
 Greece,Kenya,2015,September,*
+Greece,Kenya,2015,October,*
 Greece,Kyrgyzstan,2014,June,*
 Greece,Liberia,2012,January,1
 Greece,Liberia,2012,March,1
@@ -31451,6 +31453,7 @@ Greece,Libya,2015,May,*
 Greece,Libya,2015,June,*
 Greece,Libya,2015,July,*
 Greece,Libya,2015,September,*
+Greece,Libya,2015,October,*
 Greece,Lebanon,2012,March,1
 Greece,Lebanon,2012,September,1
 Greece,Lebanon,2012,December,1
@@ -31467,7 +31470,6 @@ Greece,Lebanon,2014,August,*
 Greece,Lebanon,2014,December,*
 Greece,Lebanon,2015,May,*
 Greece,Lebanon,2015,August,*
-Greece,Lebanon,2015,September,*
 Greece,"Sri Lanka",2012,January,1
 Greece,"Sri Lanka",2012,March,1
 Greece,"Sri Lanka",2012,April,1
@@ -31499,19 +31501,18 @@ Greece,"Sri Lanka",2014,September,*
 Greece,"Sri Lanka",2014,October,*
 Greece,"Sri Lanka",2014,December,*
 Greece,"Sri Lanka",2015,January,*
-Greece,"Sri Lanka",2015,February,*
-Greece,"Sri Lanka",2015,March,*
 Greece,"Sri Lanka",2015,April,*
 Greece,"Sri Lanka",2015,May,*
 Greece,"Sri Lanka",2015,August,*
 Greece,"Sri Lanka",2015,September,*
+Greece,"Sri Lanka",2015,October,*
 Greece,Madagascar,2012,March,1
 Greece,Madagascar,2012,April,1
 Greece,Madagascar,2012,September,1
 Greece,Madagascar,2013,September,1
-Greece,Madagascar,2015,July,*
 Greece,Madagascar,2015,August,*
 Greece,Madagascar,2015,September,*
+Greece,Madagascar,2015,October,*
 Greece,Mauritania,2012,January,1
 Greece,Mauritania,2012,February,1
 Greece,Mauritania,2012,March,5
@@ -31543,10 +31544,7 @@ Greece,Mauritania,2014,August,*
 Greece,Mauritania,2014,September,*
 Greece,Mauritania,2014,October,*
 Greece,Mauritania,2014,December,*
-Greece,Mauritania,2015,January,*
 Greece,Mauritania,2015,February,*
-Greece,Mauritania,2015,April,*
-Greece,Mauritania,2015,May,*
 Greece,Mauritania,2015,June,*
 Greece,Mauritania,2015,July,*
 Greece,Mauritania,2015,August,*
@@ -31587,8 +31585,8 @@ Greece,"Rep. of Moldova",2015,April,*
 Greece,"Rep. of Moldova",2015,May,5
 Greece,"Rep. of Moldova",2015,June,*
 Greece,"Rep. of Moldova",2015,July,*
-Greece,"Rep. of Moldova",2015,August,*
 Greece,"Rep. of Moldova",2015,September,*
+Greece,"Rep. of Moldova",2015,October,*
 Greece,Mali,2012,January,1
 Greece,Mali,2012,June,19
 Greece,Mali,2012,July,15
@@ -31665,15 +31663,15 @@ Greece,Morocco,2014,September,6
 Greece,Morocco,2014,October,8
 Greece,Morocco,2014,November,6
 Greece,Morocco,2014,December,9
-Greece,Morocco,2015,January,9
-Greece,Morocco,2015,February,*
-Greece,Morocco,2015,March,7
+Greece,Morocco,2015,January,8
+Greece,Morocco,2015,March,5
 Greece,Morocco,2015,April,*
-Greece,Morocco,2015,May,6
+Greece,Morocco,2015,May,*
 Greece,Morocco,2015,June,*
-Greece,Morocco,2015,July,7
-Greece,Morocco,2015,August,5
+Greece,Morocco,2015,July,6
+Greece,Morocco,2015,August,*
 Greece,Morocco,2015,September,5
+Greece,Morocco,2015,October,7
 Greece,Mozambique,2012,January,1
 Greece,Mauritius,2012,January,1
 Greece,Mauritius,2012,December,2
@@ -31711,9 +31709,7 @@ Greece,Nepal,2014,May,*
 Greece,Nepal,2014,September,*
 Greece,Nepal,2014,November,*
 Greece,Nepal,2014,December,*
-Greece,Nepal,2015,February,*
 Greece,Nepal,2015,June,*
-Greece,Nepal,2015,September,*
 Greece,Niger,2012,January,5
 Greece,Niger,2012,February,2
 Greece,Niger,2012,March,9
@@ -31762,15 +31758,16 @@ Greece,Nigeria,2014,September,36
 Greece,Nigeria,2014,October,18
 Greece,Nigeria,2014,November,20
 Greece,Nigeria,2014,December,24
-Greece,Nigeria,2015,January,30
-Greece,Nigeria,2015,February,33
-Greece,Nigeria,2015,March,29
-Greece,Nigeria,2015,April,26
-Greece,Nigeria,2015,May,32
-Greece,Nigeria,2015,June,31
-Greece,Nigeria,2015,July,43
-Greece,Nigeria,2015,August,32
-Greece,Nigeria,2015,September,30
+Greece,Nigeria,2015,January,18
+Greece,Nigeria,2015,February,27
+Greece,Nigeria,2015,March,17
+Greece,Nigeria,2015,April,17
+Greece,Nigeria,2015,May,24
+Greece,Nigeria,2015,June,17
+Greece,Nigeria,2015,July,17
+Greece,Nigeria,2015,August,11
+Greece,Nigeria,2015,September,9
+Greece,Nigeria,2015,October,6
 Greece,Oman,2012,February,5
 Greece,Oman,2013,February,6
 Greece,Oman,2013,April,4
@@ -31810,15 +31807,16 @@ Greece,Pakistan,2014,September,92
 Greece,Pakistan,2014,October,133
 Greece,Pakistan,2014,November,96
 Greece,Pakistan,2014,December,199
-Greece,Pakistan,2015,January,163
-Greece,Pakistan,2015,February,137
-Greece,Pakistan,2015,March,95
-Greece,Pakistan,2015,April,124
-Greece,Pakistan,2015,May,152
-Greece,Pakistan,2015,June,138
-Greece,Pakistan,2015,July,166
-Greece,Pakistan,2015,August,142
-Greece,Pakistan,2015,September,190
+Greece,Pakistan,2015,January,134
+Greece,Pakistan,2015,February,102
+Greece,Pakistan,2015,March,75
+Greece,Pakistan,2015,April,104
+Greece,Pakistan,2015,May,123
+Greece,Pakistan,2015,June,114
+Greece,Pakistan,2015,July,136
+Greece,Pakistan,2015,August,115
+Greece,Pakistan,2015,September,157
+Greece,Pakistan,2015,October,138
 Greece,Paraguay,2013,July,2
 Greece,Paraguay,2013,November,1
 Greece,Paraguay,2014,September,*
@@ -31853,7 +31851,7 @@ Greece,Philippines,2014,November,*
 Greece,Philippines,2015,March,*
 Greece,Philippines,2015,April,*
 Greece,Philippines,2015,July,*
-Greece,Philippines,2015,September,*
+Greece,Philippines,2015,October,*
 Greece,Portugal,2014,May,*
 Greece,Romania,2014,January,*
 Greece,Romania,2014,February,*
@@ -31899,6 +31897,7 @@ Greece,"Russian Federation",2015,June,*
 Greece,"Russian Federation",2015,July,6
 Greece,"Russian Federation",2015,August,*
 Greece,"Russian Federation",2015,September,*
+Greece,"Russian Federation",2015,October,*
 Greece,Rwanda,2012,July,1
 Greece,Rwanda,2012,October,1
 Greece,Rwanda,2013,July,2
@@ -31917,7 +31916,6 @@ Greece,Rwanda,2014,December,*
 Greece,Rwanda,2015,February,*
 Greece,Rwanda,2015,April,*
 Greece,Rwanda,2015,May,*
-Greece,Rwanda,2015,September,*
 Greece,"El Salvador",2012,April,1
 Greece,"El Salvador",2012,May,1
 Greece,"El Salvador",2012,August,1
@@ -31928,7 +31926,9 @@ Greece,"El Salvador",2015,March,*
 Greece,"El Salvador",2015,April,*
 Greece,"El Salvador",2015,June,*
 Greece,"El Salvador",2015,August,*
+Greece,"El Salvador",2015,October,*
 Greece,"Saudi Arabia",2014,February,*
+Greece,"Saudi Arabia",2015,October,*
 Greece,Senegal,2012,January,38
 Greece,Senegal,2012,February,49
 Greece,Senegal,2012,March,33
@@ -31967,12 +31967,13 @@ Greece,Senegal,2014,November,*
 Greece,Senegal,2014,December,*
 Greece,Senegal,2015,January,*
 Greece,Senegal,2015,February,*
-Greece,Senegal,2015,April,6
+Greece,Senegal,2015,April,*
 Greece,Senegal,2015,May,*
-Greece,Senegal,2015,June,7
-Greece,Senegal,2015,July,14
-Greece,Senegal,2015,August,8
-Greece,Senegal,2015,September,10
+Greece,Senegal,2015,June,*
+Greece,Senegal,2015,July,6
+Greece,Senegal,2015,August,*
+Greece,Senegal,2015,September,*
+Greece,Senegal,2015,October,*
 Greece,Singapore,2013,October,1
 Greece,"Sierra Leone",2012,January,1
 Greece,"Sierra Leone",2012,March,2
@@ -32002,8 +32003,8 @@ Greece,"Sierra Leone",2014,October,*
 Greece,"Sierra Leone",2014,November,6
 Greece,"Sierra Leone",2014,December,6
 Greece,"Sierra Leone",2015,January,*
-Greece,"Sierra Leone",2015,February,*
-Greece,"Sierra Leone",2015,March,5
+Greece,"Sierra Leone",2015,February,5
+Greece,"Sierra Leone",2015,March,*
 Greece,"Sierra Leone",2015,April,*
 Greece,"Sierra Leone",2015,May,*
 Greece,"Sierra Leone",2015,June,*
@@ -32044,15 +32045,16 @@ Greece,Somalia,2014,September,*
 Greece,Somalia,2014,October,12
 Greece,Somalia,2014,November,*
 Greece,Somalia,2014,December,7
-Greece,Somalia,2015,January,15
-Greece,Somalia,2015,February,17
-Greece,Somalia,2015,March,11
+Greece,Somalia,2015,January,14
+Greece,Somalia,2015,February,13
+Greece,Somalia,2015,March,9
 Greece,Somalia,2015,April,9
 Greece,Somalia,2015,May,6
-Greece,Somalia,2015,June,12
+Greece,Somalia,2015,June,11
 Greece,Somalia,2015,July,15
-Greece,Somalia,2015,August,9
-Greece,Somalia,2015,September,6
+Greece,Somalia,2015,August,8
+Greece,Somalia,2015,September,5
+Greece,Somalia,2015,October,*
 Greece,Spain,2014,September,*
 Greece,"Viet Nam",2012,March,1
 Greece,"Viet Nam",2012,May,1
@@ -32081,14 +32083,15 @@ Greece,Stateless,2014,October,5
 Greece,Stateless,2014,November,*
 Greece,Stateless,2014,December,6
 Greece,Stateless,2015,January,9
-Greece,Stateless,2015,February,38
-Greece,Stateless,2015,March,9
+Greece,Stateless,2015,February,36
+Greece,Stateless,2015,March,8
 Greece,Stateless,2015,April,26
-Greece,Stateless,2015,May,51
-Greece,Stateless,2015,June,25
+Greece,Stateless,2015,May,50
+Greece,Stateless,2015,June,24
 Greece,Stateless,2015,July,10
 Greece,Stateless,2015,August,12
-Greece,Stateless,2015,September,9
+Greece,Stateless,2015,September,8
+Greece,Stateless,2015,October,5
 Greece,"Sao Tome and Principe",2012,March,1
 Greece,"Sao Tome and Principe",2012,April,1
 Greece,Sudan,2012,January,11
@@ -32126,15 +32129,16 @@ Greece,Sudan,2014,September,13
 Greece,Sudan,2014,October,38
 Greece,Sudan,2014,November,22
 Greece,Sudan,2014,December,39
-Greece,Sudan,2015,January,23
-Greece,Sudan,2015,February,17
+Greece,Sudan,2015,January,21
+Greece,Sudan,2015,February,16
 Greece,Sudan,2015,March,17
-Greece,Sudan,2015,April,27
-Greece,Sudan,2015,May,22
-Greece,Sudan,2015,June,10
-Greece,Sudan,2015,July,7
+Greece,Sudan,2015,April,25
+Greece,Sudan,2015,May,21
+Greece,Sudan,2015,June,8
+Greece,Sudan,2015,July,5
 Greece,Sudan,2015,August,*
 Greece,Sudan,2015,September,*
+Greece,Sudan,2015,October,*
 Greece,Slovakia,2014,September,*
 Greece,Swaziland,2012,June,1
 Greece,"Syrian Arab Rep.",2012,January,9
@@ -32173,15 +32177,16 @@ Greece,"Syrian Arab Rep.",2014,September,57
 Greece,"Syrian Arab Rep.",2014,October,95
 Greece,"Syrian Arab Rep.",2014,November,74
 Greece,"Syrian Arab Rep.",2014,December,190
-Greece,"Syrian Arab Rep.",2015,January,237
-Greece,"Syrian Arab Rep.",2015,February,239
-Greece,"Syrian Arab Rep.",2015,March,247
-Greece,"Syrian Arab Rep.",2015,April,275
-Greece,"Syrian Arab Rep.",2015,May,353
-Greece,"Syrian Arab Rep.",2015,June,384
-Greece,"Syrian Arab Rep.",2015,July,424
-Greece,"Syrian Arab Rep.",2015,August,354
-Greece,"Syrian Arab Rep.",2015,September,265
+Greece,"Syrian Arab Rep.",2015,January,235
+Greece,"Syrian Arab Rep.",2015,February,225
+Greece,"Syrian Arab Rep.",2015,March,222
+Greece,"Syrian Arab Rep.",2015,April,253
+Greece,"Syrian Arab Rep.",2015,May,336
+Greece,"Syrian Arab Rep.",2015,June,375
+Greece,"Syrian Arab Rep.",2015,July,410
+Greece,"Syrian Arab Rep.",2015,August,334
+Greece,"Syrian Arab Rep.",2015,September,245
+Greece,"Syrian Arab Rep.",2015,October,180
 Greece,"United Rep. of Tanzania",2012,June,1
 Greece,"United Rep. of Tanzania",2012,August,2
 Greece,"United Rep. of Tanzania",2013,April,2
@@ -32198,12 +32203,9 @@ Greece,"United Rep. of Tanzania",2014,March,*
 Greece,"United Rep. of Tanzania",2014,May,*
 Greece,"United Rep. of Tanzania",2014,August,*
 Greece,"United Rep. of Tanzania",2014,December,*
-Greece,"United Rep. of Tanzania",2015,January,*
 Greece,"United Rep. of Tanzania",2015,March,*
-Greece,"United Rep. of Tanzania",2015,May,*
 Greece,"United Rep. of Tanzania",2015,June,*
 Greece,"United Rep. of Tanzania",2015,July,*
-Greece,"United Rep. of Tanzania",2015,September,*
 Greece,Timor-Leste,2012,August,1
 Greece,Togo,2012,January,1
 Greece,Togo,2012,August,1
@@ -32225,6 +32227,7 @@ Greece,Togo,2015,February,*
 Greece,Togo,2015,March,*
 Greece,Togo,2015,May,*
 Greece,Togo,2015,June,*
+Greece,Togo,2015,October,*
 Greece,Tonga,2012,February,12
 Greece,Tunisia,2012,March,1
 Greece,Tunisia,2012,April,3
@@ -32264,9 +32267,9 @@ Greece,Tunisia,2015,March,*
 Greece,Tunisia,2015,April,*
 Greece,Tunisia,2015,May,*
 Greece,Tunisia,2015,June,*
-Greece,Tunisia,2015,July,*
 Greece,Tunisia,2015,August,*
 Greece,Tunisia,2015,September,*
+Greece,Tunisia,2015,October,*
 Greece,Turkey,2012,January,3
 Greece,Turkey,2012,February,1
 Greece,Turkey,2012,March,2
@@ -32308,6 +32311,7 @@ Greece,Turkey,2015,June,*
 Greece,Turkey,2015,July,*
 Greece,Turkey,2015,August,*
 Greece,Turkey,2015,September,*
+Greece,Turkey,2015,October,6
 Greece,Uganda,2013,August,1
 Greece,Uganda,2014,April,*
 Greece,Uganda,2014,August,*
@@ -32318,6 +32322,7 @@ Greece,Uganda,2015,January,*
 Greece,Uganda,2015,February,*
 Greece,Uganda,2015,April,*
 Greece,Uganda,2015,July,*
+Greece,Uganda,2015,October,*
 Greece,Ukraine,2012,January,4
 Greece,Ukraine,2012,February,6
 Greece,Ukraine,2012,March,2
@@ -32353,15 +32358,16 @@ Greece,Ukraine,2014,September,12
 Greece,Ukraine,2014,October,24
 Greece,Ukraine,2014,November,11
 Greece,Ukraine,2014,December,11
-Greece,Ukraine,2015,January,22
+Greece,Ukraine,2015,January,21
 Greece,Ukraine,2015,February,18
-Greece,Ukraine,2015,March,28
+Greece,Ukraine,2015,March,27
 Greece,Ukraine,2015,April,25
 Greece,Ukraine,2015,May,18
-Greece,Ukraine,2015,June,22
+Greece,Ukraine,2015,June,21
 Greece,Ukraine,2015,July,15
 Greece,Ukraine,2015,August,8
 Greece,Ukraine,2015,September,19
+Greece,Ukraine,2015,October,7
 Greece,"United States of America",2012,March,1
 Greece,"United States of America",2014,May,*
 Greece,Uzbekistan,2012,August,1
@@ -32381,13 +32387,10 @@ Greece,"South Sudan",2013,December,1
 Greece,"South Sudan",2014,February,*
 Greece,"South Sudan",2014,July,*
 Greece,"South Sudan",2014,October,*
-Greece,"South Sudan",2015,March,*
-Greece,"South Sudan",2015,May,*
 Greece,"Western Sahara",2014,March,*
 Greece,"Western Sahara",2014,July,*
 Greece,"Western Sahara",2014,August,*
 Greece,"Western Sahara",2014,September,*
-Greece,"Western Sahara",2015,January,*
 Greece,"Western Sahara",2015,April,*
 Greece,"Western Sahara",2015,May,*
 Greece,Yemen,2012,June,1
@@ -32408,6 +32411,7 @@ Greece,Zambia,2012,November,1
 Greece,Zambia,2015,June,*
 Greece,Zimbabwe,2013,November,1
 Greece,Zimbabwe,2013,December,1
+Greece,Zimbabwe,2015,October,*
 Croatia,Afghanistan,2012,January,11
 Croatia,Afghanistan,2012,February,3
 Croatia,Afghanistan,2012,March,24
@@ -34636,6 +34640,7 @@ Iceland,Afghanistan,2012,October,1
 Iceland,Afghanistan,2012,November,1
 Iceland,Afghanistan,2013,January,1
 Iceland,Afghanistan,2013,April,3
+Iceland,Afghanistan,2015,August,5
 Iceland,Albania,2012,August,1
 Iceland,Albania,2012,September,2
 Iceland,Albania,2012,October,4
@@ -34653,6 +34658,8 @@ Iceland,Albania,2015,March,5
 Iceland,Albania,2015,April,5
 Iceland,Albania,2015,June,10
 Iceland,Albania,2015,July,10
+Iceland,Albania,2015,August,15
+Iceland,Albania,2015,September,20
 Iceland,Algeria,2012,February,1
 Iceland,Algeria,2012,April,3
 Iceland,Algeria,2012,May,1
@@ -34666,6 +34673,7 @@ Iceland,Belarus,2012,July,1
 Iceland,Belarus,2012,September,1
 Iceland,Belarus,2013,January,2
 Iceland,Belarus,2014,May,5
+Iceland,Belarus,2015,September,5
 Iceland,"Bosnia and Herzegovina",2012,December,1
 Iceland,Colombia,2012,January,1
 Iceland,Colombia,2014,September,5
@@ -34681,6 +34689,7 @@ Iceland,Georgia,2013,January,3
 Iceland,Georgia,2014,April,5
 Iceland,Ghana,2012,July,2
 Iceland,Ghana,2013,March,1
+Iceland,Ghana,2015,September,5
 Iceland,Guinea,2012,August,2
 Iceland,Honduras,2013,May,3
 Iceland,Croatia,2012,November,6
@@ -34697,12 +34706,14 @@ Iceland,"Iran (Islamic Rep. of)",2012,September,1
 Iceland,"Iran (Islamic Rep. of)",2012,October,1
 Iceland,"Iran (Islamic Rep. of)",2012,November,2
 Iceland,"Iran (Islamic Rep. of)",2013,June,1
+Iceland,"Iran (Islamic Rep. of)",2015,September,5
 Iceland,Iraq,2012,January,1
 Iceland,Iraq,2012,April,1
 Iceland,Iraq,2012,August,1
 Iceland,Iraq,2013,February,1
 Iceland,Iraq,2013,October,5
 Iceland,Iraq,2014,December,5
+Iceland,Iraq,2015,September,5
 Iceland,Israel,2012,August,1
 Iceland,Libya,2012,April,1
 Iceland,Libya,2012,August,1
@@ -34712,6 +34723,8 @@ Iceland,"The former Yugoslav Rep. of Macedonia",2013,January,1
 Iceland,"The former Yugoslav Rep. of Macedonia",2013,March,1
 Iceland,"The former Yugoslav Rep. of Macedonia",2014,December,5
 Iceland,"The former Yugoslav Rep. of Macedonia",2015,June,5
+Iceland,"The former Yugoslav Rep. of Macedonia",2015,August,5
+Iceland,"The former Yugoslav Rep. of Macedonia",2015,September,5
 Iceland,Mali,2013,April,1
 Iceland,Morocco,2012,April,1
 Iceland,Morocco,2012,November,1
@@ -34726,6 +34739,7 @@ Iceland,Nigeria,2013,June,1
 Iceland,Pakistan,2012,March,1
 Iceland,Pakistan,2012,September,1
 Iceland,Pakistan,2012,December,1
+Iceland,Pakistan,2015,September,5
 Iceland,"Russian Federation",2012,November,3
 Iceland,"Russian Federation",2013,January,3
 Iceland,"Russian Federation",2013,February,2
@@ -34736,11 +34750,15 @@ Iceland,"Sierra Leone",2012,June,2
 Iceland,Somalia,2012,September,1
 Iceland,Somalia,2013,February,1
 Iceland,Stateless,2012,January,1
+Iceland,Stateless,2015,August,5
+Iceland,Stateless,2015,September,5
 Iceland,"Syrian Arab Rep.",2012,July,1
 Iceland,"Syrian Arab Rep.",2012,August,2
 Iceland,"Syrian Arab Rep.",2013,April,5
 Iceland,"Syrian Arab Rep.",2014,August,5
 Iceland,"Syrian Arab Rep.",2015,July,5
+Iceland,"Syrian Arab Rep.",2015,August,5
+Iceland,"Syrian Arab Rep.",2015,September,5
 Iceland,Tunisia,2013,February,1
 Iceland,Turkey,2012,October,1
 Iceland,Turkey,2012,November,1
@@ -34753,6 +34771,7 @@ Iceland,Ukraine,2014,December,5
 Iceland,"United States of America",2012,February,1
 Iceland,"United States of America",2012,May,1
 Iceland,Uzbekistan,2012,July,1
+Iceland,Uzbekistan,2015,August,5
 Iceland,"Western Sahara",2012,July,1
 Ireland,Afghanistan,2012,January,6
 Ireland,Afghanistan,2012,April,1
@@ -44046,6 +44065,7 @@ Netherlands,Afghanistan,2015,June,51
 Netherlands,Afghanistan,2015,July,67
 Netherlands,Afghanistan,2015,August,140
 Netherlands,Afghanistan,2015,September,155
+Netherlands,Afghanistan,2015,October,443
 Netherlands,Albania,2012,February,3
 Netherlands,Albania,2012,April,2
 Netherlands,Albania,2012,May,4
@@ -44082,6 +44102,7 @@ Netherlands,Albania,2015,June,40
 Netherlands,Albania,2015,July,71
 Netherlands,Albania,2015,August,76
 Netherlands,Albania,2015,September,171
+Netherlands,Albania,2015,October,286
 Netherlands,Algeria,2012,January,2
 Netherlands,Algeria,2012,March,2
 Netherlands,Algeria,2012,April,2
@@ -44120,6 +44141,7 @@ Netherlands,Algeria,2015,April,*
 Netherlands,Algeria,2015,June,5
 Netherlands,Algeria,2015,July,*
 Netherlands,Algeria,2015,August,*
+Netherlands,Algeria,2015,October,8
 Netherlands,Angola,2012,January,2
 Netherlands,Angola,2012,February,1
 Netherlands,Angola,2012,March,1
@@ -44146,6 +44168,7 @@ Netherlands,Angola,2014,December,*
 Netherlands,Angola,2015,January,*
 Netherlands,Angola,2015,April,5
 Netherlands,Angola,2015,August,*
+Netherlands,Angola,2015,October,*
 Netherlands,"Antigua and Barbuda",2014,January,*
 Netherlands,Egypt,2012,January,12
 Netherlands,Egypt,2012,February,6
@@ -44192,6 +44215,7 @@ Netherlands,Egypt,2015,June,*
 Netherlands,Egypt,2015,July,*
 Netherlands,Egypt,2015,August,*
 Netherlands,Egypt,2015,September,6
+Netherlands,Egypt,2015,October,6
 Netherlands,Armenia,2012,January,13
 Netherlands,Armenia,2012,February,42
 Netherlands,Armenia,2012,March,23
@@ -44236,6 +44260,7 @@ Netherlands,Armenia,2015,May,6
 Netherlands,Armenia,2015,June,*
 Netherlands,Armenia,2015,July,*
 Netherlands,Armenia,2015,August,5
+Netherlands,Armenia,2015,October,12
 Netherlands,Australia,2014,February,*
 Netherlands,Australia,2014,June,*
 Netherlands,Australia,2014,December,*
@@ -44280,6 +44305,7 @@ Netherlands,Azerbaijan,2015,April,*
 Netherlands,Azerbaijan,2015,May,*
 Netherlands,Azerbaijan,2015,August,*
 Netherlands,Azerbaijan,2015,September,7
+Netherlands,Azerbaijan,2015,October,*
 Netherlands,Bahrain,2013,January,1
 Netherlands,Bahrain,2014,July,*
 Netherlands,Barbados,2012,March,1
@@ -44349,6 +44375,7 @@ Netherlands,Bangladesh,2015,May,*
 Netherlands,Bangladesh,2015,July,*
 Netherlands,Bangladesh,2015,August,*
 Netherlands,Bangladesh,2015,September,7
+Netherlands,Bangladesh,2015,October,*
 Netherlands,Bhutan,2012,January,1
 Netherlands,Bhutan,2012,May,1
 Netherlands,Bhutan,2014,May,*
@@ -44372,6 +44399,7 @@ Netherlands,"Burkina Faso",2014,July,*
 Netherlands,"Burkina Faso",2014,September,*
 Netherlands,"Burkina Faso",2014,October,*
 Netherlands,"Burkina Faso",2015,February,*
+Netherlands,"Burkina Faso",2015,October,*
 Netherlands,Belarus,2012,January,19
 Netherlands,Belarus,2012,February,8
 Netherlands,Belarus,2012,March,2
@@ -44416,12 +44444,14 @@ Netherlands,Belarus,2015,June,*
 Netherlands,Belarus,2015,July,*
 Netherlands,Belarus,2015,August,9
 Netherlands,Belarus,2015,September,5
+Netherlands,Belarus,2015,October,*
 Netherlands,"Bolivia (Plurinational State of)",2012,March,1
 Netherlands,"Bolivia (Plurinational State of)",2015,May,*
 Netherlands,"Bolivia (Plurinational State of)",2015,August,*
 Netherlands,Brazil,2014,February,*
 Netherlands,Brazil,2014,May,*
 Netherlands,Brazil,2015,February,*
+Netherlands,Brazil,2015,October,*
 Netherlands,"Bosnia and Herzegovina",2012,March,2
 Netherlands,"Bosnia and Herzegovina",2012,May,1
 Netherlands,"Bosnia and Herzegovina",2012,July,3
@@ -44461,6 +44491,7 @@ Netherlands,"Bosnia and Herzegovina",2015,April,6
 Netherlands,"Bosnia and Herzegovina",2015,May,*
 Netherlands,"Bosnia and Herzegovina",2015,June,8
 Netherlands,"Bosnia and Herzegovina",2015,August,8
+Netherlands,"Bosnia and Herzegovina",2015,October,10
 Netherlands,Bulgaria,2013,August,1
 Netherlands,Bulgaria,2014,February,*
 Netherlands,Bulgaria,2014,November,*
@@ -44476,6 +44507,7 @@ Netherlands,"Central African Rep.",2014,January,*
 Netherlands,"Central African Rep.",2014,February,*
 Netherlands,"Central African Rep.",2014,October,*
 Netherlands,"Central African Rep.",2014,December,*
+Netherlands,"Central African Rep.",2015,October,*
 Netherlands,Chad,2012,June,1
 Netherlands,Chad,2012,August,1
 Netherlands,Chad,2012,November,1
@@ -44488,6 +44520,7 @@ Netherlands,Chad,2015,March,*
 Netherlands,Chad,2015,June,*
 Netherlands,Chad,2015,July,*
 Netherlands,Chad,2015,August,*
+Netherlands,Chad,2015,October,*
 Netherlands,China,2012,January,21
 Netherlands,China,2012,February,20
 Netherlands,China,2012,March,15
@@ -44533,6 +44566,7 @@ Netherlands,China,2015,June,27
 Netherlands,China,2015,July,*
 Netherlands,China,2015,August,*
 Netherlands,China,2015,September,12
+Netherlands,China,2015,October,10
 Netherlands,Chile,2012,June,1
 Netherlands,Chile,2013,September,1
 Netherlands,Chile,2014,May,*
@@ -44576,6 +44610,7 @@ Netherlands,Cameroon,2015,May,*
 Netherlands,Cameroon,2015,June,*
 Netherlands,Cameroon,2015,July,*
 Netherlands,Cameroon,2015,August,*
+Netherlands,Cameroon,2015,October,*
 Netherlands,Congo,2012,January,9
 Netherlands,Congo,2012,February,12
 Netherlands,Congo,2012,March,12
@@ -44619,6 +44654,7 @@ Netherlands,Congo,2015,April,*
 Netherlands,Congo,2015,May,*
 Netherlands,Congo,2015,June,*
 Netherlands,Congo,2015,August,*
+Netherlands,Congo,2015,October,*
 Netherlands,"Dem. Rep. of the Congo",2012,January,2
 Netherlands,"Dem. Rep. of the Congo",2012,February,6
 Netherlands,"Dem. Rep. of the Congo",2012,May,1
@@ -44643,6 +44679,7 @@ Netherlands,"Dem. Rep. of the Congo",2014,April,*
 Netherlands,"Dem. Rep. of the Congo",2014,September,*
 Netherlands,"Dem. Rep. of the Congo",2015,April,*
 Netherlands,"Dem. Rep. of the Congo",2015,August,*
+Netherlands,"Dem. Rep. of the Congo",2015,October,*
 Netherlands,Colombia,2012,January,1
 Netherlands,Colombia,2012,August,1
 Netherlands,Colombia,2012,September,2
@@ -44659,6 +44696,7 @@ Netherlands,Colombia,2014,November,*
 Netherlands,Colombia,2015,January,*
 Netherlands,Colombia,2015,February,*
 Netherlands,Colombia,2015,August,*
+Netherlands,Colombia,2015,October,*
 Netherlands,Cuba,2012,March,1
 Netherlands,Cuba,2012,April,1
 Netherlands,Cuba,2012,July,1
@@ -44679,6 +44717,7 @@ Netherlands,Cuba,2014,October,*
 Netherlands,Cuba,2015,January,*
 Netherlands,Cuba,2015,March,*
 Netherlands,Cuba,2015,June,*
+Netherlands,Cuba,2015,October,*
 Netherlands,"Cabo Verde",2012,May,1
 Netherlands,"Cabo Verde",2013,January,1
 Netherlands,"Cabo Verde",2015,May,*
@@ -44741,6 +44780,7 @@ Netherlands,Eritrea,2015,June,1248
 Netherlands,Eritrea,2015,July,992
 Netherlands,Eritrea,2015,August,1273
 Netherlands,Eritrea,2015,September,763
+Netherlands,Eritrea,2015,October,1098
 Netherlands,Estonia,2013,January,1
 Netherlands,Estonia,2013,June,2
 Netherlands,Ethiopia,2012,January,9
@@ -44787,14 +44827,17 @@ Netherlands,Ethiopia,2015,June,11
 Netherlands,Ethiopia,2015,July,22
 Netherlands,Ethiopia,2015,August,20
 Netherlands,Ethiopia,2015,September,6
+Netherlands,Ethiopia,2015,October,20
 Netherlands,France,2013,May,1
 Netherlands,France,2014,March,*
 Netherlands,France,2014,July,*
 Netherlands,France,2015,March,*
+Netherlands,France,2015,October,*
 Netherlands,Gabon,2013,February,1
 Netherlands,Gabon,2014,April,*
 Netherlands,Gabon,2014,May,*
 Netherlands,Gabon,2015,August,*
+Netherlands,Gabon,2015,October,*
 Netherlands,Gambia,2012,January,2
 Netherlands,Gambia,2012,February,2
 Netherlands,Gambia,2012,March,4
@@ -44834,6 +44877,7 @@ Netherlands,Gambia,2015,May,*
 Netherlands,Gambia,2015,June,*
 Netherlands,Gambia,2015,August,*
 Netherlands,Gambia,2015,September,6
+Netherlands,Gambia,2015,October,*
 Netherlands,Palestinian,2012,January,3
 Netherlands,Palestinian,2012,February,6
 Netherlands,Palestinian,2012,March,6
@@ -44876,6 +44920,7 @@ Netherlands,Palestinian,2015,June,*
 Netherlands,Palestinian,2015,July,*
 Netherlands,Palestinian,2015,August,9
 Netherlands,Palestinian,2015,September,7
+Netherlands,Palestinian,2015,October,30
 Netherlands,"United Kingdom of Great Britain and Northern Ireland",2013,August,1
 Netherlands,"United Kingdom of Great Britain and Northern Ireland",2013,December,1
 Netherlands,Georgia,2012,January,12
@@ -44923,6 +44968,7 @@ Netherlands,Georgia,2015,June,25
 Netherlands,Georgia,2015,July,13
 Netherlands,Georgia,2015,August,19
 Netherlands,Georgia,2015,September,14
+Netherlands,Georgia,2015,October,31
 Netherlands,Ghana,2012,January,7
 Netherlands,Ghana,2012,February,2
 Netherlands,Ghana,2012,March,3
@@ -44962,6 +45008,7 @@ Netherlands,Ghana,2015,April,*
 Netherlands,Ghana,2015,May,*
 Netherlands,Ghana,2015,July,*
 Netherlands,Ghana,2015,August,*
+Netherlands,Ghana,2015,October,*
 Netherlands,Guinea-Bissau,2012,February,1
 Netherlands,Guinea-Bissau,2012,July,1
 Netherlands,Guinea-Bissau,2013,January,1
@@ -44976,6 +45023,7 @@ Netherlands,Guinea-Bissau,2015,April,*
 Netherlands,Greece,2013,May,1
 Netherlands,Greece,2013,August,1
 Netherlands,Greece,2014,June,*
+Netherlands,Greece,2015,October,*
 Netherlands,Guatemala,2012,June,1
 Netherlands,Guatemala,2012,September,2
 Netherlands,Guinea,2012,January,13
@@ -45023,9 +45071,11 @@ Netherlands,Guinea,2015,June,6
 Netherlands,Guinea,2015,July,7
 Netherlands,Guinea,2015,August,5
 Netherlands,Guinea,2015,September,7
+Netherlands,Guinea,2015,October,9
 Netherlands,Guyana,2012,August,2
 Netherlands,Guyana,2012,October,1
 Netherlands,Guyana,2015,August,*
+Netherlands,Guyana,2015,October,*
 Netherlands,Haiti,2012,February,1
 Netherlands,Haiti,2013,October,1
 Netherlands,Haiti,2014,November,*
@@ -45034,6 +45084,7 @@ Netherlands,Honduras,2012,October,1
 Netherlands,Honduras,2015,February,*
 Netherlands,Honduras,2015,March,5
 Netherlands,Honduras,2015,August,*
+Netherlands,Honduras,2015,October,*
 Netherlands,Croatia,2012,January,4
 Netherlands,Croatia,2013,January,1
 Netherlands,Croatia,2013,August,1
@@ -45116,6 +45167,7 @@ Netherlands,India,2015,April,*
 Netherlands,India,2015,May,*
 Netherlands,India,2015,June,*
 Netherlands,India,2015,August,*
+Netherlands,India,2015,October,*
 Netherlands,Indonesia,2012,January,1
 Netherlands,Indonesia,2012,February,1
 Netherlands,Indonesia,2012,April,1
@@ -45172,6 +45224,7 @@ Netherlands,"Iran (Islamic Rep. of)",2015,June,33
 Netherlands,"Iran (Islamic Rep. of)",2015,July,49
 Netherlands,"Iran (Islamic Rep. of)",2015,August,62
 Netherlands,"Iran (Islamic Rep. of)",2015,September,85
+Netherlands,"Iran (Islamic Rep. of)",2015,October,415
 Netherlands,Iraq,2012,January,129
 Netherlands,Iraq,2012,February,117
 Netherlands,Iraq,2012,March,104
@@ -45217,6 +45270,7 @@ Netherlands,Iraq,2015,June,53
 Netherlands,Iraq,2015,July,81
 Netherlands,Iraq,2015,August,138
 Netherlands,Iraq,2015,September,390
+Netherlands,Iraq,2015,October,1046
 Netherlands,Israel,2012,February,1
 Netherlands,Israel,2012,March,1
 Netherlands,Israel,2012,June,2
@@ -45229,6 +45283,7 @@ Netherlands,Israel,2013,September,1
 Netherlands,Israel,2014,March,*
 Netherlands,Israel,2014,September,5
 Netherlands,Israel,2015,August,*
+Netherlands,Israel,2015,October,*
 Netherlands,Italy,2014,December,*
 Netherlands,Jamaica,2012,January,9
 Netherlands,Jamaica,2012,February,1
@@ -45271,6 +45326,7 @@ Netherlands,Jamaica,2015,June,*
 Netherlands,Jamaica,2015,July,*
 Netherlands,Jamaica,2015,August,*
 Netherlands,Jamaica,2015,September,14
+Netherlands,Jamaica,2015,October,13
 Netherlands,Jordan,2012,February,1
 Netherlands,Jordan,2012,March,2
 Netherlands,Jordan,2012,October,2
@@ -45287,6 +45343,7 @@ Netherlands,Jordan,2014,December,*
 Netherlands,Jordan,2015,April,*
 Netherlands,Jordan,2015,July,*
 Netherlands,Jordan,2015,August,*
+Netherlands,Jordan,2015,October,*
 Netherlands,Japan,2012,May,1
 Netherlands,Japan,2013,January,2
 Netherlands,Japan,2013,September,1
@@ -45409,6 +45466,7 @@ Netherlands,Liberia,2014,December,*
 Netherlands,Liberia,2015,January,*
 Netherlands,Liberia,2015,June,*
 Netherlands,Liberia,2015,August,*
+Netherlands,Liberia,2015,October,*
 Netherlands,Libya,2012,January,3
 Netherlands,Libya,2012,February,6
 Netherlands,Libya,2012,March,7
@@ -45454,6 +45512,7 @@ Netherlands,Libya,2015,June,6
 Netherlands,Libya,2015,July,*
 Netherlands,Libya,2015,August,8
 Netherlands,Libya,2015,September,8
+Netherlands,Libya,2015,October,8
 Netherlands,Lebanon,2012,May,1
 Netherlands,Lebanon,2012,June,1
 Netherlands,Lebanon,2012,July,3
@@ -45489,6 +45548,7 @@ Netherlands,Lebanon,2015,May,*
 Netherlands,Lebanon,2015,June,*
 Netherlands,Lebanon,2015,July,*
 Netherlands,Lebanon,2015,August,*
+Netherlands,Lebanon,2015,October,14
 Netherlands,"Sri Lanka",2012,January,9
 Netherlands,"Sri Lanka",2012,February,8
 Netherlands,"Sri Lanka",2012,March,7
@@ -45588,6 +45648,7 @@ Netherlands,"The former Yugoslav Rep. of Macedonia",2015,June,20
 Netherlands,"The former Yugoslav Rep. of Macedonia",2015,July,12
 Netherlands,"The former Yugoslav Rep. of Macedonia",2015,August,13
 Netherlands,"The former Yugoslav Rep. of Macedonia",2015,September,6
+Netherlands,"The former Yugoslav Rep. of Macedonia",2015,October,12
 Netherlands,"Rep. of Moldova",2012,April,2
 Netherlands,"Rep. of Moldova",2012,June,2
 Netherlands,"Rep. of Moldova",2012,July,2
@@ -45601,6 +45662,7 @@ Netherlands,"Rep. of Moldova",2014,July,*
 Netherlands,"Rep. of Moldova",2014,December,*
 Netherlands,"Rep. of Moldova",2015,January,*
 Netherlands,"Rep. of Moldova",2015,July,*
+Netherlands,"Rep. of Moldova",2015,October,*
 Netherlands,Mexico,2013,September,1
 Netherlands,Mexico,2013,November,1
 Netherlands,Mexico,2014,May,*
@@ -45608,6 +45670,7 @@ Netherlands,Mexico,2014,June,*
 Netherlands,Mexico,2014,August,*
 Netherlands,Mexico,2014,October,*
 Netherlands,Mexico,2015,January,*
+Netherlands,Mexico,2015,October,*
 Netherlands,Mali,2012,January,1
 Netherlands,Mali,2012,February,1
 Netherlands,Mali,2012,March,3
@@ -45645,6 +45708,7 @@ Netherlands,Mali,2015,March,*
 Netherlands,Mali,2015,May,*
 Netherlands,Mali,2015,June,*
 Netherlands,Mali,2015,July,*
+Netherlands,Mali,2015,October,*
 Netherlands,Malaysia,2012,February,1
 Netherlands,Malaysia,2012,July,5
 Netherlands,Malaysia,2014,April,*
@@ -45706,6 +45770,7 @@ Netherlands,Mongolia,2015,June,67
 Netherlands,Mongolia,2015,July,51
 Netherlands,Mongolia,2015,August,15
 Netherlands,Mongolia,2015,September,11
+Netherlands,Mongolia,2015,October,40
 Netherlands,Morocco,2012,January,1
 Netherlands,Morocco,2012,March,2
 Netherlands,Morocco,2012,May,1
@@ -45747,6 +45812,7 @@ Netherlands,Morocco,2015,May,7
 Netherlands,Morocco,2015,June,12
 Netherlands,Morocco,2015,July,6
 Netherlands,Morocco,2015,August,7
+Netherlands,Morocco,2015,October,*
 Netherlands,Mozambique,2014,April,*
 Netherlands,Myanmar,2012,January,2
 Netherlands,Myanmar,2012,February,5
@@ -45779,7 +45845,9 @@ Netherlands,Myanmar,2015,May,*
 Netherlands,Myanmar,2015,July,*
 Netherlands,Myanmar,2015,August,*
 Netherlands,Myanmar,2015,September,6
+Netherlands,Myanmar,2015,October,5
 Netherlands,Namibia,2014,July,*
+Netherlands,Namibia,2015,October,*
 Netherlands,Nepal,2012,January,13
 Netherlands,Nepal,2012,February,10
 Netherlands,Nepal,2012,March,9
@@ -45821,6 +45889,7 @@ Netherlands,Nepal,2015,May,5
 Netherlands,Nepal,2015,June,*
 Netherlands,Nepal,2015,July,*
 Netherlands,Nepal,2015,August,*
+Netherlands,Nepal,2015,October,*
 Netherlands,Netherlands,2014,January,*
 Netherlands,Netherlands,2014,February,*
 Netherlands,Netherlands,2014,May,*
@@ -45892,6 +45961,7 @@ Netherlands,Nigeria,2015,June,18
 Netherlands,Nigeria,2015,July,9
 Netherlands,Nigeria,2015,August,13
 Netherlands,Nigeria,2015,September,22
+Netherlands,Nigeria,2015,October,20
 Netherlands,Norway,2012,July,1
 Netherlands,Norway,2012,September,1
 Netherlands,Norway,2014,May,*
@@ -45940,6 +46010,7 @@ Netherlands,Pakistan,2015,June,26
 Netherlands,Pakistan,2015,July,7
 Netherlands,Pakistan,2015,August,8
 Netherlands,Pakistan,2015,September,6
+Netherlands,Pakistan,2015,October,14
 Netherlands,Peru,2013,February,1
 Netherlands,Peru,2013,April,1
 Netherlands,Peru,2015,July,*
@@ -45970,6 +46041,7 @@ Netherlands,"South Africa",2015,March,*
 Netherlands,"South Africa",2015,June,*
 Netherlands,"South Africa",2015,July,*
 Netherlands,"South Africa",2015,August,*
+Netherlands,"South Africa",2015,October,*
 Netherlands,"Russian Federation",2012,January,73
 Netherlands,"Russian Federation",2012,February,106
 Netherlands,"Russian Federation",2012,March,83
@@ -46015,6 +46087,7 @@ Netherlands,"Russian Federation",2015,June,11
 Netherlands,"Russian Federation",2015,July,8
 Netherlands,"Russian Federation",2015,August,6
 Netherlands,"Russian Federation",2015,September,13
+Netherlands,"Russian Federation",2015,October,17
 Netherlands,Rwanda,2012,January,3
 Netherlands,Rwanda,2012,February,1
 Netherlands,Rwanda,2012,March,2
@@ -46087,6 +46160,7 @@ Netherlands,Senegal,2015,April,*
 Netherlands,Senegal,2015,June,*
 Netherlands,Senegal,2015,July,*
 Netherlands,Senegal,2015,August,*
+Netherlands,Senegal,2015,October,*
 Netherlands,Seychelles,2013,November,1
 Netherlands,"Sierra Leone",2012,January,11
 Netherlands,"Sierra Leone",2012,February,7
@@ -46133,6 +46207,7 @@ Netherlands,"Sierra Leone",2015,June,*
 Netherlands,"Sierra Leone",2015,July,*
 Netherlands,"Sierra Leone",2015,August,*
 Netherlands,"Sierra Leone",2015,September,8
+Netherlands,"Sierra Leone",2015,October,*
 Netherlands,Somalia,2012,January,110
 Netherlands,Somalia,2012,February,94
 Netherlands,Somalia,2012,March,73
@@ -46178,6 +46253,7 @@ Netherlands,Somalia,2015,June,10
 Netherlands,Somalia,2015,July,12
 Netherlands,Somalia,2015,August,18
 Netherlands,Somalia,2015,September,13
+Netherlands,Somalia,2015,October,38
 Netherlands,Spain,2013,April,1
 Netherlands,Spain,2013,August,1
 Netherlands,Spain,2014,March,*
@@ -46204,6 +46280,7 @@ Netherlands,"Viet Nam",2015,June,6
 Netherlands,"Viet Nam",2015,July,5
 Netherlands,"Viet Nam",2015,August,7
 Netherlands,"Viet Nam",2015,September,9
+Netherlands,"Viet Nam",2015,October,*
 Netherlands,Stateless,2012,January,2
 Netherlands,Stateless,2012,February,10
 Netherlands,Stateless,2012,March,4
@@ -46247,6 +46324,8 @@ Netherlands,Stateless,2015,June,125
 Netherlands,Stateless,2015,July,132
 Netherlands,Stateless,2015,August,293
 Netherlands,Stateless,2015,September,374
+Netherlands,Stateless,2015,October,668
+Netherlands,"Saint Kitts and Nevis",2015,October,*
 Netherlands,Sudan,2012,January,11
 Netherlands,Sudan,2012,February,10
 Netherlands,Sudan,2012,March,9
@@ -46292,6 +46371,7 @@ Netherlands,Sudan,2015,June,33
 Netherlands,Sudan,2015,July,33
 Netherlands,Sudan,2015,August,35
 Netherlands,Sudan,2015,September,30
+Netherlands,Sudan,2015,October,15
 Netherlands,Suriname,2012,March,1
 Netherlands,Suriname,2012,October,1
 Netherlands,Suriname,2012,November,1
@@ -46358,6 +46438,7 @@ Netherlands,"Syrian Arab Rep.",2015,June,737
 Netherlands,"Syrian Arab Rep.",2015,July,1121
 Netherlands,"Syrian Arab Rep.",2015,August,2838
 Netherlands,"Syrian Arab Rep.",2015,September,4063
+Netherlands,"Syrian Arab Rep.",2015,October,5252
 Netherlands,"United Rep. of Tanzania",2012,March,1
 Netherlands,"United Rep. of Tanzania",2012,April,1
 Netherlands,"United Rep. of Tanzania",2012,July,1
@@ -46461,6 +46542,7 @@ Netherlands,Tunisia,2015,April,*
 Netherlands,Tunisia,2015,May,*
 Netherlands,Tunisia,2015,June,*
 Netherlands,Tunisia,2015,August,*
+Netherlands,Tunisia,2015,October,*
 Netherlands,Turkey,2012,January,2
 Netherlands,Turkey,2012,February,10
 Netherlands,Turkey,2012,March,12
@@ -46501,6 +46583,7 @@ Netherlands,Turkey,2015,May,*
 Netherlands,Turkey,2015,June,*
 Netherlands,Turkey,2015,July,*
 Netherlands,Turkey,2015,August,*
+Netherlands,Turkey,2015,October,12
 Netherlands,Tuvalu,2013,July,1
 Netherlands,Uganda,2012,January,9
 Netherlands,Uganda,2012,February,4
@@ -46547,6 +46630,7 @@ Netherlands,Uganda,2015,June,5
 Netherlands,Uganda,2015,July,9
 Netherlands,Uganda,2015,August,16
 Netherlands,Uganda,2015,September,9
+Netherlands,Uganda,2015,October,10
 Netherlands,Ukraine,2012,January,3
 Netherlands,Ukraine,2012,February,6
 Netherlands,Ukraine,2012,March,1
@@ -46590,6 +46674,8 @@ Netherlands,Ukraine,2015,June,73
 Netherlands,Ukraine,2015,July,45
 Netherlands,Ukraine,2015,August,63
 Netherlands,Ukraine,2015,September,33
+Netherlands,Ukraine,2015,October,100
+Netherlands,Uruguay,2015,October,*
 Netherlands,"United States of America",2012,January,1
 Netherlands,"United States of America",2012,March,1
 Netherlands,"United States of America",2012,April,1
@@ -46607,6 +46693,7 @@ Netherlands,"United States of America",2014,December,*
 Netherlands,"United States of America",2015,March,*
 Netherlands,"United States of America",2015,April,*
 Netherlands,"United States of America",2015,May,*
+Netherlands,"United States of America",2015,October,*
 Netherlands,Uzbekistan,2012,January,4
 Netherlands,Uzbekistan,2012,July,2
 Netherlands,Uzbekistan,2012,August,2
@@ -46627,6 +46714,7 @@ Netherlands,"Venezuela (Bolivarian Republic of)",2014,April,*
 Netherlands,"Venezuela (Bolivarian Republic of)",2014,June,*
 Netherlands,"Venezuela (Bolivarian Republic of)",2015,March,*
 Netherlands,"Venezuela (Bolivarian Republic of)",2015,June,*
+Netherlands,"Venezuela (Bolivarian Republic of)",2015,October,*
 Netherlands,Yemen,2012,January,3
 Netherlands,Yemen,2012,February,7
 Netherlands,Yemen,2012,March,1
@@ -46662,6 +46750,7 @@ Netherlands,Yemen,2015,June,*
 Netherlands,Yemen,2015,July,*
 Netherlands,Yemen,2015,August,*
 Netherlands,Yemen,2015,September,7
+Netherlands,Yemen,2015,October,12
 Netherlands,Zambia,2012,July,2
 Netherlands,Zambia,2013,May,1
 Netherlands,Zambia,2013,July,2
@@ -46671,6 +46760,7 @@ Netherlands,Zambia,2014,May,*
 Netherlands,Zambia,2015,January,*
 Netherlands,Zambia,2015,February,*
 Netherlands,Zambia,2015,August,*
+Netherlands,Zambia,2015,October,*
 Netherlands,Zimbabwe,2012,January,1
 Netherlands,Zimbabwe,2012,February,1
 Netherlands,Zimbabwe,2012,March,1
@@ -46690,6 +46780,7 @@ Netherlands,Zimbabwe,2014,October,6
 Netherlands,Zimbabwe,2015,January,*
 Netherlands,Zimbabwe,2015,May,*
 Netherlands,Zimbabwe,2015,August,*
+Netherlands,Zimbabwe,2015,October,*
 Norway,Afghanistan,2012,January,80
 Norway,Afghanistan,2012,February,61
 Norway,Afghanistan,2012,March,83
@@ -71712,6 +71803,7 @@ Iceland,Various/unknown,2015,April,10
 Iceland,Various/unknown,2015,May,5
 Iceland,Various/unknown,2015,June,5
 Iceland,Various/unknown,2015,July,5
+Iceland,Various/unknown,2015,August,5
 Iceland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,November,1
 Ireland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,February,1
 Ireland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,March,1
@@ -73316,6 +73408,7 @@ Netherlands,Various/unknown,2015,June,25
 Netherlands,Various/unknown,2015,July,32
 Netherlands,Various/unknown,2015,August,29
 Netherlands,Various/unknown,2015,September,91
+Netherlands,Various/unknown,2015,October,105
 Netherlands,"Serbia and Kosovo (S/RES/1244 (1999))",2012,January,10
 Netherlands,"Serbia and Kosovo (S/RES/1244 (1999))",2012,February,22
 Netherlands,"Serbia and Kosovo (S/RES/1244 (1999))",2012,March,7
@@ -73361,6 +73454,7 @@ Netherlands,"Serbia and Kosovo (S/RES/1244 (1999))",2015,June,186
 Netherlands,"Serbia and Kosovo (S/RES/1244 (1999))",2015,July,138
 Netherlands,"Serbia and Kosovo (S/RES/1244 (1999))",2015,August,122
 Netherlands,"Serbia and Kosovo (S/RES/1244 (1999))",2015,September,78
+Netherlands,"Serbia and Kosovo (S/RES/1244 (1999))",2015,October,142
 Norway,"Serbia and Kosovo (S/RES/1244 (1999))",2012,January,23
 Norway,"Serbia and Kosovo (S/RES/1244 (1999))",2012,February,15
 Norway,"Serbia and Kosovo (S/RES/1244 (1999))",2012,March,27
@@ -73462,6 +73556,18 @@ Spain,"Serbia and Kosovo (S/RES/1244 (1999))",2014,May,*
 Spain,"Serbia and Kosovo (S/RES/1244 (1999))",2015,January,7
 Spain,"Serbia and Kosovo (S/RES/1244 (1999))",2015,March,*
 Spain,"Serbia and Kosovo (S/RES/1244 (1999))",2015,May,*
+Slovakia,Various/unknown,2012,January,1
+Slovakia,Various/unknown,2012,July,1
+Slovakia,Various/unknown,2012,September,1
+Slovakia,Various/unknown,2014,January,*
+Slovakia,Various/unknown,2014,November,*
+Slovakia,Various/unknown,2014,December,10
+Slovakia,Various/unknown,2015,January,10
+Slovakia,Various/unknown,2015,February,*
+Slovakia,"Serbia and Kosovo (S/RES/1244 (1999))",2013,May,1
+Slovakia,"Serbia and Kosovo (S/RES/1244 (1999))",2013,June,1
+Slovenia,Various/unknown,2014,July,*
+Slovenia,Various/unknown,2015,March,*
 Slovenia,"Serbia and Kosovo (S/RES/1244 (1999))",2012,February,1
 Slovenia,"Serbia and Kosovo (S/RES/1244 (1999))",2012,March,3
 Slovenia,"Serbia and Kosovo (S/RES/1244 (1999))",2012,April,1
@@ -73590,16 +73696,96 @@ Sweden,"Serbia and Kosovo (S/RES/1244 (1999))",2015,July,128
 Sweden,"Serbia and Kosovo (S/RES/1244 (1999))",2015,August,132
 Sweden,"Serbia and Kosovo (S/RES/1244 (1999))",2015,September,210
 Sweden,"Serbia and Kosovo (S/RES/1244 (1999))",2015,October,116
-Slovakia,Various/unknown,2012,January,1
-Slovakia,Various/unknown,2012,July,1
-Slovakia,Various/unknown,2012,September,1
-Slovakia,Various/unknown,2014,January,*
-Slovakia,Various/unknown,2014,November,*
-Slovakia,Various/unknown,2014,December,10
-Slovakia,Various/unknown,2015,January,10
-Slovakia,Various/unknown,2015,February,*
-Slovakia,"Serbia and Kosovo (S/RES/1244 (1999))",2013,May,1
-Slovakia,"Serbia and Kosovo (S/RES/1244 (1999))",2013,June,1
+Switzerland,Various/unknown,2012,January,24
+Switzerland,Various/unknown,2012,February,29
+Switzerland,Various/unknown,2012,March,26
+Switzerland,Various/unknown,2012,April,19
+Switzerland,Various/unknown,2012,May,26
+Switzerland,Various/unknown,2012,June,20
+Switzerland,Various/unknown,2012,July,25
+Switzerland,Various/unknown,2012,August,26
+Switzerland,Various/unknown,2012,September,34
+Switzerland,Various/unknown,2012,October,31
+Switzerland,Various/unknown,2012,November,19
+Switzerland,Various/unknown,2012,December,16
+Switzerland,Various/unknown,2013,January,30
+Switzerland,Various/unknown,2013,February,16
+Switzerland,Various/unknown,2013,March,25
+Switzerland,Various/unknown,2013,April,38
+Switzerland,Various/unknown,2013,May,34
+Switzerland,Various/unknown,2013,June,19
+Switzerland,Various/unknown,2013,July,25
+Switzerland,Various/unknown,2013,August,32
+Switzerland,Various/unknown,2013,September,33
+Switzerland,Various/unknown,2013,October,38
+Switzerland,Various/unknown,2013,November,48
+Switzerland,Various/unknown,2013,December,40
+Switzerland,Various/unknown,2014,January,39
+Switzerland,Various/unknown,2014,February,41
+Switzerland,Various/unknown,2014,March,56
+Switzerland,Various/unknown,2014,April,78
+Switzerland,Various/unknown,2014,May,36
+Switzerland,Various/unknown,2014,June,34
+Switzerland,Various/unknown,2014,July,35
+Switzerland,Various/unknown,2014,August,35
+Switzerland,Various/unknown,2014,September,46
+Switzerland,Various/unknown,2014,October,62
+Switzerland,Various/unknown,2014,November,31
+Switzerland,Various/unknown,2014,December,36
+Switzerland,Various/unknown,2015,January,21
+Switzerland,Various/unknown,2015,February,34
+Switzerland,Various/unknown,2015,March,18
+Switzerland,Various/unknown,2015,April,21
+Switzerland,Various/unknown,2015,May,24
+Switzerland,Various/unknown,2015,June,46
+Switzerland,Various/unknown,2015,July,34
+Switzerland,Various/unknown,2015,August,33
+Switzerland,Various/unknown,2015,September,64
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,January,310
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,February,221
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,March,135
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,April,124
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,May,100
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,June,138
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,July,204
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,August,417
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,September,258
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,October,83
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,November,60
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,December,34
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,January,76
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,February,39
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,March,61
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,April,57
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,May,51
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,June,105
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,July,88
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,August,104
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,September,83
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,October,66
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,November,41
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,December,55
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,January,44
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,February,35
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,March,22
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,April,22
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,May,30
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,June,37
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,July,25
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,August,44
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,September,40
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,October,48
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,November,53
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,December,71
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,January,116
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,February,82
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,March,67
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,April,50
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,May,55
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,June,43
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,July,14
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,August,27
+Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,September,41
 "USA (INS/DHS)","Serbia and Kosovo (S/RES/1244 (1999))",2012,January,16
 "USA (INS/DHS)","Serbia and Kosovo (S/RES/1244 (1999))",2012,February,10
 "USA (INS/DHS)","Serbia and Kosovo (S/RES/1244 (1999))",2012,March,23
@@ -73696,95 +73882,3 @@ Slovakia,"Serbia and Kosovo (S/RES/1244 (1999))",2013,June,1
 "USA (EOIR)","Serbia and Kosovo (S/RES/1244 (1999))",2012,September,4
 "USA (EOIR)","Serbia and Kosovo (S/RES/1244 (1999))",2012,November,4
 "USA (EOIR)","Serbia and Kosovo (S/RES/1244 (1999))",2012,December,2
-Slovenia,Various/unknown,2014,July,*
-Slovenia,Various/unknown,2015,March,*
-Switzerland,Various/unknown,2012,January,24
-Switzerland,Various/unknown,2012,February,29
-Switzerland,Various/unknown,2012,March,26
-Switzerland,Various/unknown,2012,April,19
-Switzerland,Various/unknown,2012,May,26
-Switzerland,Various/unknown,2012,June,20
-Switzerland,Various/unknown,2012,July,25
-Switzerland,Various/unknown,2012,August,26
-Switzerland,Various/unknown,2012,September,34
-Switzerland,Various/unknown,2012,October,31
-Switzerland,Various/unknown,2012,November,19
-Switzerland,Various/unknown,2012,December,16
-Switzerland,Various/unknown,2013,January,30
-Switzerland,Various/unknown,2013,February,16
-Switzerland,Various/unknown,2013,March,25
-Switzerland,Various/unknown,2013,April,38
-Switzerland,Various/unknown,2013,May,34
-Switzerland,Various/unknown,2013,June,19
-Switzerland,Various/unknown,2013,July,25
-Switzerland,Various/unknown,2013,August,32
-Switzerland,Various/unknown,2013,September,33
-Switzerland,Various/unknown,2013,October,38
-Switzerland,Various/unknown,2013,November,48
-Switzerland,Various/unknown,2013,December,40
-Switzerland,Various/unknown,2014,January,39
-Switzerland,Various/unknown,2014,February,41
-Switzerland,Various/unknown,2014,March,56
-Switzerland,Various/unknown,2014,April,78
-Switzerland,Various/unknown,2014,May,36
-Switzerland,Various/unknown,2014,June,34
-Switzerland,Various/unknown,2014,July,35
-Switzerland,Various/unknown,2014,August,35
-Switzerland,Various/unknown,2014,September,46
-Switzerland,Various/unknown,2014,October,62
-Switzerland,Various/unknown,2014,November,31
-Switzerland,Various/unknown,2014,December,36
-Switzerland,Various/unknown,2015,January,21
-Switzerland,Various/unknown,2015,February,34
-Switzerland,Various/unknown,2015,March,18
-Switzerland,Various/unknown,2015,April,21
-Switzerland,Various/unknown,2015,May,24
-Switzerland,Various/unknown,2015,June,46
-Switzerland,Various/unknown,2015,July,34
-Switzerland,Various/unknown,2015,August,33
-Switzerland,Various/unknown,2015,September,64
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,January,310
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,February,221
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,March,135
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,April,124
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,May,100
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,June,138
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,July,204
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,August,417
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,September,258
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,October,83
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,November,60
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2012,December,34
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,January,76
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,February,39
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,March,61
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,April,57
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,May,51
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,June,105
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,July,88
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,August,104
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,September,83
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,October,66
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,November,41
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2013,December,55
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,January,44
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,February,35
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,March,22
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,April,22
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,May,30
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,June,37
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,July,25
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,August,44
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,September,40
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,October,48
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,November,53
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2014,December,71
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,January,116
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,February,82
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,March,67
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,April,50
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,May,55
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,June,43
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,July,14
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,August,27
-Switzerland,"Serbia and Kosovo (S/RES/1244 (1999))",2015,September,41
