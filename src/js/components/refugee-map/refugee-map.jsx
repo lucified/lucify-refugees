@@ -30,6 +30,10 @@ var RefugeeMap = React.createClass({
       height: 1200,
       interactionsEnabled: true,
       showFps: false,
+      lo: 22.2206322,
+      la: 34.0485818,
+      scale: 0.85,
+      showDataUpdated: true
     };
   },
 
@@ -63,14 +67,15 @@ var RefugeeMap = React.createClass({
 
 
   getAzimuthalEqualAreaProjection: function() {
-      var lo = 22.2206322; // x
-      var la = 34.0485818; // y
+      var lo = this.props.lo; // x
+      var la = this.props.la; // y
+      var scale = this.props.scale;
 
       return d3.geo.azimuthalEqualArea()
         //.clipAngle(180 - 1e-3)
         .center([0, la])
         .rotate([-lo, 0])
-        .scale(this.getWidth()*0.85)
+        .scale(this.getWidth()*this.props.scale)
         .translate([this.getWidth() / 2, this.getHeight() / 2])
         .precision(1);
   },
@@ -84,7 +89,7 @@ var RefugeeMap = React.createClass({
         .center([0, la])
         .rotate([-lo, 0])
         .scale(this.getWidth()*0.55)
-        .translate([this.getWidth() / 2, this.getHeight() / 2]);
+        .translate([this.getWidth() / 2, this.getHeight() / 2])
   },
 
 
@@ -237,6 +242,13 @@ var RefugeeMap = React.createClass({
   },
 
 
+  getDataUpdated: function() {
+    if (this.props.showDataUpdated) {
+      return <DataUpdated updatedAt={RefugeeConstants.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT} />
+    }
+  },
+
+
   render: function() {
 
     if (!this.props.refugeeCountsModel
@@ -274,7 +286,7 @@ var RefugeeMap = React.createClass({
 
         {this.getOverlayLayer()}
 
-        <DataUpdated updatedAt={RefugeeConstants.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT} />
+        {this.getDataUpdated()}
 
       </div>
     )
