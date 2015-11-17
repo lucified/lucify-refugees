@@ -4,7 +4,7 @@ var Polygon = require('polygon');
 var Vec2 = require('vec2');
 var _ = require('underscore');
 var countries = require("i18n-iso-countries");
-
+var d3 = require('d3');
 
 var MapModel = function(featureData) {
   this.featureData = featureData;

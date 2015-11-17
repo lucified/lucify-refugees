@@ -1,6 +1,7 @@
 
 var _ = require('underscore');
 var React = require('react');
+var d3 = require('d3');
 
 var BordersLayer = require('./refugee-map-borders-layer.jsx');
 var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
