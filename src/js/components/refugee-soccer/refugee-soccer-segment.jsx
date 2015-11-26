@@ -25,7 +25,7 @@ var RefugeeSoccerSegment = React.createClass({
 
 	getRegionalCount: function() {
 		// http://data.unhcr.org/syrianrefugees/regional.php, Registered Syrian Refugees
-		return 4290161; // Updated 17.11.2015
+		return 4289792; // Updated 17.11.2015
 	},
 
 
