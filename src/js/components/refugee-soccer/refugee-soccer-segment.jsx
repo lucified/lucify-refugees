@@ -19,13 +19,13 @@ var RefugeeSoccerSegment = React.createClass({
 
 	getEuropeanCount: function() {
 		// http://data.unhcr.org/syrianrefugees/regional.php, Total Syrian Asylum Applications in Europe
-		return 681713; // Updated 17.11.2015
+		return 689365; // Updated 2.12.2015
 	},
 
 
 	getRegionalCount: function() {
 		// http://data.unhcr.org/syrianrefugees/regional.php, Registered Syrian Refugees
-		return 4289792; // Updated 17.11.2015
+		return 4288910; // Updated 2.12.2015
 	},
 
 
