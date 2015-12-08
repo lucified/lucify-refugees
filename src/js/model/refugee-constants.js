@@ -11,7 +11,7 @@ module.exports.DATA_END_MONTH = 9;
 
 module.exports.DATA_END_MOMENT = moment([
 	module.exports.DATA_END_YEAR,
-	module.exports.DATA_END_MONTH, 30]);
+	module.exports.DATA_END_MONTH]).endOf('month');
 
 module.exports.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT = moment([2015, 11, 1]);
 module.exports.SYRIA_REFUGEES_DATA_UPDATED_MOMENT = moment([2015, 11, 8]);
