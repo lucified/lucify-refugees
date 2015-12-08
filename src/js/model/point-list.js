@@ -3,6 +3,7 @@ var moment = require('moment');
 var _ = require('underscore');
 
 var Refugee = require('./refugee.js');
+var RefugeeConstants = require('./refugee-constants.js');
 var utils = require('../utils.js');
 
 
@@ -12,25 +13,32 @@ var utils = require('../utils.js');
 var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartPoint, smartSpreadEnabled) {
   var ret = [];
 
-  var skipped = {};
+  var skippedCountries = {};
+  var skippedFutureDataCountries = {};
 
   if (asylumData) {
     asylumData.forEach(function(item) {
       if (!mapModel.containsCountry(item.ac)) {
-        skipped[item.ac] = true;
+        skippedCountries[item.ac] = true;
       } else if (!mapModel.containsCountry(item.oc)) {
-        skipped[item.oc] = true;
+        skippedCountries[item.oc] = true;
       } else {
-        // add refugees for journey visualization
-        var refugeesToAdd = Math.round(item.count / peoplePerPoint);
-        for (var i = 0; i < refugeesToAdd; i++) {
-          ret.push(createRefugee(item.oc, item.ac, item.month - 1, item.year));
+        if (item.year > RefugeeConstants.DATA_END_YEAR ||
+            (item.year == RefugeeConstants.DATA_END_YEAR && (item.month - 1) > RefugeeConstants.DATA_END_MONTH)) {
+          skippedFutureDataCountries[item.ac] = true;
+        } else {
+          // add refugees for journey visualization
+          var refugeesToAdd = Math.round(item.count / peoplePerPoint);
+          for (var i = 0; i < refugeesToAdd; i++) {
+            ret.push(createRefugee(item.oc, item.ac, item.month - 1, item.year));
+          }
         }
       }
     });
 
-    console.log("Skipped the following countries that were not on map: " 
-        + _.keys(skipped).join(', '));
+    console.log("Skipped the following countries that are not on map: " + _.keys(skippedCountries).join(', '));
+    console.log("Not showing data that is past " + RefugeeConstants.DATA_END_MOMENT.format('ll') +
+      " from the following countries: " + _.keys(skippedFutureDataCountries).join(', '));
   }
 
   return ret;
@@ -61,7 +69,7 @@ var prepareRefugeeSpeed = function() {
 
 
 /*
- * Get an end moment for a random refugee that 
+ * Get an end moment for a random refugee that
  * has arrived at given month (zero-based) and year
  */
 var prepareRefugeeEndMoment = function(month, year) {
