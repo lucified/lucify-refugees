@@ -168,19 +168,19 @@ RefugeeCountsModel.prototype._calculateMissingData = function() {
     "AUT", "BEL", "BGR", "CHE", "DEU", "DNK", "ESP", "FIN",
     "FRA", "GBR", "GRC", "HUN", "ITA", "NOR", "NLD", "SWE"
   ];
-  var originCountriesToCheck = ["SYR", "IRQ"];
+  var originCountriesToCheck = ["SYR", "IRQ", "UKR"];
   var year = 3; // only check 2015
 
   for (var month = 0; month < 12; month++) {
     _.forEach(destinationCountriesToCheck, function(destinationCountry) {
       var countryData = this.pairCountsByDestination[destinationCountry];
-      var isMissingData = false;
+      var originCountriesWithDataCount = 0;
       _.forEach(originCountriesToCheck, function(originCountry) {
-        if (!countryData[originCountry] || countryData[originCountry][year][month].count === 0) {
-          isMissingData = true;
+        if (countryData[originCountry] && countryData[originCountry][year][month].count > 0) {
+          originCountriesWithDataCount++;
         }
       });
-      if (isMissingData) {
+      if (originCountriesWithDataCount === 0) {
         this.destinationCountriesWithMissingData[year][month].push(destinationCountry);
       }
     }.bind(this));
