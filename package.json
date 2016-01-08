@@ -34,7 +34,6 @@
   "devDependencies": {
     "gulp": "gulpjs/gulp#4.0",
     "simplify-geojson": "0.0.2",
-    "topojson": "^1.6.19",
     "lucify-component-builder": "git+ssh://git@github.com/lucified/lucify-component-builder.git"
   },
   "dependencies": {
@@ -60,6 +59,7 @@
     "react": "0.13.3",
     "should": "^7.1.0",
     "sprintf": "^0.1.5",
+    "topojson": "^1.6.19",
     "underscore": "^1.8.3",
     "vec2": "^1.6.0",
     "vinyl-source-stream": "^1.1.0",
