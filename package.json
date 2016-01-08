@@ -4,24 +4,38 @@
   "description": "React components for visualizing refugee flows to Europe",
   "main": "gulpfile.js",
   "scripts": {
+    "prepublish": "./prepare.sh",
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "0.12.7"
+    "node": "0.12.9"
   },
-  "homepage": "",
+  "homepage": "https://www.lucify.com/the-flow-towards-europe",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Lucify",
+    "url": "https://www.lucify.com"
   },
+  "contributors": [
+    {
+      "name": "Juho Ojala",
+      "email": "juho@lucify.com"
+    },
+    {
+      "name": "Ville Saarinen",
+      "email": "ville.saarinen@lucify.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://gitub.com/lucified/lucify-refugees.git"
   },
   "license": "MIT",
   "devDependencies": {
-    "gulp": "gulpjs/gulp#4.0"
+    "gulp": "gulpjs/gulp#4.0",
+    "simplify-geojson": "0.0.2",
+    "topojson": "^1.6.19",
+    "lucify-component-builder": "git+ssh://git@github.com/lucified/lucify-component-builder.git"
   },
   "dependencies": {
     "area-polygon": "^1.0.1",
@@ -36,7 +50,6 @@
     "i18n-iso-countries": "^0.9.0",
     "jquery": "^2.1.4",
     "lucify-commons": "git+ssh://git@github.com/lucified/lucify-commons.git",
-    "lucify-component-builder": "git+ssh://git@github.com/lucified/lucify-component-builder.git",
     "moment": "^2.10.6",
     "node-bourbon": "^4.2.3",
     "pixi.js": "^3.0.7",
@@ -46,9 +59,7 @@
     "randgen": "^0.1.0",
     "react": "0.13.3",
     "should": "^7.1.0",
-    "simplify-geojson": "0.0.2",
     "sprintf": "^0.1.5",
-    "topojson": "^1.6.19",
     "underscore": "^1.8.3",
     "vec2": "^1.6.0",
     "vinyl-source-stream": "^1.1.0",
