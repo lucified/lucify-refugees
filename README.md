@@ -2,7 +2,7 @@
 
 A visualization of the flow of asylum seekers to European countries from 2012 onwards. Based on UNHCR data. See it in action [here](http://www.lucify.com/the-flow-towards-europe/). For a more in-depth explanation, read [this blog post](https://medium.com/@lucify/a-novel-visualisation-of-the-refugee-crisis-565e40ab5a50).
 
-![Visualization screenshot](screenshot.png)
+![Visualization screenshot](https://raw.githubusercontent.com/lucified/lucify-refugees/master/screenshot.png)
 
 This project uses a combination of [React](https://facebook.github.io/react/), [D3.js](http://d3js.org/) and [PIXI.js](http://www.pixijs.com/).
 
