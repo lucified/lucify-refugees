@@ -9,13 +9,9 @@
     "test": "mocha"
   },
   "engines": {
-    "node": "0.12.9"
+    "node": "~0.12.9"
   },
   "homepage": "https://www.lucify.com/the-flow-towards-europe",
-  "author": {
-    "name": "Lucify",
-    "url": "https://www.lucify.com"
-  },
   "contributors": [
     {
       "name": "Juho Ojala",
@@ -28,11 +24,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://gitub.com/lucified/lucify-refugees.git"
+    "url": "https://gitub.com/lucified/lucify-refugees.git"
+  },
+  "bugs": {
+    "email": "info@lucify.com"
   },
   "license": "MIT",
   "devDependencies": {
-    "gulp": "gulpjs/gulp#4.0",
     "simplify-geojson": "0.0.2",
     "lucify-component-builder": "git+ssh://git@github.com/lucified/lucify-component-builder.git"
   },
@@ -45,6 +43,7 @@
     "console-browserify": "^1.1.0",
     "d3": "^3.5.6",
     "deepcopy": "^0.5.0",
+    "gulp": "gulpjs/gulp#4.0",
     "gulp-execsyncs": "^0.1.1",
     "i18n-iso-countries": "^0.9.0",
     "jquery": "^2.1.4",
