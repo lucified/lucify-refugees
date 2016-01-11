@@ -8,6 +8,14 @@
     "start": "gulp",
     "test": "mocha"
   },
+  "keywords": [
+    "lucify",
+    "visualisation",
+    "visualization",
+    "asylum seekers",
+    "UNHCR",
+    "Europe"
+  ],
   "engines": {
     "node": "~0.12.9"
   },
