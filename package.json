@@ -32,7 +32,7 @@
   "license": "MIT",
   "devDependencies": {
     "simplify-geojson": "0.0.2",
-    "lucify-component-builder": "git+ssh://git@github.com/lucified/lucify-component-builder.git"
+    "lucify-component-builder": "~0.2.1"
   },
   "dependencies": {
     "area-polygon": "^1.0.1",
@@ -47,7 +47,7 @@
     "gulp-execsyncs": "^0.1.1",
     "i18n-iso-countries": "^0.9.0",
     "jquery": "^2.1.4",
-    "lucify-commons": "git+ssh://git@github.com/lucified/lucify-commons.git",
+    "lucify-commons": "~0.2.2",
     "moment": "^2.10.6",
     "node-bourbon": "^4.2.3",
     "pixi.js": "^3.0.7",
