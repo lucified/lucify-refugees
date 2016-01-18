@@ -1,20 +1,7 @@
 
 var gulp = require('gulp');
-var execsyncs = require('gulp-execsyncs');
-
-
-gulp.task('prepare-data', function(cb) {
-  execsyncs({
-    cmds : [
-      './prepare.sh'
-      ]
-  });
-  cb();
-});
-
 
 var opts = {
-	pretasks: ['prepare-data'],
 	paths: ['node_modules/lucify-commons'],
 	publishFromFolder: 'dist',
 	defaultBucket: 'lucify-dev',
