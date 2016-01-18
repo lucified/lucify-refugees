@@ -5,3 +5,4 @@ machine:
 dependencies:
   pre:
     - sudo apt-get install gdal-bin
+    - gem install bundler && bundle install
