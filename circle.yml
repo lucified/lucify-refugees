@@ -1,0 +1,15 @@
+machine:
+  node:
+    version: 0.12.9
+
+dependencies:
+  pre:
+    - sudo apt-get install gdal-bin
+    - gem install bundler && bundle install
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - npm run-script dist
+      - npm run-script devdeploy
