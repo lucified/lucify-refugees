@@ -1,0 +1,7 @@
+machine:
+  node:
+    version: 0.12.9
+
+dependencies:
+  pre:
+    - sudo apt-get install gdal-bin
