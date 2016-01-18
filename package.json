@@ -6,7 +6,9 @@
   "scripts": {
     "prepublish": "./prepare.sh",
     "start": "gulp",
-    "test": "mocha"
+    "test": "mocha",
+    "dist": "gulp dist",
+    "devdeploy": "gulp s3-deploy --bucket=lucify-dev"
   },
   "keywords": [
     "lucify",
