@@ -68,6 +68,7 @@
     "query-string": "^2.4.1",
     "randgen": "^0.1.0",
     "react": "0.13.3",
+    "should": "^8.1.1",
     "sprintf": "^0.1.5",
     "topojson": "^1.6.19",
     "underscore": "^1.8.3",
