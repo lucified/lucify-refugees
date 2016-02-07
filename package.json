@@ -46,8 +46,7 @@
     "simplify-geojson": "0.0.2",
     "babelify": "^6.4.0",
     "gulp": "gulpjs/gulp#4.0",
-    "watchify": "^3.2.1",
-    "should": "^7.1.0"
+    "watchify": "^3.2.1"
   },
   "dependencies": {
     "area-polygon": "^1.0.1",
