@@ -25,7 +25,7 @@ var RefugeeSoccerSegment = React.createClass({
 
 	getRegionalCount: function() {
 		// http://data.unhcr.org/syrianrefugees/regional.php, Registered Syrian Refugees
-		return 4390439; // Updated 17.12.2015
+		return 4597436; // Updated 19.1.2016
 	},
 
 
@@ -71,7 +71,7 @@ var RefugeeSoccerSegment = React.createClass({
 					<p>
 						Only a small fraction of refugees fleeing
 						their homes make it to Europe. The UN
-						has registered over four million Syrian
+						has registered over four and a half million Syrian
 						refugees in Turkey, Lebanon, Jordan, Iraq, Egypt and
 						North Africa. Most of them live in refugee camps
 						close to the border.
