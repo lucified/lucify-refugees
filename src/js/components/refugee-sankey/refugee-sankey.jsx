@@ -8,7 +8,7 @@ var sprintf = require('sprintf');
 d3.sankey = require('./d3-sankey.js');
 
 var countries = require("i18n-iso-countries");
-var classNames = require('classNames');
+var classNames = require('classnames');
 
 
 
@@ -17,7 +17,7 @@ var getCountryFromNodeId = function(id) {
 }
 
 
-// Child components 
+// Child components
 // ----------------
 
 
@@ -45,7 +45,7 @@ var Node = React.createClass({
 		}
 
 		sel.attr('transform', sprintf('translate(%.2f, %.2f)', item.x, item.y));
-	
+
 		var height = Math.max(Math.round(item.dy), 2);
 
 		sel.select('rect')
@@ -85,8 +85,8 @@ var Node = React.createClass({
 		if (found != null) {
 			return found.value;
 			// this is a bit too long probably
-			//return found.value 
-			//	+ " from " 
+			//return found.value
+			//	+ " from "
 			//	+ this.props.getCountryName(this.props.activeCountry)
 			//	+ " to"
 		}
@@ -101,7 +101,7 @@ var Node = React.createClass({
 		var cond = item.x < this.props.width / 2;
 		var anchor = cond ? "start" : "end";
 		var x = cond ? 6 + this.props.nodeWidth : -6;
-		
+
 		var classes = classNames({
 			node: true,
 			'node--hovered': item == this.props.activeNode,
@@ -133,14 +133,14 @@ var Node = React.createClass({
 
 		return (
 			<g className={classes}>
-				<rect 
+				<rect
 					onMouseOver={this.props.onMouseOver}
 					onMouseOut={this.props.onMouseOut} />
 				{textComponent}
 			</g>
 		);
 	}
-	
+
 });
 
 
@@ -158,7 +158,7 @@ var LinkPath = React.createClass({
 
 
 	update: function(transition) {
-		var item = this.props.item;		
+		var item = this.props.item;
 		var sel = d3.select(this.getDOMNode());
 
 		if (transition) {
@@ -174,7 +174,7 @@ var LinkPath = React.createClass({
 		var classes = classNames({
 			'link': true,
 			'link--unselected': this.props.activeNode != null
-				&& item.sourceName != this.props.activeNode.name 
+				&& item.sourceName != this.props.activeNode.name
 				&& item.targetName != this.props.activeNode.name,
 			'link--hovered': this.props.activeNode != null
 				&& (item.sourceName == this.props.activeNode.name
@@ -189,7 +189,7 @@ var LinkPath = React.createClass({
 });
 
 
-// Main Component 
+// Main Component
 // --------------
 
 
@@ -246,7 +246,7 @@ var RefugeeSankey = React.createClass({
 		this.getSimplifiedData().forEach(function(item) {
 			ret[this.getDestinationId(item.ac)] = true;
 		}.bind(this));
-		return _.keys(ret);	
+		return _.keys(ret);
 	},
 
 
@@ -274,7 +274,7 @@ var RefugeeSankey = React.createClass({
 	 */
 	getData: function() {
 		return this.props.asylumData.filter(function(item) {
-			return item.year == this.props.year 
+			return item.year == this.props.year
 				&& item.month == this.props.month + 1
 				&& item.count > 0;
 		}.bind(this));
@@ -292,7 +292,7 @@ var RefugeeSankey = React.createClass({
 				targetCounts[item.ac] = 0;
 			}
 			targetCounts[item.ac] += item.count;
-		
+
 			if (!sourceCounts[item.oc]) {
 				sourceCounts[item.oc] = 0;
 			}
@@ -348,7 +348,7 @@ var RefugeeSankey = React.createClass({
 		this.getData().forEach(function(item) {
 			var sourceCountry = sourceCountries.indexOf(item.oc) !== -1 && item.oc !== 'XXX' ? item.oc : "others";
 			var targetCountry = targetCountries.indexOf(item.ac) !== -1 && item.ac !== 'XXX' ? item.ac : "others";
-			
+
 			if (sourceCountry == "others" || targetCountry == "others") {
 				var found = _.find(ret, function(val) {
 					return val.oc == sourceCountry && val.ac == targetCountry;
@@ -402,7 +402,7 @@ var RefugeeSankey = React.createClass({
 
 	getOnMouseOut: function(item) {
 		return function() {
-			this.setState({hovered: null});	
+			this.setState({hovered: null});
 			//if (this.state.hovered == item) {
 			//}
 		}.bind(this);
@@ -434,11 +434,11 @@ var RefugeeSankey = React.createClass({
 			var country = getCountryFromNodeId(item.name);
 
 			return (
-				<Node 
+				<Node
 					getCountryName={this.getCountryName} // sic
 					width={this.getWidth()}
 					key={item.name}
-				    item={item} 
+				    item={item}
 					onMouseOver={this.getOnMouseOver(item)}
 					onMouseOut={this.getOnMouseOut(item)}
 					activeNode={this.getActiveNode()}
@@ -501,7 +501,7 @@ var RefugeeSankey = React.createClass({
 	render: function() {
 		if (!this.props.asylumData) {
 			return <svg />
-		}	
+		}
 
 		var nodes = this.getCachedNodes();
 		var links = this.getCachedLinks();
@@ -509,14 +509,14 @@ var RefugeeSankey = React.createClass({
 		var sankey = this.getSankey();
 
 		var path = sankey.link();
-		
+
 		sankey
 			.nodes(nodes)
 			.links(links);
 		sankey.layout(32);
 
 		// this will lock the y-scale of the sankey
-		// it is a bit fragile, as the height of the svg 
+		// it is a bit fragile, as the height of the svg
 		// will not be able to accomodate if refugee counts
 		// are larger than when the y-scale was locked
 		//
@@ -530,7 +530,7 @@ var RefugeeSankey = React.createClass({
 		}
 
 		return (
-			<svg className="refugee-sankey" 
+			<svg className="refugee-sankey"
 				style={{width: this.getWidth(), height: this.getHeight()}}>
 				<g>
 					{this.renderNodes(nodes, sankey)}
