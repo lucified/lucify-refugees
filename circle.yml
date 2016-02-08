@@ -1,4 +1,8 @@
 machine:
+  environment:
+    PROJECT: $CIRCLE_PROJECT_REPONAME
+    BRANCH: $CIRCLE_BRANCH
+    COMMIT: $CIRCLE_SHA1
   node:
     version: 4.2.2
 
