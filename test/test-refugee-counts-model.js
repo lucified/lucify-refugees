@@ -36,7 +36,7 @@ describe('RefugeeCountsModel', function() {
 
 	describe('pairCountsByDestination', function() {
 		it('correct total for AFG -> DEU @ jan 2015', function() {
-			assert.equal(model.pairCountsByDestination['DEU']['AFG'][3][0].count, 1129);
+			assert.equal(model.pairCountsByDestination['DEU']['AFG'][3][0].count, 1248);
 		});
 	});
 
