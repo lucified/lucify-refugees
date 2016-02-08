@@ -8,7 +8,7 @@
     "start": "gulp",
     "test": "mocha",
     "dist": "gulp dist",
-    "devdeploy": "gulp s3-deploy --bucket=lucify-dev"
+    "devdeploy": "gulp s3-deployandnotify"
   },
   "keywords": [
     "lucify",

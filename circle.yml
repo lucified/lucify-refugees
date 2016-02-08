@@ -9,7 +9,7 @@ dependencies:
 
 deployment:
   staging:
-    branch: master
+    branch: /^(?!nodeploy-).*$/
     commands:
       - npm run-script dist
       - npm run-script devdeploy
