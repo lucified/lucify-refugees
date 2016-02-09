@@ -64,12 +64,13 @@ module.exports = function(Component) {
 
 
         play: function() {
-            if (this.stamp <= RefugeeConstants.DATA_END_MOMENT.unix()) {
+            var increment = (60 * 60 * this.state.speed);
+            var newStamp = this.stamp + increment;
+
+            if (newStamp <= RefugeeConstants.DATA_END_MOMENT.unix()) {
               if (!this.blockPlay && this.state.play) {
-                var increment = (60 * 60 * this.state.speed);
-                var newStamp = this.stamp + increment;
                 this.updateStamp(newStamp);
-                requestAnimationFrame(this.play);    
+                requestAnimationFrame(this.play);
               }
             }
         },
