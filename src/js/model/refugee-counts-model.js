@@ -326,6 +326,10 @@ RefugeeCountsModel.prototype.getDestinationCountries = function() {
 
 
 RefugeeCountsModel.prototype.getDestinationCountriesWithMissingData = function(timestamp) {
+  if (timestamp.isAfter(refugeeConstants.DATA_END_MOMENT)) {
+    console.log("trying to get data past end moment: " + timestamp.format())
+    timestamp = refugeeConstants.DATA_END_MOMENT;
+  }
   var yearIndex = timestamp.year() - refugeeConstants.DATA_START_YEAR;
   var monthIndex = timestamp.month();
   return this.destinationCountriesWithMissingData[yearIndex][monthIndex];
