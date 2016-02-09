@@ -7,8 +7,8 @@
     "prepublish": "./prepare.sh",
     "start": "gulp",
     "test": "mocha",
-    "dist": "gulp dist",
-    "devdeploy": "gulp s3-deployandnotify"
+    "dist": "rm -rf dist && gulp dist",
+    "deploy": "lucify-deploy"
   },
   "keywords": [
     "lucify",
@@ -41,7 +41,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "lucify-component-builder": "~0.2.9",
+    "lucify-component-builder": "~0.2.10",
     "mocha": "^2.3.4",
     "simplify-geojson": "0.0.2",
     "babelify": "^6.4.0",

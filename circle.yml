@@ -15,5 +15,4 @@ deployment:
   staging:
     branch: /^(?!nodeploy-).*$/
     commands:
-      - npm run-script dist
-      - npm run-script devdeploy
+      - npm run-script deploy
