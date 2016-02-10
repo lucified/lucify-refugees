@@ -1,5 +1,4 @@
 
-var _ = require('underscore');
 var React = require('react');
 var d3 = require('d3');
 
@@ -8,7 +7,6 @@ var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
 var CountryLabelsLayer = require('./refugee-map-country-labels-layer.jsx');
 var CountBarsLayer = require('./refugee-map-count-bars-layer.jsx');
 var PointsLayer = require('./refugee-map-points-layer.jsx');
-var RefugeeMapLineChart = require('./refugee-map-line-chart.jsx');
 var SimpleBordersLayer = require('./refugee-map-simple-borders-layer.jsx');
 var FrameRateLayer = require('./frame-rate-layer.jsx');
 var RefugeeHighlightMixin = require('./refugee-highlight-mixin.js');
@@ -49,35 +47,34 @@ var RefugeeMap = React.createClass({
 
 
   componentWillUpdate: function(nextProps, nextState) {
-      if (this.props.width !== nextProps.width) {
-        this._projection = null;
-      }
+    if (this.props.width !== nextProps.width) {
+      this._projection = null;
+    }
   },
 
 
   getConicConformalProjection: function() {
-      var lo = 26.2206322; // x
-      var la = 46.0485818 - 8; // y
-      return d3.geo.conicConformal()
-         .center([0, la])
-         .rotate([-lo, 0])
-         .scale(this.getWidth()*0.85)
-         .translate([this.getWidth() / 2, this.getHeight() / 2]);
+    var lo = 26.2206322; // x
+    var la = 46.0485818 - 8; // y
+    return d3.geo.conicConformal()
+      .center([0, la])
+      .rotate([-lo, 0])
+      .scale(this.getWidth()*0.85)
+      .translate([this.getWidth() / 2, this.getHeight() / 2]);
   },
 
 
   getAzimuthalEqualAreaProjection: function() {
-      var lo = this.props.lo; // x
-      var la = this.props.la; // y
-      var scale = this.props.scale;
+    var lo = this.props.lo; // x
+    var la = this.props.la; // y
 
-      return d3.geo.azimuthalEqualArea()
-        //.clipAngle(180 - 1e-3)
-        .center([0, la])
-        .rotate([-lo, 0])
-        .scale(this.getWidth()*this.props.scale)
-        .translate([this.getWidth() / 2, this.getHeight() / 2])
-        .precision(1);
+    return d3.geo.azimuthalEqualArea()
+      //.clipAngle(180 - 1e-3)
+      .center([0, la])
+      .rotate([-lo, 0])
+      .scale(this.getWidth()*this.props.scale)
+      .translate([this.getWidth() / 2, this.getHeight() / 2])
+      .precision(1);
   },
 
 
@@ -86,10 +83,10 @@ var RefugeeMap = React.createClass({
     var la = 46.0485818; // y
 
     return d3.geo.mercator()
-        .center([0, la])
-        .rotate([-lo, 0])
-        .scale(this.getWidth()*0.55)
-        .translate([this.getWidth() / 2, this.getHeight() / 2])
+      .center([0, la])
+      .rotate([-lo, 0])
+      .scale(this.getWidth()*0.55)
+      .translate([this.getWidth() / 2, this.getHeight() / 2]);
   },
 
 
@@ -113,7 +110,7 @@ var RefugeeMap = React.createClass({
 
 
   componentWillMount: function() {
-      this.stamp = this.props.stamp;
+    this.stamp = this.props.stamp;
   },
 
 
@@ -121,98 +118,105 @@ var RefugeeMap = React.createClass({
   // for explanation
 
   updateForStamp: function(stamp) {
-      this.stamp = stamp;
+    this.stamp = stamp;
 
-      if (this.refs.pointsLayer != null) {
-        this.refs.pointsLayer.updateForStamp(stamp);
-      }
+    if (this.refs.pointsLayer != null) {
+      this.refs.pointsLayer.updateForStamp(stamp);
+    }
 
-      if (this.refs.frameRateLayer != null) {
-        this.refs.frameRateLayer.update();
-      }
+    if (this.refs.frameRateLayer != null) {
+      this.refs.frameRateLayer.update();
+    }
 
-      if (this.refs.bordersLayer != null) {
-        this.refs.bordersLayer.updateForStamp(stamp);
-      }
+    if (this.refs.bordersLayer != null) {
+      this.refs.bordersLayer.updateForStamp(stamp);
+    }
 
-      if (this.refs.countBars != null) {
-        this.refs.countBars.updateForStamp(stamp);
-      }
+    if (this.refs.countBars != null) {
+      this.refs.countBars.updateForStamp(stamp);
+    }
 
-      if (this.refs.countsLayer != null) {
-        this.refs.countsLayer.updateForStamp(stamp);
-      }
+    if (this.refs.countsLayer != null) {
+      this.refs.countsLayer.updateForStamp(stamp);
+    }
 
-      if (this.interactionsEnabled() && this.props.refugeeCountsModel != null) {
-        this.updateHighlight(this.getHighlightedCountry());
-      }
+    if (this.interactionsEnabled() && this.props.refugeeCountsModel != null) {
+      this.updateHighlight(this.getHighlightedCountry());
+    }
   },
 
 
   getStamp: function() {
-      return this.stamp;
+    return this.stamp;
   },
 
 
   interactionsEnabled: function() {
-      return this.props.interactionsEnabled;
+    return this.props.interactionsEnabled;
   },
 
 
   getFirstBordersLayer: function() {
     if (this.interactionsEnabled()) {
-       return (
-          <BordersLayer
-            ref="bordersLayer"
-            updatesEnabled={true}
-            enableOverlay={true}
-            {...this.getStandardLayerParams()}
-            {...this.getHighlightLayerParams()}
-            refugeeCountsModel={this.props.refugeeCountsModel}
-            subunitClass="subunit" />);
+      return (
+        <BordersLayer
+          ref="bordersLayer"
+          updatesEnabled={true}
+          enableOverlay={true}
+          {...this.getStandardLayerParams()}
+          {...this.getHighlightLayerParams()}
+          refugeeCountsModel={this.props.refugeeCountsModel}
+          subunitClass="subunit" />
+      );
     } else {
-        return (<SimpleBordersLayer {...this.getStandardLayerParams()} />);
+      return <SimpleBordersLayer {...this.getStandardLayerParams()} />;
     }
   },
 
 
   getSecondBordersLayer: function() {
     if (this.interactionsEnabled()) {
-       return <BordersLayer
-             updatesEnabled={false}
-             {...this.getStandardLayerParams()}
-             subunitClass="subunit-invisible"
-             onMouseOver={this.handleMouseOver}
-             onMouseLeave={this.handleMouseLeave}
-             onClick={this.handleMapClick} />
+      return (
+        <BordersLayer
+          updatesEnabled={false}
+          {...this.getStandardLayerParams()}
+          subunitClass="subunit-invisible"
+          onMouseOver={this.handleMouseOver}
+          onMouseLeave={this.handleMouseLeave}
+          onClick={this.handleMapClick} />
+      );
     }
   },
 
 
   getCountryLabelsLayer: function() {
     if (this.interactionsEnabled()) {
-      return <CountryLabelsLayer
-        ref="countryLabels"
-        {...this.getStandardLayerParams()}
-        {...this.getHighlightLayerParams()} />
+      return (
+        <CountryLabelsLayer
+          ref="countryLabels"
+          {...this.getStandardLayerParams()}
+          {...this.getHighlightLayerParams()} />
+      );
     }
   },
 
 
   getCountryCountsLayer: function() {
     if (this.interactionsEnabled()) {
-      return  <CountryCountsLayer
+      return (
+        <CountryCountsLayer
           ref="countsLayer"
           {...this.getStandardLayerParams()}
           {...this.getHighlightLayerParams()}
           refugeeCountsModel={this.props.refugeeCountsModel} />
+      );
     }
   },
 
 
   getOverlayLayer: function() {
     if (this.interactionsEnabled()) {
-        return null;
+      return null;
     }
     return (
       <div
@@ -224,11 +228,13 @@ var RefugeeMap = React.createClass({
 
   getCountBarsLayer: function() {
     if (lucifyUtils.detectIE() !== 9) {
-        return <CountBarsLayer
-           ref="countBars"
-           {...this.getStandardLayerParams()}
-           highlightedCountry={this.getHighlightedCountry()}
-           refugeeCountsModel={this.props.refugeeCountsModel} />
+      return (
+        <CountBarsLayer
+          ref="countBars"
+          {...this.getStandardLayerParams()}
+          highlightedCountry={this.getHighlightedCountry()}
+          refugeeCountsModel={this.props.refugeeCountsModel} />
+      );
     }
     return null;
   },
@@ -236,7 +242,7 @@ var RefugeeMap = React.createClass({
 
   getFrameRateLayer: function() {
     if (this.props.showFps) {
-      return <FrameRateLayer ref="frameRateLayer" />
+      return <FrameRateLayer ref="frameRateLayer" />;
     }
     return null;
   },
@@ -244,17 +250,15 @@ var RefugeeMap = React.createClass({
 
   getDataUpdated: function() {
     if (this.props.showDataUpdated) {
-      return <DataUpdated updatedAt={RefugeeConstants.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT} />
+      return <DataUpdated updatedAt={RefugeeConstants.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT} />;
     }
   },
 
 
   render: function() {
-
-    if (!this.props.refugeeCountsModel
-      || !this.props.refugeePointsModel
-      || !this.props.mapModel) {
-
+    if (!this.props.refugeeCountsModel ||
+        !this.props.refugeePointsModel ||
+        !this.props.mapModel) {
       return (
         <div className="refugee-map"
           style={{width: this.getWidth(), height: this.getHeight()}}>
@@ -272,13 +276,14 @@ var RefugeeMap = React.createClass({
         {this.getCountBarsLayer()}
 
         {this.getCountryLabelsLayer()}
+
         {this.getCountryCountsLayer()}
 
         <PointsLayer
-           ref="pointsLayer"
-           {...this.getStandardLayerParams()}
-           highlightedCountry={this.getHighlightedCountry()}
-           refugeePointsModel={this.props.refugeePointsModel} />
+          ref="pointsLayer"
+          {...this.getStandardLayerParams()}
+          highlightedCountry={this.getHighlightedCountry()}
+          refugeePointsModel={this.props.refugeePointsModel} />
 
         {this.getSecondBordersLayer()}
 
@@ -287,10 +292,10 @@ var RefugeeMap = React.createClass({
         {this.getOverlayLayer()}
 
         {this.getDataUpdated()}
-
       </div>
-    )
+    );
   }
+
 });
 
 

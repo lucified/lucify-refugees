@@ -36,9 +36,13 @@ var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartP
       }
     });
 
-    console.log("Skipped the following countries that are not on map: " + _.keys(skippedCountries).join(', '));
-    console.log("Not showing data that is past " + RefugeeConstants.DATA_END_MOMENT.format('ll') +
-      " from the following countries: " + _.keys(skippedFutureDataCountries).join(', '));
+    if (_.keys(skippedCountries).length > 0) {
+      console.log('Skipped the following countries that are not on map: ' + _.keys(skippedCountries).join(', '));
+    }
+    if (_.keys(skippedFutureDataCountries).length > 0) {
+      console.log('Not showing data that is past ' + RefugeeConstants.DATA_END_MOMENT.format('ll') +
+        ' from the following countries: ' + _.keys(skippedFutureDataCountries).join(', '));
+    }
   }
 
   return ret;

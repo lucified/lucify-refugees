@@ -3,7 +3,7 @@ var should = require('should');
 var _ = require('underscore');
 var moment = require('moment');
 var utils = require('../utils.js');
-var console = require("console-browserify")
+var console = require('console-browserify');
 
 var refugeeConstants = require('./refugee-constants.js');
 
@@ -25,7 +25,7 @@ var refugeeConstants = require('./refugee-constants.js');
  */
 
 var RefugeeCountsModel = function(asylumData) {
-  should.notEqual(asylumData, null, "asylumData");
+  should.notEqual(asylumData, null, 'asylumData');
 
   this.destinationCountries = {};
   this.arrivedRefugeesToCountry = {};
@@ -99,9 +99,9 @@ RefugeeCountsModel.prototype._addMonthlyArrivals = function(destinationCountry, 
   var yearIndex = year - refugeeConstants.DATA_START_YEAR;
   var monthIndex = month - 1;
 
-  console.assert(monthIndex >= 0 && monthIndex < 12, "Month is between 0 and 11");
+  console.assert(monthIndex >= 0 && monthIndex < 12, 'Month is between 0 and 11');
   console.assert(yearIndex >= 0 && yearIndex < (refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1),
-    "Year is between 0 and " + (refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1));
+    'Year is between 0 and ' + (refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1));
 
   this.globalRefugees[yearIndex][monthIndex].count += count;
   this.arrivedRefugeesToCountry[destinationCountry][yearIndex][monthIndex].count += count;
@@ -159,16 +159,16 @@ RefugeeCountsModel.prototype._enrichCountsArray = function (arr) {
 };
 
 /*
- * Assume that "big" European countries should receive at least some asylum seekers from
+ * Assume that 'big' European countries should receive at least some asylum seekers from
  * the most distressed origin countries: Syria, Iraq. If there are no asylum seekers
  * from these countries, assume the data is (at least partially) missing for that month.
  */
 RefugeeCountsModel.prototype._calculateMissingData = function() {
   var destinationCountriesToCheck = [
-    "AUT", "BEL", "BGR", "CHE", "DEU", "DNK", "ESP", "FIN",
-    "FRA", "GBR", "GRC", "HUN", "ITA", "NOR", "NLD", "SWE"
+    'AUT', 'BEL', 'BGR', 'CHE', 'DEU', 'DNK', 'ESP', 'FIN',
+    'FRA', 'GBR', 'GRC', 'HUN', 'ITA', 'NOR', 'NLD', 'SWE'
   ];
-  var originCountriesToCheck = ["SYR", "IRQ", "UKR"];
+  var originCountriesToCheck = ['SYR', 'IRQ', 'UKR'];
   var year = 3; // only check 2015
 
   for (var month = 0; month < 12; month++) {
@@ -208,7 +208,7 @@ RefugeeCountsModel.prototype._prepareTotalCount = function(item, endStamp, debug
   if (!country) {
     return { asylumApplications: 0 };
   } else if (!country[yearIndex]) {
-    console.log("nothing found for year " + yearIndex + ", debugInfo: " + debugInfo + ", stamp " + endStamp);
+    console.log('nothing found for year ' + yearIndex + ', debugInfo: ' + debugInfo + ', stamp ' + endStamp);
     return { asylumApplications: 0 };
   } else {
     return {
@@ -233,12 +233,11 @@ RefugeeCountsModel.prototype.getGlobalArrivingPerDayCounts = function(stamp) {
     mom = refugeeConstants.DATA_END_MOMENT; // show last available data once we reach it
   }
 
-  var dayOfMonth = mom.date();
   var yearIndex = mom.year() - refugeeConstants.DATA_START_YEAR;
   var monthIndex = mom.month();
 
   return {
-      asylumApplications: this.globalRefugees[yearIndex][monthIndex].arrivingPerDay
+    asylumApplications: this.globalRefugees[yearIndex][monthIndex].arrivingPerDay
   };
 
   //return this._prepareTotalCount(this.globalRefugees, endStamp, 'totalcount');
@@ -327,14 +326,13 @@ RefugeeCountsModel.prototype.getDestinationCountries = function() {
 
 RefugeeCountsModel.prototype.getDestinationCountriesWithMissingData = function(timestamp) {
   if (timestamp.isAfter(refugeeConstants.DATA_END_MOMENT)) {
-    console.log("trying to get data past end moment: " + timestamp.format())
+    console.log('trying to get data past end moment: ' + timestamp.format())
     timestamp = refugeeConstants.DATA_END_MOMENT;
   }
   var yearIndex = timestamp.year() - refugeeConstants.DATA_START_YEAR;
   var monthIndex = timestamp.month();
   return this.destinationCountriesWithMissingData[yearIndex][monthIndex];
 };
-
 
 
 module.exports = RefugeeCountsModel;

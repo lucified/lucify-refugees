@@ -10,10 +10,10 @@ var RefugeeHighlightMixin = {
 
 
   getInitialState: function() {
-  	return {
-  		hoveredCountry: null,
-  		clickedCountry: null
-  	}
+    return {
+      hoveredCountry: null,
+      clickedCountry: null
+    };
   },
 
 
@@ -49,16 +49,16 @@ var RefugeeHighlightMixin = {
   setHoveredCountry: function(country) {
     this.setState({hoveredCountry: country});
     if (!this.state.clickedCountry) {
-      this.updateHighlight(country);  
+      this.updateHighlight(country);
     }
   },
 
 
   getHighlightedCountry: function() {
-  	if (this.state.clickedCountry != null) {
-  		return this.state.clickedCountry;
-  	}
-  	return this.state.hoveredCountry;
+    if (this.state.clickedCountry != null) {
+      return this.state.clickedCountry;
+    }
+    return this.state.hoveredCountry;
   },
 
 
@@ -84,8 +84,8 @@ var RefugeeHighlightMixin = {
     // for a country pair.
     //
     // In such a situtation we decide on which
-    // which side to display based on whether 
-    // [country] is mainly a sender or receiver. 
+    // which side to display based on whether
+    // [country] is mainly a sender or receiver.
     //
     if (oc.length > dc.length) {
       dc =_.difference(dc, oc);
@@ -93,24 +93,24 @@ var RefugeeHighlightMixin = {
       oc = _.difference(oc, dc);
     }
 
-    // We should update if the destination 
+    // We should update if the destination
     // countries or origin countries have changed
-    // 
-    // To avoid slow deep comparison we 
-    // only compare length. 
-    
-    var update = country != this.country 
+    //
+    // To avoid slow deep comparison we
+    // only compare length.
+
+    var update = country != this.country
       || dc.length != this.storedDestinationCountries.length
       || oc.length != this.storedOriginCountries.length;
 
     this.country = country;
     this.storedDestinationCountries = dc;
     this.storedOriginCountries = oc;
-    
+
     // if the list of destination countries was updated,
     // we call set state to trigger a re-render for borders
     if (update) {
-      this.setState({}); 
+      this.setState({});
     }
   },
 
@@ -120,10 +120,10 @@ var RefugeeHighlightMixin = {
       country: this.getHighlightedCountry(),
       originCountries: this.storedOriginCountries,
       destinationCountries: this.storedDestinationCountries
-    }
-  },
+    };
+  }
 
-}
+};
 
 
 module.exports = RefugeeHighlightMixin;
