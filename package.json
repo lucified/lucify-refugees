@@ -19,7 +19,7 @@
     "Europe"
   ],
   "engines": {
-    "node": "~0.12.9"
+    "node": "^4.2.2"
   },
   "homepage": "https://www.lucify.com/the-flow-towards-europe",
   "contributors": [
