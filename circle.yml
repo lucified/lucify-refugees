@@ -10,6 +10,10 @@ dependencies:
   override:
     - echo "testing"
 
+test:
+  override:
+    - echo "no tests"
+
 deployment:
   staging:
     branch: /^(?!nodeploy-).*$/
