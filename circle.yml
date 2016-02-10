@@ -7,13 +7,11 @@ machine:
     version: 4.2.2
 
 dependencies:
-  pre:
-    - sudo apt-get install gdal-bin
-    - gem install bundler && bundle install
+  override:
+    - echo "testing"
 
 deployment:
   staging:
     branch: /^(?!nodeploy-).*$/
     commands:
       - ./artifact.sh
-      - npm run-script deploy
