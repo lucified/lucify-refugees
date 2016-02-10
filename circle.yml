@@ -15,4 +15,5 @@ deployment:
   staging:
     branch: /^(?!nodeploy-).*$/
     commands:
+      - "echo \{\"url\": \"http://lucify.com\"\} > ${CIRCLE_ARTIFACTS}/info.json"
       - npm run-script deploy
