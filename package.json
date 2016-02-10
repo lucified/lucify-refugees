@@ -1,7 +1,7 @@
 {
   "name": "lucify-refugees",
   "version": "1.0.7",
-  "description": "React components for visualizing refugee flows to Europe",
+  "description": "React components for visualizing asylum seeker flows to Europe",
   "main": "gulpfile.js",
   "scripts": {
     "prepublish": "./prepare.sh",
