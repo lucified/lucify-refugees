@@ -1,0 +1,1 @@
+echo '{"url": "http://lucify.com"}' > ${CIRCLE_ARTIFACTS}/info.json
