@@ -10,9 +10,9 @@ var RefugeeDataUpdated = React.createClass({
     return (
       <div className="refugee-updated-at">
         Data updated<br />
-        {this.props.updatedAt.format("MMM D, YYYY")}
+        {this.props.updatedAt.format('MMM D, YYYY')}
       </div>
-      );
+    );
   }
 
 });

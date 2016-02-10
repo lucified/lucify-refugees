@@ -96,6 +96,4 @@ Refugee.prototype.getLocation = function(stamp) {
 };
 
 
-
-
 module.exports = Refugee;
