@@ -75,7 +75,7 @@ var Node = React.createClass({
       return node.value;
     }
 
-    var found = node.sourceLinks.find(function(item) {
+    var found = _.find(node.sourceLinks, function(item) {
       return item.targetName == this.props.activeNode.name;
     }.bind(this));
 
@@ -84,7 +84,7 @@ var Node = React.createClass({
         getCountryFromNodeId(this.props.activeNode.name));
     }
 
-    found = node.targetLinks.find(function(item) {
+    found = _.find(node.targetLinks, function(item) {
       return item.sourceName == this.props.activeNode.name;
     }.bind(this));
 
@@ -375,7 +375,7 @@ var RefugeeSankey = React.createClass({
       var targetCountry = targetCountries.indexOf(item.ac) !== -1 && item.ac !== 'XXX' ? item.ac : 'others';
 
       if (sourceCountry == 'others' || targetCountry == 'others') {
-        var found = ret.find(function(val) {
+        var found = _.find(ret, function(val) {
           return val.oc == sourceCountry && val.ac == targetCountry;
         });
         if (found) {
