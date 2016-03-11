@@ -53,7 +53,7 @@ MapModel.prototype.getLabelPointForCountry = function(country) {
   var feature = this.getLabelFeatureForCountry(country);
 
   if (!feature) {
-    console.log('could not find label point for ' + country);
+    console.log('could not find label point for ' + country); // eslint-disable-line
     return [0, 0];
   }
 

@@ -19,13 +19,28 @@ var getFullCount = function(counts) {
 
 var RefugeeMapBorder = React.createClass({
 
+  displayName: 'RefugeeMapBorder',
+
+  propTypes: {
+    width: React.PropTypes.number,
+    origin: React.PropTypes.bool,
+    destination: React.PropTypes.bool,
+    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    country: React.PropTypes.string,
+    path: React.PropTypes.func,
+    feature: React.PropTypes.object,
+    enableOverlay: React.PropTypes.bool,
+    subunitClass: React.PropTypes.string
+  },
+
 
   componentDidMount: function() {
     this.sel = d3.select(React.findDOMNode(this.refs.overlay));
   },
 
 
-  componentWillReceiveProps: function(nextProps, nextState) {
+  componentWillReceiveProps: function(nextProps, _nextState) {
     this.sel
       .classed('subunit--hovered', nextProps.hovered)
       .classed('subunit--destination', nextProps.destination)
@@ -33,7 +48,7 @@ var RefugeeMapBorder = React.createClass({
   },
 
 
-  shouldComponentUpdate: function(nextProps, nextState) {
+  shouldComponentUpdate: function(nextProps, _nextState) {
     // it is important to prevent an expensive diff of the svg path
     // a react render will only be needed if we need to resize
     return this.props.width !== nextProps.width;
@@ -114,6 +129,25 @@ var RefugeeMapBorder = React.createClass({
 
 
 var RefugeeMapBordersLayer = React.createClass({
+
+  displayName: 'RefugeeMapBorderLayer',
+
+  propTypes: {
+    onMouseLeave: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
+    onClick: React.PropTypes.func,
+    country: React.PropTypes.string,
+    destinationCountries: React.PropTypes.arrayOf(React.PropTypes.string),
+    originCountries: React.PropTypes.arrayOf(React.PropTypes.string),
+    refugeeCountsModel: React.PropTypes.object,
+    projection: React.PropTypes.func,
+    mapModel: React.PropTypes.object,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    enableOverlay: React.PropTypes.bool,
+    updatesEnabled: React.PropTypes.bool,
+    subunitClass: React.PropTypes.string
+  },
 
 
   getDefaultProps: function() {
@@ -210,7 +244,7 @@ var RefugeeMapBordersLayer = React.createClass({
       var hparams = this.getHighlightParams(country);
 
       if (countries[country]) {
-        console.log("duplicate for " + country);
+        console.log('duplicate for ' + country); // eslint-disable-line
       }
 
       countries[country] = true;
@@ -238,7 +272,7 @@ var RefugeeMapBordersLayer = React.createClass({
   },
 
 
-  shouldComponentUpdate: function(nextProps, nextState) {
+  shouldComponentUpdate: function(nextProps, _nextState) {
     if (this.props.width !== nextProps.width) {
       return true;
     }

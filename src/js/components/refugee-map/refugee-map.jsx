@@ -18,6 +18,23 @@ var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
 
 var RefugeeMap = React.createClass({
 
+  displayName: 'RefugeeMap',
+
+  propTypes: {
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    lo: React.PropTypes.number,
+    la: React.PropTypes.number,
+    scale: React.PropTypes.number,
+    stamp: React.PropTypes.number,
+    mapModel: React.PropTypes.object,
+    refugeeCountsModel: React.PropTypes.object,
+    refugeePointsModel: React.PropTypes.object,
+    interactionsEnabled: React.PropTypes.bool,
+    showFps: React.PropTypes.bool,
+    showDataUpdated: React.PropTypes.bool
+  },
+
 
   mixins: [RefugeeHighlightMixin],
 
@@ -46,7 +63,7 @@ var RefugeeMap = React.createClass({
   },
 
 
-  componentWillUpdate: function(nextProps, nextState) {
+  componentWillUpdate: function(nextProps, _nextState) {
     if (this.props.width !== nextProps.width) {
       this._projection = null;
     }

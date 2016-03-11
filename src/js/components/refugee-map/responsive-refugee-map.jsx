@@ -7,6 +7,8 @@ var ComponentWidthMixin = require('lucify-commons/src/js/components/container-wi
 
 var ResponsiveRefugeeMap = React.createClass({
 
+  displayName: 'ResponsiveRefugeeMap',
+
   mixins: [ComponentWidthMixin],
 
 

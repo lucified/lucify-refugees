@@ -5,6 +5,15 @@ var d3 = require('d3');
 
 var RefugeeMapSimpleBordersLayer = React.createClass({
 
+  displayName: 'RefugeeMapSimpleBordersLayer',
+
+  propTypes: {
+    projection: React.PropTypes.func,
+    mapModel: React.PropTypes.object,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number
+  },
+
 
   componentDidMount: function() {
     this.draw();

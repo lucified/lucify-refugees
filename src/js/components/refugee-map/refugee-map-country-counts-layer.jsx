@@ -7,6 +7,20 @@ var refugeeConstants = require('../../model/refugee-constants.js');
 
 var RefugeeMapCountryCountsLayer = React.createClass({
 
+  displayName: 'RefugeeMapCountryCountsLayer',
+
+  propTypes: {
+    country: React.PropTypes.string,
+    projection: React.PropTypes.func,
+    mapModel: React.PropTypes.object,
+    refugeeCountsModel: React.PropTypes.object,
+    originCountries: React.PropTypes.arrayOf(React.PropTypes.string),
+    destinationCountries: React.PropTypes.arrayOf(React.PropTypes.string),
+    width: React.PropTypes.number,
+    height: React.PropTypes.number
+  },
+
+
   getInitialState: function() {
     return {state: null};
   },

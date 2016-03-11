@@ -95,8 +95,9 @@ RefugeeCountsModel.prototype._addMonthlyArrivals = function(destinationCountry, 
   var yearIndex = year - refugeeConstants.DATA_START_YEAR;
   var monthIndex = month - 1;
 
-  console.assert(monthIndex >= 0 && monthIndex < 12, 'Month is between 0 and 11');
-  console.assert(yearIndex >= 0 && yearIndex < (refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1),
+  console.assert(monthIndex >= 0 && monthIndex < 12, 'Month is between 0 and 11'); // eslint-disable-line
+  console.assert(yearIndex >= 0 &&  // eslint-disable-line
+    yearIndex < (refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1),
     'Year is between 0 and ' + (refugeeConstants.DATA_END_YEAR - refugeeConstants.DATA_START_YEAR + 1));
 
   this.globalRefugees[yearIndex][monthIndex].count += count;
@@ -204,7 +205,8 @@ RefugeeCountsModel.prototype._prepareTotalCount = function(item, endStamp, debug
   if (!country) {
     return { asylumApplications: 0 };
   } else if (!country[yearIndex]) {
-    console.log('nothing found for year ' + yearIndex + ', debugInfo: ' + debugInfo + ', stamp ' + endStamp);
+    console.log('nothing found for year ' + yearIndex + ', debugInfo: ' + // eslint-disable-line
+      debugInfo + ', stamp ' + endStamp);
     return { asylumApplications: 0 };
   } else {
     return {

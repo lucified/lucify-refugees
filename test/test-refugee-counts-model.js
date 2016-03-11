@@ -27,7 +27,8 @@ describe('RefugeeCountsModel', function() {
     it('correct total for germany during jan 2015', function() {
       assert.equal(data
         .filter(function(item) {
-          return item.ac == 'DEU' && item.year==2012 && item.month==1;})
+          return item.ac == 'DEU' && item.year==2012 && item.month==1;
+        })
         .reduce(function(prev, val) { return prev + val.count; }, 0), 4667);
     });
   });

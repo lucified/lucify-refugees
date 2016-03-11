@@ -2,8 +2,8 @@
 var d3 = require('d3');
 var topojson = require('topojson');
 var React = require('react');
-var console = require("console-browserify");
-var Promise = require("bluebird");
+var console = require('console-browserify');
+var Promise = require('bluebird');
 
 var RefugeeCountsModel = require('../model/refugee-counts-model.js');
 var RefugeePointsModel = require('../model/refugee-points-model.js');
@@ -25,6 +25,14 @@ Promise.promisifyAll(d3);
 var bindToRefugeeMapContext = function(Component) {
 
   return React.createClass({
+
+    displayName: 'RefugeeContextDecorator',
+
+    propTypes: {
+      smartSpreadEnabled: React.PropTypes.bool,
+      randomStartPoint: React.PropTypes.bool,
+      peoplePerPoint: React.PropTypes.number
+    },
 
     getDefaultProps: function() {
       return {
@@ -58,7 +66,7 @@ var bindToRefugeeMapContext = function(Component) {
 
 
     componentDidMount: function() {
-      console.time("load json");
+      console.time('load json'); // eslint-disable-line
       var promises = [];
 
       promises.push(d3.jsonAsync(assets.data('topomap.json')).then(function(data) {
@@ -70,7 +78,7 @@ var bindToRefugeeMapContext = function(Component) {
       }.bind(this)));
 
       Promise.all(promises).then(function() {
-        console.timeEnd('load json');
+        console.timeEnd('load json'); // eslint-disable-line
         this.dataLoaded();
       }.bind(this), function(error){
         throw error;
@@ -97,19 +105,19 @@ var bindToRefugeeMapContext = function(Component) {
 
 
     initMapModel: function() {
-      console.time('init map model');
+      console.time('init map model'); // eslint-disable-line
       this.mapModel = new MapModel(this.features);
       this.progress(20);
-      console.timeEnd('init map model');
+      console.timeEnd('init map model'); // eslint-disable-line
       window.setTimeout(this.initPointsList, 15);
     },
 
 
     initPointsList: function() {
-      console.time('create points list');
+      console.time('create points list'); // eslint-disable-line
       this.pointList = this.createPointList(this.mapModel);
       this.progress(85);
-      console.timeEnd('create points list');
+      console.timeEnd('create points list'); // eslint-disable-line
       window.setTimeout(this.initModels, 15);
     },
 

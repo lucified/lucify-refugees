@@ -12,6 +12,12 @@ module.exports = function(Component) {
 
   var RefugeePlayContextDecorator = React.createClass({
 
+    displayName: 'RefugeePlayContextDecorator',
+
+    propTypes: {
+      startStamp: React.PropTypes.number,
+      autoStart: React.PropTypes.bool
+    },
 
     componentWillMount: function() {
       this.stamp = this.props.startStamp;

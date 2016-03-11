@@ -9,6 +9,15 @@ var d3 = require('d3');
 
 var RefugeeMapLineChart = React.createClass({
 
+  displayName: 'RefugeeMapLineChart',
+
+  propTypes: {
+    refugeeCountsModel: React.PropTypes.object,
+    mapModel: React.PropTypes.object,
+    stamp: React.PropTypes.number,
+    onMouseOver: React.PropTypes.func
+  },
+
   getData: function() {
     var mom = moment([refugeeConstants.DATA_START_YEAR, refugeeConstants.DATA_START_MONTH]);
     var endMoment = refugeeConstants.DATA_END_MOMENT;

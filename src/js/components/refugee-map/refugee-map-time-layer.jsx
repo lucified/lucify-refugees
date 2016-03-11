@@ -5,6 +5,11 @@ var RefugeeMapLineChart = require('./refugee-map-line-chart.jsx');
 
 var RefugeeMapTimeLayer = React.createClass({
 
+  displayName: 'RefugeeMapTimeLayer',
+
+  propTypes: {
+    refugeeCountsModel: React.PropTypes.object
+  },
 
   getInitialState: function() {
     return {} ;

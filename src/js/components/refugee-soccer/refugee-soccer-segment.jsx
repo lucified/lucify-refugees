@@ -6,6 +6,9 @@ var SoccerFields = require('lucify-commons/src/js/components/soccer-fields.jsx')
 
 var RefugeeSoccerSegment = React.createClass({
 
+  displayName: 'RefugeeSoccerSegment',
+
+
   // Note:
   //
   // When updating counts, also make sure

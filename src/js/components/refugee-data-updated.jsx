@@ -2,6 +2,12 @@ var React = require('react');
 
 var RefugeeDataUpdated = React.createClass({
 
+  displayName: 'RefugeeDataUpdated',
+
+  propTypes: {
+    updatedAt: React.PropTypes.object
+  },
+
   shouldComponentUpdate: function() {
     return false;
   },

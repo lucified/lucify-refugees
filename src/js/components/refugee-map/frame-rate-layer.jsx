@@ -7,6 +7,8 @@ var d3 = require('d3');
 
 var FrameRateLayer = React.createClass({
 
+  displayName: 'FrameRateLayer',
+
 
   componentWillMount: function() {
     this.smoothFps = 1;

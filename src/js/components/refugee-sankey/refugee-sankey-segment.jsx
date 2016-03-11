@@ -17,6 +17,13 @@ var RefugeeSankey = ResponsiveDecorator(require('./refugee-sankey.jsx'));
 
 var RefugeeSankeySegment = React.createClass({
 
+  displayName: 'RefugeeSankeySegment',
+
+  propTypes: {
+    refugeeCountsModel: React.PropTypes.object,
+    mapModel: React.PropTypes.object
+  },
+
 
   getInitialState: function() {
     return {

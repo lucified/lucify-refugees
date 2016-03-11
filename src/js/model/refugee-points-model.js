@@ -13,11 +13,11 @@ var RefugeePointsModel = function(refugees, randomStartPoint, smartSpreadEnabled
   this.refugeeIndex = 0;
   this.refugeesOnPath = {};
 
-  console.time('refugee sorting');
+  console.time('refugee sorting'); // eslint-disable-line
   this.refugees.sort(function(a, b) {
     return a.startMomentUnix - b.startMomentUnix;
   });
-  console.timeEnd('refugee sorting');
+  console.timeEnd('refugee sorting'); // eslint-disable-line
 };
 
 
