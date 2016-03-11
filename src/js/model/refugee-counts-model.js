@@ -1,5 +1,4 @@
 
-var should = require('should');
 var _ = require('underscore');
 var moment = require('moment');
 var utils = require('../utils.js');
@@ -25,8 +24,6 @@ var refugeeConstants = require('./refugee-constants.js');
  */
 
 var RefugeeCountsModel = function(asylumData) {
-  should.notEqual(asylumData, null, 'asylumData');
-
   this.destinationCountries = {};
   this.arrivedRefugeesToCountry = {};
   this.pairCountsByDestination = {};
