@@ -35,11 +35,10 @@ var RefugeeHighlightMixin = {
   },
 
 
-  handleMouseLeave: function(country) {
+  handleMouseLeave: function(_country) {
     this.pendingHoverOut = true;
     window.setTimeout(function() {
       if (this.pendingHoverOut) {
-        //console.log("setting hoveredCountry to null");
         this.setHoveredCountry(null);
       }
     }.bind(this), 50);

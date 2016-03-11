@@ -1,6 +1,5 @@
 
 var React = require('react');
-var sprintf = require('sprintf');
 
 var Inputs = require('lucify-commons/src/js/components/inputs.jsx');
 var DividedCols = require('lucify-commons/src/js/components/divided-cols.jsx');
@@ -16,6 +15,18 @@ var refugeeConstants = require('../../model/refugee-constants.js');
 
 
 var RefugeeMapSegment = React.createClass({
+
+  displayName: 'RefugeeMapSegment',
+
+  propTypes: {
+    peoplePerPoint: React.PropTypes.number,
+    speed: React.PropTypes.number,
+    handleSpeedChange: React.PropTypes.func,
+    handleStampChange: React.PropTypes.func,
+    stamp: React.PropTypes.number,
+    refugeeCountsModel: React.PropTypes.object,
+    mapModel: React.PropTypes.object
+  },
 
   mixins: [ComponentWidthMixin],
 

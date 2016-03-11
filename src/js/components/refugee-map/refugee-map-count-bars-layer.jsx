@@ -6,6 +6,18 @@ var moment = require('moment');
 
 var RefugeeMapCountBar = React.createClass({
 
+  displayName: 'RefugeeMapCountBar',
+
+  propTypes: {
+    country: React.PropTypes.string,
+    refugeeCountsModel: React.PropTypes.object,
+    mapModel: React.PropTypes.object,
+    scale: React.PropTypes.func,
+    projection: React.PropTypes.func,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number
+  },
+
   // for some reason Safari
   // slows down a lot when these
   // updates are rendered with
@@ -32,7 +44,6 @@ var RefugeeMapCountBar = React.createClass({
 
   componentDidMount: function() {
     this.asylumSel = d3.select(React.findDOMNode(this.refs.asylumBar));
-    //this.update();
   },
 
 
@@ -58,6 +69,17 @@ var RefugeeMapCountBar = React.createClass({
 
 
 var RefugeeMapCountBarsLayer = React.createClass({
+
+  displayName: 'RefugeeMapCountBarsLayer',
+
+  propTypes: {
+    refugeeCountsModel: React.PropTypes.object,
+    mapModel: React.PropTypes.object,
+    projection: React.PropTypes.func,
+    highlightedCountry: React.PropTypes.string,
+    height: React.PropTypes.number,
+    width: React.PropTypes.number
+  },
 
 
   getTotal: function() {

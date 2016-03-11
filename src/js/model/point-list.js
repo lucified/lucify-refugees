@@ -1,6 +1,5 @@
 
 var moment = require('moment');
-var _ = require('underscore');
 
 var Refugee = require('./refugee.js');
 var RefugeeConstants = require('./refugee-constants.js');
@@ -36,12 +35,15 @@ var createFullList = function(mapModel, asylumData, peoplePerPoint, randomStartP
       }
     });
 
-    if (_.keys(skippedCountries).length > 0) {
-      console.log('Skipped the following countries that are not on map: ' + _.keys(skippedCountries).join(', '));
+    if (Object.keys(skippedCountries).length > 0) {
+      console.log('Skipped the following countries that are not on map: ' + // eslint-disable-line
+        Object.keys(skippedCountries).join(', '));
     }
-    if (_.keys(skippedFutureDataCountries).length > 0) {
-      console.log('Not showing data that is past ' + RefugeeConstants.DATA_END_MOMENT.format('ll') +
-        ' from the following countries: ' + _.keys(skippedFutureDataCountries).join(', '));
+    if (Object.keys(skippedFutureDataCountries).length > 0) {
+      console.log('Not showing data that is past ' + // eslint-disable-line
+        RefugeeConstants.DATA_END_MOMENT.format('ll') +
+        ' from the following countries: ' +
+        Object.keys(skippedFutureDataCountries).join(', '));
     }
   }
 

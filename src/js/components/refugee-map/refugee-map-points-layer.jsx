@@ -11,6 +11,16 @@ var isSlowDevice = lucifyUtils.isSlowDevice;
 
 var RefugeeMapPointsLayer = React.createClass({
 
+  displayName: 'RefugeeMapPointsLayer',
+
+  propTypes: {
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    refugeePointsModel: React.PropTypes.object,
+    projection: React.PropTypes.func,
+    highlightedCountry: React.PropTypes.string
+  },
+
 
   componentDidMount: function() {
     this.graphics = {};
@@ -72,11 +82,11 @@ var RefugeeMapPointsLayer = React.createClass({
     }
 
     if (ret.type === PIXI.RENDERER_TYPE.CANVAS) {
-      console.log('using canvas renderer');
+      console.log('using canvas renderer'); // eslint-disable-line
       ret.preserveDrawingBuffer = true;
       ret.clearBeforeRender = false;
     } else {
-      console.log('using webgl renderer');
+      console.log('using webgl renderer'); // eslint-disable-line
       ret.preserveDrawingBuffer = false;
       ret.clearBeforeRender = true;
     }

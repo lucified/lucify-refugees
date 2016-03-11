@@ -1,12 +1,24 @@
 
 var React = require('react');
-var d3 = require('d3');
 var _ = require('underscore');
 
 var refugeeConstants = require('../../model/refugee-constants.js');
 
 
 var RefugeeMapCountryLabelsLayer = React.createClass({
+
+  displayName: 'RefugeeMapCountryLabelsLayer',
+
+  propTypes: {
+    mapModel: React.PropTypes.object,
+    country: React.PropTypes.string,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    projection: React.PropTypes.func,
+    destinationCountries: React.PropTypes.arrayOf(React.PropTypes.string),
+    originCountries: React.PropTypes.arrayOf(React.PropTypes.string)
+  },
+
 
   renderCountryLabel: function(country, type) {
     var point = this.props.projection(
@@ -48,7 +60,7 @@ var RefugeeMapCountryLabelsLayer = React.createClass({
   // and destinationCountries in refugee-map's state
   // regularly when stamps are updated, so any changes
   // will trigger a render as appropriate
-  shouldComponentUpdate: function(nextProps, nextState) {
+  shouldComponentUpdate: function(nextProps, _nextState) {
     return nextProps.country !== this.props.country
       || nextProps.originCountries.length !== this.props.originCountries.length
       || nextProps.destinationCountries.length !== this.props.destinationCountries.length

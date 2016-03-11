@@ -13,6 +13,15 @@ var Loading = require('lucify-commons/src/js/components/loading.jsx');
 
 var RefugeeMainContent = React.createClass({
 
+  displayName: 'RefugeeMainContent',
+
+  propTypes: {
+    mapEnabled: React.PropTypes.bool,
+    loaded: React.PropTypes.bool,
+    sankeyEnabled: React.PropTypes.bool,
+    soccerEnabled: React.PropTypes.bool
+  },
+
   getDefaultProps: function() {
     return {
       mapEnabled: true,

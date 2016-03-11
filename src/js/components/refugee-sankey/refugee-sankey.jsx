@@ -21,6 +21,19 @@ var getCountryFromNodeId = function(id) {
 
 var Node = React.createClass({
 
+  displayName: 'Node',
+
+  propTypes: {
+    item: React.PropTypes.object,
+    nodeWidth: React.PropTypes.number,
+    activeNode: React.PropTypes.object,
+    getCountryName: React.PropTypes.func,
+    width: React.PropTypes.number,
+    friendlyName: React.PropTypes.string,
+    onMouseOver: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func
+  },
+
 
   componentDidUpdate: function() {
     this.update(true);
@@ -84,7 +97,7 @@ var Node = React.createClass({
       //  + " to"
     }
 
-    return "\u00A0";
+    return '\u00A0';
   },
 
 
@@ -140,6 +153,15 @@ var Node = React.createClass({
 
 var LinkPath = React.createClass({
 
+  displayName: 'LinkPath',
+
+  propTypes: {
+    item: React.PropTypes.object,
+    pathFunction: React.PropTypes.func,
+    activeNode: React.PropTypes.object
+  },
+
+
   componentDidUpdate: function() {
     this.update(true);
   },
@@ -188,6 +210,17 @@ var LinkPath = React.createClass({
 
 var RefugeeSankey = React.createClass({
 
+  displayName: 'RefugeeSankey',
+
+  propTypes: {
+    width: React.PropTypes.number,
+    asylumData: React.PropTypes.arrayOf(React.PropTypes.object),
+    year: React.PropTypes.number,
+    month: React.PropTypes.number,
+    mapModel: React.PropTypes.object
+  },
+
+
   getInitialState: function() {
     return {
       hovered: null
@@ -229,7 +262,7 @@ var RefugeeSankey = React.createClass({
     this.getSimplifiedData().forEach(function(item) {
       ret[this.getOriginId(item.oc)] = true;
     }.bind(this));
-    return _.keys(ret);
+    return Object.keys(ret);
   },
 
 
@@ -238,7 +271,7 @@ var RefugeeSankey = React.createClass({
     this.getSimplifiedData().forEach(function(item) {
       ret[this.getDestinationId(item.ac)] = true;
     }.bind(this));
-    return _.keys(ret);
+    return Object.keys(ret);
   },
 
 
@@ -379,7 +412,7 @@ var RefugeeSankey = React.createClass({
     var friendlyName = this.props.mapModel.getFriendlyNameForCountry(name);
 
     if (!friendlyName) {
-      console.log('no name for ' + name);
+      console.log('no name for ' + name); // eslint-disable-line
     }
 
     return friendlyName;
@@ -391,7 +424,7 @@ var RefugeeSankey = React.createClass({
   },
 
 
-  getOnMouseOut: function(item) {
+  getOnMouseOut: function(_item) {
     return function() {
       this.setState({hovered: null});
     }.bind(this);

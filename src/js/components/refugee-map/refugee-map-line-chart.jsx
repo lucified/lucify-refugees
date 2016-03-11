@@ -4,11 +4,19 @@ var C3Chart = require('lucify-commons/src/js/components/react-c3/c3-chart.jsx');
 
 var refugeeConstants = require('../../model/refugee-constants.js');
 var moment = require('moment');
-var _ = require('underscore');
 var d3 = require('d3');
 
 
 var RefugeeMapLineChart = React.createClass({
+
+  displayName: 'RefugeeMapLineChart',
+
+  propTypes: {
+    refugeeCountsModel: React.PropTypes.object,
+    mapModel: React.PropTypes.object,
+    stamp: React.PropTypes.number,
+    onMouseOver: React.PropTypes.func
+  },
 
   getData: function() {
     var mom = moment([refugeeConstants.DATA_START_YEAR, refugeeConstants.DATA_START_MONTH]);
@@ -109,7 +117,7 @@ var RefugeeMapLineChart = React.createClass({
       var length = countriesWithMissingData.length;
       if (length > 0) {
         var missingDataText;
-        countriesWithMissingData = _.map(countriesWithMissingData, function(countryCode) {
+        countriesWithMissingData = countriesWithMissingData.map(function(countryCode) {
           return this.props.mapModel.getFriendlyNameForCountry(countryCode);
         }.bind(this));
         if (length > 5) {
