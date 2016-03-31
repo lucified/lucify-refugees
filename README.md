@@ -75,7 +75,7 @@ Run `gulp prepare-data` to generate the JSON file for the visualization.
 
 If you prefer to download the data manually, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
 
-+ Years: 2012, 2013, 2014, 2015
++ Years: 2012, 2013, 2014, 2015, 2016
 + Months: All months
 + Country of asylum: All countries
 + Origin: All countries
