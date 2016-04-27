@@ -20,13 +20,13 @@ var RefugeeSoccerSegment = React.createClass({
 
   getEuropeanCount: function() {
     // http://data.unhcr.org/syrianrefugees/regional.php, Total Syrian Asylum Applications in Europe
-    return 935008; // Apr 2011 - Jan 2016. Updated 31.3.2016
+    return 972012; // Apr 2011 - Feb 2016. Updated 26.4.2016
   },
 
 
   getRegionalCount: function() {
     // http://data.unhcr.org/syrianrefugees/regional.php, Registered Syrian Refugees
-    return 4812851; // Updated 16.3.2016
+    return 4842896; // Updated 25.4.2016
   },
 
 
@@ -59,25 +59,21 @@ var RefugeeSoccerSegment = React.createClass({
           <h3>Only a fraction makes it to Europe</h3>
 
           <p>
-            The United Nations counts that
-            over 900 000 Syrian refugees have sought
-            asylum in Europe between April 2011 and January 2016.
-            Standing very tighly together,
-            they would fit on {this.getEuropeanSoccerFieldsCount()}
-            {' '} soccer fields.
+            The United Nations counts that close to 1 000 000 Syrian refugees
+            have sought asylum in Europe between April 2011 and February 2016.
+            Standing very tighly together, they would fit
+            on {this.getEuropeanSoccerFieldsCount()} soccer fields.
           </p>
 
           <SoccerFields count={this.getEuropeanSoccerFieldsCount()} />
 
           <p>
-            Only a small fraction of refugees fleeing
-            their homes make it to Europe. The UN
-            has registered over four and a half million Syrian
+            Only a fraction of refugees fleeing their homes make it to
+            Europe. The UN has registered close to five million Syrian
             refugees in Turkey, Lebanon, Jordan, Iraq, Egypt and
             North Africa. Most of them live in refugee camps
-            close to the border.
-            They would fit on {this.getRegionalSoccerFieldsCount()}
-            {' '}soccer fields.
+            close to the border. They would fit
+            on {this.getRegionalSoccerFieldsCount()} soccer fields.
           </p>
 
           <SoccerFields count={this.getRegionalSoccerFieldsCount()} />
