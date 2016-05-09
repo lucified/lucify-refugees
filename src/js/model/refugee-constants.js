@@ -13,7 +13,7 @@ module.exports.DATA_END_MOMENT = moment([
   module.exports.DATA_END_YEAR,
   module.exports.DATA_END_MONTH]).endOf('month');
 
-module.exports.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT = moment([2016, 3, 18]);
+module.exports.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT = moment([2016, 4, 9]);
 
 module.exports.disableLabels = ['BIH', 'MKD', 'ALB', 'LUX', 'MNE', 'ARM', 'AZE', 'LBN'];
 
