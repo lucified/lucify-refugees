@@ -20,6 +20,7 @@ $proper_country_names = {
   "Rep. of Moldova" => "Moldova (Republic of)",
   "United Rep. of Tanzania" => "Tanzania, United Republic of",
   "Serbia and Kosovo (S/RES/1244 (1999))" => "Serbia",
+  "Serbia and Kosovo: S/RES/1244 (1999)" => "Serbia",
   "Rep. of Korea" => "Korea (Republic of)",
   "Dem. People's Rep. of Korea" => "Korea (Democratic People's Republic of)",
   "Lao People's Dem. Rep." => "Lao People's Democratic Republic"
