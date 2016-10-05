@@ -20,7 +20,7 @@ Test that everything works
 gulp
 ```
 
-Then push to repository, and update npm package
+This is no longer required, but to update the NPM package, run the following:
 ```shell
 npm version patch
 git push --follow-tags
