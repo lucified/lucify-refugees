@@ -11,7 +11,9 @@ src/scripts/download-unhcr-data.sh
 ./prepare.sh
 ```
 
-Update dates in refugee-constants and values for soccer-fields.
+Update the "updated at" date and (possibly) the end date in refugee-constants.
+Check http://data.unhcr.org/syrianrefugees/regional.php and update the values
+and dates in refugee-soccer-segment.jsx.
 
 Test that everything works
 ```
