@@ -20,13 +20,13 @@ var RefugeeSoccerSegment = React.createClass({
 
   getEuropeanCount: function() {
     // http://data.unhcr.org/syrianrefugees/regional.php, Total Syrian Asylum Applications in Europe
-    return 1151865; // Apr 2011 - August 2015. Updated 5.10.2016
+    return 1177914; // Apr 2011 - September 2015. Updated 21.11.2016
   },
 
 
   getRegionalCount: function() {
     // http://data.unhcr.org/syrianrefugees/regional.php, Registered Syrian Refugees
-    return 4793209; // Updated 30.9.2016
+    return 4810216; // Updated 7.11.2016
   },
 
 
@@ -59,8 +59,8 @@ var RefugeeSoccerSegment = React.createClass({
           <h3>Only a fraction makes it to Europe</h3>
 
           <p>
-            The United Nations counts that over 1 000 000 Syrian refugees
-            have sought asylum in Europe between April 2011 and August 2016.
+            The United Nations counts that nearly 1 200 000 Syrian refugees
+            have sought asylum in Europe between April 2011 and September 2016.
             Standing very tighly together, they would fit
             on {this.getEuropeanSoccerFieldsCount()} soccer fields.
           </p>
