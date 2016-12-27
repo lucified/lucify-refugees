@@ -11,11 +11,10 @@ This project uses a combination of [React](https://facebook.github.io/react/), [
 
 ### Dependencies
 
-- Node + NPM
-- Development: Bundler: `gem install bundler`
+- Node 4 + NPM
 - Development: Ruby + [RubyGems](https://rubygems.org/pages/download)
+- Development: Bundler: `gem install bundler`
 - Development: GDAL (<http://www.gdal.org/>). On OS X with homebrew install with `brew install gdal`.
-- Testing: Mocha, for running unit tests: `npm install -g mocha`
 
 ### Setup and running
 
@@ -69,7 +68,7 @@ Run the included download script:
 $ src/scripts/download-unhcr-data.sh
 ```
 
-Run `gulp prepare-data` to generate the JSON file for the visualization.
+Run `./prepare.sh` to generate the JSON file for the visualization.
 
 ### Manual download
 
