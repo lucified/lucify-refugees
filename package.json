@@ -43,7 +43,7 @@
   "devDependencies": {
     "babelify": "^6.4.0",
     "gulp": "gulpjs/gulp#4.0",
-    "lucify-component-builder": "~0.2.20",
+    "lucify-component-builder": "~0.2.21",
     "mocha": "^2.3.4",
     "simplify-geojson": "^1.0.2"
   },
