@@ -5,10 +5,14 @@
   "main": "gulpfile.js",
   "scripts": {
     "prepublish": "./prepare.sh",
+    "build": "npm run clean && gulp dist",
+    "clean": "rm -rf dist",
     "start": "gulp",
     "test": "mocha",
     "dist": "rm -rf dist && gulp dist",
-    "deploy": "lucify-deploy"
+    "deploy": "lucify-notifier npm run deploy-plain",
+    "deploy-plain": "npm run build && npm run upload",
+    "upload": "atomic-s3 --verbose"
   },
   "keywords": [
     "lucify",
@@ -41,9 +45,12 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "atomic-s3": "^0.1.5",
     "babelify": "^6.4.0",
     "gulp": "gulpjs/gulp#4.0",
     "lucify-component-builder": "~0.2.21",
+    "lucify-deploy-config": "^0.1.11",
+    "lucify-notifier": "^0.1.9",
     "mocha": "^2.3.4",
     "simplify-geojson": "^1.0.2"
   },
