@@ -5,11 +5,14 @@
   "main": "gulpfile.js",
   "scripts": {
     "prepublish": "./prepare.sh",
+    "build": "npm run clean && gulp dist",
+    "clean": "rm -rf dist",
     "start": "gulp",
     "test": "mocha",
     "dist": "rm -rf dist && gulp dist",
     "deploy": "lucify-notifier npm run deploy-plain",
-    "deploy-plain": "lucify-deploy"
+    "deploy-plain": "npm run build && npm run upload",
+    "upload": "atomic-s3 --verbose"
   },
   "keywords": [
     "lucify",
