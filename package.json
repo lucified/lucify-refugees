@@ -8,7 +8,8 @@
     "start": "gulp",
     "test": "mocha",
     "dist": "rm -rf dist && gulp dist",
-    "deploy": "lucify-deploy"
+    "deploy": "lucify-notifier npm run deploy-plain",
+    "deploy-plain": "lucify-deploy"
   },
   "keywords": [
     "lucify",
