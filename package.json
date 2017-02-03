@@ -42,9 +42,11 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "atomic-s3": "^0.1.5",
     "babelify": "^6.4.0",
     "gulp": "gulpjs/gulp#4.0",
     "lucify-component-builder": "~0.2.21",
+    "lucify-notifier": "^0.1.9",
     "mocha": "^2.3.4",
     "simplify-geojson": "^1.0.2"
   },
