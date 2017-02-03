@@ -4,7 +4,7 @@ machine:
     BRANCH: $CIRCLE_BRANCH
     COMMIT: $CIRCLE_SHA1
   node:
-    version: 4.2.2
+    version: 7.3.0
 
 dependencies:
   pre:
