@@ -1,5 +1,5 @@
 {
-  "publicRoot": "embed/the-flow-towards-europe-updating",
+  "publicRoot": "dist/embed/the-flow-towards-europe-updating",
   "build": {
     "commands": ["apt-get update && apt-get -y install gdal-bin  && npm install", "NODE_ENV=production npm run build"],
     "cache": {
