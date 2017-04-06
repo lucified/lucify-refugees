@@ -1,0 +1,10 @@
+{
+  "publicRoot": "embed/the-flow-towards-europe-updating",
+  "build": {
+    "commands": ["sudo apt-get install gdal-bin && npm install && NODE_ENV=production npm run build"],
+    "cache": {
+      "key": "%CI_PROJECT_PATH%",
+      "paths": ["node_modules/"]
+    }
+  }
+}
