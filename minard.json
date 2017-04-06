@@ -1,8 +1,8 @@
 {
   "publicRoot": "dist",
   "build": {
-    "image": "ruby:2.1",
-    "commands": ["apt-get update && apt-get -y install gdal-bin && gem install bundler && bundle install && npm install && ./prepare.sh", "NODE_ENV=production MINARD=true npm run build"],
+    "image": "mwallasch/docker-ruby-node",
+    "commands": ["apt-get update && apt-get -y install gdal-bin && bundle install && npm install && ./prepare.sh", "NODE_ENV=production MINARD=true npm run build"],
     "cache": {
       "key": "%CI_PROJECT_PATH%",
       "paths": ["node_modules/"]
