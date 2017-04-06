@@ -1,0 +1,10 @@
+{
+  "publicRoot": "dist",
+  "build": {
+    "commands": ["apt-get update && apt-get -y install gdal-bin ruby-dev rubygems && gem install bundler && bundle install && npm install && ./prepare.sh", "NODE_ENV=production MINARD=true npm run build"],
+    "cache": {
+      "key": "%CI_PROJECT_PATH%",
+      "paths": ["node_modules/"]
+    }
+  }
+}

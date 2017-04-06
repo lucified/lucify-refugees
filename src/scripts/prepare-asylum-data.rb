@@ -42,7 +42,7 @@ end
 
 File.delete(OUTPUT_FILE) if File.exists?(OUTPUT_FILE)
 
-CSV.foreach(INPUT_FILE) do |row|
+CSV.foreach(INPUT_FILE, encoding: "UTF-8") do |row|
   next if row[4] == '*'
   next if destination_countries_to_ignore.include?(row[0])
   next if row[1] == row[0] # for some reason the data includes rows where
