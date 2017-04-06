@@ -45,7 +45,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "atomic-s3": "^0.1.5",
+    "atomic-s3": "^0.2.0",
     "babelify": "^6.4.0",
     "gulp": "gulpjs/gulp#4.0",
     "lucify-component-builder": "~0.2.21",
