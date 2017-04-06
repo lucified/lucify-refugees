@@ -1,7 +1,7 @@
 {
   "publicRoot": "dist",
   "build": {
-    "image": "mwallasch/docker-ruby-node",
+    "image": "starefossen/ruby-node:slim",
     "commands": ["apt-get update && apt-get -y install gdal-bin && bundle install && npm install && ./prepare.sh", "NODE_ENV=production MINARD=true npm run build"],
     "cache": {
       "key": "%CI_PROJECT_PATH%",
