@@ -23,7 +23,7 @@ Run the following in the project directory:
 1. `npm install`
 2. `gulp` or `node ./node_modules/gulp/bin/gulp.js`
 
-This project requires gulp 4.0, which is installed by `npm install` under `node_modules`. To be able to use the plain `gulp` command as above, make sure you have gulp-cli version 0.4 installed:
+This project requires gulp 4.0, which is installed by `npm install` under `node_modules`. To be able to use the plain `gulp` command as above, make sure you have installed gulp-cli version 0.4:
 ```
 npm install gulpjs/gulp-cli#4.0 -g
 ```
