@@ -50,7 +50,7 @@
     "gulp": "gulpjs/gulp#4.0",
     "lucify-component-builder": "~0.2.21",
     "lucify-deploy-config": "^0.1.11",
-    "lucify-notifier": "^0.1.14",
+    "lucify-notifier": "^0.1.16",
     "mocha": "^2.3.4",
     "simplify-geojson": "^1.0.2"
   },
