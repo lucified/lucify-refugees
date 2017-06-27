@@ -16,8 +16,6 @@ var RefugeeConstants = require('../../model/refugee-constants.js');
 
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
 
-console.log(geoProjection);
-
 var RefugeeMap = React.createClass({
 
   displayName: 'RefugeeMap',
