@@ -1,6 +1,7 @@
 
 var React = require('react');
 var d3 = require('d3');
+var geoProjection = require('d3-geo-projection');
 
 var BordersLayer = require('./refugee-map-borders-layer.jsx');
 var CountryCountsLayer = require('./refugee-map-country-counts-layer.jsx');
@@ -15,6 +16,7 @@ var RefugeeConstants = require('../../model/refugee-constants.js');
 
 var lucifyUtils = require('lucify-commons/src/js/lucify-utils.jsx');
 
+console.log(geoProjection);
 
 var RefugeeMap = React.createClass({
 
@@ -45,9 +47,9 @@ var RefugeeMap = React.createClass({
       height: 1200,
       interactionsEnabled: true,
       showFps: false,
-      lo: 22.2206322,
-      la: 34.0485818,
-      scale: 0.85,
+      lo: 22.2206322 + 7,
+      la: 32.0485818,
+      scale: 0.70,
       showDataUpdated: true
     };
   },
@@ -95,6 +97,18 @@ var RefugeeMap = React.createClass({
   },
 
 
+  getWinkel3Projection: function() {
+    var lo = this.props.lo; // x
+    var la = this.props.la; // y
+    return geoProjection.geoWinkel3()
+      .center([0, la])
+      .rotate([-lo, 0])
+      .scale(this.getWidth()*this.props.scale)
+      .translate([this.getWidth() / 2, this.getHeight() / 2])
+      .precision(1);
+  },
+
+
   getMercatorProjection: function() {
     var lo = 26.2206322; // x
     var la = 46.0485818; // y
@@ -109,7 +123,7 @@ var RefugeeMap = React.createClass({
 
   getProjection: function() {
     if (!this._projection){
-      this._projection = this.getAzimuthalEqualAreaProjection();
+      this._projection = this.getWinkel3Projection();
     }
     return this._projection;
   },
