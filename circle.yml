@@ -12,7 +12,7 @@ dependencies:
     - gem install bundler && bundle install
 
 deployment:
-  staging:
+  chatops:
     branch: /^(?!nodeploy-).*$/
     commands:
-      - npm run-script deploy
+      - npm run deploy-chatops
