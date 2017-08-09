@@ -12,7 +12,7 @@
     "dist": "rm -rf dist && gulp dist",
     "deploy": "lucify-notifier npm run deploy-plain",
     "deploy-plain": "npm run build && npm run upload",
-    "deploy-chatops": "[ \"$AWS_TEMPORARY\" ] && npm run deploy || echo 'Skipping deployment'",
+    "deploy-chatops":"[ -z \"$AWS_TEMPORARY\" ] || npm run deploy",
     "upload": "atomic-s3 --verbose"
   },
   "keywords": [
