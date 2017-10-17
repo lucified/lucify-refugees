@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    iso_country_codes (0.7.1)
-    json (1.8.3)
+    iso_country_codes (0.7.8)
+    json (2.1.0)
 
 PLATFORMS
   ruby
@@ -12,4 +12,4 @@ DEPENDENCIES
   json
 
 BUNDLED WITH
-   1.10.4
+   1.15.4
