@@ -29,7 +29,7 @@ describe('RefugeeCountsModel', function() {
         .filter(function(item) {
           return item.ac == 'DEU' && item.year==2012 && item.month==1;
         })
-        .reduce(function(prev, val) { return prev + val.count; }, 0), 4667);
+        .reduce(function(prev, val) { return prev + val.count; }, 0), 5511);
     });
   });
 
@@ -42,15 +42,15 @@ describe('RefugeeCountsModel', function() {
   describe('getTotalDestinationCounts', function() {
     it('correct total for germany after jan 2015', function() {
       assert.equal(model.getTotalDestinationCounts(
-        'DEU', moment([2012, 0, 31]).unix()).asylumApplications, 4667);
+        'DEU', moment([2012, 0, 31]).unix()).asylumApplications, 5511);
     });
     it('correct total for germany at end of 2014', function() {
       assert.equal(model.getTotalDestinationCounts('DEU', moment([2014, 11, 31]).unix())
-        .asylumApplications, 347191);
+        .asylumApplications, 404898);
     });
     it('correct total for finland at end of 2014', function() {
       assert.equal(model.getTotalDestinationCounts('FIN', moment([2014, 11, 31]).unix())
-        .asylumApplications, 9461);
+        .asylumApplications, 10083);
     });
   });
 
