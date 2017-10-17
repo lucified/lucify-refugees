@@ -2,6 +2,7 @@
 
 require 'csv'
 require 'json'
+require 'set'
 require 'iso_country_codes'
 
 OUTPUT_FILE = './temp/data-assets/asylum.json'
@@ -23,7 +24,8 @@ $proper_country_names = {
   "Serbia and Kosovo: S/RES/1244 (1999)" => "Serbia",
   "Rep. of Korea" => "Korea (Republic of)",
   "Dem. People's Rep. of Korea" => "Korea (Democratic People's Republic of)",
-  "Lao People's Dem. Rep." => "Lao People's Democratic Republic"
+  "Lao People's Dem. Rep." => "Lao People's Democratic Republic",
+  "Czech Rep." => "Czechia"
 }
 month_data = []
 grouped_monthly_data = Array.new(13){ |i| {} } # initialize with array of hashes. month counting starts at index 1
@@ -32,7 +34,7 @@ $country_codes_cache = {}
 
 def proper_country_name(name)
   proper_name = $proper_country_names[name]
-  proper_name = name unless proper_name
+  proper_name = name.gsub(/Rep\./, 'Republic') unless proper_name
   proper_name
 end
 
