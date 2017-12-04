@@ -25,7 +25,9 @@ $proper_country_names = {
   "Rep. of Korea" => "Korea (Republic of)",
   "Dem. People's Rep. of Korea" => "Korea (Democratic People's Republic of)",
   "Lao People's Dem. Rep." => "Lao People's Democratic Republic",
-  "Czech Rep." => "Czechia"
+  "Czech Rep." => "Czechia",
+  "China, Hong Kong SAR" => "Hong Kong",
+  "China, Macao SAR" => "Macao"
 }
 month_data = []
 grouped_monthly_data = Array.new(13){ |i| {} } # initialize with array of hashes. month counting starts at index 1
