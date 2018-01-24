@@ -7,13 +7,13 @@ module.exports.DATA_START_YEAR = 2012;
 module.exports.DATA_START_MONTH = 0;
 
 module.exports.DATA_END_YEAR = 2017;
-module.exports.DATA_END_MONTH = 8;
+module.exports.DATA_END_MONTH = 9;
 
 module.exports.DATA_END_MOMENT = moment([
   module.exports.DATA_END_YEAR,
   module.exports.DATA_END_MONTH]).endOf('month');
 
-module.exports.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT = moment([2017, 10, 13]);
+module.exports.ASYLUM_APPLICANTS_DATA_UPDATED_MOMENT = moment([2018, 0, 23]);
 
 module.exports.disableLabels = ['BIH', 'MKD', 'ALB', 'LUX', 'MNE', 'ARM', 'AZE', 'LBN'];
 
