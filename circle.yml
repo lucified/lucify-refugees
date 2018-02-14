@@ -4,15 +4,19 @@ machine:
     BRANCH: $CIRCLE_BRANCH
     COMMIT: $CIRCLE_SHA1
   node:
-    version: 7.3.0
+    version: 8.9
 
 dependencies:
   pre:
     - sudo apt-get install gdal-bin
     - gem install bundler && bundle install
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
 
 deployment:
   chatops:
     branch: /^(?!nodeploy-).*$/
     commands:
-      - npm run deploy-chatops
+      - yarn run deploy-chatops

@@ -12,7 +12,7 @@
     "dist": "rm -rf dist && gulp dist",
     "deploy": "lucify-notifier npm run deploy-plain",
     "deploy-plain": "npm run build && npm run upload",
-    "deploy-chatops":"[ -z \"$AWS_TEMPORARY\" ] || npm run deploy",
+    "deploy-chatops": "[ -z \"$AWS_TEMPORARY\" ] || npm run deploy",
     "upload": "atomic-s3 --verbose"
   },
   "keywords": [
@@ -24,7 +24,7 @@
     "Europe"
   ],
   "engines": {
-    "node": "^4.2.2"
+    "node": "^8.9.0"
   },
   "homepage": "https://www.lucify.com/the-flow-towards-europe",
   "contributors": [
@@ -48,7 +48,7 @@
   "devDependencies": {
     "atomic-s3": "^0.2.0",
     "babelify": "^6.4.0",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "git://github.com/gulpjs/gulp.git#6d71a658c61edb3090221579d8f97dbe086ba2ed",
     "lucify-component-builder": "~0.2.22",
     "lucify-deploy-config": "^0.1.11",
     "lucify-notifier": "^0.1.16",

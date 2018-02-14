@@ -11,7 +11,7 @@ This project uses a combination of [React](https://facebook.github.io/react/), [
 
 ### Dependencies
 
-- Node 4 + NPM
+- Node 8 + Yarn
 - Development: Ruby + [RubyGems](https://rubygems.org/pages/download)
 - Development: Bundler: `gem install bundler`
 - Development: GDAL (<http://www.gdal.org/>). On OS X with homebrew install with `brew install gdal`.
@@ -20,19 +20,14 @@ This project uses a combination of [React](https://facebook.github.io/react/), [
 
 Run the following in the project directory:
 
-1. `npm install`
-2. `gulp` or `node ./node_modules/gulp/bin/gulp.js`
-
-This project requires gulp 4.0, which is installed by `npm install` under `node_modules`. To be able to use the plain `gulp` command as above, make sure you have installed gulp-cli version 0.4:
-```
-npm install gulpjs/gulp-cli#4.0 -g
-```
+1. `yarn`
+2. `yarn start`
 
 For development, run `bundle install` as well.
 
 ### Distribution build
 
-A distribution is built by the command `gulp dist`.
+A distribution is built by the command `yarn gulp dist`.
 
 You will likely need to edit the `embedBaseUrl` and `assetContext` parameters in `gulpfile.babel.js` to match your hosting environment. If you are hosting the component at `http://www.example.com/static/refugees`, you should set embedBaseUrl to `http://www.example.com/` and `assetContext` to `static/refugees/`.
 
@@ -42,7 +37,7 @@ The project includes a gulp task for publishing the project to Amazon S3. It wil
 
 In addition to setting up the credentials file, you should change the `defaultBucket` option in `gulfile.babel.js` to match the name of your S3 bucket. Additionally, you may wish to change the `maxAge` option, which affects the cache-control header of assets with filenames having content hashes.
 
-Run the publish task with `gulp s3-deploy`.
+Run the publish task with `yarn gulp s3-deploy`.
 
 ### Unit tests
 
@@ -80,7 +75,7 @@ If you prefer to download the data manually, open the UNHCR asylum applications 
 + Origin: All countries
 + Data item to display: Country of asylum, origin, year
 
-Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `gulp prepare-data` to generate the JSON file for the visualization.
+Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `yarn gulp prepare-data` to generate the JSON file for the visualization.
 
 
 ## Authors
