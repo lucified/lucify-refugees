@@ -20,10 +20,9 @@ This project uses a combination of [React](https://facebook.github.io/react/), [
 
 Run the following in the project directory:
 
-1. `yarn`
-2. `yarn start`
-
-For development, run `bundle install` as well.
+1. `bundle install`
+2. `yarn`
+3. `yarn start`
 
 ### Distribution build
 
