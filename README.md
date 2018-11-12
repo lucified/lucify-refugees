@@ -6,7 +6,6 @@ A visualization of the flow of asylum seekers to European countries from 2012 on
 
 This project uses a combination of [React](https://facebook.github.io/react/), [D3.js](http://d3js.org/) and [PIXI.js](http://www.pixijs.com/).
 
-
 ## Development
 
 ### Dependencies
@@ -68,14 +67,13 @@ Run `./prepare.sh` to generate the JSON file for the visualization.
 
 If you prefer to download the data manually, open the UNHCR asylum applications data portal, select the options below and click on Export / Current View / CSV:
 
-+ Years: 2012, 2013, 2014, 2015, 2016, 2017
-+ Months: All months
-+ Country of asylum: All countries
-+ Origin: All countries
-+ Data item to display: Country of asylum, origin, year
+- Years: 2012, 2013, 2014, 2015, 2016, 2017, 2018
+- Months: All months
+- Country of asylum: All countries
+- Origin: All countries
+- Data item to display: Country of asylum, origin, year
 
 Save the resulting file as `data/unhcr_popstats_export_asylum_seekers_monthly.csv`, remove the first four (header) rows and run `yarn gulp prepare-data` to generate the JSON file for the visualization.
-
 
 ## Authors
 
